@@ -19,7 +19,7 @@ namespace JDLMLab
 
         private void checkBox1_CheckedChanged(object sender, EventArgs e)
         {
-            MessageBox.Show("hello world!");
+            MessageBox.Show("hello world! IDE TOOOO");
         }
     }
 }
