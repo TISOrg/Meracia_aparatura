@@ -16,5 +16,10 @@ namespace JDLMLab
         {
             InitializeComponent();
         }
+
+        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        {
+            MessageBox.Show("hello world!");
+        }
     }
 }
