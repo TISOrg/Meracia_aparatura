@@ -52,7 +52,8 @@ namespace JDLMLab
         public int startPoint {
             get; set; }
         public int endPoint {
-            get; set}
+            get; set;
+        }
         public int constant {
             get; set; }
         public int resolution {
