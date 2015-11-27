@@ -12,7 +12,7 @@ namespace JDLMLab
     /// </summary>
     class Meranie
     {
-        public Meranie(string name,string typMerania,int startPoint,int endPoint,int constant,int resolution,int stepTime,string note,int cycles)
+        public Meranie(string name,int startPoint,int endPoint,int constant,int resolution,int stepTime,string note,int cycles)
         {
             this.name = name;
             this.startPoint = startPoint;
@@ -41,7 +41,7 @@ namespace JDLMLab
 
         
 
-        public string typMerania{get;set;}
+        
 
         public string note { get; set}
         public string name { get; set; }
