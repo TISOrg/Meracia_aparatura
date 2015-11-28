@@ -46,6 +46,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CyklusMerania.cs" />
     <Compile Include="EnergyScanMeranie.cs" />
     <Compile Include="KrokMerania.cs" />
     <Compile Include="Meranie.cs" />
