@@ -14,12 +14,12 @@ namespace JDLMLab
         }
         public int cisloCyklu { get; set; }
         
-        private LinkedList<KrokMerania> kroky;
+        private List<KrokMerania> kroky;
         public void pridajKrok(KrokMerania k)
         {
-            kroky.AddLast(k);
+            kroky.Add(k);
         }
-        public LinkedList<KrokMerania> getKroky()
+        public List<KrokMerania> getKroky()
         {
             return kroky;
         }
