@@ -38,12 +38,7 @@ namespace JDLMLab
             this.cycles = 0;    //nula bude reprezentovat nekonecne vela cyklov.
 
         }
-
-        
-
-        
-
-        public string note { get; set}
+        public string note { get; set; }
         public string name { get; set; }
         public DateTime datetime
         {
@@ -65,6 +60,10 @@ namespace JDLMLab
             get; set;
         }
         public string header { get; set; }
-        
+        public LinkedList<CyklusMerania> cykly {get; set; }
+        public void pridajCyklus(CyklusMerania c)
+        {
+            cykly.AddLast(c);
+        }
     }
 }
