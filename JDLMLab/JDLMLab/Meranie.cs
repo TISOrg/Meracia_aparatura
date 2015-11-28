@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -60,10 +61,15 @@ namespace JDLMLab
             get; set;
         }
         public string header { get; set; }
-        public LinkedList<CyklusMerania> cykly {get; set; }
+        public List<CyklusMerania> cykly {get; set; }
         public void pridajCyklus(CyklusMerania c)
         {
-            cykly.AddLast(c);
+            cykly.Add(c);            
+        }
+        public CyklusMerania getCyklus(int i) { return cykly[i]; }
+        public void addKrok(int cyklus,KrokMerania k) 
+        {
+            cykly[cyklus].pridajKrok(k);
         }
     }
 }
