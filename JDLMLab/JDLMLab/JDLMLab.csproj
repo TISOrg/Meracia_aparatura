@@ -49,6 +49,8 @@
     <Compile Include="CyklusMerania.cs" />
     <Compile Include="EnergyScanMeranie.cs" />
     <Compile Include="KrokMerania.cs" />
+    <Compile Include="MeasurementControl.cs" />
+    <Compile Include="MeasurementSettings.cs" />
     <Compile Include="Meranie.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
