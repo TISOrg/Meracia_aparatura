@@ -12,6 +12,8 @@ namespace JDLMLab
     /// </summary>
     class Meranie
     {
+        private MeasurementParameters parameters;
+
         public Meranie(string name,int startPoint,int endPoint,int constant,int resolution,int stepTime,string note,int cycles)
         {
             this.name = name;
@@ -38,6 +40,12 @@ namespace JDLMLab
             this.cycles = 0;    //nula bude reprezentovat nekonecne vela cyklov.
 
         }
+
+        public Meranie(MeasurementParameters parameters)
+        {
+            this.parameters = parameters;
+        }
+
         public string note { get; set; }
         public string name { get; set; }
         public DateTime datetime
@@ -68,7 +76,15 @@ namespace JDLMLab
         public CyklusMerania getCyklus(int i) { return cykly[i]; }
         public void addKrok(int cyklus,KrokMerania k) 
         {
-            cykly[cyklus].pridajKrok(k);
+            try {
+                cykly[cyklus].pridajKrok(k);
+                
+            }
+            catch (IndexOutOfRangeException e)
+            {
+                pridajCyklus(new CyklusMerania(cyklus);
+                cykly.Last().pridajKrok(k);
+            }
         }
     }
 }

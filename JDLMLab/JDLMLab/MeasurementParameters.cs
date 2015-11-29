@@ -15,5 +15,9 @@ namespace JDLMLab
         public int stepTime { get; set; }
         public string name { get; set; }
         public int pocetKrokov { get; set; }
+        public double tlakKapilaryIntervalMerania { get; set; }
+        public double tlakTPGIntervalMerania { get; set; }
+        public double teplotaIntervalMerania { get; set; }
+        public string note { get; set; }
     }
 }

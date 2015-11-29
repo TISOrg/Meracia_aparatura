@@ -8,7 +8,7 @@ namespace JDLMLab
 {
     class KrokMerania
     {
-        public KrokMerania(int x,int y,int det,int current,int p1,int p2,int temperature)
+        public KrokMerania(double x,double y,int det,double current,int p1,int p2,int temperature)
         {
             this.x = x;
             this.y = y;
@@ -21,10 +21,10 @@ namespace JDLMLab
         public KrokMerania()
         {
         }
-        public int x { get; set; }
-        public int y { get; set; }
+        public double x { get; set; }
+        public double y { get; set; }
         public int det { get; set; }
-        public int current { get; set; }
+        public double current { get; set; }
         public int p1 { get; set; }
         public int p2 { get; set; }
         public int temperature { get; set; }
