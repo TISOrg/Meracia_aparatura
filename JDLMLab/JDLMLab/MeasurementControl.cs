@@ -64,8 +64,9 @@ namespace JDLMLab
                 //pre kazdy cyklus merania, urob vsetky body merania
                 int pBod = 0;
                 Stopwatch watch = new Stopwatch();
-                double napatie=0,prud=0,x=0,y=0;
+                double napatie=0,prud=0,x=parameters.startPoint,y=parameters.constant;
                 int teplota=0, tlakKapilara=0, tlakTPG=0, det=0;
+
                 while (pBod<pocetBodov)
                 {
 
@@ -73,31 +74,38 @@ namespace JDLMLab
                     //nacitaj detektor
                     //...
 
-
-                    //ak je energy scan, urob krok, tj zvys eV na TEM o krokNapatia
-                    if (typ.Equals("EnergyScan"))
+                    if (typ.Equals("2DScan"))
                     {
-                        napatie = parameters.startPoint + (krokNapatia * pBod);
-
-                        // class PristrojTEM.write(...
-
-                        //vynuluj trigger v AD
-                        //class AD.write(...
-
+                        /////
+                        //x=parameters.startPoint
                     }
-                    //mass scan, zvys krok na QMS
-                    if (typ.Equals("MassScan"))
+                    else
                     {
-                        
+                        //ak je energy scan, urob krok, tj zvys eV na TEM o krokNapatia
+                        if (typ.Equals("EnergyScan"))
+                        {
+                            x = parameters.startPoint + (krokNapatia * pBod);
 
-                        // class PristrojQMS.write(...
+                            // class PristrojTEM.write(...
+
+                            //vynuluj trigger v AD
+                            //class AD.write(...
+
+                        }
+                        //mass scan, zvys krok na QMS
+                        if (typ.Equals("MassScan"))
+                        {
 
 
-                        //vynuluj trigger v AD
-                        //class AD.write(...
+                            // class PristrojQMS.write(...
+                            x = parameters.startPoint + (pBod);
+
+                            //vynuluj trigger v AD
+                            //class AD.write(...
 
 
 
+                        }
                     }
                     //cakaj cas t na nacitanie zaznameneho poctu TTL v AD
                     // wait(t)...

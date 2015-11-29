@@ -44,6 +44,8 @@ namespace JDLMLab
         public Meranie(MeasurementParameters parameters)
         {
             this.parameters = parameters;
+            cykly = new List<CyklusMerania>(parameters.pocetCyklov);
+
         }
 
         public string note { get; set; }
@@ -77,12 +79,17 @@ namespace JDLMLab
         public void addKrok(int cyklus,KrokMerania k) 
         {
             try {
+                Console.WriteLine("vypis kroku:" + k.toString());
                 cykly[cyklus].pridajKrok(k);
                 
             }
-            catch (IndexOutOfRangeException e)
+            catch (NullReferenceException e)
             {
-                pridajCyklus(new CyklusMerania(cyklus);
+                
+            }
+            catch(ArgumentOutOfRangeException e)
+            {
+                pridajCyklus(new CyklusMerania(cyklus));
                 cykly.Last().pridajKrok(k);
             }
         }

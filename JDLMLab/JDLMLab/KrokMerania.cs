@@ -28,5 +28,26 @@ namespace JDLMLab
         public int p1 { get; set; }
         public int p2 { get; set; }
         public int temperature { get; set; }
+
+        public string toString()
+        {
+            StringBuilder s = new StringBuilder();
+            s.Append(x);
+            s.Append(" ");
+            s.Append(y);
+            s.Append(" ");
+            s.Append(det);s.Append(" ");
+
+            s.Append(current);
+            s.Append(" ");
+            s.Append(p1);
+            s.Append(" ");
+            s.Append(p2);
+            s.Append(" ");
+            s.Append(temperature);
+            s.Append("\n");
+            return s.ToString();
+        }
     }
+
 }

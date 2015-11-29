@@ -8,6 +8,10 @@ namespace JDLMLab
 {
     class MeasurementParameters
     {
+        public int pocetCyklov {
+            get; set;
+        }
+
         public double startPoint { get; set; }
         public double endPoint { get; set; }
         public double resolution { get; set; }

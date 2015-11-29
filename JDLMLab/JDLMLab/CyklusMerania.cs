@@ -17,7 +17,16 @@ namespace JDLMLab
         private List<KrokMerania> kroky;
         public void pridajKrok(KrokMerania k)
         {
-            kroky.Add(k);
+            try
+            {
+                kroky.Add(k);
+            }
+            catch(NullReferenceException e)
+            {
+                kroky = new List<KrokMerania>();
+                kroky.Add(k);
+            }
+            
         }
         public List<KrokMerania> getKroky()
         {
