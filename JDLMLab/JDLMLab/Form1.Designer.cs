@@ -28,7 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.serialPort1 = new System.IO.Ports.SerialPort(this.components);
             this.SuspendLayout();
             // 
             // checkBox1
@@ -41,6 +43,10 @@
             this.checkBox1.Text = "checkBox1";
             this.checkBox1.UseVisualStyleBackColor = true;
             this.checkBox1.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
+            // 
+            // serialPort1
+            // 
+            this.serialPort1.Parity = System.IO.Ports.Parity.Even;
             // 
             // Form1
             // 
@@ -58,6 +64,7 @@
         #endregion
 
         private System.Windows.Forms.CheckBox checkBox1;
+        private System.IO.Ports.SerialPort serialPort1;
     }
 }
 
