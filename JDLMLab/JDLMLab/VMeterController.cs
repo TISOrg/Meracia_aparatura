@@ -8,7 +8,16 @@ namespace JDLMLab
 {
     class VMeterController
     {
-        VMeterDriver d = new VMeterDriver();
+        VMeterDriver d;
+        public VMeterController(int casCitania)
+        {
+            d = new VMeterDriver();
+        }
+        public void start()
+        {
+            //zacni merat v intervaloch casCitania a posielaj do stanovenej struktury            
+        }
+
 
     }
 }

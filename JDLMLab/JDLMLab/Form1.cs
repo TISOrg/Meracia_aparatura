@@ -21,5 +21,10 @@ namespace JDLMLab
         {
             MessageBox.Show("hello world! IDE TOOOO");
         }
+
+        private void serialPort1_DataReceived(object sender, System.IO.Ports.SerialDataReceivedEventArgs e)
+        {
+
+        }
     }
 }
