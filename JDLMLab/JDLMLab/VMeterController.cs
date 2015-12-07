@@ -16,6 +16,7 @@ namespace JDLMLab
         public void start()
         {
             //zacni merat v intervaloch casCitania a posielaj do stanovenej struktury            
+            //.....
         }
 
 
