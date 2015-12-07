@@ -1,6 +1,6 @@
 ﻿namespace JDLMLab
 {
-    partial class Form1
+    partial class Settings
     {
         /// <summary>
         /// Required designer variable.
@@ -28,28 +28,30 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
-            this.serialPort1 = new System.IO.Ports.SerialPort(this.components);
+            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.SuspendLayout();
             // 
-            // serialPort1
+            // dateTimePicker1
             // 
-            this.serialPort1.Parity = System.IO.Ports.Parity.Even;
-            this.serialPort1.DataReceived += new System.IO.Ports.SerialDataReceivedEventHandler(this.serialPort1_DataReceived);
+            this.dateTimePicker1.Location = new System.Drawing.Point(75, 71);
+            this.dateTimePicker1.Name = "dateTimePicker1";
+            this.dateTimePicker1.Size = new System.Drawing.Size(200, 20);
+            this.dateTimePicker1.TabIndex = 0;
             // 
-            // Form1
+            // Settings
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(465, 337);
-            this.Name = "Form1";
-            this.Text = "Form1";
+            this.ClientSize = new System.Drawing.Size(284, 262);
+            this.Controls.Add(this.dateTimePicker1);
+            this.Name = "Settings";
+            this.Text = "Settings";
             this.ResumeLayout(false);
 
         }
 
         #endregion
-        private System.IO.Ports.SerialPort serialPort1;
+
+        private System.Windows.Forms.DateTimePicker dateTimePicker1;
     }
 }
-
