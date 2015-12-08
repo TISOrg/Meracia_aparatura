@@ -16,5 +16,10 @@ namespace JDLMLab
         {
             InitializeComponent();
         }
+
+        private void About_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
