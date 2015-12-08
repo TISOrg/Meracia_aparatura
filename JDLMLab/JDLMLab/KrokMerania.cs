@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace JDLMLab
 {
+    //dominik napisal tuto poznmku, bez zmeny triedy
     class KrokMerania
     {
         public KrokMerania(double x,double y,int det,double current,int p1,int p2,int temperature)
