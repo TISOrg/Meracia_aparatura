@@ -50,7 +50,7 @@
             // 
             // button4
             // 
-            this.button4.Location = new System.Drawing.Point(270, 369);
+            this.button4.Location = new System.Drawing.Point(261, 349);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(75, 23);
             this.button4.TabIndex = 17;
@@ -59,7 +59,7 @@
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(118, 369);
+            this.button3.Location = new System.Drawing.Point(109, 349);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(75, 23);
             this.button3.TabIndex = 16;
@@ -68,7 +68,7 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(118, 337);
+            this.button2.Location = new System.Drawing.Point(109, 317);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(227, 23);
             this.button2.TabIndex = 15;
@@ -81,7 +81,7 @@
             this.groupBox2.Controls.Add(this.radioButton3);
             this.groupBox2.Controls.Add(this.radioButton2);
             this.groupBox2.Controls.Add(this.radioButton1);
-            this.groupBox2.Location = new System.Drawing.Point(118, 221);
+            this.groupBox2.Location = new System.Drawing.Point(109, 201);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(227, 100);
             this.groupBox2.TabIndex = 14;
@@ -134,7 +134,7 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(118, 178);
+            this.button1.Location = new System.Drawing.Point(109, 158);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(227, 23);
             this.button1.TabIndex = 13;
@@ -147,7 +147,7 @@
             this.groupBox1.Controls.Add(this.trackBar2);
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Controls.Add(this.label2);
-            this.groupBox1.Location = new System.Drawing.Point(118, 57);
+            this.groupBox1.Location = new System.Drawing.Point(109, 37);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(227, 115);
             this.groupBox1.TabIndex = 12;
