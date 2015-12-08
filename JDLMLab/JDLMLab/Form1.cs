@@ -13,10 +13,12 @@ namespace JDLMLab
     public partial class Form1 : Form
     {
         Settings setmerania;
+        About info;
         public Form1()
         {
             InitializeComponent();
             setmerania = new Settings();
+            info = new About();
         }
 
         private void checkBox1_CheckedChanged(object sender, EventArgs e)
@@ -32,6 +34,16 @@ namespace JDLMLab
         private void nastaveniaMeraniaToolStripMenuItem_Click(object sender, EventArgs e)
         {
             setmerania.ShowDialog();
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void oProgrameToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            info.ShowDialog();
         }
     }
 }
