@@ -1,0 +1,33 @@
+Zapisnica 02
+datum: 15.10.2015
+Prítomní: J,L,D,M
+
+Tasky z minula: 
+  pripraviť plán projektu => L: plán sa urobil a odovdal na Git
+  urobiť Ghantov diagram => M: pri diagrame bolo treba ešte dokončiť niektoré špecifiká projektu, tie sa doplnili a diagram sa odovzdal
+
+Agenda:
+1.Prediskutovať diagramy na konceptuálnu analýzu
+2.prediskutovať dokončenie špecifikácie
+3.urobiť návrh GUI
+========================
+1.Prediskutovať diagramy na konceptuálnu analýzu
+Use-case diagram: program bude obsahovať najmä 2 používateľské roly. Ten, kto obsluhuje a spracuváva merania. A ten, čo spravuje databázu alebo server, prípadne robí rozšírenia aplikácie pre nové zariadenia
+Stavový diagram: pre tento diagram sa použije jeden zo stavov meranie,zobrazovanie,vkladanie,editovanie
+ER - 
+
+2.prediskutovať dokončenie špecifikácie
+špecifikáciu dokončiť podľa pokynov cvičiaceho, opraviť gramatické chyby, dokončiť slovník pojmov, a rozdeliť kategórie požiadaviek
+sú v nej aj niektoré premature design prvky. a niektoré ambigious prvky
+
+3.urobiť návrh GUI
+v programe Moqups urobíme návrh GUI prostredia. Je užitočné zachovať formu GUI používanom v doterajšom programe.
+Teda veľký priestor pre graf, bočné lišty pre nástroje a hornú lištu pre hlavné riadenie programu(save/load/...)
+
+
+Najbližšie stretnutie: 20.10.2015
+
+Ciele do najbližšieho stretnutia:
+1.nakresliť diagramy use-case, state, ER diagram => M,D
+2.dokončiť a odovzdať špecifikáciu => J,L
+3.urobiť návrh GUI => M
