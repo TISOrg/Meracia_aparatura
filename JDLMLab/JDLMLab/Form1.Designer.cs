@@ -34,6 +34,7 @@
             this.menuToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.nastaveniaMeraniaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.nastaveniaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.oProgrameToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.label1 = new System.Windows.Forms.Label();
             this.radioButton1 = new System.Windows.Forms.RadioButton();
@@ -43,7 +44,6 @@
             this.button3 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.toolsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.button4 = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -80,15 +80,21 @@
             // nastaveniaMeraniaToolStripMenuItem
             // 
             this.nastaveniaMeraniaToolStripMenuItem.Name = "nastaveniaMeraniaToolStripMenuItem";
-            this.nastaveniaMeraniaToolStripMenuItem.Size = new System.Drawing.Size(178, 22);
-            this.nastaveniaMeraniaToolStripMenuItem.Text = "Nastavenia merania";
+            this.nastaveniaMeraniaToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
+            this.nastaveniaMeraniaToolStripMenuItem.Text = "Nové meranie";
             this.nastaveniaMeraniaToolStripMenuItem.Click += new System.EventHandler(this.nastaveniaMeraniaToolStripMenuItem_Click);
             // 
             // nastaveniaToolStripMenuItem
             // 
             this.nastaveniaToolStripMenuItem.Name = "nastaveniaToolStripMenuItem";
-            this.nastaveniaToolStripMenuItem.Size = new System.Drawing.Size(178, 22);
+            this.nastaveniaToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
             this.nastaveniaToolStripMenuItem.Text = "Nastavenia";
+            // 
+            // toolsToolStripMenuItem
+            // 
+            this.toolsToolStripMenuItem.Name = "toolsToolStripMenuItem";
+            this.toolsToolStripMenuItem.Size = new System.Drawing.Size(48, 20);
+            this.toolsToolStripMenuItem.Text = "Tools";
             // 
             // oProgrameToolStripMenuItem
             // 
@@ -177,12 +183,6 @@
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.Size = new System.Drawing.Size(988, 499);
             this.dataGridView1.TabIndex = 6;
-            // 
-            // toolsToolStripMenuItem
-            // 
-            this.toolsToolStripMenuItem.Name = "toolsToolStripMenuItem";
-            this.toolsToolStripMenuItem.Size = new System.Drawing.Size(48, 20);
-            this.toolsToolStripMenuItem.Text = "Tools";
             // 
             // button4
             // 

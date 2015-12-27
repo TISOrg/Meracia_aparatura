@@ -13,12 +13,12 @@ namespace JDLMLab
     public partial class Form1 : Form
     {
         Settings setmerania;
-        About info;
+        AboutBox1 info;
         public Form1()
         {
             InitializeComponent();
             setmerania = new Settings();
-            info = new About();
+            info = new AboutBox1();
         }
 
         private void checkBox1_CheckedChanged(object sender, EventArgs e)
