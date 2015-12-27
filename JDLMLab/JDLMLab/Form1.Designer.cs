@@ -92,14 +92,14 @@
             // nastaveniaMeraniaToolStripMenuItem
             // 
             this.nastaveniaMeraniaToolStripMenuItem.Name = "nastaveniaMeraniaToolStripMenuItem";
-            this.nastaveniaMeraniaToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
+            this.nastaveniaMeraniaToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.nastaveniaMeraniaToolStripMenuItem.Text = "Nové meranie";
             this.nastaveniaMeraniaToolStripMenuItem.Click += new System.EventHandler(this.nastaveniaMeraniaToolStripMenuItem_Click);
             // 
             // nastaveniaToolStripMenuItem
             // 
             this.nastaveniaToolStripMenuItem.Name = "nastaveniaToolStripMenuItem";
-            this.nastaveniaToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
+            this.nastaveniaToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.nastaveniaToolStripMenuItem.Text = "Nastavenia";
             // 
             // toolsToolStripMenuItem
@@ -223,7 +223,6 @@
             this.roky.RowHeadersVisible = false;
             this.roky.Size = new System.Drawing.Size(240, 150);
             this.roky.TabIndex = 8;
-            this.roky.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.roky_CellClick);
             // 
             // nazvy
             // 
@@ -232,7 +231,6 @@
             this.nazvy.Name = "nazvy";
             this.nazvy.Size = new System.Drawing.Size(240, 150);
             this.nazvy.TabIndex = 9;
-            this.nazvy.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.nazvy_CellClick);
             // 
             // dates
             // 
@@ -241,7 +239,6 @@
             this.dates.Name = "dates";
             this.dates.Size = new System.Drawing.Size(240, 150);
             this.dates.TabIndex = 10;
-            this.dates.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dates_CellClick);
             // 
             // typy
             // 
@@ -250,7 +247,6 @@
             this.typy.Name = "typy";
             this.typy.Size = new System.Drawing.Size(240, 150);
             this.typy.TabIndex = 11;
-            this.typy.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.typy_CellClick);
             // 
             // merania
             // 
@@ -259,7 +255,6 @@
             this.merania.Name = "merania";
             this.merania.Size = new System.Drawing.Size(240, 150);
             this.merania.TabIndex = 12;
-            this.merania.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.merania_CellClick);
             // 
             // meranie
             // 

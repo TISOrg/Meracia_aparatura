@@ -55,5 +55,7 @@ namespace JDLMLab
         {
             setmerania.ShowDialog();
         }
+
+   
     }
 }
