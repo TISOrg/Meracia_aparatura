@@ -92,14 +92,14 @@
             // nastaveniaMeraniaToolStripMenuItem
             // 
             this.nastaveniaMeraniaToolStripMenuItem.Name = "nastaveniaMeraniaToolStripMenuItem";
-            this.nastaveniaMeraniaToolStripMenuItem.Size = new System.Drawing.Size(178, 22);
-            this.nastaveniaMeraniaToolStripMenuItem.Text = "Nastavenia merania";
+            this.nastaveniaMeraniaToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
+            this.nastaveniaMeraniaToolStripMenuItem.Text = "Nové meranie";
             this.nastaveniaMeraniaToolStripMenuItem.Click += new System.EventHandler(this.nastaveniaMeraniaToolStripMenuItem_Click);
             // 
             // nastaveniaToolStripMenuItem
             // 
             this.nastaveniaToolStripMenuItem.Name = "nastaveniaToolStripMenuItem";
-            this.nastaveniaToolStripMenuItem.Size = new System.Drawing.Size(178, 22);
+            this.nastaveniaToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
             this.nastaveniaToolStripMenuItem.Text = "Nastavenia";
             // 
             // toolsToolStripMenuItem
