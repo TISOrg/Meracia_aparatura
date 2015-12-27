@@ -34,6 +34,7 @@
             this.menuToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.nastaveniaMeraniaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.nastaveniaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.oProgrameToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.label1 = new System.Windows.Forms.Label();
             this.radioButton1 = new System.Windows.Forms.RadioButton();
@@ -43,11 +44,22 @@
             this.button3 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.toolsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.button4 = new System.Windows.Forms.Button();
+            this.roky = new System.Windows.Forms.DataGridView();
+            this.nazvy = new System.Windows.Forms.DataGridView();
+            this.dates = new System.Windows.Forms.DataGridView();
+            this.typy = new System.Windows.Forms.DataGridView();
+            this.merania = new System.Windows.Forms.DataGridView();
+            this.meranie = new System.Windows.Forms.DataGridView();
             this.menuStrip1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.roky)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nazvy)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dates)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.typy)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.merania)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.meranie)).BeginInit();
             this.SuspendLayout();
             // 
             // serialPort1
@@ -89,6 +101,12 @@
             this.nastaveniaToolStripMenuItem.Name = "nastaveniaToolStripMenuItem";
             this.nastaveniaToolStripMenuItem.Size = new System.Drawing.Size(178, 22);
             this.nastaveniaToolStripMenuItem.Text = "Nastavenia";
+            // 
+            // toolsToolStripMenuItem
+            // 
+            this.toolsToolStripMenuItem.Name = "toolsToolStripMenuItem";
+            this.toolsToolStripMenuItem.Size = new System.Drawing.Size(48, 20);
+            this.toolsToolStripMenuItem.Text = "Tools";
             // 
             // oProgrameToolStripMenuItem
             // 
@@ -178,12 +196,6 @@
             this.dataGridView1.Size = new System.Drawing.Size(988, 499);
             this.dataGridView1.TabIndex = 6;
             // 
-            // toolsToolStripMenuItem
-            // 
-            this.toolsToolStripMenuItem.Name = "toolsToolStripMenuItem";
-            this.toolsToolStripMenuItem.Size = new System.Drawing.Size(48, 20);
-            this.toolsToolStripMenuItem.Text = "Tools";
-            // 
             // button4
             // 
             this.button4.BackColor = System.Drawing.Color.Green;
@@ -196,11 +208,78 @@
             this.button4.UseVisualStyleBackColor = false;
             this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
+            // roky
+            // 
+            this.roky.AllowUserToAddRows = false;
+            this.roky.AllowUserToDeleteRows = false;
+            this.roky.AllowUserToResizeColumns = false;
+            this.roky.AllowUserToResizeRows = false;
+            this.roky.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.roky.Location = new System.Drawing.Point(22, 63);
+            this.roky.MultiSelect = false;
+            this.roky.Name = "roky";
+            this.roky.ReadOnly = true;
+            this.roky.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.roky.RowHeadersVisible = false;
+            this.roky.Size = new System.Drawing.Size(240, 150);
+            this.roky.TabIndex = 8;
+            this.roky.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.roky_CellClick);
+            // 
+            // nazvy
+            // 
+            this.nazvy.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.nazvy.Location = new System.Drawing.Point(268, 63);
+            this.nazvy.Name = "nazvy";
+            this.nazvy.Size = new System.Drawing.Size(240, 150);
+            this.nazvy.TabIndex = 9;
+            this.nazvy.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.nazvy_CellClick);
+            // 
+            // dates
+            // 
+            this.dates.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dates.Location = new System.Drawing.Point(514, 63);
+            this.dates.Name = "dates";
+            this.dates.Size = new System.Drawing.Size(240, 150);
+            this.dates.TabIndex = 10;
+            this.dates.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dates_CellClick);
+            // 
+            // typy
+            // 
+            this.typy.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.typy.Location = new System.Drawing.Point(760, 63);
+            this.typy.Name = "typy";
+            this.typy.Size = new System.Drawing.Size(240, 150);
+            this.typy.TabIndex = 11;
+            this.typy.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.typy_CellClick);
+            // 
+            // merania
+            // 
+            this.merania.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.merania.Location = new System.Drawing.Point(22, 219);
+            this.merania.Name = "merania";
+            this.merania.Size = new System.Drawing.Size(240, 150);
+            this.merania.TabIndex = 12;
+            this.merania.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.merania_CellClick);
+            // 
+            // meranie
+            // 
+            this.meranie.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.meranie.Location = new System.Drawing.Point(277, 227);
+            this.meranie.Name = "meranie";
+            this.meranie.Size = new System.Drawing.Size(679, 177);
+            this.meranie.TabIndex = 13;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1188, 548);
+            this.Controls.Add(this.meranie);
+            this.Controls.Add(this.merania);
+            this.Controls.Add(this.typy);
+            this.Controls.Add(this.dates);
+            this.Controls.Add(this.nazvy);
+            this.Controls.Add(this.roky);
             this.Controls.Add(this.button4);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.button1);
@@ -216,6 +295,12 @@
             this.menuStrip1.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.roky)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nazvy)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dates)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.typy)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.merania)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.meranie)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -238,6 +323,12 @@
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.ToolStripMenuItem toolsToolStripMenuItem;
         private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.DataGridView roky;
+        private System.Windows.Forms.DataGridView nazvy;
+        private System.Windows.Forms.DataGridView dates;
+        private System.Windows.Forms.DataGridView typy;
+        private System.Windows.Forms.DataGridView merania;
+        private System.Windows.Forms.DataGridView meranie;
     }
 }
 

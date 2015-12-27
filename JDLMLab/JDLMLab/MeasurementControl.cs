@@ -39,13 +39,11 @@ namespace JDLMLab
                 //start point,end point,cas na 1 krok -> TEM
                 //cez AD
 
-
                 //konstanta, resolution -> QMS
                 //cez RS232
 
                 pocetBodov = pocetKrokov + 1;
                 krokNapatia = (parameters.endPoint - parameters.startPoint) / parameters.pocetKrokov;
-
             }
             if (typ.Equals("MassScan"))
             {
@@ -61,8 +59,6 @@ namespace JDLMLab
                 
             }
             meraj();
-
-           
         }
         int teplota = 0, tlakKapilara = 0, tlakTPG = 0, det = 0;
         double napatie = 0, prud = 0, x, y;
@@ -114,16 +110,11 @@ namespace JDLMLab
                 //mass scan, zvys krok na QMS
                 if (typ.Equals("MassScan"))
                 {
-
-
                     // class PristrojQMS.write(...
                     x = parameters.startPoint + (pBod);
 
                     //vynuluj trigger v AD
                     //class AD.write(...
-
-
-
                 }
             }
             //cakaj cas t na nacitanie zaznameneho poctu TTL v AD
@@ -141,12 +132,10 @@ namespace JDLMLab
             if (watch.ElapsedMilliseconds > parameters.tlakKapilaryIntervalMerania)
             {
                 //zatial je tento interval pre vsetky tri pristroje
-
                 // tlakKapilara = Class TLAK . read(...)
                 // tlakTPG = Class TlakTPG . read(...)
                 // teplota = Class Teplota . read(...)
                 watch.Restart();
-
             }
 
             

@@ -1,26 +1,26 @@
 ﻿<?xml version='1.0' encoding='utf-8'?>
-<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="JDLMLab" GeneratedClassName="Settings2">
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="JDLMLab" GeneratedClassName="parametreMerania">
   <Profiles />
   <Settings>
-    <Setting Name="Start" Type="System.Double" Scope="User">
+    <Setting Name="eStart" Type="System.Double" Scope="User">
       <Value Profile="(Default)">0</Value>
     </Setting>
-    <Setting Name="End" Type="System.Double" Scope="User">
+    <Setting Name="eEnd" Type="System.Double" Scope="User">
       <Value Profile="(Default)">0</Value>
     </Setting>
-    <Setting Name="Cas" Type="System.Double" Scope="User">
+    <Setting Name="eCas" Type="System.Double" Scope="User">
       <Value Profile="(Default)">0</Value>
     </Setting>
-    <Setting Name="Resolution" Type="System.Double" Scope="User">
+    <Setting Name="eResolution" Type="System.Double" Scope="User">
       <Value Profile="(Default)">0</Value>
     </Setting>
-    <Setting Name="PocetKrokov" Type="System.Int32" Scope="User">
+    <Setting Name="ePocetKrokov" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">0</Value>
     </Setting>
-    <Setting Name="Konstanta" Type="System.Double" Scope="User">
+    <Setting Name="eKonstanta" Type="System.Double" Scope="User">
       <Value Profile="(Default)">0</Value>
     </Setting>
-    <Setting Name="Krok" Type="System.Double" Scope="User">
+    <Setting Name="eKrok" Type="System.Double" Scope="User">
       <Value Profile="(Default)">0</Value>
     </Setting>
     <Setting Name="mStart" Type="System.Double" Scope="User">

@@ -26,84 +26,84 @@ namespace JDLMLab {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("0")]
-        public double Start {
+        public double eStart {
             get {
-                return ((double)(this["Start"]));
+                return ((double)(this["eStart"]));
             }
             set {
-                this["Start"] = value;
+                this["eStart"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("0")]
-        public double End {
+        public double eEnd {
             get {
-                return ((double)(this["End"]));
+                return ((double)(this["eEnd"]));
             }
             set {
-                this["End"] = value;
+                this["eEnd"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("0")]
-        public double Cas {
+        public double eCas {
             get {
-                return ((double)(this["Cas"]));
+                return ((double)(this["eCas"]));
             }
             set {
-                this["Cas"] = value;
+                this["eCas"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("0")]
-        public double Resolution {
+        public double eResolution {
             get {
-                return ((double)(this["Resolution"]));
+                return ((double)(this["eResolution"]));
             }
             set {
-                this["Resolution"] = value;
+                this["eResolution"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("0")]
-        public int PocetKrokov {
+        public int ePocetKrokov {
             get {
-                return ((int)(this["PocetKrokov"]));
+                return ((int)(this["ePocetKrokov"]));
             }
             set {
-                this["PocetKrokov"] = value;
+                this["ePocetKrokov"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("0")]
-        public double Konstanta {
+        public double eKonstanta {
             get {
-                return ((double)(this["Konstanta"]));
+                return ((double)(this["eKonstanta"]));
             }
             set {
-                this["Konstanta"] = value;
+                this["eKonstanta"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("0")]
-        public double Krok {
+        public double eKrok {
             get {
-                return ((double)(this["Krok"]));
+                return ((double)(this["eKrok"]));
             }
             set {
-                this["Krok"] = value;
+                this["eKrok"] = value;
             }
         }
         

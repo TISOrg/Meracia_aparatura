@@ -10,6 +10,7 @@ namespace JDLMLab
     {
         public CyklusMerania(int i)
         {
+            kroky = new List<KrokMerania>();
             cisloCyklu = i;
         }
         public int cisloCyklu { get; set; }
@@ -17,16 +18,7 @@ namespace JDLMLab
         private List<KrokMerania> kroky;
         public void pridajKrok(KrokMerania k)
         {
-            try
-            {
                 kroky.Add(k);
-            }
-            catch(NullReferenceException e)
-            {
-                kroky = new List<KrokMerania>();
-                kroky.Add(k);
-            }
-            
         }
         public List<KrokMerania> getKroky()
         {
