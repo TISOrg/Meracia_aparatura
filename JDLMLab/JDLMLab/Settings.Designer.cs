@@ -30,9 +30,21 @@
         {
             System.Windows.Forms.ListBox listBox2;
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.button3 = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.tabControl2 = new System.Windows.Forms.TabControl();
             this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.textBox10 = new System.Windows.Forms.TextBox();
+            this.label9 = new System.Windows.Forms.Label();
+            this.textBox9 = new System.Windows.Forms.TextBox();
+            this.label8 = new System.Windows.Forms.Label();
+            this.textBox8 = new System.Windows.Forms.TextBox();
+            this.label7 = new System.Windows.Forms.Label();
+            this.textBox7 = new System.Windows.Forms.TextBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.textBox6 = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.textBox5 = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
@@ -42,19 +54,8 @@
             this.label1 = new System.Windows.Forms.Label();
             this.textBox3 = new System.Windows.Forms.TextBox();
             this.tabPage4 = new System.Windows.Forms.TabPage();
-            this.tabPage5 = new System.Windows.Forms.TabPage();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.tabControl1 = new System.Windows.Forms.TabControl();
-            this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.label6 = new System.Windows.Forms.Label();
-            this.textBox6 = new System.Windows.Forms.TextBox();
-            this.label7 = new System.Windows.Forms.Label();
-            this.textBox7 = new System.Windows.Forms.TextBox();
-            this.label8 = new System.Windows.Forms.Label();
-            this.textBox8 = new System.Windows.Forms.TextBox();
-            this.label9 = new System.Windows.Forms.Label();
-            this.textBox9 = new System.Windows.Forms.TextBox();
-            this.textBox10 = new System.Windows.Forms.TextBox();
+            this.listBox1 = new System.Windows.Forms.ListBox();
+            this.label26 = new System.Windows.Forms.Label();
             this.textBox11 = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
             this.textBox12 = new System.Windows.Forms.TextBox();
@@ -69,8 +70,20 @@
             this.textBox17 = new System.Windows.Forms.TextBox();
             this.label18 = new System.Windows.Forms.Label();
             this.textBox18 = new System.Windows.Forms.TextBox();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.tabPage5 = new System.Windows.Forms.TabPage();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.label27 = new System.Windows.Forms.Label();
+            this.textBox26 = new System.Windows.Forms.TextBox();
+            this.label34 = new System.Windows.Forms.Label();
+            this.textBox25 = new System.Windows.Forms.TextBox();
+            this.label29 = new System.Windows.Forms.Label();
+            this.label33 = new System.Windows.Forms.Label();
+            this.textBox21 = new System.Windows.Forms.TextBox();
+            this.label32 = new System.Windows.Forms.Label();
+            this.label30 = new System.Windows.Forms.Label();
+            this.label31 = new System.Windows.Forms.Label();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.label21 = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
             this.textBox15 = new System.Windows.Forms.TextBox();
             this.label19 = new System.Windows.Forms.Label();
@@ -83,32 +96,35 @@
             this.textBox22 = new System.Windows.Forms.TextBox();
             this.label25 = new System.Windows.Forms.Label();
             this.textBox23 = new System.Windows.Forms.TextBox();
-            this.label21 = new System.Windows.Forms.Label();
-            this.label26 = new System.Windows.Forms.Label();
-            this.listBox1 = new System.Windows.Forms.ListBox();
-            this.label29 = new System.Windows.Forms.Label();
-            this.textBox21 = new System.Windows.Forms.TextBox();
-            this.label30 = new System.Windows.Forms.Label();
-            this.label31 = new System.Windows.Forms.Label();
-            this.label32 = new System.Windows.Forms.Label();
-            this.label33 = new System.Windows.Forms.Label();
-            this.textBox25 = new System.Windows.Forms.TextBox();
-            this.label34 = new System.Windows.Forms.Label();
-            this.textBox26 = new System.Windows.Forms.TextBox();
-            this.label27 = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.tabControl1 = new System.Windows.Forms.TabControl();
+            this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.listBox3 = new System.Windows.Forms.ListBox();
+            this.helpProvider1 = new System.Windows.Forms.HelpProvider();
             listBox2 = new System.Windows.Forms.ListBox();
             this.tabPage2.SuspendLayout();
             this.tabControl2.SuspendLayout();
             this.tabPage3.SuspendLayout();
             this.tabPage4.SuspendLayout();
             this.tabPage5.SuspendLayout();
-            this.tabControl1.SuspendLayout();
-            this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
+            this.groupBox1.SuspendLayout();
+            this.tabControl1.SuspendLayout();
+            this.tabPage1.SuspendLayout();
             this.SuspendLayout();
+            // 
+            // listBox2
+            // 
+            listBox2.FormattingEnabled = true;
+            listBox2.Items.AddRange(new object[] {
+            "1/8",
+            "1/16",
+            "1/32"});
+            listBox2.Location = new System.Drawing.Point(107, 202);
+            listBox2.Name = "listBox2";
+            listBox2.Size = new System.Drawing.Size(100, 17);
+            listBox2.TabIndex = 58;
+            listBox2.SelectedIndexChanged += new System.EventHandler(this.listBox2_SelectedIndexChanged);
             // 
             // tabPage2
             // 
@@ -126,6 +142,33 @@
             this.tabPage2.Text = "Nové meranie";
             this.tabPage2.UseVisualStyleBackColor = true;
             this.tabPage2.Click += new System.EventHandler(this.tabPage2_Click);
+            // 
+            // button3
+            // 
+            this.button3.Location = new System.Drawing.Point(439, 547);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(102, 23);
+            this.button3.TabIndex = 5;
+            this.button3.Text = "Cancel";
+            this.button3.UseVisualStyleBackColor = true;
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(208, 547);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(102, 23);
+            this.button2.TabIndex = 4;
+            this.button2.Text = "Run";
+            this.button2.UseVisualStyleBackColor = true;
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(13, 547);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(102, 23);
+            this.button1.TabIndex = 3;
+            this.button1.Text = "Test run";
+            this.button1.UseVisualStyleBackColor = true;
             // 
             // textBox2
             // 
@@ -174,6 +217,87 @@
             this.tabPage3.TabIndex = 0;
             this.tabPage3.Text = "Energy scan";
             this.tabPage3.UseVisualStyleBackColor = true;
+            // 
+            // textBox10
+            // 
+            this.textBox10.Location = new System.Drawing.Point(299, 18);
+            this.textBox10.Multiline = true;
+            this.textBox10.Name = "textBox10";
+            this.textBox10.Size = new System.Drawing.Size(194, 82);
+            this.textBox10.TabIndex = 16;
+            this.textBox10.TextChanged += new System.EventHandler(this.textBox10_TextChanged);
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(22, 259);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(67, 13);
+            this.label9.TabIndex = 15;
+            this.label9.Text = "Krok napätia";
+            // 
+            // textBox9
+            // 
+            this.textBox9.AccessibleName = "Start point";
+            this.textBox9.Location = new System.Drawing.Point(108, 259);
+            this.textBox9.MaxLength = 50;
+            this.textBox9.Name = "textBox9";
+            this.textBox9.Size = new System.Drawing.Size(100, 20);
+            this.textBox9.TabIndex = 14;
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(22, 223);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(73, 13);
+            this.label8.TabIndex = 13;
+            this.label8.Text = "Čas na 1 krok";
+            // 
+            // textBox8
+            // 
+            this.textBox8.AccessibleName = "Start point";
+            this.textBox8.Location = new System.Drawing.Point(108, 223);
+            this.textBox8.MaxLength = 50;
+            this.textBox8.Name = "textBox8";
+            this.textBox8.Size = new System.Drawing.Size(100, 20);
+            this.textBox8.TabIndex = 12;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(7, 183);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(95, 13);
+            this.label7.TabIndex = 11;
+            this.label7.Text = "Konštanta merania";
+            // 
+            // textBox7
+            // 
+            this.textBox7.AccessibleName = "Start point";
+            this.textBox7.Location = new System.Drawing.Point(108, 183);
+            this.textBox7.MaxLength = 50;
+            this.textBox7.Name = "textBox7";
+            this.textBox7.Size = new System.Drawing.Size(100, 20);
+            this.textBox7.TabIndex = 10;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(22, 146);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(71, 13);
+            this.label6.TabIndex = 9;
+            this.label6.Text = "Počet krokov";
+            // 
+            // textBox6
+            // 
+            this.textBox6.AccessibleName = "Start point";
+            this.textBox6.Location = new System.Drawing.Point(108, 143);
+            this.textBox6.MaxLength = 50;
+            this.textBox6.Name = "textBox6";
+            this.textBox6.Size = new System.Drawing.Size(100, 20);
+            this.textBox6.TabIndex = 8;
             // 
             // label5
             // 
@@ -274,126 +398,26 @@
             this.tabPage4.Text = "Mass scan";
             this.tabPage4.UseVisualStyleBackColor = true;
             // 
-            // tabPage5
+            // listBox1
             // 
-            this.tabPage5.Controls.Add(this.groupBox2);
-            this.tabPage5.Controls.Add(this.groupBox1);
-            this.tabPage5.Location = new System.Drawing.Point(4, 22);
-            this.tabPage5.Name = "tabPage5";
-            this.tabPage5.Size = new System.Drawing.Size(544, 396);
-            this.tabPage5.TabIndex = 2;
-            this.tabPage5.Text = "2D Scan";
-            this.tabPage5.UseVisualStyleBackColor = true;
+            this.listBox1.FormattingEnabled = true;
+            this.listBox1.Items.AddRange(new object[] {
+            "1/8",
+            "1/16",
+            "1/32"});
+            this.listBox1.Location = new System.Drawing.Point(120, 200);
+            this.listBox1.Name = "listBox1";
+            this.listBox1.Size = new System.Drawing.Size(99, 17);
+            this.listBox1.TabIndex = 35;
             // 
-            // textBox1
+            // label26
             // 
-            this.textBox1.ForeColor = System.Drawing.SystemColors.WindowFrame;
-            this.textBox1.Location = new System.Drawing.Point(9, 17);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(223, 20);
-            this.textBox1.TabIndex = 0;
-            this.textBox1.Text = "Názov merania";
-            this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
-            // 
-            // tabControl1
-            // 
-            this.tabControl1.Controls.Add(this.tabPage2);
-            this.tabControl1.Controls.Add(this.tabPage1);
-            this.tabControl1.Location = new System.Drawing.Point(0, 6);
-            this.tabControl1.Name = "tabControl1";
-            this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(592, 602);
-            this.tabControl1.TabIndex = 0;
-            // 
-            // tabPage1
-            // 
-            this.tabPage1.Location = new System.Drawing.Point(4, 22);
-            this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Size = new System.Drawing.Size(584, 576);
-            this.tabPage1.TabIndex = 2;
-            this.tabPage1.Text = "Nastavenia";
-            this.tabPage1.UseVisualStyleBackColor = true;
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(22, 146);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(71, 13);
-            this.label6.TabIndex = 9;
-            this.label6.Text = "Počet krokov";
-            // 
-            // textBox6
-            // 
-            this.textBox6.AccessibleName = "Start point";
-            this.textBox6.Location = new System.Drawing.Point(108, 143);
-            this.textBox6.MaxLength = 50;
-            this.textBox6.Name = "textBox6";
-            this.textBox6.Size = new System.Drawing.Size(100, 20);
-            this.textBox6.TabIndex = 8;
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(7, 183);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(95, 13);
-            this.label7.TabIndex = 11;
-            this.label7.Text = "Konštanta merania";
-            // 
-            // textBox7
-            // 
-            this.textBox7.AccessibleName = "Start point";
-            this.textBox7.Location = new System.Drawing.Point(108, 183);
-            this.textBox7.MaxLength = 50;
-            this.textBox7.Name = "textBox7";
-            this.textBox7.Size = new System.Drawing.Size(100, 20);
-            this.textBox7.TabIndex = 10;
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(22, 223);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(73, 13);
-            this.label8.TabIndex = 13;
-            this.label8.Text = "Čas na 1 krok";
-            // 
-            // textBox8
-            // 
-            this.textBox8.AccessibleName = "Start point";
-            this.textBox8.Location = new System.Drawing.Point(108, 223);
-            this.textBox8.MaxLength = 50;
-            this.textBox8.Name = "textBox8";
-            this.textBox8.Size = new System.Drawing.Size(100, 20);
-            this.textBox8.TabIndex = 12;
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(22, 259);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(67, 13);
-            this.label9.TabIndex = 15;
-            this.label9.Text = "Krok napätia";
-            // 
-            // textBox9
-            // 
-            this.textBox9.AccessibleName = "Start point";
-            this.textBox9.Location = new System.Drawing.Point(108, 259);
-            this.textBox9.MaxLength = 50;
-            this.textBox9.Name = "textBox9";
-            this.textBox9.Size = new System.Drawing.Size(100, 20);
-            this.textBox9.TabIndex = 14;
-            // 
-            // textBox10
-            // 
-            this.textBox10.Location = new System.Drawing.Point(299, 18);
-            this.textBox10.Multiline = true;
-            this.textBox10.Name = "textBox10";
-            this.textBox10.Size = new System.Drawing.Size(194, 82);
-            this.textBox10.TabIndex = 16;
-            this.textBox10.TextChanged += new System.EventHandler(this.textBox10_TextChanged);
+            this.label26.AutoSize = true;
+            this.label26.Location = new System.Drawing.Point(234, 243);
+            this.label26.Name = "label26";
+            this.label26.Size = new System.Drawing.Size(20, 13);
+            this.label26.TabIndex = 34;
+            this.label26.Text = "eV";
             // 
             // textBox11
             // 
@@ -520,6 +544,127 @@
             this.textBox18.Size = new System.Drawing.Size(100, 20);
             this.textBox18.TabIndex = 17;
             // 
+            // tabPage5
+            // 
+            this.tabPage5.Controls.Add(this.groupBox2);
+            this.tabPage5.Controls.Add(this.groupBox1);
+            this.tabPage5.Location = new System.Drawing.Point(4, 22);
+            this.tabPage5.Name = "tabPage5";
+            this.tabPage5.Size = new System.Drawing.Size(544, 396);
+            this.tabPage5.TabIndex = 2;
+            this.tabPage5.Text = "2D Scan";
+            this.tabPage5.UseVisualStyleBackColor = true;
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.label27);
+            this.groupBox2.Controls.Add(listBox2);
+            this.groupBox2.Controls.Add(this.textBox26);
+            this.groupBox2.Controls.Add(this.label34);
+            this.groupBox2.Controls.Add(this.textBox25);
+            this.groupBox2.Controls.Add(this.label29);
+            this.groupBox2.Controls.Add(this.label33);
+            this.groupBox2.Controls.Add(this.textBox21);
+            this.groupBox2.Controls.Add(this.label32);
+            this.groupBox2.Controls.Add(this.label30);
+            this.groupBox2.Controls.Add(this.label31);
+            this.groupBox2.Location = new System.Drawing.Point(277, 13);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(249, 365);
+            this.groupBox2.TabIndex = 1;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "QMS";
+            // 
+            // label27
+            // 
+            this.label27.AutoSize = true;
+            this.label27.Location = new System.Drawing.Point(213, 206);
+            this.label27.Name = "label27";
+            this.label27.Size = new System.Drawing.Size(12, 13);
+            this.label27.TabIndex = 59;
+            this.label27.Text = "s";
+            // 
+            // textBox26
+            // 
+            this.textBox26.AccessibleName = "Start point";
+            this.textBox26.Location = new System.Drawing.Point(107, 69);
+            this.textBox26.MaxLength = 50;
+            this.textBox26.Name = "textBox26";
+            this.textBox26.Size = new System.Drawing.Size(100, 20);
+            this.textBox26.TabIndex = 48;
+            // 
+            // label34
+            // 
+            this.label34.AutoSize = true;
+            this.label34.Location = new System.Drawing.Point(21, 72);
+            this.label34.Name = "label34";
+            this.label34.Size = new System.Drawing.Size(55, 13);
+            this.label34.TabIndex = 49;
+            this.label34.Text = "Start point";
+            // 
+            // textBox25
+            // 
+            this.textBox25.AccessibleName = "Start point";
+            this.textBox25.Location = new System.Drawing.Point(107, 111);
+            this.textBox25.MaxLength = 50;
+            this.textBox25.Name = "textBox25";
+            this.textBox25.Size = new System.Drawing.Size(100, 20);
+            this.textBox25.TabIndex = 50;
+            // 
+            // label29
+            // 
+            this.label29.AutoSize = true;
+            this.label29.Location = new System.Drawing.Point(21, 154);
+            this.label29.Name = "label29";
+            this.label29.Size = new System.Drawing.Size(57, 13);
+            this.label29.TabIndex = 57;
+            this.label29.Text = "Resolution";
+            // 
+            // label33
+            // 
+            this.label33.AutoSize = true;
+            this.label33.Location = new System.Drawing.Point(21, 114);
+            this.label33.Name = "label33";
+            this.label33.Size = new System.Drawing.Size(52, 13);
+            this.label33.TabIndex = 51;
+            this.label33.Text = "End point";
+            // 
+            // textBox21
+            // 
+            this.textBox21.AccessibleName = "Start point";
+            this.textBox21.Location = new System.Drawing.Point(107, 154);
+            this.textBox21.MaxLength = 50;
+            this.textBox21.Name = "textBox21";
+            this.textBox21.Size = new System.Drawing.Size(100, 20);
+            this.textBox21.TabIndex = 56;
+            // 
+            // label32
+            // 
+            this.label32.AutoSize = true;
+            this.label32.Location = new System.Drawing.Point(213, 72);
+            this.label32.Name = "label32";
+            this.label32.Size = new System.Drawing.Size(20, 13);
+            this.label32.TabIndex = 52;
+            this.label32.Text = "eV";
+            // 
+            // label30
+            // 
+            this.label30.AutoSize = true;
+            this.label30.Location = new System.Drawing.Point(21, 202);
+            this.label30.Name = "label30";
+            this.label30.Size = new System.Drawing.Size(71, 13);
+            this.label30.TabIndex = 55;
+            this.label30.Text = "Počet krokov";
+            // 
+            // label31
+            // 
+            this.label31.AutoSize = true;
+            this.label31.Location = new System.Drawing.Point(213, 114);
+            this.label31.Name = "label31";
+            this.label31.Size = new System.Drawing.Size(20, 13);
+            this.label31.TabIndex = 53;
+            this.label31.Text = "eV";
+            // 
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.label21);
@@ -542,25 +687,14 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "TEM";
             // 
-            // groupBox2
+            // label21
             // 
-            this.groupBox2.Controls.Add(this.label27);
-            this.groupBox2.Controls.Add(listBox2);
-            this.groupBox2.Controls.Add(this.textBox26);
-            this.groupBox2.Controls.Add(this.label34);
-            this.groupBox2.Controls.Add(this.textBox25);
-            this.groupBox2.Controls.Add(this.label29);
-            this.groupBox2.Controls.Add(this.label33);
-            this.groupBox2.Controls.Add(this.textBox21);
-            this.groupBox2.Controls.Add(this.label32);
-            this.groupBox2.Controls.Add(this.label30);
-            this.groupBox2.Controls.Add(this.label31);
-            this.groupBox2.Location = new System.Drawing.Point(277, 13);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(249, 365);
-            this.groupBox2.TabIndex = 1;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "QMS";
+            this.label21.AutoSize = true;
+            this.label21.Location = new System.Drawing.Point(218, 248);
+            this.label21.Name = "label21";
+            this.label21.Size = new System.Drawing.Size(20, 13);
+            this.label21.TabIndex = 47;
+            this.label21.Text = "eV";
             // 
             // label13
             // 
@@ -597,6 +731,7 @@
             this.textBox19.Name = "textBox19";
             this.textBox19.Size = new System.Drawing.Size(100, 20);
             this.textBox19.TabIndex = 43;
+            this.textBox19.TextChanged += new System.EventHandler(this.label1_Click);
             // 
             // label20
             // 
@@ -670,165 +805,47 @@
             this.textBox23.Size = new System.Drawing.Size(100, 20);
             this.textBox23.TabIndex = 33;
             // 
-            // label21
+            // textBox1
             // 
-            this.label21.AutoSize = true;
-            this.label21.Location = new System.Drawing.Point(218, 248);
-            this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(20, 13);
-            this.label21.TabIndex = 47;
-            this.label21.Text = "eV";
+            this.textBox1.ForeColor = System.Drawing.SystemColors.WindowFrame;
+            this.textBox1.Location = new System.Drawing.Point(9, 17);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(223, 20);
+            this.textBox1.TabIndex = 0;
+            this.textBox1.Text = "Názov merania";
+            this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
-            // label26
+            // tabControl1
             // 
-            this.label26.AutoSize = true;
-            this.label26.Location = new System.Drawing.Point(234, 243);
-            this.label26.Name = "label26";
-            this.label26.Size = new System.Drawing.Size(20, 13);
-            this.label26.TabIndex = 34;
-            this.label26.Text = "eV";
+            this.tabControl1.Controls.Add(this.tabPage2);
+            this.tabControl1.Controls.Add(this.tabPage1);
+            this.tabControl1.Location = new System.Drawing.Point(0, 6);
+            this.tabControl1.Name = "tabControl1";
+            this.tabControl1.SelectedIndex = 0;
+            this.tabControl1.Size = new System.Drawing.Size(592, 602);
+            this.tabControl1.TabIndex = 0;
             // 
-            // listBox1
+            // tabPage1
             // 
-            this.listBox1.FormattingEnabled = true;
-            this.listBox1.Items.AddRange(new object[] {
-            "1/8",
-            "1/16",
-            "1/32"});
-            this.listBox1.Location = new System.Drawing.Point(120, 200);
-            this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(99, 17);
-            this.listBox1.TabIndex = 35;
+            this.tabPage1.Controls.Add(this.listBox3);
+            this.tabPage1.Location = new System.Drawing.Point(4, 22);
+            this.tabPage1.Name = "tabPage1";
+            this.tabPage1.Size = new System.Drawing.Size(584, 576);
+            this.tabPage1.TabIndex = 2;
+            this.tabPage1.Text = "Nastavenia";
+            this.tabPage1.UseVisualStyleBackColor = true;
             // 
-            // label29
+            // listBox3
             // 
-            this.label29.AutoSize = true;
-            this.label29.Location = new System.Drawing.Point(21, 154);
-            this.label29.Name = "label29";
-            this.label29.Size = new System.Drawing.Size(57, 13);
-            this.label29.TabIndex = 57;
-            this.label29.Text = "Resolution";
-            // 
-            // textBox21
-            // 
-            this.textBox21.AccessibleName = "Start point";
-            this.textBox21.Location = new System.Drawing.Point(107, 154);
-            this.textBox21.MaxLength = 50;
-            this.textBox21.Name = "textBox21";
-            this.textBox21.Size = new System.Drawing.Size(100, 20);
-            this.textBox21.TabIndex = 56;
-            // 
-            // label30
-            // 
-            this.label30.AutoSize = true;
-            this.label30.Location = new System.Drawing.Point(21, 202);
-            this.label30.Name = "label30";
-            this.label30.Size = new System.Drawing.Size(71, 13);
-            this.label30.TabIndex = 55;
-            this.label30.Text = "Počet krokov";
-            // 
-            // label31
-            // 
-            this.label31.AutoSize = true;
-            this.label31.Location = new System.Drawing.Point(213, 114);
-            this.label31.Name = "label31";
-            this.label31.Size = new System.Drawing.Size(20, 13);
-            this.label31.TabIndex = 53;
-            this.label31.Text = "eV";
-            // 
-            // label32
-            // 
-            this.label32.AutoSize = true;
-            this.label32.Location = new System.Drawing.Point(213, 72);
-            this.label32.Name = "label32";
-            this.label32.Size = new System.Drawing.Size(20, 13);
-            this.label32.TabIndex = 52;
-            this.label32.Text = "eV";
-            // 
-            // label33
-            // 
-            this.label33.AutoSize = true;
-            this.label33.Location = new System.Drawing.Point(21, 114);
-            this.label33.Name = "label33";
-            this.label33.Size = new System.Drawing.Size(52, 13);
-            this.label33.TabIndex = 51;
-            this.label33.Text = "End point";
-            // 
-            // textBox25
-            // 
-            this.textBox25.AccessibleName = "Start point";
-            this.textBox25.Location = new System.Drawing.Point(107, 111);
-            this.textBox25.MaxLength = 50;
-            this.textBox25.Name = "textBox25";
-            this.textBox25.Size = new System.Drawing.Size(100, 20);
-            this.textBox25.TabIndex = 50;
-            // 
-            // label34
-            // 
-            this.label34.AutoSize = true;
-            this.label34.Location = new System.Drawing.Point(21, 72);
-            this.label34.Name = "label34";
-            this.label34.Size = new System.Drawing.Size(55, 13);
-            this.label34.TabIndex = 49;
-            this.label34.Text = "Start point";
-            // 
-            // textBox26
-            // 
-            this.textBox26.AccessibleName = "Start point";
-            this.textBox26.Location = new System.Drawing.Point(107, 69);
-            this.textBox26.MaxLength = 50;
-            this.textBox26.Name = "textBox26";
-            this.textBox26.Size = new System.Drawing.Size(100, 20);
-            this.textBox26.TabIndex = 48;
-            // 
-            // listBox2
-            // 
-            listBox2.FormattingEnabled = true;
-            listBox2.Items.AddRange(new object[] {
-            "1/8",
-            "1/16",
-            "1/32"});
-            listBox2.Location = new System.Drawing.Point(107, 202);
-            listBox2.Name = "listBox2";
-            listBox2.Size = new System.Drawing.Size(100, 17);
-            listBox2.TabIndex = 58;
-            listBox2.SelectedIndexChanged += new System.EventHandler(this.listBox2_SelectedIndexChanged);
-            // 
-            // label27
-            // 
-            this.label27.AutoSize = true;
-            this.label27.Location = new System.Drawing.Point(213, 206);
-            this.label27.Name = "label27";
-            this.label27.Size = new System.Drawing.Size(12, 13);
-            this.label27.TabIndex = 59;
-            this.label27.Text = "s";
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(13, 547);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(102, 23);
-            this.button1.TabIndex = 3;
-            this.button1.Text = "Test run";
-            this.button1.UseVisualStyleBackColor = true;
-            // 
-            // button2
-            // 
-            this.button2.Location = new System.Drawing.Point(208, 547);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(102, 23);
-            this.button2.TabIndex = 4;
-            this.button2.Text = "Run";
-            this.button2.UseVisualStyleBackColor = true;
-            // 
-            // button3
-            // 
-            this.button3.Location = new System.Drawing.Point(439, 547);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(102, 23);
-            this.button3.TabIndex = 5;
-            this.button3.Text = "Cancel";
-            this.button3.UseVisualStyleBackColor = true;
+            this.listBox3.FormattingEnabled = true;
+            this.listBox3.Items.AddRange(new object[] {
+            "General",
+            "Zariadenia"});
+            this.listBox3.Location = new System.Drawing.Point(18, 21);
+            this.listBox3.Name = "listBox3";
+            this.listBox3.Size = new System.Drawing.Size(119, 264);
+            this.listBox3.TabIndex = 0;
+            this.listBox3.SelectedIndexChanged += new System.EventHandler(this.listBox3_SelectedIndexChanged);
             // 
             // Settings
             // 
@@ -848,11 +865,12 @@
             this.tabPage4.ResumeLayout(false);
             this.tabPage4.PerformLayout();
             this.tabPage5.ResumeLayout(false);
-            this.tabControl1.ResumeLayout(false);
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
+            this.tabControl1.ResumeLayout(false);
+            this.tabPage1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -929,5 +947,7 @@
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.ListBox listBox3;
+        private System.Windows.Forms.HelpProvider helpProvider1;
     }
 }
