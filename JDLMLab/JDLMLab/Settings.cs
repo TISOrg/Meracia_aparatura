@@ -79,7 +79,28 @@ namespace JDLMLab
 
         private void listBox3_SelectedIndexChanged(object sender, EventArgs e)
         {
+            
+        }
+
+        private void tabPage1_Click_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void dataGridView2_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void textBox12_TextChanged(object sender, EventArgs e)
+        {
 
         }
     }
-}
+        
+    }
