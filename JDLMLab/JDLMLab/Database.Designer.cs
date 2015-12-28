@@ -13,7 +13,7 @@ namespace JDLMLab {
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "14.0.0.0")]
-    internal sealed partial class Database : global::System.Configuration.ApplicationSettingsBase {
+    public sealed partial class Database : global::System.Configuration.ApplicationSettingsBase {
         
         private static Database defaultInstance = ((Database)(global::System.Configuration.ApplicationSettingsBase.Synchronized(new Database())));
         
@@ -61,17 +61,6 @@ namespace JDLMLab {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        public int port {
-            get {
-                return ((int)(this["port"]));
-            }
-            set {
-                this["port"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("")]
         public string host {
             get {
@@ -79,6 +68,18 @@ namespace JDLMLab {
             }
             set {
                 this["host"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public int port {
+            get {
+                return ((int)(this["port"]));
+            }
+            set {
+                this["port"] = value;
             }
         }
     }

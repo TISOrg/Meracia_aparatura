@@ -19,8 +19,14 @@ namespace JDLMLab
             InitializeComponent();
             setmerania = new Settings();
             info = new AboutBox1();
+            
+            //nacitat vsetky nastavenia
+            
+
+
         }
 
+        
         private void checkBox1_CheckedChanged(object sender, EventArgs e)
         {
             MessageBox.Show("hello world! IDE TOOOO");
@@ -56,6 +62,34 @@ namespace JDLMLab
             setmerania.ShowDialog();
         }
 
-   
+        private void listBox1_SelectedValueChanged(object sender, EventArgs e)
+        {
+            
+            
+
+        }
+
+        private void menuStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        {
+
+        }
+
+        private void toolsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void loadToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            new Load().Show();
+        }
+
+        private void sidebarExportButton_Click(object sender, EventArgs e)
+        {
+            
+            DbCommunication db = new DbCommunication();
+            ExportWindow exp = new ExportWindow(1);
+            //exp.grid= meranie aktualne
+        }
     }
 }

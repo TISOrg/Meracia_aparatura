@@ -41,25 +41,14 @@
             this.radioButton2 = new System.Windows.Forms.RadioButton();
             this.button1 = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.button3 = new System.Windows.Forms.Button();
+            this.sidebarExportButton = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.button4 = new System.Windows.Forms.Button();
-            this.roky = new System.Windows.Forms.DataGridView();
-            this.nazvy = new System.Windows.Forms.DataGridView();
-            this.dates = new System.Windows.Forms.DataGridView();
-            this.typy = new System.Windows.Forms.DataGridView();
-            this.merania = new System.Windows.Forms.DataGridView();
-            this.meranie = new System.Windows.Forms.DataGridView();
+            this.loadToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.roky)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nazvy)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dates)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.typy)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.merania)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.meranie)).BeginInit();
             this.SuspendLayout();
             // 
             // serialPort1
@@ -72,12 +61,14 @@
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.menuToolStripMenuItem,
             this.toolsToolStripMenuItem,
+            this.loadToolStripMenuItem,
             this.oProgrameToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(1188, 24);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
+            this.menuStrip1.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.menuStrip1_ItemClicked);
             // 
             // menuToolStripMenuItem
             // 
@@ -107,6 +98,7 @@
             this.toolsToolStripMenuItem.Name = "toolsToolStripMenuItem";
             this.toolsToolStripMenuItem.Size = new System.Drawing.Size(48, 20);
             this.toolsToolStripMenuItem.Text = "Tools";
+            this.toolsToolStripMenuItem.Click += new System.EventHandler(this.toolsToolStripMenuItem_Click);
             // 
             // oProgrameToolStripMenuItem
             // 
@@ -158,7 +150,7 @@
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.button3);
+            this.groupBox1.Controls.Add(this.sidebarExportButton);
             this.groupBox1.Controls.Add(this.button2);
             this.groupBox1.Location = new System.Drawing.Point(1018, 63);
             this.groupBox1.Name = "groupBox1";
@@ -166,14 +158,15 @@
             this.groupBox1.TabIndex = 5;
             this.groupBox1.TabStop = false;
             // 
-            // button3
+            // sidebarExportButton
             // 
-            this.button3.Location = new System.Drawing.Point(11, 280);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(145, 23);
-            this.button3.TabIndex = 1;
-            this.button3.Text = "Export merania";
-            this.button3.UseVisualStyleBackColor = true;
+            this.sidebarExportButton.Location = new System.Drawing.Point(11, 280);
+            this.sidebarExportButton.Name = "sidebarExportButton";
+            this.sidebarExportButton.Size = new System.Drawing.Size(145, 23);
+            this.sidebarExportButton.TabIndex = 1;
+            this.sidebarExportButton.Text = "Export merania";
+            this.sidebarExportButton.UseVisualStyleBackColor = true;
+            this.sidebarExportButton.Click += new System.EventHandler(this.sidebarExportButton_Click);
             // 
             // button2
             // 
@@ -208,73 +201,18 @@
             this.button4.UseVisualStyleBackColor = false;
             this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
-            // roky
+            // loadToolStripMenuItem
             // 
-            this.roky.AllowUserToAddRows = false;
-            this.roky.AllowUserToDeleteRows = false;
-            this.roky.AllowUserToResizeColumns = false;
-            this.roky.AllowUserToResizeRows = false;
-            this.roky.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.roky.Location = new System.Drawing.Point(22, 63);
-            this.roky.MultiSelect = false;
-            this.roky.Name = "roky";
-            this.roky.ReadOnly = true;
-            this.roky.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.roky.RowHeadersVisible = false;
-            this.roky.Size = new System.Drawing.Size(240, 150);
-            this.roky.TabIndex = 8;
-            // 
-            // nazvy
-            // 
-            this.nazvy.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.nazvy.Location = new System.Drawing.Point(268, 63);
-            this.nazvy.Name = "nazvy";
-            this.nazvy.Size = new System.Drawing.Size(240, 150);
-            this.nazvy.TabIndex = 9;
-            // 
-            // dates
-            // 
-            this.dates.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dates.Location = new System.Drawing.Point(514, 63);
-            this.dates.Name = "dates";
-            this.dates.Size = new System.Drawing.Size(240, 150);
-            this.dates.TabIndex = 10;
-            // 
-            // typy
-            // 
-            this.typy.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.typy.Location = new System.Drawing.Point(760, 63);
-            this.typy.Name = "typy";
-            this.typy.Size = new System.Drawing.Size(240, 150);
-            this.typy.TabIndex = 11;
-            // 
-            // merania
-            // 
-            this.merania.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.merania.Location = new System.Drawing.Point(22, 219);
-            this.merania.Name = "merania";
-            this.merania.Size = new System.Drawing.Size(240, 150);
-            this.merania.TabIndex = 12;
-            // 
-            // meranie
-            // 
-            this.meranie.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.meranie.Location = new System.Drawing.Point(277, 227);
-            this.meranie.Name = "meranie";
-            this.meranie.Size = new System.Drawing.Size(679, 177);
-            this.meranie.TabIndex = 13;
+            this.loadToolStripMenuItem.Name = "loadToolStripMenuItem";
+            this.loadToolStripMenuItem.Size = new System.Drawing.Size(104, 20);
+            this.loadToolStripMenuItem.Text = "Načítať meranie";
+            this.loadToolStripMenuItem.Click += new System.EventHandler(this.loadToolStripMenuItem_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1188, 548);
-            this.Controls.Add(this.meranie);
-            this.Controls.Add(this.merania);
-            this.Controls.Add(this.typy);
-            this.Controls.Add(this.dates);
-            this.Controls.Add(this.nazvy);
-            this.Controls.Add(this.roky);
             this.Controls.Add(this.button4);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.button1);
@@ -290,12 +228,6 @@
             this.menuStrip1.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.roky)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nazvy)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dates)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.typy)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.merania)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.meranie)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -313,17 +245,12 @@
         private System.Windows.Forms.RadioButton radioButton2;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button sidebarExportButton;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.ToolStripMenuItem toolsToolStripMenuItem;
         private System.Windows.Forms.Button button4;
-        private System.Windows.Forms.DataGridView roky;
-        private System.Windows.Forms.DataGridView nazvy;
-        private System.Windows.Forms.DataGridView dates;
-        private System.Windows.Forms.DataGridView typy;
-        private System.Windows.Forms.DataGridView merania;
-        private System.Windows.Forms.DataGridView meranie;
+        private System.Windows.Forms.ToolStripMenuItem loadToolStripMenuItem;
     }
 }
 

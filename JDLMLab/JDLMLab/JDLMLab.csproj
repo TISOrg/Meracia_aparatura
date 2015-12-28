@@ -64,9 +64,41 @@
       <DependentUpon>AboutBox1.cs</DependentUpon>
     </Compile>
     <Compile Include="CyklusMerania.cs" />
-    <Compile Include="Database.cs" />
+    <Compile Include="Database.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Database.settings</DependentUpon>
+    </Compile>
     <Compile Include="DbCommunication.cs" />
     <Compile Include="DbConnectionSettings.cs" />
+    <Compile Include="ExportWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ExportWindow.Designer.cs">
+      <DependentUpon>ExportWindow.cs</DependentUpon>
+    </Compile>
+    <Compile Include="HeaderInfo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="HeaderInfo.Designer.cs">
+      <DependentUpon>HeaderInfo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Load.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Load.Designer.cs">
+      <DependentUpon>Load.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Paths.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Paths.settings</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Devices.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Devices.settings</DependentUpon>
+    </Compile>
     <Compile Include="EnergyScanMeranie.cs" />
     <Compile Include="Filter.cs" />
     <Compile Include="KrokMerania.cs" />
@@ -92,11 +124,6 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>parametreMerania.settings</DependentUpon>
     </Compile>
-    <Compile Include="Database.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTimeSharedInput>True</DesignTimeSharedInput>
-      <DependentUpon>Database.settings</DependentUpon>
-    </Compile>
     <Compile Include="VMeterController.cs" />
     <Compile Include="VMeterDriver.cs" />
     <EmbeddedResource Include="About.resx">
@@ -105,8 +132,17 @@
     <EmbeddedResource Include="AboutBox1.resx">
       <DependentUpon>AboutBox1.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ExportWindow.resx">
+      <DependentUpon>ExportWindow.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HeaderInfo.resx">
+      <DependentUpon>HeaderInfo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Load.resx">
+      <DependentUpon>Load.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -121,8 +157,20 @@
       <DependentUpon>Settings.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="app.config" />
-    <None Include="Properties\Settings.settings">
+    <None Include="Database.settings">
+      <Generator>PublicSettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Database.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Paths.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Paths.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Properties\Devices.settings">
+      <Generator>PublicSettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Devices.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Properties\Settings.settings">
+      <Generator>PublicSettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <Compile Include="Properties\Settings.Designer.cs">
@@ -133,10 +181,6 @@
     <None Include="parametreMerania.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>parametreMerania.Designer.cs</LastGenOutput>
-    </None>
-    <None Include="Database.settings">
-      <Generator>SettingsSingleFileGenerator</Generator>
-      <LastGenOutput>Database.Designer.cs</LastGenOutput>
     </None>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
