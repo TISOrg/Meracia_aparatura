@@ -77,10 +77,13 @@ namespace JDLMLab
         internal void addMeranie(int meranie)
         {
             DbCommunication db = new DbCommunication();
-            DataSet dataset=db.meranie(meranie);
+            DataSet dataset = db.meranie(meranie);
 
         }
-        void addMeranie(DataTable )
+        void addMeranie(DataTable d)
+        {
+
+        }
 
         public void addxy(int x, int y, string cyklus)
         {
