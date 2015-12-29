@@ -167,7 +167,7 @@
             this.textBox2.Multiline = true;
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(223, 52);
-            this.textBox2.TabIndex = 2;
+            this.textBox2.TabIndex = 1;
             this.textBox2.Text = "Popis";
             this.textBox2.TextChanged += new System.EventHandler(this.textBox2_TextChanged);
             // 
@@ -684,7 +684,7 @@
             this.textBox19.MaxLength = 50;
             this.textBox19.Name = "textBox19";
             this.textBox19.Size = new System.Drawing.Size(100, 20);
-            this.textBox19.TabIndex = 43;
+            this.textBox19.TabIndex = 42;
             this.textBox19.TextChanged += new System.EventHandler(this.label1_Click);
             // 
             // label20
@@ -703,7 +703,7 @@
             this.textBox20.MaxLength = 50;
             this.textBox20.Name = "textBox20";
             this.textBox20.Size = new System.Drawing.Size(100, 20);
-            this.textBox20.TabIndex = 41;
+            this.textBox20.TabIndex = 43;
             // 
             // label22
             // 
@@ -769,7 +769,7 @@
             this.tabControl1.Size = new System.Drawing.Size(573, 455);
             this.tabControl1.TabIndex = 0;
             // 
-            // Settings
+            // NoveMeranieWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -777,7 +777,7 @@
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(573, 455);
             this.Controls.Add(this.tabControl1);
-            this.Name = "Settings";
+            this.Name = "NoveMeranieWindow";
             this.Text = "Nastavenie merania";
             this.tabPage2.ResumeLayout(false);
             this.tabPage2.PerformLayout();

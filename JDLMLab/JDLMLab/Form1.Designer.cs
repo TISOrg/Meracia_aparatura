@@ -45,8 +45,9 @@
             this.button2 = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
             this.radioButton2 = new System.Windows.Forms.RadioButton();
-            this.button1 = new System.Windows.Forms.Button();
             this.radioButton1 = new System.Windows.Forms.RadioButton();
+            this.radioButton3 = new System.Windows.Forms.RadioButton();
+            this.label2 = new System.Windows.Forms.Label();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.graf)).BeginInit();
             this.panel1.SuspendLayout();
@@ -141,11 +142,12 @@
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.label2);
+            this.panel1.Controls.Add(this.radioButton3);
             this.panel1.Controls.Add(this.sidebarExportButton);
             this.panel1.Controls.Add(this.button2);
             this.panel1.Controls.Add(this.button4);
             this.panel1.Controls.Add(this.radioButton2);
-            this.panel1.Controls.Add(this.button1);
             this.panel1.Controls.Add(this.radioButton1);
             this.panel1.Controls.Add(this.label1);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Right;
@@ -159,7 +161,7 @@
             this.sidebarExportButton.Location = new System.Drawing.Point(41, 260);
             this.sidebarExportButton.Name = "sidebarExportButton";
             this.sidebarExportButton.Size = new System.Drawing.Size(145, 23);
-            this.sidebarExportButton.TabIndex = 9;
+            this.sidebarExportButton.TabIndex = 16;
             this.sidebarExportButton.Text = "Export merania";
             this.sidebarExportButton.UseVisualStyleBackColor = true;
             // 
@@ -171,7 +173,7 @@
             this.button2.Location = new System.Drawing.Point(41, 174);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(145, 65);
-            this.button2.TabIndex = 8;
+            this.button2.TabIndex = 15;
             this.button2.Text = "Zastav meranie";
             this.button2.UseVisualStyleBackColor = false;
             // 
@@ -182,7 +184,7 @@
             this.button4.Location = new System.Drawing.Point(41, 297);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(145, 83);
-            this.button4.TabIndex = 13;
+            this.button4.TabIndex = 17;
             this.button4.Text = "Štart";
             this.button4.UseVisualStyleBackColor = false;
             // 
@@ -191,31 +193,43 @@
             this.radioButton2.AutoSize = true;
             this.radioButton2.Location = new System.Drawing.Point(90, 104);
             this.radioButton2.Name = "radioButton2";
-            this.radioButton2.Size = new System.Drawing.Size(39, 17);
+            this.radioButton2.Size = new System.Drawing.Size(43, 17);
             this.radioButton2.TabIndex = 11;
             this.radioButton2.TabStop = true;
-            this.radioButton2.Text = "log";
+            this.radioButton2.Text = "avg";
             this.radioButton2.UseVisualStyleBackColor = true;
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(59, 127);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(119, 23);
-            this.button1.TabIndex = 12;
-            this.button1.Text = "Prepni zobrazenie";
-            this.button1.UseVisualStyleBackColor = true;
             // 
             // radioButton1
             // 
             this.radioButton1.AutoSize = true;
             this.radioButton1.Location = new System.Drawing.Point(90, 81);
             this.radioButton1.Name = "radioButton1";
-            this.radioButton1.Size = new System.Drawing.Size(35, 17);
+            this.radioButton1.Size = new System.Drawing.Size(44, 17);
             this.radioButton1.TabIndex = 10;
             this.radioButton1.TabStop = true;
-            this.radioButton1.Text = "lin";
+            this.radioButton1.Text = "sum";
             this.radioButton1.UseVisualStyleBackColor = true;
+            // 
+            // radioButton3
+            // 
+            this.radioButton3.AutoSize = true;
+            this.radioButton3.Location = new System.Drawing.Point(90, 128);
+            this.radioButton3.Name = "radioButton3";
+            this.radioButton3.Size = new System.Drawing.Size(56, 17);
+            this.radioButton3.TabIndex = 14;
+            this.radioButton3.TabStop = true;
+            this.radioButton3.Text = "normal";
+            this.radioButton3.UseVisualStyleBackColor = true;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.ForeColor = System.Drawing.SystemColors.WindowFrame;
+            this.label2.Location = new System.Drawing.Point(58, 65);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(88, 13);
+            this.label2.TabIndex = 18;
+            this.label2.Text = "Vyber zobrazenie";
             // 
             // Form1
             // 
@@ -253,8 +267,9 @@
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.RadioButton radioButton2;
-        private System.Windows.Forms.Button button1;
         private System.Windows.Forms.RadioButton radioButton1;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.RadioButton radioButton3;
     }
 }
 

@@ -152,14 +152,14 @@
             this.dbSettingsFieldPort.Location = new System.Drawing.Point(82, 183);
             this.dbSettingsFieldPort.Name = "dbSettingsFieldPort";
             this.dbSettingsFieldPort.Size = new System.Drawing.Size(69, 20);
-            this.dbSettingsFieldPort.TabIndex = 25;
+            this.dbSettingsFieldPort.TabIndex = 4;
             // 
             // saveDbSettingsButton
             // 
             this.saveDbSettingsButton.Location = new System.Drawing.Point(15, 232);
             this.saveDbSettingsButton.Name = "saveDbSettingsButton";
             this.saveDbSettingsButton.Size = new System.Drawing.Size(75, 23);
-            this.saveDbSettingsButton.TabIndex = 24;
+            this.saveDbSettingsButton.TabIndex = 5;
             this.saveDbSettingsButton.Text = "Uložiť";
             this.saveDbSettingsButton.UseVisualStyleBackColor = true;
             this.saveDbSettingsButton.Click += new System.EventHandler(this.saveDbSettingsButton_Click_1);
@@ -171,7 +171,7 @@
             this.dbSettingsFieldHost.MaxLength = 50;
             this.dbSettingsFieldHost.Name = "dbSettingsFieldHost";
             this.dbSettingsFieldHost.Size = new System.Drawing.Size(227, 20);
-            this.dbSettingsFieldHost.TabIndex = 16;
+            this.dbSettingsFieldHost.TabIndex = 0;
             // 
             // label35
             // 
@@ -198,7 +198,7 @@
             this.dbSettingsFieldPassword.MaxLength = 50;
             this.dbSettingsFieldPassword.Name = "dbSettingsFieldPassword";
             this.dbSettingsFieldPassword.Size = new System.Drawing.Size(227, 20);
-            this.dbSettingsFieldPassword.TabIndex = 22;
+            this.dbSettingsFieldPassword.TabIndex = 2;
             // 
             // dbSettingsFieldUser
             // 
@@ -207,7 +207,7 @@
             this.dbSettingsFieldUser.MaxLength = 50;
             this.dbSettingsFieldUser.Name = "dbSettingsFieldUser";
             this.dbSettingsFieldUser.Size = new System.Drawing.Size(227, 20);
-            this.dbSettingsFieldUser.TabIndex = 18;
+            this.dbSettingsFieldUser.TabIndex = 1;
             // 
             // label36
             // 
@@ -234,7 +234,7 @@
             this.dbSettingsFieldDatabase.MaxLength = 50;
             this.dbSettingsFieldDatabase.Name = "dbSettingsFieldDatabase";
             this.dbSettingsFieldDatabase.Size = new System.Drawing.Size(227, 20);
-            this.dbSettingsFieldDatabase.TabIndex = 20;
+            this.dbSettingsFieldDatabase.TabIndex = 3;
             // 
             // tabPage2
             // 
@@ -368,7 +368,7 @@
             this.devKapillarFreqTextField.Location = new System.Drawing.Point(108, 48);
             this.devKapillarFreqTextField.Name = "devKapillarFreqTextField";
             this.devKapillarFreqTextField.Size = new System.Drawing.Size(118, 20);
-            this.devKapillarFreqTextField.TabIndex = 4;
+            this.devKapillarFreqTextField.TabIndex = 7;
             // 
             // label39
             // 
@@ -384,7 +384,7 @@
             this.devKapillarComTextField.Location = new System.Drawing.Point(108, 22);
             this.devKapillarComTextField.Name = "devKapillarComTextField";
             this.devKapillarComTextField.Size = new System.Drawing.Size(118, 20);
-            this.devKapillarComTextField.TabIndex = 3;
+            this.devKapillarComTextField.TabIndex = 6;
             // 
             // groupBox4
             // 
@@ -419,7 +419,7 @@
             0});
             this.devChamberChannel.Name = "devChamberChannel";
             this.devChamberChannel.Size = new System.Drawing.Size(120, 20);
-            this.devChamberChannel.TabIndex = 6;
+            this.devChamberChannel.TabIndex = 4;
             this.devChamberChannel.Value = new decimal(new int[] {
             1,
             0,
@@ -458,7 +458,7 @@
             this.devChamberFreqTextField.Location = new System.Drawing.Point(108, 72);
             this.devChamberFreqTextField.Name = "devChamberFreqTextField";
             this.devChamberFreqTextField.Size = new System.Drawing.Size(118, 20);
-            this.devChamberFreqTextField.TabIndex = 7;
+            this.devChamberFreqTextField.TabIndex = 5;
             // 
             // label44
             // 
@@ -474,7 +474,7 @@
             this.devChamberComTextField.Location = new System.Drawing.Point(108, 22);
             this.devChamberComTextField.Name = "devChamberComTextField";
             this.devChamberComTextField.Size = new System.Drawing.Size(118, 20);
-            this.devChamberComTextField.TabIndex = 5;
+            this.devChamberComTextField.TabIndex = 3;
             // 
             // groupBox3
             // 
@@ -513,7 +513,7 @@
             this.groupBox2.Location = new System.Drawing.Point(3, 67);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(426, 51);
-            this.groupBox2.TabIndex = 2;
+            this.groupBox2.TabIndex = 1;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Keithley 2000 Ampérmeter";
             // 
