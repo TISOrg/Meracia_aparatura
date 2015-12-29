@@ -25,7 +25,7 @@ namespace JDLMLab {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute(".")]
+        [global::System.Configuration.DefaultSettingValueAttribute("C:\\")]
         public string export_path {
             get {
                 return ((string)(this["export_path"]));

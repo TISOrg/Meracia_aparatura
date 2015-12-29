@@ -33,7 +33,6 @@
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.menuToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.nastaveniaMeraniaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.nastaveniaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.oProgrameToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.label1 = new System.Windows.Forms.Label();
@@ -73,8 +72,7 @@
             // menuToolStripMenuItem
             // 
             this.menuToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.nastaveniaMeraniaToolStripMenuItem,
-            this.nastaveniaToolStripMenuItem});
+            this.nastaveniaMeraniaToolStripMenuItem});
             this.menuToolStripMenuItem.Name = "menuToolStripMenuItem";
             this.menuToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
             this.menuToolStripMenuItem.Text = "File";
@@ -87,17 +85,11 @@
             this.nastaveniaMeraniaToolStripMenuItem.Text = "Nové meranie";
             this.nastaveniaMeraniaToolStripMenuItem.Click += new System.EventHandler(this.nastaveniaMeraniaToolStripMenuItem_Click);
             // 
-            // nastaveniaToolStripMenuItem
-            // 
-            this.nastaveniaToolStripMenuItem.Name = "nastaveniaToolStripMenuItem";
-            this.nastaveniaToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.nastaveniaToolStripMenuItem.Text = "Nastavenia";
-            // 
             // toolsToolStripMenuItem
             // 
             this.toolsToolStripMenuItem.Name = "toolsToolStripMenuItem";
-            this.toolsToolStripMenuItem.Size = new System.Drawing.Size(48, 20);
-            this.toolsToolStripMenuItem.Text = "Tools";
+            this.toolsToolStripMenuItem.Size = new System.Drawing.Size(77, 20);
+            this.toolsToolStripMenuItem.Text = "Nastavenia";
             this.toolsToolStripMenuItem.Click += new System.EventHandler(this.toolsToolStripMenuItem_Click);
             // 
             // oProgrameToolStripMenuItem
@@ -238,7 +230,6 @@
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem menuToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem nastaveniaMeraniaToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem nastaveniaToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem oProgrameToolStripMenuItem;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.RadioButton radioButton1;

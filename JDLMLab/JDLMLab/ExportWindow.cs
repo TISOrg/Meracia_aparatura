@@ -174,6 +174,10 @@ namespace JDLMLab
             
             
         }
-        
+
+        private void dataMeranie_CellValueChanged(object sender, DataGridViewCellEventArgs e)
+        {
+            
+        }
     }
 }

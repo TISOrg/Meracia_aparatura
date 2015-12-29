@@ -52,6 +52,7 @@
             // 
             // dataMeranie
             // 
+            this.dataMeranie.AllowDrop = true;
             this.dataMeranie.AllowUserToAddRows = false;
             this.dataMeranie.AllowUserToDeleteRows = false;
             this.dataMeranie.AllowUserToOrderColumns = true;
@@ -61,6 +62,7 @@
             this.dataMeranie.Name = "dataMeranie";
             this.dataMeranie.Size = new System.Drawing.Size(787, 293);
             this.dataMeranie.TabIndex = 1;
+            this.dataMeranie.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataMeranie_CellValueChanged);
             // 
             // checkedListBoxInclude
             // 

@@ -144,7 +144,7 @@ namespace JDLMLab
         private void button2_Click(object sender, EventArgs e)
         {
             ExportWindow exp = new ExportWindow((int)dataMerania.SelectedCells[0].Value);
-            exp.Show();
+            exp.ShowDialog();
 
 
         }
@@ -152,6 +152,11 @@ namespace JDLMLab
         private void button1_Click(object sender, EventArgs e)
         {
             
+        }
+
+        private void dataNazvy_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
         }
     }
 }

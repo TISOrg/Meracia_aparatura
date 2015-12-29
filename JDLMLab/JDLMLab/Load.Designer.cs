@@ -71,7 +71,9 @@
             this.dataRoky.AllowUserToOrderColumns = true;
             this.dataRoky.AllowUserToResizeColumns = false;
             this.dataRoky.AllowUserToResizeRows = false;
+            this.dataRoky.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataRoky.BackgroundColor = System.Drawing.SystemColors.Control;
+            this.dataRoky.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dataRoky.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
             this.dataRoky.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             this.dataRoky.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -93,7 +95,9 @@
             this.dataNazvy.AllowUserToOrderColumns = true;
             this.dataNazvy.AllowUserToResizeColumns = false;
             this.dataNazvy.AllowUserToResizeRows = false;
+            this.dataNazvy.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataNazvy.BackgroundColor = System.Drawing.SystemColors.Control;
+            this.dataNazvy.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dataNazvy.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             this.dataNazvy.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataNazvy.Location = new System.Drawing.Point(120, 30);
@@ -105,6 +109,7 @@
             this.dataNazvy.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
             this.dataNazvy.Size = new System.Drawing.Size(199, 265);
             this.dataNazvy.TabIndex = 1;
+            this.dataNazvy.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataNazvy_CellContentClick);
             this.dataNazvy.CellEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataNazvy_CellEnter);
             // 
             // dataDatumy
@@ -114,7 +119,9 @@
             this.dataDatumy.AllowUserToOrderColumns = true;
             this.dataDatumy.AllowUserToResizeColumns = false;
             this.dataDatumy.AllowUserToResizeRows = false;
+            this.dataDatumy.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataDatumy.BackgroundColor = System.Drawing.SystemColors.Control;
+            this.dataDatumy.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dataDatumy.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             this.dataDatumy.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataDatumy.Location = new System.Drawing.Point(325, 30);
@@ -135,7 +142,9 @@
             this.dataTypy.AllowUserToOrderColumns = true;
             this.dataTypy.AllowUserToResizeColumns = false;
             this.dataTypy.AllowUserToResizeRows = false;
+            this.dataTypy.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataTypy.BackgroundColor = System.Drawing.SystemColors.Control;
+            this.dataTypy.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dataTypy.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             this.dataTypy.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataTypy.Location = new System.Drawing.Point(429, 30);
@@ -151,9 +160,16 @@
             // 
             // dataMerania
             // 
+            this.dataMerania.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dataMerania.BackgroundColor = System.Drawing.SystemColors.Control;
+            this.dataMerania.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.dataMerania.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             this.dataMerania.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataMerania.Cursor = System.Windows.Forms.Cursors.Default;
             this.dataMerania.Location = new System.Drawing.Point(544, 30);
+            this.dataMerania.MultiSelect = false;
             this.dataMerania.Name = "dataMerania";
+            this.dataMerania.ReadOnly = true;
             this.dataMerania.RowHeadersVisible = false;
             this.dataMerania.Size = new System.Drawing.Size(84, 265);
             this.dataMerania.TabIndex = 4;
@@ -183,9 +199,10 @@
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Controls.Add(this.button2);
             this.groupBox1.Controls.Add(this.button1);
-            this.groupBox1.Location = new System.Drawing.Point(217, 316);
+            this.groupBox1.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.groupBox1.Location = new System.Drawing.Point(0, 328);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(411, 187);
+            this.groupBox1.Size = new System.Drawing.Size(640, 187);
             this.groupBox1.TabIndex = 5;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Hlavička merania";
@@ -203,7 +220,7 @@
             // stepTimeValue
             // 
             this.stepTimeValue.AutoSize = true;
-            this.stepTimeValue.Location = new System.Drawing.Point(218, 80);
+            this.stepTimeValue.Location = new System.Drawing.Point(272, 80);
             this.stepTimeValue.Name = "stepTimeValue";
             this.stepTimeValue.Size = new System.Drawing.Size(0, 13);
             this.stepTimeValue.TabIndex = 13;
@@ -212,7 +229,7 @@
             // resolutionValue
             // 
             this.resolutionValue.AutoSize = true;
-            this.resolutionValue.Location = new System.Drawing.Point(218, 67);
+            this.resolutionValue.Location = new System.Drawing.Point(272, 67);
             this.resolutionValue.Name = "resolutionValue";
             this.resolutionValue.Size = new System.Drawing.Size(0, 13);
             this.resolutionValue.TabIndex = 12;
@@ -221,7 +238,7 @@
             // constantValue
             // 
             this.constantValue.AutoSize = true;
-            this.constantValue.Location = new System.Drawing.Point(68, 80);
+            this.constantValue.Location = new System.Drawing.Point(272, 54);
             this.constantValue.Name = "constantValue";
             this.constantValue.Size = new System.Drawing.Size(0, 13);
             this.constantValue.TabIndex = 11;
@@ -230,7 +247,7 @@
             // endPointValue
             // 
             this.endPointValue.AutoSize = true;
-            this.endPointValue.Location = new System.Drawing.Point(68, 67);
+            this.endPointValue.Location = new System.Drawing.Point(272, 41);
             this.endPointValue.Name = "endPointValue";
             this.endPointValue.Size = new System.Drawing.Size(0, 13);
             this.endPointValue.TabIndex = 10;
@@ -239,7 +256,7 @@
             // startPointValue
             // 
             this.startPointValue.AutoSize = true;
-            this.startPointValue.Location = new System.Drawing.Point(68, 54);
+            this.startPointValue.Location = new System.Drawing.Point(272, 28);
             this.startPointValue.Name = "startPointValue";
             this.startPointValue.Size = new System.Drawing.Size(0, 13);
             this.startPointValue.TabIndex = 9;
@@ -248,7 +265,7 @@
             // nameValue
             // 
             this.nameValue.AutoSize = true;
-            this.nameValue.Location = new System.Drawing.Point(68, 31);
+            this.nameValue.Location = new System.Drawing.Point(85, 31);
             this.nameValue.Name = "nameValue";
             this.nameValue.Size = new System.Drawing.Size(0, 13);
             this.nameValue.TabIndex = 8;
@@ -257,7 +274,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(163, 80);
+            this.label6.Location = new System.Drawing.Point(217, 80);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(49, 13);
             this.label6.TabIndex = 7;
@@ -266,7 +283,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(160, 67);
+            this.label5.Location = new System.Drawing.Point(214, 67);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(52, 13);
             this.label5.TabIndex = 6;
@@ -275,7 +292,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(14, 80);
+            this.label4.Location = new System.Drawing.Point(217, 54);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(48, 13);
             this.label4.TabIndex = 5;
@@ -284,7 +301,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(11, 67);
+            this.label3.Location = new System.Drawing.Point(214, 41);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(51, 13);
             this.label3.TabIndex = 4;
@@ -293,7 +310,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(9, 54);
+            this.label2.Location = new System.Drawing.Point(212, 28);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(53, 13);
             this.label2.TabIndex = 3;
@@ -302,7 +319,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(24, 31);
+            this.label1.Location = new System.Drawing.Point(41, 31);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(38, 13);
             this.label1.TabIndex = 2;
@@ -310,7 +327,7 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(313, 158);
+            this.button2.Location = new System.Drawing.Point(544, 158);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(75, 23);
             this.button2.TabIndex = 1;
@@ -320,7 +337,7 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(232, 158);
+            this.button1.Location = new System.Drawing.Point(463, 158);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
             this.button1.TabIndex = 0;
@@ -333,14 +350,14 @@
             this.noteValue.Location = new System.Drawing.Point(71, 131);
             this.noteValue.Name = "noteValue";
             this.noteValue.ReadOnly = true;
-            this.noteValue.Size = new System.Drawing.Size(153, 50);
+            this.noteValue.Size = new System.Drawing.Size(294, 35);
             this.noteValue.TabIndex = 15;
             this.noteValue.Text = "";
             // 
             // cyclesValue
             // 
             this.cyclesValue.AutoSize = true;
-            this.cyclesValue.Location = new System.Drawing.Point(218, 54);
+            this.cyclesValue.Location = new System.Drawing.Point(85, 80);
             this.cyclesValue.Name = "cyclesValue";
             this.cyclesValue.Size = new System.Drawing.Size(13, 13);
             this.cyclesValue.TabIndex = 17;
@@ -349,16 +366,16 @@
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(144, 54);
+            this.label9.Location = new System.Drawing.Point(11, 80);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(68, 13);
+            this.label9.Size = new System.Drawing.Size(69, 13);
             this.label9.TabIndex = 16;
-            this.label9.Text = "počet cyklov";
+            this.label9.Text = "Počet cyklov";
             // 
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(218, 93);
+            this.label7.Location = new System.Drawing.Point(272, 93);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(13, 13);
             this.label7.TabIndex = 19;
@@ -367,7 +384,7 @@
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(142, 93);
+            this.label10.Location = new System.Drawing.Point(196, 93);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(70, 13);
             this.label10.TabIndex = 18;
@@ -376,7 +393,7 @@
             // dateValue
             // 
             this.dateValue.AutoSize = true;
-            this.dateValue.Location = new System.Drawing.Point(272, 31);
+            this.dateValue.Location = new System.Drawing.Point(85, 54);
             this.dateValue.Name = "dateValue";
             this.dateValue.Size = new System.Drawing.Size(0, 13);
             this.dateValue.TabIndex = 21;
@@ -385,7 +402,7 @@
             // label12
             // 
             this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(228, 31);
+            this.label12.Location = new System.Drawing.Point(41, 54);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(38, 13);
             this.label12.TabIndex = 20;

@@ -7,12 +7,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.IO;
 
 namespace JDLMLab
 {
-    public partial class Settings : Form
+    public partial class NastaveniaWindow : Form
     {
-        public Settings()
+        public NastaveniaWindow()
         {
             InitializeComponent();
             fillValues();
@@ -38,93 +39,70 @@ namespace JDLMLab
             devChamberFreqTextField.Text = Properties.Devices.Default.tpg256aFreq.ToString();
             devChamberChannel.Value = Properties.Devices.Default.tpg256aChannel;
 
+            export_path_text.Text = Paths.Default.export_path;
         }
-        private void button2_Click(object sender, EventArgs e)
+
+
+        private void saveDbSettingsButton_Click(object sender, EventArgs e)
+        {
+         
+        }
+
+        private void FormValidateError(string msg, string caption)
+        {
+            MessageBox.Show(msg, caption, MessageBoxButtons.OK, MessageBoxIcon.Error);
+        }
+        private void groupBox3_Enter(object sender, EventArgs e)
         {
 
         }
 
-        private void label1_Click(object sender, EventArgs e)
+        private void devicesSaveButton_Click(object sender, EventArgs e)
         {
+    
+
 
         }
 
-        private void label2_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void tabPage1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void textBox1_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void tabPage2_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void textBox2_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label1_Click_1(object sender, EventArgs e)
-        {
-
-        }
-
-        private void textBox10_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void listView1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void listBox2_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void listBox3_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            
-        }
-
-        private void tabPage1_Click_1(object sender, EventArgs e)
-        {
-
-        }
-
-        private void dataGridView2_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
-
-        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
+        
 
         private void textBox12_TextChanged(object sender, EventArgs e)
         {
 
         }
 
-        private void saveDbSettingsButton_Click(object sender, EventArgs e)
+        private void button1_Click(object sender, EventArgs e)
+        {
+            FolderBrowserDialog fd = new FolderBrowserDialog();
+            if(fd.ShowDialog()==DialogResult.OK) export_path_text.Text = fd.SelectedPath;
+            
+        }
+        private void button2_Click(object sender, EventArgs e)
+        {
+            if (Directory.Exists(export_path_text.Text)){
+                Paths.Default.export_path = export_path_text.Text;
+            }
+            else
+            {
+                DialogResult res = MessageBox.Show("Zadaná zložka neexistuje. Vytvoriť?","Zložka neexistuje",MessageBoxButtons.YesNo,MessageBoxIcon.Question,MessageBoxDefaultButton.Button1);
+                if (res == DialogResult.Yes)
+                {
+                    try {
+                        DirectoryInfo i=Directory.CreateDirectory(export_path_text.Text);
+                        export_path_text.Text = i.FullName;
+                        Paths.Default.export_path = i.FullName; 
+                    }
+                    catch(Exception ef)
+                    {
+                        FormValidateError("Zadajte správnu cestu", "Chyba");
+                    }
+                    
+                }
+            }
+            
+        }
+
+        private void saveDbSettingsButton_Click_1(object sender, EventArgs e)
         {
             //testovat validitu fieldov
             int port;
@@ -135,7 +113,7 @@ namespace JDLMLab
             else if (dbSettingsFieldUser.Text.Length < 1) FormValidateError("Zadajte hodnotu user", "Neplatná hodnota");
             else if (dbSettingsFieldPassword.Text.Length < 1) FormValidateError("Zadajte hodnotu password", "Neplatná hodnota");
             else if (dbSettingsFieldDatabase.Text.Length < 1) FormValidateError("Zadajte hodnotu database", "Neplatná hodnota");
-            else if(!int.TryParse(dbSettingsFieldPort.Text,out port)) FormValidateError("Zadajte hodnotu port", "Neplatná hodnota");
+            else if (!int.TryParse(dbSettingsFieldPort.Text, out port)) FormValidateError("Zadajte hodnotu port", "Neplatná hodnota");
             else
             {
                 Database.Default.host = dbSettingsFieldHost.Text;
@@ -147,23 +125,14 @@ namespace JDLMLab
             }
         }
 
-        private void FormValidateError(string msg,string caption)
-        {
-            MessageBox.Show(msg, caption, MessageBoxButtons.OK, MessageBoxIcon.Error);
-        }
-        private void groupBox3_Enter(object sender, EventArgs e)
-        {
-
-        }
-
-        private void devicesSaveButton_Click(object sender, EventArgs e)
+        private void devicesSaveButton_Click_1(object sender, EventArgs e)
         {
             int a;
-            if (devVoltmeterComTextField.Text.Length < 1) FormValidateError("Zadajte hodnotu názov portu voltmetra","Neplatná hodnota");
+            if (devVoltmeterComTextField.Text.Length < 1) FormValidateError("Zadajte hodnotu názov portu voltmetra", "Neplatná hodnota");
             else if (devAmpermeterComTextField.Text.Length < 1) FormValidateError("Zadajte hodnotu názov portu ampérmetra", "Neplatná hodnota");
             else if (devQmsComTextField.Text.Length < 1) FormValidateError("Zadajte hodnotu názov portu QMS", "Neplatná hodnota");
             else if (devKapillarComTextField.Text.Length < 1) FormValidateError("Zadajte hodnotu názov portu tlakomera PR4000", "Neplatná hodnota");
-            else if (!int.TryParse(devKapillarFreqTextField.Text,out a)) FormValidateError("Zadajte hodnotu frekvencia čítania tlakomera PR4000", "Neplatná hodnota");
+            else if (!int.TryParse(devKapillarFreqTextField.Text, out a)) FormValidateError("Zadajte hodnotu frekvencia čítania tlakomera PR4000", "Neplatná hodnota");
             else if (devChamberComTextField.Text.Length < 1) FormValidateError("Zadajte hodnotu názov portu tlakomera TPG256a", "Neplatná hodnota");
             else if (!int.TryParse(devChamberFreqTextField.Text, out a)) FormValidateError("Zadajte hodnotu frekvencia čítania portu tlakomera TPG256a", "Neplatná hodnota");
             else
@@ -180,9 +149,16 @@ namespace JDLMLab
                 Properties.Devices.Default.pr4000Port = devKapillarComTextField.Text;
                 Properties.Devices.Default.Save();
             }
+        }
 
+        private void groupBox7_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void groupBox9_Enter(object sender, EventArgs e)
+        {
 
         }
     }
-        
-    }
+}
