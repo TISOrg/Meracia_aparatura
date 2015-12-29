@@ -14,11 +14,14 @@ namespace JDLMLab
     {
         NoveMeranieWindow setmerania;
         AboutBox1 info;
+        Export exportak;
         public Form1()
+
         {
             InitializeComponent();
             setmerania = new NoveMeranieWindow();
             info = new AboutBox1();
+            exportak = new Export();
             
             //nacitat vsetky nastavenia
             
@@ -86,7 +89,7 @@ namespace JDLMLab
         {
             
             DbCommunication db = new DbCommunication();
-            ExportWindow exp = new ExportWindow(1);
+            exportak.ShowDialog();
             //exp.grid= meranie aktualne
         }
     }
