@@ -40,6 +40,7 @@
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.DirectoryServices" />
+    <Reference Include="System.Windows.Forms.DataVisualization" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -77,6 +78,7 @@
     <Compile Include="ExportWindow.Designer.cs">
       <DependentUpon>ExportWindow.cs</DependentUpon>
     </Compile>
+    <Compile Include="GrafControl.cs" />
     <Compile Include="NastaveniaWindow.cs">
       <SubType>Form</SubType>
     </Compile>

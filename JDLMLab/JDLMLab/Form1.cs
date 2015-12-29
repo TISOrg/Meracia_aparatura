@@ -14,21 +14,20 @@ namespace JDLMLab
     {
         NoveMeranieWindow setmerania;
         AboutBox1 info;
+        GrafControl grafcontrol;
         public Form1()
         {
             InitializeComponent();
             setmerania = new NoveMeranieWindow();
             info = new AboutBox1();
-            
+
+            grafcontrol=new GrafControl(graf);
             //nacitat vsetky nastavenia
-            
-
-
+            for (int i = 1; i < 11; i++)
+            {
+                grafcontrol.addxy(i, i, "current");
+            }
         }
-
-        
-        
-
         private void serialPort1_DataReceived(object sender, System.IO.Ports.SerialDataReceivedEventArgs e)
         {
 
@@ -79,7 +78,16 @@ namespace JDLMLab
 
         private void loadToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            new Load().Show();
+            Load l = new Load();
+            DialogResult res=l.ShowDialog();
+            if (res == DialogResult.OK)
+            {
+                //zobrazit do grafu vybrate meranie
+                grafcontrol.addMeranie(l.Meranie);
+                
+            }
+
+            
         }
 
         private void sidebarExportButton_Click(object sender, EventArgs e)
@@ -88,6 +96,11 @@ namespace JDLMLab
             DbCommunication db = new DbCommunication();
             ExportWindow exp = new ExportWindow(1);
             //exp.grid= meranie aktualne
+        }
+
+        private void graf_KeyDown(object sender, KeyEventArgs e)
+        {
+            grafcontrol.grafKeyPressed(e);
         }
     }
 }
