@@ -40,6 +40,7 @@
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.DirectoryServices" />
+    <Reference Include="System.Windows.Forms.DataVisualization" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -64,16 +65,49 @@
       <DependentUpon>AboutBox1.cs</DependentUpon>
     </Compile>
     <Compile Include="CyklusMerania.cs" />
-    <Compile Include="Database.cs" />
+    <Compile Include="Database.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Database.settings</DependentUpon>
+    </Compile>
     <Compile Include="DbCommunication.cs" />
     <Compile Include="DbConnectionSettings.cs" />
-    <Compile Include="EnergyScanMeranie.cs" />
-    <Compile Include="Export.cs">
+    <Compile Include="ExportWindow.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Export.Designer.cs">
-      <DependentUpon>Export.cs</DependentUpon>
+    <Compile Include="ExportWindow.Designer.cs">
+      <DependentUpon>ExportWindow.cs</DependentUpon>
     </Compile>
+    <Compile Include="GrafControl.cs" />
+    <Compile Include="NastaveniaWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="NastaveniaWindow.Designer.cs">
+      <DependentUpon>NastaveniaWindow.cs</DependentUpon>
+    </Compile>
+    <Compile Include="HeaderInfo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="HeaderInfo.Designer.cs">
+      <DependentUpon>HeaderInfo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Load.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Load.Designer.cs">
+      <DependentUpon>Load.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Paths.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Paths.settings</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Devices.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Devices.settings</DependentUpon>
+    </Compile>
+    <Compile Include="EnergyScanMeranie.cs" />
     <Compile Include="Filter.cs" />
     <Compile Include="KrokMerania.cs" />
     <Compile Include="MeasurementControl.cs" />
@@ -87,19 +121,16 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Settings.cs" />
-    <Compile Include="Settings.Designer.cs">
-      <DependentUpon>Settings.cs</DependentUpon>
+    <Compile Include="NoveMeranieWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="NoveMeranieWindow.Designer.cs">
+      <DependentUpon>NoveMeranieWindow.cs</DependentUpon>
     </Compile>
     <Compile Include="parametreMerania.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>parametreMerania.settings</DependentUpon>
-    </Compile>
-    <Compile Include="Database.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTimeSharedInput>True</DesignTimeSharedInput>
-      <DependentUpon>Database.settings</DependentUpon>
     </Compile>
     <Compile Include="VMeterController.cs" />
     <Compile Include="VMeterDriver.cs" />
@@ -109,11 +140,20 @@
     <EmbeddedResource Include="AboutBox1.resx">
       <DependentUpon>AboutBox1.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Export.resx">
-      <DependentUpon>Export.cs</DependentUpon>
+    <EmbeddedResource Include="ExportWindow.resx">
+      <DependentUpon>ExportWindow.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HeaderInfo.resx">
+      <DependentUpon>HeaderInfo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Load.resx">
+      <DependentUpon>Load.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="NastaveniaWindow.resx">
+      <DependentUpon>NastaveniaWindow.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -124,12 +164,24 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="Settings.resx">
-      <DependentUpon>Settings.cs</DependentUpon>
+    <EmbeddedResource Include="NoveMeranieWindow.resx">
+      <DependentUpon>NoveMeranieWindow.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="app.config" />
-    <None Include="Properties\Settings.settings">
+    <None Include="Database.settings">
+      <Generator>PublicSettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Database.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Paths.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Paths.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Properties\Devices.settings">
+      <Generator>PublicSettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Devices.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Properties\Settings.settings">
+      <Generator>PublicSettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <Compile Include="Properties\Settings.Designer.cs">
@@ -140,10 +192,6 @@
     <None Include="parametreMerania.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>parametreMerania.Designer.cs</LastGenOutput>
-    </None>
-    <None Include="Database.settings">
-      <Generator>SettingsSingleFileGenerator</Generator>
-      <LastGenOutput>Database.Designer.cs</LastGenOutput>
     </None>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -148,15 +148,39 @@ namespace JDLMLab
 
 
         }
+        public int Meranie {
+            get { return meranie; }}
 
+        int meranie { get; set; }
         private void button1_Click(object sender, EventArgs e)
         {
-            
+
+            try
+            {
+                meranie = (int)dataMerania.SelectedCells[0].Value;
+                DialogResult = DialogResult.OK;
+                //Close();
+            }
+            catch (Exception ef) //ak este neexistuje meranie, tak vybrata nebude ziadna bunka
+            {
+                //DialogResult = DialogResult.No;
+                MessageBox.Show("Nie je vybraté žiadne meranie","Chyba",MessageBoxButtons.OK,MessageBoxIcon.Warning); 
+
+            }
+            finally
+            {
+             
+            }
         }
 
         private void dataNazvy_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
+        }
+
+        private void Load_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            
         }
     }
 }

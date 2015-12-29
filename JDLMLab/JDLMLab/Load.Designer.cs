@@ -421,6 +421,7 @@
             this.Controls.Add(this.dataRoky);
             this.Name = "Load";
             this.Text = "Load";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Load_FormClosed);
             ((System.ComponentModel.ISupportInitialize)(this.dataRoky)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataNazvy)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataDatumy)).EndInit();
