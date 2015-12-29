@@ -10,13 +10,14 @@ using System.Windows.Forms;
 
 namespace JDLMLab
 {
-    public partial class Settings : Form
+    public partial class NoveMeranieWindow : Form
     {
-        public Settings()
+        public NoveMeranieWindow()
         {
             InitializeComponent();
         }
 
+       
         private void button2_Click(object sender, EventArgs e)
         {
 
@@ -98,6 +99,22 @@ namespace JDLMLab
         }
 
         private void textBox12_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+
+        private void groupBox5_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox17_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox25_TextChanged(object sender, EventArgs e)
         {
 
         }

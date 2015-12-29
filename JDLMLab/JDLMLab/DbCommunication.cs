@@ -13,18 +13,18 @@ namespace JDLMLab
     {
         private string connectionString;
         private MySqlConnection conn;
-        public DbCommunication(DbConnectionSettings settings)
+        public DbCommunication()
         {
             connectionString =
-                "Server=" + settings.serverName +
-                ";Port=" + settings.port.ToString() +
-                ";Database=" + settings.database +
-                ";Uid=" + settings.userName +
-                ";Password=" + settings.password;
+                "Server=" + Database.Default.host +
+                ";Port=" + Database.Default.port.ToString() +
+                ";Database=" + Database.Default.database +
+                ";Uid=" + Database.Default.user +
+                ";Password=" + Database.Default.password;
             conn = new MySqlConnection(connectionString);
 
             bool tabulkyExistuju = false; ;
-            MySqlCommand c = new MySqlCommand("show tables like 'headersx'", conn);
+            MySqlCommand c = new MySqlCommand("show tables like 'headers'", conn);
             conn.Open();
             MySqlDataReader r = c.ExecuteReader();
             while (r.Read())
@@ -39,30 +39,16 @@ namespace JDLMLab
 
         private void vytvorTabulky()
         {
-            string sql = "CREATE TABLE `headersx` (  `id` int(100) NOT NULL,  `name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_mysql500_ci DEFAULT NULL," +
-                   "`type_name` varchar(200) NOT NULL,  `datetime` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,  `start_point` double NOT NULL," +
-                   "`end_point` double NOT NULL,  `constant` double NOT NULL,  `resolution` double NOT NULL,  `steptime` double NOT NULL," +
-                  "`cycles` int(254) NOT NULL,  `note` varchar(500) NOT NULL) ENGINE = InnoDB DEFAULT CHARSET = latin1;";
-            sql += "CREATE TABLE `meraniax` (" +
-                  "`id` int(11) NOT NULL,  `x` double NOT NULL,  `y_id` int(11) NOT NULL,  `sig` int(11) NOT NULL," +
-                  "`current` double NOT NULL,  `kapillar` double NOT NULL,  `chamber` double NOT NULL,  `temperature` double NOT NULL" +
-                ") ENGINE = InnoDB DEFAULT CHARSET = latin1;";
-            sql += "CREATE TABLE `rowsx` (  `id` int(11) NOT NULL,  `y` double NOT NULL,  `cycle_num` int(254) NOT NULL," +
-                "`header_id` int(11) NOT NULL) ENGINE = InnoDB DEFAULT CHARSET = latin1;";
-
+            string sql="CREATE TABLE `headers` (`id` int(100) NOT NULL AUTO_INCREMENT,`name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_mysql500_ci DEFAULT NULL,"+
+            "`type_name` varchar(200) NOT NULL,`datetime` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,`start_point` double NOT NULL,"+
+            "`end_point` double NOT NULL,`constant` double NOT NULL,`resolution` double NOT NULL,`steptime` double NOT NULL,`cycles` int(254) NOT NULL,"+
+            "`note` varchar(500) NOT NULL,PRIMARY KEY(`id`),KEY `id(PK)` (`id`)) ENGINE = InnoDB AUTO_INCREMENT = 29 DEFAULT CHARSET = latin1;";
+            sql += "CREATE TABLE `rows` (`id` int(11) NOT NULL AUTO_INCREMENT,`y` double NOT NULL,`cycle_num` int(254) NOT NULL,`header_id` int(11) NOT NULL,PRIMARY KEY(`id`),KEY `header_id(PK)` (`header_id`),KEY `id` (`id`),CONSTRAINT `obmedzenie` FOREIGN KEY (`header_id`) REFERENCES `headers` (`id`) ON DELETE CASCADE ON UPDATE CASCADE) ENGINE = InnoDB AUTO_INCREMENT = 28 DEFAULT CHARSET = latin1 ;";
+            sql += "CREATE TABLE `merania` (`id` int(11) NOT NULL AUTO_INCREMENT,`x` double NOT NULL,`y_id` int(11) NOT NULL,`sig` int(11) NOT NULL,`current` double NOT NULL,`kapillar` double NOT NULL,`chamber` double NOT NULL,`temperature` double NOT NULL,PRIMARY KEY(`id`),KEY `id_y` (`y_id`),CONSTRAINT `obmedzenie2` FOREIGN KEY (`y_id`) REFERENCES `rows` (`id`) ON DELETE CASCADE ON UPDATE CASCADE) ENGINE = InnoDB AUTO_INCREMENT = 90 DEFAULT CHARSET = latin1;";
             MySqlCommand c = new MySqlCommand(sql, conn);
-            c.ExecuteNonQuery();
-            sql = "ALTER TABLE `meraniax`  ADD PRIMARY KEY(`id`);";
-            sql += "ALTER TABLE `headersx`  ADD PRIMARY KEY(`id`);";
-            sql += "ALTER TABLE `rowsx` ADD PRIMARY KEY(`id`);";
-            c = new MySqlCommand(sql, conn);
-            c.ExecuteNonQuery();
-
-            sql = "ALTER TABLE `rowsx` ADD CONSTRAINT `header_id` FOREIGN KEY (`header_id`) REFERENCES `headersx` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;";
-            sql += "ALTER TABLE `meraniax` ADD CONSTRAINT `y_id` FOREIGN KEY (`y_id`) REFERENCES `rowsx` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;";
-            c = new MySqlCommand(sql, conn);
-            c.ExecuteNonQuery();
+            c.ExecuteNonQuery();   
         }
+
         public Boolean open()
         {
             try
@@ -85,7 +71,7 @@ namespace JDLMLab
             {
                 if (conn != null)
                 {
-                    string sql = "update headers set cycles=(select max(r.cycle_num) from rows r where r.id=@akt) where id=@akt";
+                    string sql = "update headers set cycles=(select max(r.cycle_num) from rows r where r.header_id=@akt) where id=@akt";
                     MySqlCommand c = new MySqlCommand(sql, conn);
                     c.Parameters.AddWithValue("@akt", aktualneMeranie);
                     c.ExecuteNonQuery();
@@ -101,7 +87,6 @@ namespace JDLMLab
         
 
         //=================================CITANIE=============================================
-
         private DataSet getDataSet(string sql)
         {
             DataSet ds = new DataSet();
@@ -123,6 +108,7 @@ namespace JDLMLab
             {
                 sql += " and r.cycle_num= " + cycleNum;
             }
+            sql += " order by r.cycle_num asc,m.x asc";
             return getDataSet(sql);
         }
 

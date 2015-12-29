@@ -98,9 +98,6 @@ namespace JDLMLab
             //}
             //list<string> s = new list<string>();
             //s[0] = "dd";
-
-
-
         }
     }
 }
