@@ -28,12 +28,20 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Load));
             this.dataRoky = new System.Windows.Forms.DataGridView();
             this.dataNazvy = new System.Windows.Forms.DataGridView();
             this.dataDatumy = new System.Windows.Forms.DataGridView();
             this.dataTypy = new System.Windows.Forms.DataGridView();
             this.dataMerania = new System.Windows.Forms.DataGridView();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.dateValue = new System.Windows.Forms.Label();
+            this.label12 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
+            this.cyclesValue = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
+            this.noteValue = new System.Windows.Forms.RichTextBox();
             this.label8 = new System.Windows.Forms.Label();
             this.stepTimeValue = new System.Windows.Forms.Label();
             this.resolutionValue = new System.Windows.Forms.Label();
@@ -49,13 +57,6 @@
             this.label1 = new System.Windows.Forms.Label();
             this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
-            this.noteValue = new System.Windows.Forms.RichTextBox();
-            this.cyclesValue = new System.Windows.Forms.Label();
-            this.label9 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
-            this.label10 = new System.Windows.Forms.Label();
-            this.dateValue = new System.Windows.Forms.Label();
-            this.label12 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataRoky)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataNazvy)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataDatumy)).BeginInit();
@@ -208,6 +209,69 @@
             this.groupBox1.Text = "Hlavička merania";
             this.groupBox1.Enter += new System.EventHandler(this.groupBox1_Enter);
             // 
+            // dateValue
+            // 
+            this.dateValue.AutoSize = true;
+            this.dateValue.Location = new System.Drawing.Point(85, 54);
+            this.dateValue.Name = "dateValue";
+            this.dateValue.Size = new System.Drawing.Size(0, 13);
+            this.dateValue.TabIndex = 21;
+            this.dateValue.Click += new System.EventHandler(this.dateValue_Click);
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(41, 54);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(38, 13);
+            this.label12.TabIndex = 20;
+            this.label12.Text = "Dátum";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(272, 93);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(13, 13);
+            this.label7.TabIndex = 19;
+            this.label7.Text = "ff";
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(196, 93);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(70, 13);
+            this.label10.TabIndex = 18;
+            this.label10.Text = "počet krokov";
+            // 
+            // cyclesValue
+            // 
+            this.cyclesValue.AutoSize = true;
+            this.cyclesValue.Location = new System.Drawing.Point(85, 80);
+            this.cyclesValue.Name = "cyclesValue";
+            this.cyclesValue.Size = new System.Drawing.Size(13, 13);
+            this.cyclesValue.TabIndex = 17;
+            this.cyclesValue.Text = "c";
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(11, 80);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(69, 13);
+            this.label9.TabIndex = 16;
+            this.label9.Text = "Počet cyklov";
+            // 
+            // noteValue
+            // 
+            this.noteValue.Location = new System.Drawing.Point(71, 131);
+            this.noteValue.Name = "noteValue";
+            this.noteValue.ReadOnly = true;
+            this.noteValue.Size = new System.Drawing.Size(294, 35);
+            this.noteValue.TabIndex = 15;
+            this.noteValue.Text = "";
+            // 
             // label8
             // 
             this.label8.AutoSize = true;
@@ -345,69 +409,6 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
-            // noteValue
-            // 
-            this.noteValue.Location = new System.Drawing.Point(71, 131);
-            this.noteValue.Name = "noteValue";
-            this.noteValue.ReadOnly = true;
-            this.noteValue.Size = new System.Drawing.Size(294, 35);
-            this.noteValue.TabIndex = 15;
-            this.noteValue.Text = "";
-            // 
-            // cyclesValue
-            // 
-            this.cyclesValue.AutoSize = true;
-            this.cyclesValue.Location = new System.Drawing.Point(85, 80);
-            this.cyclesValue.Name = "cyclesValue";
-            this.cyclesValue.Size = new System.Drawing.Size(13, 13);
-            this.cyclesValue.TabIndex = 17;
-            this.cyclesValue.Text = "c";
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(11, 80);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(69, 13);
-            this.label9.TabIndex = 16;
-            this.label9.Text = "Počet cyklov";
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(272, 93);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(13, 13);
-            this.label7.TabIndex = 19;
-            this.label7.Text = "ff";
-            // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(196, 93);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(70, 13);
-            this.label10.TabIndex = 18;
-            this.label10.Text = "počet krokov";
-            // 
-            // dateValue
-            // 
-            this.dateValue.AutoSize = true;
-            this.dateValue.Location = new System.Drawing.Point(85, 54);
-            this.dateValue.Name = "dateValue";
-            this.dateValue.Size = new System.Drawing.Size(0, 13);
-            this.dateValue.TabIndex = 21;
-            this.dateValue.Click += new System.EventHandler(this.dateValue_Click);
-            // 
-            // label12
-            // 
-            this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(41, 54);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(38, 13);
-            this.label12.TabIndex = 20;
-            this.label12.Text = "Dátum";
-            // 
             // Load
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -419,6 +420,7 @@
             this.Controls.Add(this.dataDatumy);
             this.Controls.Add(this.dataNazvy);
             this.Controls.Add(this.dataRoky);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Load";
             this.Text = "Load";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Load_FormClosed);

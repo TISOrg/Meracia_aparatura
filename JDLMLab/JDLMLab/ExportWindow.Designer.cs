@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ExportWindow));
             this.button1 = new System.Windows.Forms.Button();
             this.dataMeranie = new System.Windows.Forms.DataGridView();
             this.checkedListBoxInclude = new System.Windows.Forms.CheckedListBox();
@@ -204,6 +205,7 @@
             this.Controls.Add(this.checkedListBoxInclude);
             this.Controls.Add(this.dataMeranie);
             this.Controls.Add(this.button1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "ExportWindow";
             this.Text = "Export";
             this.Load += new System.EventHandler(this.Export_Load);
