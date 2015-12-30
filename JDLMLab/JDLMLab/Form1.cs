@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -23,10 +24,14 @@ namespace JDLMLab
 
             grafcontrol=new GrafControl(graf);
             //nacitat vsetky nastavenia
-            for (int i = 1; i < 11; i++)
+            for (double i = 1; i < 100; i++)
             {
-                grafcontrol.addxy(i, i, "current");
+            //    grafcontrol.addxyToGraf(i, new Random().Next(1, 200), 1);
+                
             }
+            grafcontrol.addMeranie(1);
+            grafcontrol.Cyklus = 2;
+            grafcontrol.repaintGraf();
         }
         private void serialPort1_DataReceived(object sender, System.IO.Ports.SerialDataReceivedEventArgs e)
         {
@@ -83,7 +88,9 @@ namespace JDLMLab
             if (res == DialogResult.OK)
             {
                 //zobrazit do grafu vybrate meranie
+                grafcontrol.clearGraf();
                 grafcontrol.addMeranie(l.Meranie);
+                
                 
             }
 

@@ -111,7 +111,12 @@ namespace JDLMLab
             sql += " order by r.cycle_num asc,m.x asc";
             return getDataSet(sql);
         }
-
+        public DataSet meraniePreGraf(int headerId)
+        {
+            string sql = "select m.x as x,m.sig as y,r.cycle_num as cyklus from merania m left join rows r on r.id = m.y_id where header_id = " + headerId;
+            sql += " order by cyklus asc,x asc";
+            return getDataSet(sql);
+        }
 
         //metoda na vratenie zoznamu existujucich rokov kedy boli robene merania
         public DataSet roky()
