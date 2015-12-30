@@ -279,7 +279,7 @@
             this.dateValue.Name = "dateValue";
             this.dateValue.Size = new System.Drawing.Size(0, 13);
             this.dateValue.TabIndex = 21;
-            this.dateValue.Click += new System.EventHandler(this.dateValue_Click);
+            //this.dateValue.Click += new System.EventHandler(this.dateValue_Click);
             // 
             // label12
             // 
