@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Threading;
 using System.Windows.Forms;
 using MySql.Data.MySqlClient;
 namespace JDLMLab
@@ -16,13 +17,21 @@ namespace JDLMLab
         {
             InitializeComponent();
             filter = new Filter();
-            DbConnectionSettings dbpar=new DbConnectionSettings();
+            DbConnectionSettings dbpar = new DbConnectionSettings();
             dbpar.database = Database.Default.database;
-            dbpar.serverName =Database.Default.host;
-            dbpar.userName= Database.Default.user;
-            dbpar.password= Database.Default.password;
+            dbpar.serverName = Database.Default.host;
+            dbpar.userName = Database.Default.user;
+            dbpar.password = Database.Default.password;
             dbpar.port = Database.Default.port;
 
+            init();
+        }
+        Thread t;
+        public DialogResult Result { get; set; }
+      
+        
+        public void init()
+        {
             db = new DbCommunication();
             try
             {
@@ -30,10 +39,11 @@ namespace JDLMLab
             }
             catch (MySqlException e)
             {
-                MessageBox.Show("Vyskytla sa chyba pri pripojení na databázu. Overte nastavenie pripojenia", "Chyba v spojení s databázou", MessageBoxButtons.RetryCancel,MessageBoxIcon.Error);
+                MessageBox.Show("Vyskytla sa chyba pri pripojení na databázu. Overte nastavenie pripojenia", "Chyba v spojení s databázou", MessageBoxButtons.RetryCancel, MessageBoxIcon.Error);
             }
-            filter = new Filter();
+            
         }
+
         Filter filter;
         DbCommunication db;
         private void dataRoky_CellEnter(object sender, DataGridViewCellEventArgs e)
@@ -101,45 +111,7 @@ namespace JDLMLab
             }
         }
 
-        private void groupBox1_Enter(object sender, EventArgs e)
-        {
-
-        }
-
-        private void dateValue_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void stepTimeValue_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void resolutionValue_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void constantValue_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void endPointValue_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void startPointValue_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void nameValue_Click(object sender, EventArgs e)
-        {
-
-        }
+       
 
         private void button2_Click(object sender, EventArgs e)
         {
@@ -154,12 +126,11 @@ namespace JDLMLab
         int meranie { get; set; }
         private void button1_Click(object sender, EventArgs e)
         {
-
             try
             {
                 meranie = (int)dataMerania.SelectedCells[0].Value;
                 DialogResult = DialogResult.OK;
-                //Close();
+            //    Close();
             }
             catch (Exception ef) //ak este neexistuje meranie, tak vybrata nebude ziadna bunka
             {
@@ -181,6 +152,11 @@ namespace JDLMLab
         private void Load_FormClosed(object sender, FormClosedEventArgs e)
         {
             
+        }
+
+        private void Load_Shown(object sender, EventArgs e)
+        {
+
         }
     }
 }

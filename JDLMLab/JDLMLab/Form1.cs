@@ -27,12 +27,11 @@ namespace JDLMLab
             Random r= new Random();
             for (double i = 1; i < 100; i++)
             {
-                grafcontrol.addxyToGraf(i, r.NextDouble()*100, 1);
-                
+                grafcontrol.addxyToGraf(i, r.NextDouble()*100, 1);    
             }
-//            grafcontrol.addMeranie(1);
-    //        grafcontrol.Cyklus = 2;
-  //          grafcontrol.repaintGraf();
+            //grafcontrol.addMeranie(1);
+            //grafcontrol.Cyklus = 2;
+            //grafcontrol.repaintGraf();
         }
         private void serialPort1_DataReceived(object sender, System.IO.Ports.SerialDataReceivedEventArgs e)
         {
@@ -85,17 +84,14 @@ namespace JDLMLab
         private void loadToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Load l = new Load();
-            DialogResult res=l.ShowDialog();
-            if (res == DialogResult.OK)
+            DialogResult res = l.ShowDialog(this);
+            if (res==DialogResult.OK)
             {
                 //zobrazit do grafu vybrate meranie
                 grafcontrol.clearGraf();
-                grafcontrol.addMeranie(l.Meranie);
-                
-                
+                grafcontrol.addMeranie(l.Meranie);    
             }
-
-            
+            l.Dispose();
         }
 
         private void sidebarExportButton_Click(object sender, EventArgs e)

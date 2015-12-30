@@ -87,6 +87,8 @@ namespace JDLMLab
         
 
         //=================================CITANIE=============================================
+
+
         private DataSet getDataSet(string sql)
         {
             DataSet ds = new DataSet();
