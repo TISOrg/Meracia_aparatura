@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             System.Windows.Forms.ListBox listBox2;
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(NoveMeranieWindow));
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.button3 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
@@ -777,6 +778,7 @@
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(573, 455);
             this.Controls.Add(this.tabControl1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "NoveMeranieWindow";
             this.Text = "Nastavenie merania";
             this.tabPage2.ResumeLayout(false);

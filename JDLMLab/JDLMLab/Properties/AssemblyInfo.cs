@@ -6,12 +6,12 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("JDLMLab")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("Na aplikácií sa podieľali študenti tretieho ročníka aplikovanej informatiky na fakulte FMFI, v rámci predmetu Tvorba Informačných systémov. Na projekte sa podieľali: Ján Pavlásek, Dominik Kotvan, Martin Palka, Ladislav Wagner")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("JDLMLab")]
+[assembly: AssemblyCompany("NEW GENERATION TEAM")]
+[assembly: AssemblyProduct("Meracia apartúra by JDLM lab")]
 [assembly: AssemblyCopyright("Copyright ©  2015")]
-[assembly: AssemblyTrademark("")]
+[assembly: AssemblyTrademark("NEW GENERATION TEAM")]
 [assembly: AssemblyCulture("")]
 
 // Setting ComVisible to false makes the types in this assembly not visible 
