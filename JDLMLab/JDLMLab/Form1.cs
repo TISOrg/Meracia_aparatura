@@ -24,14 +24,15 @@ namespace JDLMLab
 
             grafcontrol=new GrafControl(graf);
             //nacitat vsetky nastavenia
+            Random r= new Random();
             for (double i = 1; i < 100; i++)
             {
-            //    grafcontrol.addxyToGraf(i, new Random().Next(1, 200), 1);
+                grafcontrol.addxyToGraf(i, r.NextDouble()*100, 1);
                 
             }
-            grafcontrol.addMeranie(1);
-            grafcontrol.Cyklus = 2;
-            grafcontrol.repaintGraf();
+//            grafcontrol.addMeranie(1);
+    //        grafcontrol.Cyklus = 2;
+  //          grafcontrol.repaintGraf();
         }
         private void serialPort1_DataReceived(object sender, System.IO.Ports.SerialDataReceivedEventArgs e)
         {

@@ -60,7 +60,7 @@ namespace JDLMLab
             grafmerani.ChartAreas[0].CursorX.AutoScroll = true;
             grafmerani.ChartAreas[0].CursorX.IsUserEnabled = true;
             grafmerani.ChartAreas[0].CursorX.IsUserSelectionEnabled = true;
-            //grafmerani.ChartAreas[0].AxisX.ScaleView.Zoomable = true;
+            grafmerani.ChartAreas[0].AxisX.ScaleView.Zoomable = false;
             grafmerani.ChartAreas[0].AxisY.LogarithmBase = 10;
             grafmerani.ChartAreas[0].AxisY.IsLogarithmic = false;
         }
