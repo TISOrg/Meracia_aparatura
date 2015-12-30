@@ -30,8 +30,8 @@ namespace JDLMLab
         private DataSet header;
         private void init()
         {
-            checkBoxIncludeAll.Checked = true;
-            checkBoxCyklyInclude.Checked = true;
+            checkBoxIncludeAll.CheckState = CheckState.Checked;
+            checkBoxCyklyInclude.CheckState = CheckState.Checked;
             saveFileDialog1.AddExtension = true;
         }
 
@@ -126,6 +126,7 @@ namespace JDLMLab
         {
             for (int i = 0; i < checkedListBoxCyklyInclude.Items.Count; i++)
             {
+                checkedListBoxCyklyInclude.SelectedItem = checkedListBoxCyklyInclude.Items[i];
                 checkedListBoxCyklyInclude.SetItemChecked(i, checkBoxCyklyInclude.Checked);
             }
 
@@ -134,20 +135,15 @@ namespace JDLMLab
         private void checkedListBoxInclude_ItemCheck(object sender, ItemCheckEventArgs e)
         {
             dataMeranie.Columns[e.Index].Visible = e.NewValue == CheckState.Checked ? true : false;
-
             if (e.NewValue==CheckState.Checked && checkedListBoxInclude.CheckedIndices.Count == checkedListBoxInclude.Items.Count - 1 ||
                 e.NewValue == CheckState.Unchecked && checkedListBoxInclude.CheckedIndices.Count == 1)
             {
                 checkBoxIncludeAll.CheckState = e.NewValue;
             }
-
         }
 
         private void checkedListBoxCyklyInclude_ItemCheck(object sender, ItemCheckEventArgs e)
         {
-            //MessageBox.Show(dataMeranie.Rows.Count.ToString());
-
-            
             for (int i = 0; i < dataMeranie.Rows.Count; i++)
             {
                 if ((int)dataMeranie.Rows[i].Cells["cycle_num"].Value == (checkedListBoxCyklyInclude.SelectedIndex + 1))
@@ -159,13 +155,11 @@ namespace JDLMLab
                     }
                     catch(Exception f)
                     {
-                        e.NewValue = CheckState.Unchecked;
+                        //e.NewValue = CheckState.Unchecked;
                     }
                     currencyManager1.ResumeBinding();
                 }
-            }
-            
-            
+            }   
             if(e.NewValue == CheckState.Checked && checkedListBoxCyklyInclude.CheckedIndices.Count == checkedListBoxCyklyInclude.Items.Count - 1 || e.NewValue == CheckState.Unchecked && checkedListBoxCyklyInclude.CheckedIndices.Count == 1)
             {     
                 checkBoxCyklyInclude.CheckState = e.NewValue;

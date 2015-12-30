@@ -119,6 +119,28 @@ namespace JDLMLab
             sql += " order by cyklus asc,x asc";
             return getDataSet(sql);
         }
+        /// <summary>
+        /// vrati dataset ako v pripade meranie, ale bez stplca cyklus, a namiesto hodnoty Signal, obsahuje priemer hodnot signal pre kazdy cyklus pre dane x. Ostatne hodnoty zobrazi take ake boli pre prvy cyklus
+        /// </summary>
+        /// <param name="headerId"></param>
+        /// <returns></returns>
+        public DataSet meranieAvg(int headerId)
+        {
+            string sql = "select m.x,r.y,avg(m.sig) as sum,m.current,m.kapillar,m.chamber,m.temperature from merania m left join rows r on r.id = m.y_id where header_id = " + headerId;
+            sql += " group by m.x order m.x asc";
+            return getDataSet(sql);
+        }
+        /// <summary>
+        /// vrati dataset ako v pripade meranie, ale bez stplca cyklus, a namiesto hodnoty Signal, obsahuje sucet vsetkych hodnot signal pre kazdy cyklus pre dane x. Ostatne hodnoty zobrazi take ake boli pre prvy cyklus
+        /// </summary>
+        /// <param name="headerId"></param>
+        /// <returns></returns>
+        public DataSet meranieSum(int headerId)
+        {
+            string sql = "select m.x,r.y,sum(m.sig) as sum,m.current,m.kapillar,m.chamber,m.temperature from merania m left join rows r on r.id = m.y_id where header_id = " + headerId;
+            sql += " group by m.x order m.x asc";
+            return getDataSet(sql);
+        }
 
         //metoda na vratenie zoznamu existujucich rokov kedy boli robene merania
         public DataSet roky()

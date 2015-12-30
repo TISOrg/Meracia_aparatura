@@ -47,7 +47,7 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(281, 413);
+            this.button1.Location = new System.Drawing.Point(281, 426);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
             this.button1.TabIndex = 0;
@@ -82,7 +82,7 @@
             "tlak komora",
             "teplota",
             "cyklus"});
-            this.checkedListBoxInclude.Location = new System.Drawing.Point(12, 312);
+            this.checkedListBoxInclude.Location = new System.Drawing.Point(12, 325);
             this.checkedListBoxInclude.Name = "checkedListBoxInclude";
             this.checkedListBoxInclude.Size = new System.Drawing.Size(97, 124);
             this.checkedListBoxInclude.TabIndex = 2;
@@ -91,7 +91,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(12, 296);
+            this.label1.Location = new System.Drawing.Point(12, 309);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(45, 13);
             this.label1.TabIndex = 3;
@@ -102,7 +102,7 @@
             // 
             this.checkedListBoxCyklyInclude.CheckOnClick = true;
             this.checkedListBoxCyklyInclude.FormattingEnabled = true;
-            this.checkedListBoxCyklyInclude.Location = new System.Drawing.Point(137, 313);
+            this.checkedListBoxCyklyInclude.Location = new System.Drawing.Point(137, 326);
             this.checkedListBoxCyklyInclude.Name = "checkedListBoxCyklyInclude";
             this.checkedListBoxCyklyInclude.Size = new System.Drawing.Size(120, 124);
             this.checkedListBoxCyklyInclude.TabIndex = 4;
@@ -111,7 +111,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(134, 296);
+            this.label2.Location = new System.Drawing.Point(134, 309);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(32, 13);
             this.label2.TabIndex = 5;
@@ -120,7 +120,7 @@
             // checkBoxCyklyInclude
             // 
             this.checkBoxCyklyInclude.AutoSize = true;
-            this.checkBoxCyklyInclude.Location = new System.Drawing.Point(137, 446);
+            this.checkBoxCyklyInclude.Location = new System.Drawing.Point(137, 459);
             this.checkBoxCyklyInclude.Name = "checkBoxCyklyInclude";
             this.checkBoxCyklyInclude.Size = new System.Drawing.Size(94, 17);
             this.checkBoxCyklyInclude.TabIndex = 6;
@@ -131,7 +131,7 @@
             // checkBoxIncludeAll
             // 
             this.checkBoxIncludeAll.AutoSize = true;
-            this.checkBoxIncludeAll.Location = new System.Drawing.Point(12, 446);
+            this.checkBoxIncludeAll.Location = new System.Drawing.Point(12, 459);
             this.checkBoxIncludeAll.Name = "checkBoxIncludeAll";
             this.checkBoxIncludeAll.Size = new System.Drawing.Size(94, 17);
             this.checkBoxIncludeAll.TabIndex = 7;
@@ -149,7 +149,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(278, 296);
+            this.label3.Location = new System.Drawing.Point(278, 309);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(79, 13);
             this.label3.TabIndex = 9;
@@ -158,34 +158,33 @@
             // radioButton1
             // 
             this.radioButton1.AutoSize = true;
-            this.radioButton1.Location = new System.Drawing.Point(281, 312);
+            this.radioButton1.Location = new System.Drawing.Point(281, 373);
             this.radioButton1.Name = "radioButton1";
-            this.radioButton1.Size = new System.Drawing.Size(44, 17);
+            this.radioButton1.Size = new System.Drawing.Size(146, 17);
             this.radioButton1.TabIndex = 10;
-            this.radioButton1.TabStop = true;
-            this.radioButton1.Text = "sum";
+            this.radioButton1.Text = "Suma zo všetkých cyklov";
             this.radioButton1.UseVisualStyleBackColor = true;
             // 
             // radioButton2
             // 
             this.radioButton2.AutoSize = true;
-            this.radioButton2.Location = new System.Drawing.Point(282, 337);
+            this.radioButton2.Location = new System.Drawing.Point(282, 350);
             this.radioButton2.Name = "radioButton2";
-            this.radioButton2.Size = new System.Drawing.Size(43, 17);
+            this.radioButton2.Size = new System.Drawing.Size(154, 17);
             this.radioButton2.TabIndex = 11;
-            this.radioButton2.TabStop = true;
-            this.radioButton2.Text = "avg";
+            this.radioButton2.Text = "Priemer zo všetkých cyklov";
             this.radioButton2.UseVisualStyleBackColor = true;
             // 
             // radioButton3
             // 
             this.radioButton3.AutoSize = true;
-            this.radioButton3.Location = new System.Drawing.Point(282, 361);
+            this.radioButton3.Checked = true;
+            this.radioButton3.Location = new System.Drawing.Point(281, 327);
             this.radioButton3.Name = "radioButton3";
-            this.radioButton3.Size = new System.Drawing.Size(56, 17);
+            this.radioButton3.Size = new System.Drawing.Size(87, 17);
             this.radioButton3.TabIndex = 12;
             this.radioButton3.TabStop = true;
-            this.radioButton3.Text = "normal";
+            this.radioButton3.Text = "Každý cyklus";
             this.radioButton3.UseVisualStyleBackColor = true;
             // 
             // ExportWindow

@@ -87,22 +87,36 @@ namespace JDLMLab
                 DialogResult res = MessageBox.Show("Zadaná zložka neexistuje. Vytvoriť?","Zložka neexistuje",MessageBoxButtons.YesNo,MessageBoxIcon.Question,MessageBoxDefaultButton.Button1);
                 if (res == DialogResult.Yes)
                 {
-                    try {
-                        DirectoryInfo i=Directory.CreateDirectory(export_path_text.Text);
+                    try
+                    {
+                        DirectoryInfo i = Directory.CreateDirectory(export_path_text.Text);
                         export_path_text.Text = i.FullName;
-                        Paths.Default.export_path = i.FullName; 
+                        Paths.Default.export_path = i.FullName;
+
                     }
-                    catch(Exception ef)
+                    catch (Exception ef)
                     {
                         FormValidateError("Zadajte správnu cestu", "Chyba");
+                        return;
                     }
-                    
+
                 }
+                else return;
             }
-            
+            showSaveInfo();
+
         }
 
         private void saveDbSettingsButton_Click_1(object sender, EventArgs e)
+        {
+            if (validateDbSettings())
+            {
+                saveDbSettings();
+                showSaveInfo();
+            }
+        }
+
+        private bool validateDbSettings() 
         {
             //testovat validitu fieldov
             int port;
@@ -116,13 +130,23 @@ namespace JDLMLab
             else if (!int.TryParse(dbSettingsFieldPort.Text, out port)) FormValidateError("Zadajte hodnotu port", "Neplatná hodnota");
             else
             {
-                Database.Default.host = dbSettingsFieldHost.Text;
-                Database.Default.port = int.Parse(dbSettingsFieldPort.Text);
-                Database.Default.user = dbSettingsFieldUser.Text;
-                Database.Default.password = dbSettingsFieldPassword.Text;
-                Database.Default.database = dbSettingsFieldDatabase.Text;
-                Database.Default.Save();
+                return true;
             }
+            return false;
+        }
+
+        private void saveDbSettings()
+        {
+            fillDbSettings();
+            Database.Default.Save();
+        }
+        private void fillDbSettings()
+        {
+            Database.Default.host = dbSettingsFieldHost.Text;
+            Database.Default.port = int.Parse(dbSettingsFieldPort.Text);
+            Database.Default.user = dbSettingsFieldUser.Text;
+            Database.Default.password = dbSettingsFieldPassword.Text;
+            Database.Default.database = dbSettingsFieldDatabase.Text;
         }
 
         private void devicesSaveButton_Click_1(object sender, EventArgs e)
@@ -148,9 +172,14 @@ namespace JDLMLab
                 Properties.Devices.Default.pr4000Freq = int.Parse(devKapillarFreqTextField.Text);
                 Properties.Devices.Default.pr4000Port = devKapillarComTextField.Text;
                 Properties.Devices.Default.Save();
+                showSaveInfo();
             }
         }
 
+        private void showSaveInfo()
+        {
+            MessageBox.Show("Nastavenia boli uložené", "Zmena nastavení", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
         private void groupBox7_Enter(object sender, EventArgs e)
         {
 
@@ -159,6 +188,25 @@ namespace JDLMLab
         private void groupBox9_Enter(object sender, EventArgs e)
         {
 
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {            
+            if (validateDbSettings())
+            {
+                fillDbSettings();   //vyplni db nastavenia do settings filu docasne
+                try
+                {
+                    DbCommunication db = new DbCommunication();
+                    MessageBox.Show("Pripojenie úspešné", "Pripojenie úspešné", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                catch(MySql.Data.MySqlClient.MySqlException ex)
+                {
+                    FormValidateError("Pripojenie k databáze zlyhalo\n", "Chybné spojenie");
+                }
+                Database.Default.Reset();   //zresetuje povodne nastavenia v settings file
+                
+            }
         }
     }
 }

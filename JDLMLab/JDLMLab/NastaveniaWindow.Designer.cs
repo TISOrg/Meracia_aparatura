@@ -80,6 +80,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.export_path_text = new System.Windows.Forms.TextBox();
             this.button1 = new System.Windows.Forms.Button();
+            this.button3 = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.groupBoxDatabase.SuspendLayout();
@@ -120,6 +121,7 @@
             // 
             // groupBoxDatabase
             // 
+            this.groupBoxDatabase.Controls.Add(this.button3);
             this.groupBoxDatabase.Controls.Add(this.labelPort);
             this.groupBoxDatabase.Controls.Add(this.dbSettingsFieldPort);
             this.groupBoxDatabase.Controls.Add(this.saveDbSettingsButton);
@@ -611,6 +613,16 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
+            // button3
+            // 
+            this.button3.Location = new System.Drawing.Point(96, 232);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(130, 23);
+            this.button3.TabIndex = 27;
+            this.button3.Text = "Otestovať pripojenie";
+            this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
+            // 
             // NastaveniaWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -698,5 +710,6 @@
         private System.Windows.Forms.TextBox devChamberFreqTextField;
         private System.Windows.Forms.Label label44;
         private System.Windows.Forms.TextBox devChamberComTextField;
+        private System.Windows.Forms.Button button3;
     }
 }
