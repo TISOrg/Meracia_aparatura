@@ -90,6 +90,7 @@
     </Compile>
     <Compile Include="DbCommunication.cs" />
     <Compile Include="DbConnectionSettings.cs" />
+    <Compile Include="EnergyScanParameters.cs" />
     <Compile Include="ExportWindow.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -97,6 +98,7 @@
       <DependentUpon>ExportWindow.cs</DependentUpon>
     </Compile>
     <Compile Include="GrafControl.cs" />
+    <Compile Include="MassScanParameters.cs" />
     <Compile Include="NastaveniaWindow.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -150,6 +152,7 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>parametreMerania.settings</DependentUpon>
     </Compile>
+    <Compile Include="Scan2DParameters.cs" />
     <Compile Include="VMeterController.cs" />
     <Compile Include="VMeterDriver.cs" />
     <EmbeddedResource Include="About.resx">

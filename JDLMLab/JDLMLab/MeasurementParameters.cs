@@ -8,18 +8,42 @@ namespace JDLMLab
 {
     class MeasurementParameters
     {
-        public int pocetCyklov {get; set;}
-        public double startPoint { get; set; }
-        public double endPoint { get; set; }
-        public double resolution { get; set; }
-        public double constant { get; set; }
-        public int stepTime { get; set; }
-        public string name { get; set; }
-        public string typ { get; set; }
-        public int pocetKrokov { get; set; }
-        public double tlakKapilaryIntervalMerania { get; set; }
-        public double tlakTPGIntervalMerania { get; set; }
-        public double teplotaIntervalMerania { get; set; }
-        public string note { get; set; }
+        public MeasurementParameters()
+        {
+
+        }
+        public int PocetCyklov {get; set;}
+        public string Name { get; set; }
+        public double tlakKapilaryIntervalMerania {
+            get
+            {
+                return Properties.Devices.Default.pr4000Freq;
+            }
+        }
+        public double tlakTPGIntervalMerania
+        {
+            get
+            {
+                return Properties.Devices.Default.tpg256aFreq;
+            }
+        }
+        public double teplotaIntervalMerania {
+            get
+            {
+                return Properties.Devices.Default.tempFreq;
+            }
+        }
+        public string Note { get; set; }
+        public double Resolution { get; set; }  //qms, pre vsetky typy merani
+
+        public void setParameters(string name,double resolution, int pocetcyklov=-1, string note="")    //-1 pre pocetcyklov znamena neobmedzene
+        {
+            Name = name;
+            Note = note;
+            PocetCyklov = pocetcyklov;
+            Resolution = resolution;
+        }
+        
+        
     }
 }

@@ -607,9 +607,9 @@
             this.label30.AutoSize = true;
             this.label30.Location = new System.Drawing.Point(14, 109);
             this.label30.Name = "label30";
-            this.label30.Size = new System.Drawing.Size(71, 13);
+            this.label30.Size = new System.Drawing.Size(73, 13);
             this.label30.TabIndex = 55;
-            this.label30.Text = "Počet krokov";
+            this.label30.Text = "Čas na 1 krok";
             // 
             // label31
             // 

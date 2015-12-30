@@ -18,10 +18,11 @@ namespace JDLMLab
         GrafControl grafcontrol;
         public Form1()
         {
+            
             InitializeComponent();
             setmerania = new NoveMeranieWindow();
             info = new AboutBox1();
-
+            
             grafcontrol=new GrafControl(graf);
             //nacitat vsetky nastavenia
             Random r= new Random();

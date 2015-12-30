@@ -129,7 +129,7 @@ namespace JDLMLab
             napatie = 0;
 
             //tlak1,tlak2,teplota kazdych x sekund, kde x je nastavene v global nastaveniach
-            if (watch.ElapsedMilliseconds > parameters.tlakKapilaryIntervalMerania)
+            if (watch.ElapsedMilliseconds > parameters. tlakKapilaryIntervalMerania)
             {
                 //zatial je tento interval pre vsetky tri pristroje
                 // tlakKapilara = Class TLAK . read(...)

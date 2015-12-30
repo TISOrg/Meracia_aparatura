@@ -214,15 +214,15 @@ namespace JDLMLab
         {
 
             MySqlCommand c = new MySqlCommand("insert into headers (name,type_name,start_point,end_point,constant,resolution,steptime,cycles,note) values(@name,@type_name,@start_point,@end_point,@constant,@resolution,@steptime,@cycles,@note)", conn);
-            c.Parameters.AddWithValue("@name", mp.name);
+            c.Parameters.AddWithValue("@name", mp.Name);
             c.Parameters.AddWithValue("@type_name", mp.typ);
             c.Parameters.AddWithValue("@start_point", mp.startPoint);
             c.Parameters.AddWithValue("@end_point", mp.endPoint);
             c.Parameters.AddWithValue("@constant", mp.constant);
-            c.Parameters.AddWithValue("@resolution", mp.resolution);
+            c.Parameters.AddWithValue("@resolution", mp.Resolution);
             c.Parameters.AddWithValue("@steptime", mp.stepTime);
-            c.Parameters.AddWithValue("@cycles", mp.pocetCyklov);
-            c.Parameters.AddWithValue("@note", mp.note);
+            c.Parameters.AddWithValue("@cycles", mp.PocetCyklov);
+            c.Parameters.AddWithValue("@note", mp.Note);
             c.ExecuteNonQuery();
             aktualneMeranie = c.LastInsertedId;
 
