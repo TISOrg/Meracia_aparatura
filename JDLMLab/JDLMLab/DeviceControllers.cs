@@ -66,5 +66,17 @@ namespace JDLMLab
             {
             }
         }
+
+        internal QmsController QmsController
+        {
+            get
+            {
+                throw new System.NotImplementedException();
+            }
+
+            set
+            {
+            }
+        }
     }
 }

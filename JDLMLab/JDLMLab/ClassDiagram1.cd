@@ -266,7 +266,7 @@
   <Class Name="JDLMLab.DeviceControllers" Collapsed="true">
     <Position X="6.5" Y="6.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AQAADAAAAQBAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AQAADAAAAQRAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>DeviceControllers.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
@@ -275,6 +275,24 @@
       <Property Name="VMeterController" />
       <Property Name="TlakomerTPG256AContorller" />
       <Property Name="TeplomerController" />
+      <Property Name="QmsController" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="JDLMLab.QmsDriver" Collapsed="true">
+    <Position X="12" Y="8.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAIAAAAAAAAA=</HashCode>
+      <FileName>QmsDriver.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="JDLMLab.QmsController" Collapsed="true">
+    <Position X="9.25" Y="8.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIA=</HashCode>
+      <FileName>QmsController.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="QmsDriver" />
     </ShowAsAssociation>
   </Class>
   <Interface Name="JDLMLab.SerialPortDriverInterface">
