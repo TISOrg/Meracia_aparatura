@@ -11,16 +11,17 @@ using System.Windows.Forms;
 
 namespace JDLMLab
 {
-    public partial class Form1 : Form
+    public partial class Main : Form
     {
-        NoveMeranieWindow setmerania;
+        
         AboutBox1 info;
         GrafControl grafcontrol;
-        public Form1()
+        MeasurementControl measurementControl;
+        public Main()
         {
             
             InitializeComponent();
-            setmerania = new NoveMeranieWindow();
+            
             info = new AboutBox1();
             
             grafcontrol=new GrafControl(graf);
@@ -41,7 +42,15 @@ namespace JDLMLab
 
         private void nastaveniaMeraniaToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            setmerania.ShowDialog();
+
+            NoveMeranieWindow setmerania = new NoveMeranieWindow();
+            DialogResult res = setmerania.ShowDialog();
+            if (res == DialogResult.OK) 
+            {
+                //hodnota setMerania.parametreMerania obsahuje instanciu triedy measurementsparameters
+                //ktora obsahuje vsetky informacie na zacatie merania.
+                measurementControl = new MeasurementControl();
+            }
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -59,9 +68,9 @@ namespace JDLMLab
 
         }
 
-        private void button4_Click(object sender, EventArgs e)
+        private void startMeranie_click(object sender, EventArgs e)
         {
-            setmerania.ShowDialog();
+            //zrejme bude sluzit na spustenie a prerusenie aktualneho merania
         }
 
         private void listBox1_SelectedValueChanged(object sender, EventArgs e)

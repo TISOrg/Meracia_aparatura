@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -7,81 +8,60 @@ using System.Threading.Tasks;
 namespace JDLMLab
 {
     /// <summary>
-    ///  Trieda pre jednu hlavicku merania
+    ///  Trieda pre jedno meranie
     /// Autor - Jano
     /// </summary>
     class Meranie
     {
-        private MeasurementParameters parameters;
-
-        public Meranie(string name,int startPoint,int endPoint,int constant,int resolution,int stepTime,string note,int cycles)
-        {
-            this.name = name;
-            this.startPoint = startPoint;
-            this.endPoint = endPoint;
-            this.name = name;
-            this.constant = constant;
-            this.resolution = resolution;
-            this.stepTime = stepTime;
-            this.note = note;
-            this.cycles = cycles;
-
-        }
-        public Meranie(string name, string typMerania, int startPoint, int endPoint, int constant, int resolution, int stepTime, string note)
-        {
-            this.name = name;
-            this.startPoint = startPoint;
-            this.endPoint = endPoint;
-            this.name = name;
-            this.constant = constant;
-            this.resolution = resolution;
-            this.stepTime = stepTime;
-            this.note = note;
-            this.cycles = 0;    //nula bude reprezentovat nekonecne vela cyklov.
-
-        }
+        public MeasurementParameters Parameters { get; private set; }
 
         public Meranie(MeasurementParameters parameters)
         {
-            this.parameters = parameters;
+            this.Parameters = parameters;
             cykly = new List<CyklusMerania>(parameters.PocetCyklov);
 
         }
-
-        public string note { get; set; }
-        public string name { get; set; }
-        public DateTime datetime
-        {
-            get; private set;
-        }
-        public int startPoint {
-            get; set; }
-        public int endPoint {
-            get; set;
-        }
-        public int constant {
-            get; set; }
-        public int resolution {
-            get; set; }
-        public int stepTime {
-            get; set;
-        }
-        public int cycles {
-            get; set;
-        }
-        public string header { get; set; }
         public List<CyklusMerania> cykly {get; set; }
+
         public void pridajCyklus(CyklusMerania c)
         {
-            cykly.Add(c);            
+            cykly.Add(c);
         }
-        public CyklusMerania getCyklus(int i) { return cykly[i]; }
+        public CyklusMerania getCyklus(int i) { return cykly[i-1]; }
+        
+        /// <summary>
+        /// DataTAble so stlpcami x,y,sig,current,chamber,kapillar,temperature a cycle_num
+        /// </summary>
+        public DataTable DataTable{
+            get
+            {
+                DataTable t = new DataTable();
+                foreach(CyklusMerania c in cykly)
+                {
+                    t.Merge(c.Table);
+                }
+                return t;
+            }
+        }
+        /// <summary>
+        /// Dataset obsahujuci tabulky s nazvom "i" kde i je cislo cyklu. V kazdej DataTable su stplce x,y.
+        /// </summary>
+        public DataSet DataSetForGraf
+        {
+            get
+            {
+                DataSet set = new DataSet();
+                foreach (CyklusMerania c in cykly)
+                {
+                    set.Tables.Add(c.TableForGraf.Copy());
+                }
+                return set;
+            }
+        }
         public void addKrok(int cyklus,KrokMerania k) 
         {
             try {
-                Console.WriteLine("vypis kroku:" + k.toString());
-                cykly[cyklus].pridajKrok(k);
-                
+                cykly[cyklus-1].pridajKrok(k);
             }
             catch (NullReferenceException e)
             {

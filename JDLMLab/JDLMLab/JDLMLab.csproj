@@ -127,17 +127,16 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Devices.settings</DependentUpon>
     </Compile>
-    <Compile Include="EnergyScanMeranie.cs" />
     <Compile Include="Filter.cs" />
     <Compile Include="KrokMerania.cs" />
     <Compile Include="MeasurementControl.cs" />
     <Compile Include="MeasurementParameters.cs" />
     <Compile Include="Meranie.cs" />
-    <Compile Include="Form1.cs">
+    <Compile Include="Main.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="Main.Designer.cs">
+      <DependentUpon>Main.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -147,10 +146,10 @@
     <Compile Include="NoveMeranieWindow.Designer.cs">
       <DependentUpon>NoveMeranieWindow.cs</DependentUpon>
     </Compile>
-    <Compile Include="parametreMerania.Designer.cs">
+    <Compile Include="PosledneParametreMerania.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
-      <DependentUpon>parametreMerania.settings</DependentUpon>
+      <DependentUpon>PosledneParametreMerania.settings</DependentUpon>
     </Compile>
     <Compile Include="Scan2DParameters.cs" />
     <Compile Include="VMeterController.cs" />
@@ -164,8 +163,8 @@
     <EmbeddedResource Include="ExportWindow.resx">
       <DependentUpon>ExportWindow.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Form1.resx">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <EmbeddedResource Include="Main.resx">
+      <DependentUpon>Main.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="HeaderInfo.resx">
       <DependentUpon>HeaderInfo.cs</DependentUpon>
@@ -210,9 +209,9 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <None Include="parametreMerania.settings">
+    <None Include="PosledneParametreMerania.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
-      <LastGenOutput>parametreMerania.Designer.cs</LastGenOutput>
+      <LastGenOutput>PosledneParametreMerania.Designer.cs</LastGenOutput>
     </None>
   </ItemGroup>
   <ItemGroup>

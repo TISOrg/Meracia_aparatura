@@ -13,11 +13,11 @@ namespace JDLMLab {
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "14.0.0.0")]
-    internal sealed partial class parametreMerania : global::System.Configuration.ApplicationSettingsBase {
+    internal sealed partial class PosledneParametreMerania : global::System.Configuration.ApplicationSettingsBase {
         
-        private static parametreMerania defaultInstance = ((parametreMerania)(global::System.Configuration.ApplicationSettingsBase.Synchronized(new parametreMerania())));
+        private static PosledneParametreMerania defaultInstance = ((PosledneParametreMerania)(global::System.Configuration.ApplicationSettingsBase.Synchronized(new PosledneParametreMerania())));
         
-        public static parametreMerania Default {
+        public static PosledneParametreMerania Default {
             get {
                 return defaultInstance;
             }
@@ -26,36 +26,36 @@ namespace JDLMLab {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("0")]
-        public double eStart {
+        public double eStartPoint {
             get {
-                return ((double)(this["eStart"]));
+                return ((double)(this["eStartPoint"]));
             }
             set {
-                this["eStart"] = value;
+                this["eStartPoint"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("0")]
-        public double eEnd {
+        public double eEndPoint {
             get {
-                return ((double)(this["eEnd"]));
+                return ((double)(this["eEndPoint"]));
             }
             set {
-                this["eEnd"] = value;
+                this["eEndPoint"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("0")]
-        public double eCas {
+        public double eStepTime {
             get {
-                return ((double)(this["eCas"]));
+                return ((double)(this["eStepTime"]));
             }
             set {
-                this["eCas"] = value;
+                this["eStepTime"] = value;
             }
         }
         
@@ -92,18 +92,6 @@ namespace JDLMLab {
             }
             set {
                 this["eKonstanta"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("0")]
-        public double eKrok {
-            get {
-                return ((double)(this["eKrok"]));
-            }
-            set {
-                this["eKrok"] = value;
             }
         }
         
@@ -158,12 +146,108 @@ namespace JDLMLab {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("0")]
-        public double mCas {
+        public double mStepTime {
             get {
-                return ((double)(this["mCas"]));
+                return ((double)(this["mStepTime"]));
             }
             set {
-                this["mCas"] = value;
+                this["mStepTime"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public double e2DStartPoint {
+            get {
+                return ((double)(this["e2DStartPoint"]));
+            }
+            set {
+                this["e2DStartPoint"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public double e2DEndPoint {
+            get {
+                return ((double)(this["e2DEndPoint"]));
+            }
+            set {
+                this["e2DEndPoint"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public double e2DStepTime {
+            get {
+                return ((double)(this["e2DStepTime"]));
+            }
+            set {
+                this["e2DStepTime"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public int e2DPocetKrokov {
+            get {
+                return ((int)(this["e2DPocetKrokov"]));
+            }
+            set {
+                this["e2DPocetKrokov"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public double m2DStartPoint {
+            get {
+                return ((double)(this["m2DStartPoint"]));
+            }
+            set {
+                this["m2DStartPoint"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public double m2DEndPoint {
+            get {
+                return ((double)(this["m2DEndPoint"]));
+            }
+            set {
+                this["m2DEndPoint"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public double m2DResolution {
+            get {
+                return ((double)(this["m2DResolution"]));
+            }
+            set {
+                this["m2DResolution"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public double m2DStepTime {
+            get {
+                return ((double)(this["m2DStepTime"]));
+            }
+            set {
+                this["m2DStepTime"] = value;
             }
         }
     }

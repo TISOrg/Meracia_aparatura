@@ -43,7 +43,7 @@ namespace JDLMLab
                 //cez RS232
 
                 pocetBodov = pocetKrokov + 1;
-                krokNapatia = (parameters.endPoint - parameters.startPoint) / parameters.pocetKrokov;
+                //krokNapatia = (parameters.EndPoint - parameters.StartPoint) / parameters.pocetKrokov;
             }
             if (typ.Equals("MassScan"))
             {
@@ -52,7 +52,7 @@ namespace JDLMLab
 
 
                 //pre massscan nacitat konstantu merania z voltmetra do hlavicky merania
-                pocetBodov = (int)(parameters.endPoint - parameters.startPoint) / (parameters.stepTime) + 1;
+                
             }
             if (typ.Equals("2DScan"))
             {
@@ -74,7 +74,7 @@ namespace JDLMLab
             {
                 //pre kazdy cyklus merania, urob vsetky body merania
                 int pBod = 0;
-                x = parameters.startPoint;y= parameters.constant;
+                x = parameters.StartPoint;y= parameters.Constant;
                 while (pBod < pocetBodov)
                 {
                     zmerajBod(pBod);
@@ -99,7 +99,7 @@ namespace JDLMLab
                 //ak je energy scan, urob krok, tj zvys eV na TEM o krokNapatia
                 if (typ.Equals("EnergyScan"))
                 {
-                    x = parameters.startPoint + (krokNapatia * pBod);
+                    x = parameters.StartPoint + (krokNapatia * pBod);
 
                     // class PristrojTEM.write(...
 
@@ -111,7 +111,7 @@ namespace JDLMLab
                 if (typ.Equals("MassScan"))
                 {
                     // class PristrojQMS.write(...
-                    x = parameters.startPoint + (pBod);
+                    x = parameters.StartPoint + (pBod);
 
                     //vynuluj trigger v AD
                     //class AD.write(...
@@ -129,7 +129,7 @@ namespace JDLMLab
             napatie = 0;
 
             //tlak1,tlak2,teplota kazdych x sekund, kde x je nastavene v global nastaveniach
-            if (watch.ElapsedMilliseconds > parameters. tlakKapilaryIntervalMerania)
+            if (watch.ElapsedMilliseconds > parameters.TlakomerTPG256AFrekvenciaMerania)
             {
                 //zatial je tento interval pre vsetky tri pristroje
                 // tlakKapilara = Class TLAK . read(...)

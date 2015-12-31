@@ -10,7 +10,7 @@ namespace JDLMLab
     //dominik napisal tuto poznmku, bez zmeny triedy
     class KrokMerania
     {
-        public KrokMerania(double x, double y, int sig, double current, double kapillar, double chamber, double temperature, int cyklus = 1)
+        public KrokMerania(double x, double y, int sig, double current, double kapillar, double chamber, double temperature)//int cyklus = 1)
         {
             this.x = x;
             this.y = y;
@@ -19,7 +19,7 @@ namespace JDLMLab
             this.kapillar = kapillar;
             this.chamber = chamber;
             this.temperature = temperature;
-            this.cyklus = cyklus;   //treba to tu??? hmm
+//            this.cyklus = cyklus;   //treba to tu??? hmm
             
         }
         public KrokMerania()
@@ -30,15 +30,33 @@ namespace JDLMLab
         {
             get
             {
-                return new object[] {x,y,sig,current,chamber,kapillar,temperature,cyklus
+                return new object[] {x,y,sig,current,chamber,kapillar,temperature
                 };
             }
+        }
+        public object[] DataSCyklom(int i)
+        {
+            return new object[] { x, y, sig, current, chamber, kapillar, temperature, i };
         }
 
         public DataRow Datarow{
             get {
                 DataRow r=new DataTable().NewRow();
-                r.ItemArray = new object[] { x,y,sig,current,kapillar,chamber,temperature,cyklus};
+                r.ItemArray = new object[] { x,y,sig,current,kapillar,chamber,temperature};
+                return r;
+            }
+        }
+        public DataRow DatarowForGraf
+        {
+            get
+            {
+                DataTable t = new DataTable();
+                t.Columns.Add("x",typeof(double));
+                t.Columns.Add("y",typeof(double));
+                DataRow r =t.NewRow();
+                r.ItemArray = new object[] { x, sig, };
+                r["x"] = x;
+                r["y"] = sig;
                 return r;
             }
         }
@@ -50,16 +68,16 @@ namespace JDLMLab
         public double  kapillar { get; set; }
         public double chamber { get; set; }
         public double temperature { get; set; }
-        public int cyklus { get; set; }
+        //public int cyklus { get; set; }
 
-        public string toString()
+        public override string ToString()
         {
             StringBuilder s = new StringBuilder();
             s.Append(x);
             s.Append(" ");
             s.Append(y);
             s.Append(" ");
-            s.Append(sig);s.Append(" ");
+            s.Append(sig); s.Append(" ");
 
             s.Append(current);
             s.Append(" ");
@@ -71,6 +89,7 @@ namespace JDLMLab
             s.Append("\n");
             return s.ToString();
         }
+        
     }
 
 }

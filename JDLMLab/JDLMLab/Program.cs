@@ -16,7 +16,7 @@ namespace JDLMLab
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1());
+            Application.Run(new Main());
             //MeasurementParameters mp = new MeasurementParameters();
             //mp.constant = 4;
             //mp.endPoint = 5;

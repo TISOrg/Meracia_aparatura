@@ -119,6 +119,7 @@ namespace JDLMLab
             sql += " order by cyklus asc,x asc";
             return getDataSet(sql);
         }
+
         /// <summary>
         /// vrati dataset ako v pripade meranie, ale bez stplca cyklus, a namiesto hodnoty Signal, obsahuje priemer hodnot signal pre kazdy cyklus pre dane x. Ostatne hodnoty zobrazi take ake boli pre prvy cyklus
         /// </summary>
@@ -210,17 +211,17 @@ namespace JDLMLab
         long aktualneMeranie { get; set; }
 
 
-        public void noveMeranie(MeasurementParameters mp)
+        public void vytvoritNoveMeranie(MeasurementParameters mp)
         {
 
             MySqlCommand c = new MySqlCommand("insert into headers (name,type_name,start_point,end_point,constant,resolution,steptime,cycles,note) values(@name,@type_name,@start_point,@end_point,@constant,@resolution,@steptime,@cycles,@note)", conn);
             c.Parameters.AddWithValue("@name", mp.Name);
-            c.Parameters.AddWithValue("@type_name", mp.typ);
-            c.Parameters.AddWithValue("@start_point", mp.startPoint);
-            c.Parameters.AddWithValue("@end_point", mp.endPoint);
-            c.Parameters.AddWithValue("@constant", mp.constant);
+            c.Parameters.AddWithValue("@type_name", mp.Typ);
+            c.Parameters.AddWithValue("@start_point", mp.StartPoint);
+            c.Parameters.AddWithValue("@end_point", mp.EndPoint);
+            c.Parameters.AddWithValue("@constant", mp.Constant);
             c.Parameters.AddWithValue("@resolution", mp.Resolution);
-            c.Parameters.AddWithValue("@steptime", mp.stepTime);
+            c.Parameters.AddWithValue("@steptime", mp.StepTime);
             c.Parameters.AddWithValue("@cycles", mp.PocetCyklov);
             c.Parameters.AddWithValue("@note", mp.Note);
             c.ExecuteNonQuery();
@@ -258,16 +259,16 @@ namespace JDLMLab
             aktualnyRow = c.LastInsertedId;
             return c.LastInsertedId;
         }
-        public void addKroky(List<KrokMerania> ks)
+        public void addKroky(List<KrokMerania> ks,int cyklus=1)
         {
             foreach (KrokMerania k in ks)
             {
-                addKrok(k);
+                addKrok(k,cyklus);
             }
         }
-        public void addKrok(KrokMerania k)
+        public void addKrok(KrokMerania k,int cyklus=1)
         {
-            long y_id = getYID(k.y, k.cyklus, aktualneMeranie); //ak neexistuje taky zaznam, vytvori novy a vrati id
+            long y_id = getYID(k.y, cyklus, aktualneMeranie); //ak neexistuje taky zaznam, vytvori novy a vrati id
 
             MySqlCommand c = new MySqlCommand("insert into merania (x,y_id,sig,current,kapillar,chamber,temperature) values(@x,@y_id,@sig,@current,@kapillar,@chamber,@temperature)", conn);
             c.Parameters.AddWithValue("@x", k.x);
@@ -279,7 +280,10 @@ namespace JDLMLab
             c.Parameters.AddWithValue("@temperature", k.temperature);
             c.ExecuteNonQuery();
         }
-
+        public void addCyklus(CyklusMerania c)
+        {
+            addKroky(c.getKroky(),c.cisloCyklu);
+        }
       
     }
 }

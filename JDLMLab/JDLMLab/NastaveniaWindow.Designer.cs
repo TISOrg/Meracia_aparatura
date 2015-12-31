@@ -32,6 +32,7 @@
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.groupBoxDatabase = new System.Windows.Forms.GroupBox();
+            this.button3 = new System.Windows.Forms.Button();
             this.labelPort = new System.Windows.Forms.Label();
             this.dbSettingsFieldPort = new System.Windows.Forms.TextBox();
             this.saveDbSettingsButton = new System.Windows.Forms.Button();
@@ -80,7 +81,6 @@
             this.label1 = new System.Windows.Forms.Label();
             this.export_path_text = new System.Windows.Forms.TextBox();
             this.button1 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.groupBoxDatabase.SuspendLayout();
@@ -140,6 +140,16 @@
             this.groupBoxDatabase.TabIndex = 26;
             this.groupBoxDatabase.TabStop = false;
             this.groupBoxDatabase.Text = "Database";
+            // 
+            // button3
+            // 
+            this.button3.Location = new System.Drawing.Point(96, 232);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(130, 23);
+            this.button3.TabIndex = 27;
+            this.button3.Text = "Otestovať pripojenie";
+            this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // labelPort
             // 
@@ -598,6 +608,8 @@
             // 
             // export_path_text
             // 
+            this.export_path_text.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.export_path_text.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.FileSystemDirectories;
             this.export_path_text.Location = new System.Drawing.Point(11, 48);
             this.export_path_text.Name = "export_path_text";
             this.export_path_text.Size = new System.Drawing.Size(257, 20);
@@ -612,16 +624,6 @@
             this.button1.Text = "Zmeniť...";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
-            // button3
-            // 
-            this.button3.Location = new System.Drawing.Point(96, 232);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(130, 23);
-            this.button3.TabIndex = 27;
-            this.button3.Text = "Otestovať pripojenie";
-            this.button3.UseVisualStyleBackColor = true;
-            this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // NastaveniaWindow
             // 
