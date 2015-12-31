@@ -21,7 +21,7 @@ namespace JDLMLab
         /// <param name="constant"></param>
         /// <param name="steptime"></param>
         /// <param name="pocetkrokov"></param>
-        public EnergyScanParameters(double startpoint,double endpoint,double constant,double steptime,int pocetkrokov)//pocet cyklov -1 znamena nekonecne vela
+        public EnergyScanParameters(double startpoint,double endpoint,double constant,double steptime,int pocetkrokov)
         {            
             this.StartPoint = startpoint;
             this.EndPoint = endpoint;
