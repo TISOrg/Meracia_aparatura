@@ -9,7 +9,11 @@ namespace JDLMLab
 {
     abstract class SerialPortDriver : SerialPortDriverInterface
     {
-        
+        public SerialPortDriver()
+        {
+            serialPort = new SerialPort();
+            serialPort.DataReceived += dataRecieved;
+        }
         protected SerialPort serialPort;
         public abstract void close();
 
@@ -24,6 +28,10 @@ namespace JDLMLab
         }
         protected static string data;
 
+        protected void dataRecieved(object sender,SerialDataReceivedEventArgs e)
+        {
+            data = serialPort.ReadLine();
+        }
         public abstract void open();
         public abstract double read();
     }

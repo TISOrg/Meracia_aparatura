@@ -25,6 +25,18 @@ namespace JDLMLab
 
         public double CasCitania { get; set; }
 
+        internal VMeterDriver VMeterDriver
+        {
+            get
+            {
+                throw new System.NotImplementedException();
+            }
+
+            set
+            {
+            }
+        }
+
         /// <summary>
         /// metoda spusti citanie voltmetra kazdych CasCitania sekund, a vysledky dava do??? 
         /// Malo by to byt asi v threade

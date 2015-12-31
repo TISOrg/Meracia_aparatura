@@ -1,0 +1,288 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="JDLMLab.CyklusMerania">
+    <Position X="0.5" Y="4.25" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Methods" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>AAAAAIAIAAgAAAAAAAAAQAAAAAABAAQAQAAAAAAAAAA=</HashCode>
+      <FileName>CyklusMerania.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="KrokMerania" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="JDLMLab.KrokMerania">
+    <Position X="0.5" Y="7" Width="1.5" />
+    <Members>
+      <Method Name="DataSCyklom" Hidden="true" />
+      <Method Name="ToString" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAABABAAAAAAQEIAAAAAAAgAAAABAAAARgAIAIAAA=</HashCode>
+      <FileName>KrokMerania.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="JDLMLab.Meranie">
+    <Position X="0.5" Y="1.75" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Methods" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>AIAEAAAAAAABAAAAAAAAIAgAAAAAAIAAAIAAAAACAAA=</HashCode>
+      <FileName>Meranie.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="CyklusMerania" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="JDLMLab.MassScanParameters">
+    <Position X="3" Y="3.25" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+      <Compartment Name="Methods" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAABAAAAAAAIAAAAAAIAAAAAAAAAAAA=</HashCode>
+      <FileName>MassScanParameters.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="JDLMLab.MeasurementParameters">
+    <Position X="4" Y="1.25" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Methods" Collapsed="true" />
+      <Compartment Name="Properties" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>IAAAAABBAAAIwAABBAEgAAQIAAAgAAgAAAAIAIEBAAg=</HashCode>
+      <FileName>MeasurementParameters.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="JDLMLab.MeasurementControl" Collapsed="true">
+    <Position X="7.25" Y="1.75" Width="1.5" />
+    <AssociationLine Name="Meranie" Type="JDLMLab.Meranie" ManuallyRouted="true" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="7.25" Y="2.062" />
+        <Point X="5.75" Y="2.062" />
+        <Point X="5.75" Y="2.671" />
+        <Point X="4.833" Y="2.671" Type="JumpStart" />
+        <Point X="4.667" Y="2.671" Type="JumpEnd" />
+        <Point X="2.375" Y="2.671" />
+        <Point X="2.375" Y="2.063" />
+        <Point X="2" Y="2.063" />
+      </Path>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAAAIAJACAAAAAggiAABgEBAIAAAWAAIQABgghCBAAA=</HashCode>
+      <FileName>MeasurementControl.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="MeasurementParameters" />
+      <Property Name="GrafControl" />
+      <Property Name="DbCommunication" />
+      <Property Name="Meranie" />
+      <Property Name="DeviceControllers" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="JDLMLab.DbCommunication" Collapsed="true">
+    <Position X="4" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ABQQAAQMCAAAEAgACCEAIAEgACQEQAQAAIAAAAgCAAA=</HashCode>
+      <FileName>DbCommunication.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="JDLMLab.EnergyScanParameters">
+    <Position X="4.75" Y="3.25" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+      <Compartment Name="Methods" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>AAAACAAAAAAAAAAAAAAAAAAIAQAAAAICAAAAAAAAAAA=</HashCode>
+      <FileName>EnergyScanParameters.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="JDLMLab.GrafControl" Collapsed="true">
+    <Position X="6.5" Y="5.5" Width="1.5" />
+    <NestedTypes>
+      <Enum Name="JDLMLab.GrafControl.RezimZobrazenia" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>GrafControl.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Enum>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>ACwCgAAAIAYBAQgQCiAAQBACAACAAIIIAQBhAAAA4IQ=</HashCode>
+      <FileName>GrafControl.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="JDLMLab.AMeterDriver" Collapsed="true">
+    <Position X="12" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAIAAAAAAAAA=</HashCode>
+      <FileName>AMeterDriver.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="JDLMLab.Scan2DParameters">
+    <Position X="6.5" Y="3.25" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Methods" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAIAAAAAAAAAAAIAIAAAAAAIAAAAAAAAAAAA=</HashCode>
+      <FileName>Scan2DParameters.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="JDLMLab.SerialPortDriver">
+    <Position X="12" Y="1.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QAAAAAACAAAAAAAAACAAAAAAAAAAAAAAAoAQAAAAAAA=</HashCode>
+      <FileName>SerialPortDriver.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Orientation="Left" Position="0.164" />
+  </Class>
+  <Class Name="JDLMLab.TlakomerPR4000Driver" Collapsed="true">
+    <Position X="12" Y="5.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAIAAAAAAAAA=</HashCode>
+      <FileName>TlakomerPR4000Driver.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="JDLMLab.TlakomerTG256ADriver" Collapsed="true">
+    <Position X="12" Y="6.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAECAAAAAQAAAAAAAAAJAEAAAAAAA=</HashCode>
+      <FileName>TlakomerTG256ADriver.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="JDLMLab.VMeterController" Collapsed="true">
+    <Position X="9.25" Y="6" Width="1.5" />
+    <AssociationLine Name="VMeterDriver" Type="JDLMLab.VMeterDriver">
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="0.11" Y="0.237" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAADAgAAAAAACAQAAAAgAAAAAAAAAAAAA=</HashCode>
+      <FileName>VMeterController.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="VMeterDriver" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="JDLMLab.VMeterDriver" Collapsed="true">
+    <Position X="12" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAIAAAAAAAAA=</HashCode>
+      <FileName>VMeterDriver.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="JDLMLab.AMeterController" Collapsed="true">
+    <Position X="9.25" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAA=</HashCode>
+      <FileName>AMeterController.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="AMeterDriver" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="JDLMLab.TlakomerTPG256AContorller" Collapsed="true">
+    <Position X="9.25" Y="6.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAA=</HashCode>
+      <FileName>TlakomerTPG256AContorller.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="TlakomerTG256ADriver" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="JDLMLab.TlakomerPR4000Controller" Collapsed="true">
+    <Position X="9.25" Y="5.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAA=</HashCode>
+      <FileName>TlakomerPR4000Controller.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="TlakomerPR4000Driver" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="JDLMLab.TeplomerController" Collapsed="true">
+    <Position X="9.25" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>TeplomerController.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="TeplomerDriver" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="JDLMLab.TeplomerDriver" Collapsed="true">
+    <Position X="12" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAIAAAAAAAAA=</HashCode>
+      <FileName>TeplomerDriver.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="JDLMLab.NastaveniaWindow" Collapsed="true">
+    <Position X="7.75" Y="9" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>/wCDQAAAAKEASJQABgCAAAZiAAA8EEFABHDEyCARBDA=</HashCode>
+      <FileName>NastaveniaWindow.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="JDLMLab.NoveMeranieWindow" Collapsed="true">
+    <Position X="6" Y="9" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>/wCgAAgAAKAAQJBAQYagIAADAAI4EBCSECQUIAEdDjA=</HashCode>
+      <FileName>NoveMeranieWindow.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="JDLMLab.Main" Collapsed="true">
+    <Position X="3" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>A8AAALAAgCAAABoCggCAAAAWQEASAAAAQKEIAQBQAAI=</HashCode>
+      <FileName>Main.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="MeasurementControl" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="JDLMLab.Load" Collapsed="true">
+    <Position X="2.5" Y="9" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>UAAgAAAgICiQAFAEBACAEgRDAABYQQIAQGQQYAAAQgE=</HashCode>
+      <FileName>Load.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="JDLMLab.ExportWindow" Collapsed="true">
+    <Position X="4.25" Y="9" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BBgAEAQAACKgABEAAACACAACAASIAAKAAEAAAQAEAAI=</HashCode>
+      <FileName>ExportWindow.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="JDLMLab.DeviceControllers" Collapsed="true">
+    <Position X="6.5" Y="6.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AQAADAAAAQBAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>DeviceControllers.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="AMeterController" />
+      <Property Name="TlakomerPR4000Controller" />
+      <Property Name="VMeterController" />
+      <Property Name="TlakomerTPG256AContorller" />
+      <Property Name="TeplomerController" />
+    </ShowAsAssociation>
+  </Class>
+  <Interface Name="JDLMLab.SerialPortDriverInterface">
+    <Position X="9.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAIAAAAAAAAA=</HashCode>
+      <FileName>SerialPortDriverInterface.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

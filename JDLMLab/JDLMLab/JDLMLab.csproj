@@ -82,6 +82,7 @@
     <Compile Include="AboutBox1.Designer.cs">
       <DependentUpon>AboutBox1.cs</DependentUpon>
     </Compile>
+    <Compile Include="AMeterController.cs" />
     <Compile Include="AMeterDriver.cs" />
     <Compile Include="CyklusMerania.cs" />
     <Compile Include="Database.Designer.cs">
@@ -91,6 +92,7 @@
     </Compile>
     <Compile Include="DbCommunication.cs" />
     <Compile Include="DbConnectionSettings.cs" />
+    <Compile Include="DeviceControllers.cs" />
     <Compile Include="EnergyScanParameters.cs" />
     <Compile Include="ExportWindow.cs">
       <SubType>Form</SubType>
@@ -155,8 +157,12 @@
       <DependentUpon>PosledneParametreMerania.settings</DependentUpon>
     </Compile>
     <Compile Include="Scan2DParameters.cs" />
+    <Compile Include="TeplomerController.cs" />
+    <Compile Include="TeplomerDriver.cs" />
+    <Compile Include="TlakomerPR4000Controller.cs" />
     <Compile Include="TlakomerPR4000Driver.cs" />
     <Compile Include="TlakomerTG256ADriver.cs" />
+    <Compile Include="TlakomerTPG256AContorller.cs" />
     <Compile Include="VMeterController.cs" />
     <Compile Include="VMeterDriver.cs" />
     <EmbeddedResource Include="About.resx">
@@ -193,6 +199,7 @@
       <DependentUpon>NoveMeranieWindow.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="app.config" />
+    <None Include="ClassDiagram1.cd" />
     <None Include="Database.settings">
       <Generator>PublicSettingsSingleFileGenerator</Generator>
       <LastGenOutput>Database.Designer.cs</LastGenOutput>

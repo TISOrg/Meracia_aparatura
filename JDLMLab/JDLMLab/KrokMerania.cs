@@ -89,7 +89,6 @@ namespace JDLMLab
             s.Append("\n");
             return s.ToString();
         }
-        
     }
 
 }

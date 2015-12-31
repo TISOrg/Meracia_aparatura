@@ -52,6 +52,19 @@ namespace JDLMLab
                 return t;
             }
         }
+
+        internal KrokMerania KrokMerania
+        {
+            get
+            {
+                throw new System.NotImplementedException();
+            }
+
+            set
+            {
+            }
+        }
+
         private List<KrokMerania> kroky;
         public void pridajKrok(KrokMerania k)
         {

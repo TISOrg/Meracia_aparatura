@@ -23,7 +23,7 @@ namespace JDLMLab
             new Thread(this.startThread);   //vykonavame meranie v samostatnom threade
         }
 
-        public int pocetCyklov {get; set; }
+        public int pocetCyklov { get; set; }
         public string typ { get; set; }
         private int pocetBodov { get; set; }
         public int pocetKrokov { get; private set; }
@@ -52,11 +52,11 @@ namespace JDLMLab
 
 
                 //pre massscan nacitat konstantu merania z voltmetra do hlavicky merania
-                
+
             }
             if (typ.Equals("2DScan"))
             {
-                
+
             }
             meraj();
         }
@@ -74,7 +74,7 @@ namespace JDLMLab
             {
                 //pre kazdy cyklus merania, urob vsetky body merania
                 int pBod = 0;
-                x = parameters.StartPoint;y= parameters.Constant;
+                x = parameters.StartPoint; y = parameters.Constant;
                 while (pBod < pocetBodov)
                 {
                     zmerajBod(pBod);
@@ -138,9 +138,69 @@ namespace JDLMLab
                 watch.Restart();
             }
 
-            
+
 
         }
+
+        public MeasurementParameters MeasurementParameters
+        {
+            get
+            {
+                throw new System.NotImplementedException();
+            }
+
+            set
+            {
+            }
+        }
+
+        internal GrafControl GrafControl
+        {
+            get
+            {
+                throw new System.NotImplementedException();
+            }
+
+            set
+            {
+            }
+        }
+
+        internal DbCommunication DbCommunication
+        {
+            get
+            {
+                throw new System.NotImplementedException();
+            }
+
+            set
+            {
+            }
+        }
+
+        internal Meranie Meranie
+        {
+            get
+            {
+                throw new System.NotImplementedException();
+            }
+
+            set
+            {
+            }
+        }
+
+        internal DeviceControllers DeviceControllers
+        {
+            get
+            {
+                throw new System.NotImplementedException();
+            }
+
+            set
+            {
+            }
+        }
     }
-    
+
 }

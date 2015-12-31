@@ -35,6 +35,19 @@ namespace JDLMLab
             //grafcontrol.Cyklus = 2;
             //grafcontrol.repaintGraf();
         }
+
+        internal MeasurementControl MeasurementControl
+        {
+            get
+            {
+                throw new System.NotImplementedException();
+            }
+
+            set
+            {
+            }
+        }
+
         private void serialPort1_DataReceived(object sender, System.IO.Ports.SerialDataReceivedEventArgs e)
         {
 

@@ -73,5 +73,17 @@ namespace JDLMLab
                 cykly.Last().pridajKrok(k);
             }
         }
+
+        internal CyklusMerania CyklusMerania
+        {
+            get
+            {
+                throw new System.NotImplementedException();
+            }
+
+            set
+            {
+            }
+        }
     }
 }

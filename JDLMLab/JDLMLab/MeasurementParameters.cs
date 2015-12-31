@@ -44,7 +44,6 @@ namespace JDLMLab
         public int TlakomerPR4000FrekvenciaMerania { get { return Properties.Devices.Default.pr4000Freq; } }
         public int TlakomerTPG256AFrekvenciaMerania { get { return Properties.Devices.Default.tpg256aFreq; } }
         public int TlakomerTPG256AKanal { get { return Properties.Devices.Default.tpg256aChannel; } }
-
     }
 }
 
