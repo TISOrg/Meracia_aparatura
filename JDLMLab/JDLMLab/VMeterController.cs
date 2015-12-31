@@ -8,16 +8,40 @@ namespace JDLMLab
 {
     class VMeterController
     {
-        VMeterDriver d;
-        public VMeterController(int casCitania)
+        VMeterDriver driver;
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="casCitania">cas ako casto ma citat napatie. Vyplyva z parametru merania PocetKrokov,PocetBodov,ci?</param>
+        public VMeterController(double casCitania)
         {
-            d = new VMeterDriver();
+            driver = new VMeterDriver();
+            CasCitania = casCitania;
+            Queue = new Queue<double>();
+             
         }
+        public Queue<double> Queue {
+            get; private set; }
+
+        public double CasCitania { get; set; }
+
+        /// <summary>
+        /// metoda spusti citanie voltmetra kazdych CasCitania sekund, a vysledky dava do??? 
+        /// Malo by to byt asi v threade
+        /// </summary>
         public void start()
         {
-            //zacni merat v intervaloch casCitania a posielaj do stanovenej struktury            
-            //.....
+            double napatie=Convert.ToDouble(driver.read());
+            Queue.Enqueue(napatie);
         }
+
+        /// <summary>
+        /// jednorazove precitanie hodnoty z voltmetra
+        /// </summary>
+         public double getValue()
+        {
+            return Convert.ToDouble(driver.read());
+        }   
 
 
     }

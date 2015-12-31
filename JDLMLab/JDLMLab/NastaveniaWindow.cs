@@ -103,6 +103,7 @@ namespace JDLMLab
                 }
                 else return;
             }
+            Paths.Default.Save();
             showSaveInfo();
 
         }

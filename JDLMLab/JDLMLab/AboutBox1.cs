@@ -20,6 +20,7 @@ namespace JDLMLab
             this.labelCopyright.Text = AssemblyCopyright;
             this.labelCompanyName.Text = AssemblyCompany;
             this.textBoxDescription.Text = AssemblyDescription;
+            
         }
 
         #region Assembly Attribute Accessors
@@ -102,12 +103,11 @@ namespace JDLMLab
         }
         #endregion
 
-        private void labelProductName_Click(object sender, EventArgs e)
-        {
+        
 
-        }
+       
 
-        private void logoPictureBox_Click(object sender, EventArgs e)
+        private void textBoxDescription_TextChanged(object sender, EventArgs e)
         {
 
         }

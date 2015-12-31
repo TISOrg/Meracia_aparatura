@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace JDLMLab
 {
-    public class MassScanParameters : MeasurementParameters
+    class MassScanParameters : MeasurementParameters
     {
 
         public MassScanParameters(double startpoint, double endpoint, double constant, double  steptime)

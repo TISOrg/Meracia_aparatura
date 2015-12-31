@@ -22,7 +22,7 @@ namespace JDLMLab
             
             InitializeComponent();
             
-            info = new AboutBox1();
+            
             
             grafcontrol=new GrafControl(graf);
             //nacitat vsetky nastavenia
@@ -60,7 +60,7 @@ namespace JDLMLab
 
         private void oProgrameToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            info.ShowDialog();
+            new AboutBox1().ShowDialog();
         }
 
         private void menuToolStripMenuItem_Click(object sender, EventArgs e)

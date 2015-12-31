@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-
+using System.IO.Ports;
 namespace JDLMLab
 {
     static class Program
@@ -12,11 +12,14 @@ namespace JDLMLab
         /// The main entry point for the application.
         /// </summary>
         [STAThread]
+
+
         static void Main()
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new Main());
+
             //MeasurementParameters mp = new MeasurementParameters();
             //mp.constant = 4;
             //mp.endPoint = 5;
@@ -99,5 +102,6 @@ namespace JDLMLab
             //list<string> s = new list<string>();
             //s[0] = "dd";
         }
+        
     }
 }
