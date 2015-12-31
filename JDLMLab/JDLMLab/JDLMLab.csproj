@@ -82,6 +82,7 @@
     <Compile Include="AboutBox1.Designer.cs">
       <DependentUpon>AboutBox1.cs</DependentUpon>
     </Compile>
+    <Compile Include="AMeterDriver.cs" />
     <Compile Include="CyklusMerania.cs" />
     <Compile Include="Database.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -98,6 +99,8 @@
       <DependentUpon>ExportWindow.cs</DependentUpon>
     </Compile>
     <Compile Include="GrafControl.cs" />
+    <Compile Include="SerialPortDriver.cs" />
+    <Compile Include="SerialPortDriverInterface.cs" />
     <Compile Include="MassScanParameters.cs" />
     <Compile Include="NastaveniaWindow.cs">
       <SubType>Form</SubType>
@@ -152,6 +155,8 @@
       <DependentUpon>PosledneParametreMerania.settings</DependentUpon>
     </Compile>
     <Compile Include="Scan2DParameters.cs" />
+    <Compile Include="TlakomerPR4000Driver.cs" />
+    <Compile Include="TlakomerTG256ADriver.cs" />
     <Compile Include="VMeterController.cs" />
     <Compile Include="VMeterDriver.cs" />
     <EmbeddedResource Include="About.resx">

@@ -110,11 +110,15 @@ namespace JDLMLab
             DbCommunication db = new DbCommunication();
             ExportWindow exp = new ExportWindow(1);
             //exp.grid= meranie aktualne
+            
         }
 
         private void graf_KeyDown(object sender, KeyEventArgs e)
         {
             grafcontrol.grafKeyPressed(e);
         }
+
+        event EventHandler ev;
+       
     }
 }
