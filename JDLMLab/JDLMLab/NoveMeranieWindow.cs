@@ -171,8 +171,8 @@ namespace JDLMLab
             else if (!Double.TryParse(endPointField2DMs.Text, out endpoint)) ValidateParametersException("Neplatná hodnota " + endPointField2DMs.Text);
             else if (!Double.TryParse(resolutionField2DMs.Text, out resolution)) ValidateParametersException("Neplatná hodnota " + resolutionPointField2DMs.Text);
             else if (!Double.TryParse(constantField2DMs.Text, out resolution)) ValidateParametersException("Neplatná hodnota " + constantPointField2DMs.Text);
-            else if (!Double.TryParse(stepTimefield2DMs, out step)) ValidateParametersException("Neplatná hodnota " + stepTimeFieldMs.Text);
-            else if (!Double.TryParse(pocetkrokovField2DMs.Text, out krok)) ValidateParametersException("Neplatná hodnota " + stepTimeFieldMs.Text);
+            else if (!int.TryParse(stepTimefield2DMs, out step)) ValidateParametersException("Neplatná hodnota " + stepTimeFieldMs.Text);
+            else if (!int.TryParse(pocetkrokovField2DMs.Text, out krok)) ValidateParametersException("Neplatná hodnota " + stepTimeFieldMs.Text);
 
             else
             {
