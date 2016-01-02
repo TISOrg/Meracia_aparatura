@@ -174,11 +174,11 @@ namespace JDLMLab
                 throw new ValidateParametersException("Zadajte správny nazov merania");
             }
 
-             if (!Double.TryParse(startPointField2DMs.Text, out startpoint)) throw new ValidateParametersException("Neplatná hodnota" + startPointField2DMs.Text);
-             if (!Double.TryParse(endPointField2DMs.Text, out endpoint)) throw new ValidateParametersException("Neplatná hodnota " + endPointField2DMs.Text);
-             if (!Double.TryParse(resolutionField2D.Text, out resolution)) throw new ValidateParametersException("Neplatná hodnota " + resolutionField2D.Text);
-             if (!int.TryParse(stepTimeField2DMs.SelectedText, out step)) throw new ValidateParametersException("Neplatná hodnota " + stepTimeFieldMs.Text);
-             if (!int.TryParse(pocetKrokovField2DEs.Text, out krok)) throw new ValidateParametersException("Neplatná hodnota " + stepTimeFieldMs.Text);
+             if (!Double.TryParse(startPointField2DMs.Text, out startpoint)) throw new ValidateParametersException("Neplatná hodnota pre startpoint" );
+             if (!Double.TryParse(endPointField2DMs.Text, out endpoint)) throw new ValidateParametersException("Neplatná hodnota pre endpoint " );
+             if (!Double.TryParse(resolutionField2D.Text, out resolution)) throw new ValidateParametersException("Neplatná hodnota pre resolution");
+             if (!int.TryParse(stepTimeField2DMs.SelectedText, out step)) throw new ValidateParametersException("Neplatná hodnota steptimefield" + stepTimeFieldMs.Text);
+             if (!int.TryParse(pocetKrokovField2DEs.Text, out krok)) throw new ValidateParametersException("Neplatná hodnota pre pocet cyklov");
 
         }
 
@@ -199,12 +199,12 @@ namespace JDLMLab
             ///ani jedna z tychto testov nedovloluje zadat double hodnotu.... opravit !!!
             /// okrem toho volanie parametru .Text je nanic, kedze z toho neviem ktory field mam opravit.. zadat rucne nazov ktory field je zly!!!
             /// podobne pre validate energy scan a validate 2dscan....!!!
-            if (!Double.TryParse(startPointFieldMs.Text, out startpoint)) throw new ValidateParametersException("Neplatná hodnota" + startPointFieldMs.Text);
-            if (!Double.TryParse(endPointFieldMs.Text, out endpoint)) throw new ValidateParametersException("Neplatná hodnota " + endPointFieldMs.Text);
-            if (!Double.TryParse(resolutionFieldMs.Text, out resolution)) throw new ValidateParametersException("Neplatná hodnota " + resolutionFieldMs.Text);
-            if (!Double.TryParse(constantFieldMs.Text, out resolution)) throw new ValidateParametersException("Neplatná hodnota " + constantFieldMs.Text);
+            if (!Double.TryParse(startPointFieldMs.Text, out startpoint)) throw new ValidateParametersException("Neplatná hodnota pre startpoint");
+            if (!Double.TryParse(endPointFieldMs.Text, out endpoint)) throw new ValidateParametersException("Neplatná hodnota pre end point" );
+            if (!Double.TryParse(resolutionFieldMs.Text, out resolution)) throw new ValidateParametersException("Neplatná hodnota pre resolution");
+            if (!Double.TryParse(constantFieldMs.Text, out resolution)) throw new ValidateParametersException("Neplatná hodnota pre constant" );
 
-            if (!int.TryParse(stepTimeFieldMs.Text, out step)) throw new ValidateParametersException("Neplatná hodnota " + stepTimeFieldMs.Text);//tuto hodnotu netreba kontrolovat kedze sa vybera zo select listu !!!
+            if (!int.TryParse(stepTimeFieldMs.Text, out step)) throw new ValidateParametersException("Neplatná hodnota pre steptime");//tuto hodnotu netreba kontrolovat kedze sa vybera zo select listu !!!
 
             
 
@@ -222,12 +222,12 @@ namespace JDLMLab
                 throw new ValidateParametersException("Zadajte správny nazov merania");
             }
 
-            if (!Double.TryParse(startPointFieldEs.Text, out startpoint)) throw new ValidateParametersException("Neplatná hodnota" + startPointFieldEs.Text);
-            if (!Double.TryParse(endPointFieldEs.Text, out endpoint)) throw new ValidateParametersException("Neplatná hodnota " + endPointFieldEs.Text);
-            if (!Double.TryParse(resolutionFieldEs.Text, out resolution)) throw new ValidateParametersException("Neplatná hodnota " + resolutionFieldEs.Text);
-            if (!Double.TryParse(constantFieldEs.Text, out resolution)) throw new ValidateParametersException("Neplatná hodnota " + constantFieldEs.Text);
-            if (!int.TryParse(stepTimeFieldEs.Text, out step)) throw new ValidateParametersException("Neplatná hodnota " + stepTimeFieldEs.Text);
-            if (!int.TryParse(pocetKrokovFieldEs.Text, out step)) throw new ValidateParametersException("Neplatná hodnota " + stepTimeFieldEs.Text);
+            if (!Double.TryParse(startPointFieldEs.Text, out startpoint)) throw new ValidateParametersException("Neplatná hodnota pre startpoint");
+            if (!Double.TryParse(endPointFieldEs.Text, out endpoint)) throw new ValidateParametersException("Neplatná hodnota pre endpoint");
+            if (!Double.TryParse(resolutionFieldEs.Text, out resolution)) throw new ValidateParametersException("Neplatná hodnota pre resolution" );
+            if (!Double.TryParse(constantFieldEs.Text, out resolution)) throw new ValidateParametersException("Neplatná hodnota pre constant");
+            if (!int.TryParse(stepTimeFieldEs.Text, out step)) throw new ValidateParametersException("Neplatná hodnota pre steptime");
+            if (!int.TryParse(pocetKrokovFieldEs.Text, out step)) throw new ValidateParametersException("Neplatná hodnota pre pocetkrokov" );
 
             
         }
