@@ -164,28 +164,31 @@
             this.radioButton1.TabIndex = 10;
             this.radioButton1.Text = "Suma zo všetkých cyklov";
             this.radioButton1.UseVisualStyleBackColor = true;
+            this.radioButton1.CheckedChanged += new System.EventHandler(this.radioButton1_CheckedChanged);
             // 
             // radioButton2
             // 
             this.radioButton2.AutoSize = true;
-            this.radioButton2.Location = new System.Drawing.Point(282, 350);
+            this.radioButton2.Location = new System.Drawing.Point(281, 350);
             this.radioButton2.Name = "radioButton2";
             this.radioButton2.Size = new System.Drawing.Size(154, 17);
             this.radioButton2.TabIndex = 11;
             this.radioButton2.Text = "Priemer zo všetkých cyklov";
             this.radioButton2.UseVisualStyleBackColor = true;
+            this.radioButton2.CheckedChanged += new System.EventHandler(this.radioButton2_CheckedChanged);
             // 
             // radioButton3
             // 
             this.radioButton3.AutoSize = true;
             this.radioButton3.Checked = true;
-            this.radioButton3.Location = new System.Drawing.Point(281, 327);
+            this.radioButton3.Location = new System.Drawing.Point(281, 325);
             this.radioButton3.Name = "radioButton3";
             this.radioButton3.Size = new System.Drawing.Size(87, 17);
             this.radioButton3.TabIndex = 12;
             this.radioButton3.TabStop = true;
             this.radioButton3.Text = "Každý cyklus";
             this.radioButton3.UseVisualStyleBackColor = true;
+            this.radioButton3.CheckedChanged += new System.EventHandler(this.radioButton3_CheckedChanged);
             // 
             // ExportWindow
             // 
