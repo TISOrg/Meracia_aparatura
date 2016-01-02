@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -80,10 +80,12 @@ namespace JDLMLab
         private void nastavParametre()
         {
             //zistit aky typ je vybraty
-            if (typyMeraniaTaby.SelectedTab.Text.Equals("Energy Scan"))
+            
+            if (typyMeraniaTaby.SelectedTab.Text.Equals("Energy scan"))
             {
                 try
                 {
+                    
                     validateEnergyScanTab();
                     parametreMerania = new EnergyScanParameters(Convert.ToDouble(startPointFieldEs.Text), Convert.ToDouble(endPointFieldEs.Text), Convert.ToDouble(constantFieldEs.Text), Convert.ToDouble(stepTimeFieldEs.Text), Convert.ToInt32(pocetKrokovFieldEs.Text));
                     parametreMerania.setParameters(nameField
@@ -98,7 +100,7 @@ namespace JDLMLab
 
 
             }
-            else if (typyMeraniaTaby.SelectedTab.Text.Equals("Mass Scan"))
+            else if (typyMeraniaTaby.SelectedTab.Text.Equals("Mass scan"))
             {
                 try
                 {
@@ -115,7 +117,7 @@ namespace JDLMLab
                     throw e;
                 }
             }
-            else if (typyMeraniaTaby.SelectedTab.Text.Equals("2D Scan"))
+            else if (typyMeraniaTaby.SelectedTab.Text.Equals("2D scan"))
             {
                 try
                 {
@@ -140,19 +142,24 @@ namespace JDLMLab
             }
         }
 
+        /// <summary>
+        /// metoda na ulozanie akutalne zadanych parametrov pre 2dscan do settign filu PosledneParametreMerania. nic nevaliduje. vola sa az po validacii, takze fieldy sa mozu bezpecne ulozit
+        /// </summary>
         private void ulozParametre2DScan()
         {
-            throw new NotImplementedException();
+            PosledneParametreMerania.Default.m2DStartPoint = int.Parse(startPointField2DMs.Text);
+            ///atd...
+
         }
 
         private void ulozParametreMassScan()
         {
-            throw new NotImplementedException();
+            
         }
 
         private void ulozParametreEnergyScan()
         {
-            throw new NotImplementedException();
+            
         }
 
         private void validateMass2DScanTab()
@@ -162,23 +169,17 @@ namespace JDLMLab
             Double resolution;
             int step;
             int krok;
-            if (namefield.Text.Length < 3)
+            if (nameField.Text.Length < 3)
             {
-                ValidateParametersExceptio("Zadajte správny nazov merania");
+                throw new ValidateParametersException("Zadajte správny nazov merania");
             }
 
-            else if (!Double.TryParse(startPointField2DMs.Text, out startpoint)) ValidateParametersException("Neplatná hodnota" + startPointField2DMs.Text);
-            else if (!Double.TryParse(endPointField2DMs.Text, out endpoint)) ValidateParametersException("Neplatná hodnota " + endPointField2DMs.Text);
-            else if (!Double.TryParse(resolutionField2DMs.Text, out resolution)) ValidateParametersException("Neplatná hodnota " + resolutionPointField2DMs.Text);
-            else if (!Double.TryParse(constantField2DMs.Text, out resolution)) ValidateParametersException("Neplatná hodnota " + constantPointField2DMs.Text);
-            else if (!int.TryParse(stepTimefield2DMs, out step)) ValidateParametersException("Neplatná hodnota " + stepTimeFieldMs.Text);
-            else if (!int.TryParse(pocetkrokovField2DMs.Text, out krok)) ValidateParametersException("Neplatná hodnota " + stepTimeFieldMs.Text);
+             if (!Double.TryParse(startPointField2DMs.Text, out startpoint)) throw new ValidateParametersException("Neplatná hodnota" + startPointField2DMs.Text);
+             if (!Double.TryParse(endPointField2DMs.Text, out endpoint)) throw new ValidateParametersException("Neplatná hodnota " + endPointField2DMs.Text);
+             if (!Double.TryParse(resolutionField2D.Text, out resolution)) throw new ValidateParametersException("Neplatná hodnota " + resolutionField2D.Text);
+             if (!int.TryParse(stepTimeField2DMs.SelectedText, out step)) throw new ValidateParametersException("Neplatná hodnota " + stepTimeFieldMs.Text);
+             if (!int.TryParse(pocetKrokovField2DEs.Text, out krok)) throw new ValidateParametersException("Neplatná hodnota " + stepTimeFieldMs.Text);
 
-            else
-            {
-                return true;
-            }
-            return false;
         }
 
         private void validateMassScanTab()
@@ -188,23 +189,24 @@ namespace JDLMLab
             Double resolution;
             int step;
             int krok;
-            if (namefield.Text.Length < 3)
+            
+            //preco by nazov nemohol byt kratsi ako 3 ??? 
+            if (nameField.Text.Length < 3)
             {
-                ValidateParametersExceptio("Zadajte správny nazov merania");
+                throw new ValidateParametersException("Zadajte správny nazov merania");
             }
 
-            else if (!Double.TryParse(startPointFieldMs.Text, out startpoint)) ValidateParametersException("Neplatná hodnota" + startPointFieldMs.Text);
-            else if (!Double.TryParse(endPointFieldMs.Text, out endpoint)) ValidateParametersException("Neplatná hodnota " + endPointFieldMs.Text);
-            else if (!Double.TryParse(resolutionFieldMs.Text, out resolution)) ValidateParametersException("Neplatná hodnota " + resolutionPointFieldMs.Text);
-            else if (!Double.TryParse(constantFieldMs.Text, out resolution)) ValidateParametersException("Neplatná hodnota " + constantPointFieldMs.Text);
-            else if (!int.TryParse(stepTimeFieldMs.Text, out step)) ValidateParametersException("Neplatná hodnota " + stepTimeFieldMs.Text);
-            else if (!int.TryParse(pocetkrokovFieldMs.Text, out krok)) ValidateParametersException("Neplatná hodnota " + stepTimeFieldMs.Text);
+            ///ani jedna z tychto testov nedovloluje zadat double hodnotu.... opravit !!!
+            /// okrem toho volanie parametru .Text je nanic, kedze z toho neviem ktory field mam opravit.. zadat rucne nazov ktory field je zly!!!
+            /// podobne pre validate energy scan a validate 2dscan....!!!
+            if (!Double.TryParse(startPointFieldMs.Text, out startpoint)) throw new ValidateParametersException("Neplatná hodnota" + startPointFieldMs.Text);
+            if (!Double.TryParse(endPointFieldMs.Text, out endpoint)) throw new ValidateParametersException("Neplatná hodnota " + endPointFieldMs.Text);
+            if (!Double.TryParse(resolutionFieldMs.Text, out resolution)) throw new ValidateParametersException("Neplatná hodnota " + resolutionFieldMs.Text);
+            if (!Double.TryParse(constantFieldMs.Text, out resolution)) throw new ValidateParametersException("Neplatná hodnota " + constantFieldMs.Text);
 
-            else
-            {
-                return true;
-            }
-            return false;
+            if (!int.TryParse(stepTimeFieldMs.Text, out step)) throw new ValidateParametersException("Neplatná hodnota " + stepTimeFieldMs.Text);//tuto hodnotu netreba kontrolovat kedze sa vybera zo select listu !!!
+
+            
 
         }
 
@@ -215,23 +217,19 @@ namespace JDLMLab
             Double resolution;
             int step;
             int krok;
-            if (namefield.Text.Length < 3)
+            if (nameField.Text.Length < 3)
             {
-                ValidateParametersExceptio("Zadajte správny nazov merania");
+                throw new ValidateParametersException("Zadajte správny nazov merania");
             }
 
-            else if (!Double.TryParse(startPointFieldEs.Text, out startpoint)) ValidateParametersException("Neplatná hodnota" + startPointFieldEs.Text);
-            else if (!Double.TryParse(endPointFieldEs.Text, out endpoint)) ValidateParametersException("Neplatná hodnota " + endPointFieldEs.Text);
-            else if (!Double.TryParse(resolutionFieldEs.Text, out resolution)) ValidateParametersException("Neplatná hodnota " + resolutionPointFieldEs.Text);
-            else if (!Double.TryParse(constantFieldEs.Text, out resolution)) ValidateParametersException("Neplatná hodnota " + constantPointFieldEs.Text);
-            else if (!int.TryParse(stepTimeFieldEs.Text, out step)) ValidateParametersException("Neplatná hodnota " + stepTimeFieldEs.Text);
-            else if (!int.TryParse(pocetkrokovFieldEs.Text, out step)) ValidateParametersException("Neplatná hodnota " + stepTimeFieldEs.Text);
+            if (!Double.TryParse(startPointFieldEs.Text, out startpoint)) throw new ValidateParametersException("Neplatná hodnota" + startPointFieldEs.Text);
+            if (!Double.TryParse(endPointFieldEs.Text, out endpoint)) throw new ValidateParametersException("Neplatná hodnota " + endPointFieldEs.Text);
+            if (!Double.TryParse(resolutionFieldEs.Text, out resolution)) throw new ValidateParametersException("Neplatná hodnota " + resolutionFieldEs.Text);
+            if (!Double.TryParse(constantFieldEs.Text, out resolution)) throw new ValidateParametersException("Neplatná hodnota " + constantFieldEs.Text);
+            if (!int.TryParse(stepTimeFieldEs.Text, out step)) throw new ValidateParametersException("Neplatná hodnota " + stepTimeFieldEs.Text);
+            if (!int.TryParse(pocetKrokovFieldEs.Text, out step)) throw new ValidateParametersException("Neplatná hodnota " + stepTimeFieldEs.Text);
 
-            else
-            {
-                return true;
-            }
-            return false;
+            
         }
 
 
@@ -259,7 +257,10 @@ namespace JDLMLab
             DialogResult = DialogResult.Cancel;
         }
 
+        private void pocetCyklovFieldLabel_Click(object sender, EventArgs e)
+        {
 
+        }
     }
 
 
