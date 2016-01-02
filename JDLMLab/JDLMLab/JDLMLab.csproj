@@ -82,7 +82,6 @@
     <Compile Include="AboutBox1.Designer.cs">
       <DependentUpon>AboutBox1.cs</DependentUpon>
     </Compile>
-    <Compile Include="AMeterController.cs" />
     <Compile Include="AMeterDriver.cs" />
     <Compile Include="CyklusMerania.cs" />
     <Compile Include="Database.Designer.cs">
@@ -92,7 +91,6 @@
     </Compile>
     <Compile Include="DbCommunication.cs" />
     <Compile Include="DbConnectionSettings.cs" />
-    <Compile Include="DeviceControllers.cs" />
     <Compile Include="EnergyScanParameters.cs" />
     <Compile Include="ExportWindow.cs">
       <SubType>Form</SubType>
@@ -101,7 +99,7 @@
       <DependentUpon>ExportWindow.cs</DependentUpon>
     </Compile>
     <Compile Include="GrafControl.cs" />
-    <Compile Include="QmsController.cs" />
+    <Compile Include="SerialPortDeviceController.cs" />
     <Compile Include="QmsDriver.cs" />
     <Compile Include="SerialPortDriver.cs" />
     <Compile Include="SerialPortDriverInterface.cs" />
@@ -159,14 +157,11 @@
       <DependentUpon>PosledneParametreMerania.settings</DependentUpon>
     </Compile>
     <Compile Include="Scan2DParameters.cs" />
-    <Compile Include="TeplomerController.cs" />
     <Compile Include="TeplomerDriver.cs" />
-    <Compile Include="TlakomerPR4000Controller.cs" />
     <Compile Include="TlakomerPR4000Driver.cs" />
     <Compile Include="TlakomerTG256ADriver.cs" />
-    <Compile Include="TlakomerTPG256AContorller.cs" />
-    <Compile Include="VMeterController.cs" />
     <Compile Include="VMeterDriver.cs" />
+    <Compile Include="XXXDriver.cs" />
     <EmbeddedResource Include="About.resx">
       <DependentUpon>About.cs</DependentUpon>
     </EmbeddedResource>

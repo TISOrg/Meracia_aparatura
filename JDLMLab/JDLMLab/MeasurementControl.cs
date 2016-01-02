@@ -190,17 +190,7 @@ namespace JDLMLab
             }
         }
 
-        internal DeviceControllers DeviceControllers
-        {
-            get
-            {
-                throw new System.NotImplementedException();
-            }
-
-            set
-            {
-            }
-        }
+     
     }
 
 }

@@ -19,7 +19,15 @@ namespace JDLMLab
 
         public override double read()
         {
-            throw new NotImplementedException();
+            serialPort.Write("L1M?*");
+            
+            ///docasne riesenie. vyriesit casovu medzeru medzi odoslanim poziadavku a prijatim dat. Po prijati na port sa zavola datareceived()
+            /// zreme to ostane takto... metoda bude aj tak spustena v threade, a tu sa aj tak musi cakat az do prijdenia dat. takze while .
+            double ret;
+            while (data.Equals("")) ;
+            ret = convertToDouble(data);
+            data = "";
+            return ret;
         }
     }
 }
