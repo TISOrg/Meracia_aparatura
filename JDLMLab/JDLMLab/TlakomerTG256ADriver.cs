@@ -22,7 +22,8 @@ namespace JDLMLab
         }
 
         private char[] znaky = new char[3];
-        public override double read()
+        string data;
+        protected override void readRequest()
         {
             //serialPort2.Write("\r");
             //tlakomerBox.AppendText(serialPort2.ReadLine());
@@ -39,7 +40,6 @@ namespace JDLMLab
             data = serialPort.ReadLine();
             spracujStatusTlak(data);
 
-            return 0.0;
         }
 
         public Thread zistovacTlakov;

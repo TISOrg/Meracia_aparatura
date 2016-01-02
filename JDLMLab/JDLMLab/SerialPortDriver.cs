@@ -1,38 +1,120 @@
 ﻿using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.IO.Ports;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Timers;
 
 namespace JDLMLab
 {
+    /// <summary>
+    /// abstraktna trieda pre serial port zariadenie. poskytuje jednorazove precitanie hodnoty, alebo citanie zo zasobnika BlockingCollection do ktoreho ulozi precitany vstup
+    /// </summary>
     abstract class SerialPortDriver : SerialPortDriverInterface
     {
-        public SerialPortDriver()
-        {
-            serialPort = new SerialPort();
-            serialPort.DataReceived += dataRecieved;
-        }
+     
         protected SerialPort serialPort;
         public abstract void close();
 
         /// <summary>
-        /// vseobecna funckia na vratenie double typu pre ziskany text zo zariadenia. Pre ine zariadenie moze byt konverzia menej trivialna, a tak sa iba overriduje  tato funckia
+        /// vseobecna virtualna funckia na vratenie double typu pre ziskany text zo zariadenia. Pre ine zariadenie moze byt konverzia menej trivialna, a tak sa iba overriduje  tato funckia
         /// </summary>
-        /// <param name="data">string ktory sa ma previest na double</param>
-        /// <returns></returns>
-        protected double convertToDouble(string data)
+        /// <returns>textovy retazec zo vstupu premeneny na double</returns>
+        virtual protected double convertToDouble(string data)
         {
             return Convert.ToDouble(data);
         }
-        protected static string data;
 
+        double last { get; set; }
         protected void dataRecieved(object sender,SerialDataReceivedEventArgs e)
         {
-            data = serialPort.ReadLine();
+            last = convertToDouble(serialPort.ReadLine());
+            blockingCollection.Add(last);
+            
         }
         public abstract void open();
-        public abstract double read();
+
+        abstract protected void readRequest();
+
+
+        System.Timers.Timer timer;
+        public void setTimer(int delay)
+        {
+            IntervalMerania = delay;
+            timer = new System.Timers.Timer(delay);
+            timer.Elapsed += Timer_Elapsed;
+            timer.AutoReset = true;
+        }
+        public void startReading()
+        {
+            timer.Enabled = true;
+        }
+
+        /// <summary>
+        /// zastavi timer
+        /// </summary>
+        public void stopReading()
+        {
+            timer.Enabled = false;
+        }
+
+        /// <summary>
+        /// toto bude volat funckiu readrequest
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void Timer_Elapsed(object sender, ElapsedEventArgs e)
+        {
+            readRequest();
+        }
+
+        public double read()
+        {
+            if (last == null)
+            {
+                return 0;
+            }
+            return last;
+        }
+        public void readNext(out double value)
+        {
+            if (!blockingCollection.TryTake(out value))
+            {
+                value = -1;
+            }
+
+            return;
+            
+            //uvidime ci bude treba taks alebo vlakno
+            using (Task t2 = Task.Factory.StartNew(() =>
+            {
+                // Consume consume the BlockingCollection
+                double s;
+                if (blockingCollection.TryTake(out s))
+                    ;
+                else
+                {
+                    s = -1;
+                }
+
+
+            }))
+                ;
+
+        }
+
+        public int IntervalMerania { get; set; }
+
+        protected BlockingCollection<double> blockingCollection;
+        protected Queue<string> q;
+
+        /// <summary>
+        /// testovacie veci, odstranit potom
+        /// </summary>
+        protected BlockingCollection<string> testbc;
+        protected Queue<string> testq;
+
     }
 }

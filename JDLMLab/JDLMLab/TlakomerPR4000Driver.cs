@@ -18,11 +18,9 @@ namespace JDLMLab
             throw new NotImplementedException();
         }
 
-        public override double read()
+        protected override void readRequest()
         {
             throw new NotImplementedException();
-            
         }
-
     }
 }

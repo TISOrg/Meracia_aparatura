@@ -1,12 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace JDLMLab
@@ -17,9 +10,12 @@ namespace JDLMLab
         AboutBox1 info;
         GrafControl grafcontrol;
         MeasurementControl measurementControl;
+        
         public Main()
         {
+
             
+           
             InitializeComponent();
             
             
@@ -34,8 +30,17 @@ namespace JDLMLab
             //grafcontrol.addMeranie(1);
             //grafcontrol.Cyklus = 2;
             //grafcontrol.repaintGraf();
-        }
 
+
+            //x=new XXXDriver();
+            //x.open();
+            //x.setTimer(1000);
+            //Thread t = new Thread(new ThreadStart(x.startReading));
+            // t.Start();
+            
+            
+        }
+        XXXDriver x;
         internal MeasurementControl MeasurementControl
         {
             get
@@ -133,47 +138,12 @@ namespace JDLMLab
 
         event EventHandler ev;
 
-        SerialPortDeviceController c;
+        
         private void startbutton_click(object sender, EventArgs e)
         {
-            
-            
-            //AutoResetEvent autoEvent = new AutoResetEvent(false);
 
-            //SerialPortDeviceController statusChecker = new SerialPortDeviceController(new XXXDriver());
-            
-            //// Create an inferred delegate that invokes methods for the timer.
-            //TimerCallback tcb = statusChecker.readAndSave;
 
-            //// Create a timer that signals the delegate to invoke 
-            //// CheckStatus after one second, and every 1/4 second 
-            //// thereafter.
-            //richTextBox1.AppendText("{0} Creating timer.\n"+DateTime.Now.ToString("h:mm:ss.fff"));
-            //System.Threading.Timer stateTimer = new System.Threading.Timer(tcb, autoEvent, 1000, 1500);
-
-            //// When autoEvent signals, change the period to every
-            //// 1/2 second.
-            //autoEvent.WaitOne(5000, false);
-            //stateTimer.Change(0, 500);
-            //richTextBox1.AppendText("\nChanging period.\n");
-
-            //// When autoEvent signals the second time, dispose of 
-            //// the timer.
-            //autoEvent.WaitOne(5000, false);
-            //stateTimer.Dispose();
-            //richTextBox1.AppendText("\nDestroying timer.");
-
-            //for (int i = 0; i < 10; i++)
-            //{
-            //    try
-            //    {  
-            //        richTextBox1.AppendText(c.q.Dequeue().ToString() + "\n");
-            //    }
-            //    catch(InvalidOperationException ex)
-            //    {
-            //        richTextBox1.AppendText("<prazdny>" + "\n");
-            //    }
-            //}
+           
         }
 
         private void button2_Click_1(object sender, EventArgs e)
@@ -185,6 +155,11 @@ namespace JDLMLab
         {
             
 
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            
         }
     }
 }

@@ -52,7 +52,7 @@
             this.startbutton = new System.Windows.Forms.Button();
             this.radioButton2 = new System.Windows.Forms.RadioButton();
             this.radioButton1 = new System.Windows.Forms.RadioButton();
-            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.graf)).BeginInit();
             this.panel1.SuspendLayout();
@@ -148,7 +148,6 @@
             // 
             // panel1
             // 
-            this.panel1.Controls.Add(this.richTextBox1);
             this.panel1.Controls.Add(this.radioButton5);
             this.panel1.Controls.Add(this.radioButton3);
             this.panel1.Controls.Add(this.radioButton4);
@@ -275,13 +274,11 @@
             this.radioButton1.Text = "lin";
             this.radioButton1.UseVisualStyleBackColor = true;
             // 
-            // richTextBox1
+            // timer1
             // 
-            this.richTextBox1.Location = new System.Drawing.Point(18, 116);
-            this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.Size = new System.Drawing.Size(136, 149);
-            this.richTextBox1.TabIndex = 23;
-            this.richTextBox1.Text = "";
+            this.timer1.Enabled = true;
+            this.timer1.Interval = 50;
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
             // Main
             // 
@@ -327,7 +324,7 @@
         private System.Windows.Forms.RadioButton radioButton3;
         private System.Windows.Forms.RadioButton radioButton4;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.RichTextBox richTextBox1;
+        private System.Windows.Forms.Timer timer1;
     }
 }
 
