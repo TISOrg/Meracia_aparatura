@@ -57,6 +57,7 @@ namespace JDLMLab
             ret = convertToDouble(data);
             data = "";
             return ret;
+                    
         }
     }
 }

@@ -26,12 +26,12 @@ namespace JDLMLab
         Dictionary<double, double> avgHodnoty = new Dictionary<double, double>();//budu sa uchovavat x a y hdnoty pre zobrazenie suny a priemeru
 
         DataSet suradnicemerani = new DataSet();
-        Chart grafmerani;
+        Chart graf;
         //System.Windows.Forms.MouseEventArgs mys;
         public GrafControl(Chart chart)
         {
-            grafmerani = chart;
-            grafmerani.ChartAreas[0].AxisX.ScaleView.Zoomable = true;   //zapni zoomovanie
+            graf = chart;
+            graf.ChartAreas[0].AxisX.ScaleView.Zoomable = true;   //zapni zoomovanie
             r = 0;
             g = 0;
             b = 0;
@@ -57,27 +57,27 @@ namespace JDLMLab
 
         private void nastavitParametreGrafu()
         {
-            grafmerani.ChartAreas[0].CursorX.AutoScroll = true;
-            grafmerani.ChartAreas[0].CursorX.IsUserEnabled = true;
-            grafmerani.ChartAreas[0].CursorX.IsUserSelectionEnabled = true;
-            grafmerani.ChartAreas[0].AxisX.ScaleView.Zoomable = false;
-            grafmerani.ChartAreas[0].AxisY.LogarithmBase = 10;
-            grafmerani.ChartAreas[0].AxisY.IsLogarithmic = false;
+            graf.ChartAreas[0].CursorX.AutoScroll = true;
+            graf.ChartAreas[0].CursorX.IsUserEnabled = true;
+            graf.ChartAreas[0].CursorX.IsUserSelectionEnabled = true;
+            graf.ChartAreas[0].AxisX.ScaleView.Zoomable = false;
+            graf.ChartAreas[0].AxisY.LogarithmBase = 10;
+            graf.ChartAreas[0].AxisY.IsLogarithmic = false;
         }
 
      
         public void clearGraf()
         {
-            grafmerani.Series[0].Points.Clear();
+            graf.Series[0].Points.Clear();
         }
         internal void addMeranie(int meranie)   
         {
 
             DbCommunication db = new DbCommunication();
             DataSet h = db.header(meranie);
-            grafmerani.ChartAreas[0].AxisX.Minimum = (double)(h.Tables[0].Rows[0]["start_point"]);
-            grafmerani.ChartAreas[0].AxisX.Maximum =(double)(h.Tables[0].Rows[0]["end_point"]);
-            grafmerani.ChartAreas[0].AxisY.Maximum = 500;
+            graf.ChartAreas[0].AxisX.Minimum = (double)(h.Tables[0].Rows[0]["start_point"]);
+            graf.ChartAreas[0].AxisX.Maximum =(double)(h.Tables[0].Rows[0]["end_point"]);
+            graf.ChartAreas[0].AxisY.Maximum = 500;
             DataSet dataset = new DataSet();
             dataset = db.meraniePreGraf(meranie);
             
@@ -94,8 +94,8 @@ namespace JDLMLab
         
         }
 
-        public double MinValue { get { return MinValue; } set { grafmerani.ChartAreas[0].AxisX.Minimum = value; MinValue = value; } }
-        public double MaxValue { get { return MaxValue; } set { grafmerani.ChartAreas[0].AxisX.Maximum = value; MaxValue = value; } }
+        public double MinValue { get { return MinValue; } set { graf.ChartAreas[0].AxisX.Minimum = value; MinValue = value; } }
+        public double MaxValue { get { return MaxValue; } set { graf.ChartAreas[0].AxisX.Maximum = value; MaxValue = value; } }
 
         private double X,Y;
         public void addxyToGraf(double x, double y, int cyklus) //pridavam do grafu hodnotu x,y ktore patria cyklu
@@ -108,7 +108,7 @@ namespace JDLMLab
             Cyklus = cyklus;
             foreach (DataRow row in suradnicemerani.Tables[cyklus.ToString()].Rows)
             {
-                grafmerani.Series["Series1"].Points.AddXY(int.Parse(row[0].ToString()), int.Parse(row[1].ToString()));
+                graf.Series["Series1"].Points.AddXY(int.Parse(row[0].ToString()), int.Parse(row[1].ToString()));
             }
         }
         public void addvaluestotable(double x, double y, int cyklus)
@@ -137,7 +137,7 @@ namespace JDLMLab
 
         public void repaintGraf()
         {
-            grafmerani.Series["Series1"].Points.Clear();
+            graf.Series["Series1"].Points.Clear();
             switch (Rezim)
             {
                 case RezimZobrazenia.Avg:
@@ -165,7 +165,7 @@ namespace JDLMLab
         {
             foreach (DataRow row in suradnicemerani.Tables[Cyklus.ToString()].Rows)
             {
-                grafmerani.Series["Series1"].Points.AddXY(int.Parse(row[0].ToString()), int.Parse(row[1].ToString()));
+                graf.Series["Series1"].Points.AddXY(int.Parse(row[0].ToString()), int.Parse(row[1].ToString()));
             }
         }
 
@@ -174,22 +174,22 @@ namespace JDLMLab
             
             foreach (KeyValuePair<double, double> xy in hodnoty)
             {
-                grafmerani.Series["Series1"].Points.AddXY(xy.Key, xy.Value);
+                graf.Series["Series1"].Points.AddXY(xy.Key, xy.Value);
             }
         }
 
 
         public void prepnizobrazenie()
         {
-            if (this.grafmerani.ChartAreas[0].AxisX.IsLogarithmic == true)//jezapnute logaritmicke zobrazenie vypni ho
+            if (this.graf.ChartAreas[0].AxisX.IsLogarithmic == true)//jezapnute logaritmicke zobrazenie vypni ho
             {
-                this.grafmerani.ChartAreas[0].AxisX.IsLogarithmic = false;
-                this.grafmerani.ChartAreas[0].AxisY.IsLogarithmic = false;
+                this.graf.ChartAreas[0].AxisX.IsLogarithmic = false;
+                this.graf.ChartAreas[0].AxisY.IsLogarithmic = false;
             }
             else
             {
-                this.grafmerani.ChartAreas[0].AxisX.IsLogarithmic = true;
-                this.grafmerani.ChartAreas[0].AxisY.IsLogarithmic = true;
+                this.graf.ChartAreas[0].AxisX.IsLogarithmic = true;
+                this.graf.ChartAreas[0].AxisY.IsLogarithmic = true;
             }
         }
    
@@ -209,12 +209,13 @@ namespace JDLMLab
 
         private void zoom(double f)
         {
-            double pos = grafmerani.ChartAreas[0].CursorX.Position;     //pozicia cervenej ciary zlava
-            double max = grafmerani.ChartAreas[0].AxisX.ScaleView.ViewMaximum;  //aktualny najlavejsi zobrazeny bod
-            double min = grafmerani.ChartAreas[0].AxisX.ScaleView.ViewMinimum;  //aktualny najpravejsi zobrazeny bod
+            double pos = graf.ChartAreas[0].CursorX.Position;     //pozicia cervenej ciary zlava
+            double max = graf.ChartAreas[0].AxisX.ScaleView.ViewMaximum;  //aktualny najlavejsi zobrazeny bod
+            double min = graf.ChartAreas[0].AxisX.ScaleView.ViewMinimum;  //aktualny najpravejsi zobrazeny bod
             double d = (max - min) * f;
-            grafmerani.ChartAreas[0].AxisX.ScaleView.Zoom(pos - d / 2, pos + d / 2);
-
+            graf.ChartAreas[0].AxisX.ScaleView.Zoom(pos - d / 2, pos + d / 2);
+            
+           
         }
 
         public void rgb(int minimum, int maximum, int value)

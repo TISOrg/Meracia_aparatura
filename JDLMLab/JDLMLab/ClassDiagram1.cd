@@ -74,7 +74,7 @@
       </Path>
     </AssociationLine>
     <TypeIdentifier>
-      <HashCode>AAAAIAJACAAAAAggiAABgEBAIAAAWAAIQABgghCBAAA=</HashCode>
+      <HashCode>AAAAIAJACAAAAAggiAABgEBAIAAAWAAIAABgghCBAAA=</HashCode>
       <FileName>MeasurementControl.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
@@ -82,7 +82,6 @@
       <Property Name="GrafControl" />
       <Property Name="DbCommunication" />
       <Property Name="Meranie" />
-      <Property Name="DeviceControllers" />
     </ShowAsAssociation>
   </Class>
   <Class Name="JDLMLab.DbCommunication" Collapsed="true">
@@ -113,7 +112,7 @@
       </Enum>
     </NestedTypes>
     <TypeIdentifier>
-      <HashCode>ACwCgAAAIAYBAQgQCiAAQBACAACAAIIIAQBhAAAA4IQ=</HashCode>
+      <HashCode>ACwCgAAAoAIBAQgQCiAAQBACAACAAIIIAQBhAAAA4IQ=</HashCode>
       <FileName>GrafControl.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -144,6 +143,15 @@
   </Class>
   <Class Name="JDLMLab.TlakomerPR4000Driver" Collapsed="true">
     <Position X="12" Y="5.25" Width="1.5" />
+    <InheritanceLine Type="JDLMLab.SerialPortDriver" ManuallyRouted="true" FixedToPoint="true">
+      <Path>
+        <Point X="12.75" Y="3.959" />
+        <Point X="12.75" Y="4.251" />
+        <Point X="13.88" Y="4.251" />
+        <Point X="13.88" Y="5.562" />
+        <Point X="13.5" Y="5.562" />
+      </Path>
+    </InheritanceLine>
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAIAAAAAAAAA=</HashCode>
       <FileName>TlakomerPR4000Driver.cs</FileName>
@@ -151,75 +159,47 @@
   </Class>
   <Class Name="JDLMLab.TlakomerTG256ADriver" Collapsed="true">
     <Position X="12" Y="6.75" Width="1.5" />
+    <InheritanceLine Type="JDLMLab.SerialPortDriver" ManuallyRouted="true">
+      <Path>
+        <Point X="12.75" Y="3.959" />
+        <Point X="12.75" Y="4.267" />
+        <Point X="13.875" Y="4.267" />
+        <Point X="13.875" Y="7.096" />
+        <Point X="13.5" Y="7.096" />
+      </Path>
+    </InheritanceLine>
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAECAAAAAQAAAAAAAAAJAEAAAAAAA=</HashCode>
       <FileName>TlakomerTG256ADriver.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="JDLMLab.VMeterController" Collapsed="true">
-    <Position X="9.25" Y="6" Width="1.5" />
-    <AssociationLine Name="VMeterDriver" Type="JDLMLab.VMeterDriver">
-      <MemberNameLabel ManuallyPlaced="true">
-        <Position X="0.11" Y="0.237" />
-      </MemberNameLabel>
-    </AssociationLine>
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAADAgAAAAAACAQAAAAgAAAAAAAAAAAAA=</HashCode>
-      <FileName>VMeterController.cs</FileName>
-    </TypeIdentifier>
-    <ShowAsAssociation>
-      <Property Name="VMeterDriver" />
-    </ShowAsAssociation>
-  </Class>
   <Class Name="JDLMLab.VMeterDriver" Collapsed="true">
     <Position X="12" Y="6" Width="1.5" />
+    <InheritanceLine Type="JDLMLab.SerialPortDriver" ManuallyRouted="true">
+      <Path>
+        <Point X="12.75" Y="3.959" />
+        <Point X="12.75" Y="4.295" />
+        <Point X="13.875" Y="4.295" />
+        <Point X="13.875" Y="6.346" />
+        <Point X="13.5" Y="6.346" />
+      </Path>
+    </InheritanceLine>
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAIAAAAAAAAA=</HashCode>
       <FileName>VMeterDriver.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="JDLMLab.AMeterController" Collapsed="true">
-    <Position X="9.25" Y="4.5" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAA=</HashCode>
-      <FileName>AMeterController.cs</FileName>
-    </TypeIdentifier>
-    <ShowAsAssociation>
-      <Property Name="AMeterDriver" />
-    </ShowAsAssociation>
-  </Class>
-  <Class Name="JDLMLab.TlakomerTPG256AContorller" Collapsed="true">
-    <Position X="9.25" Y="6.75" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAA=</HashCode>
-      <FileName>TlakomerTPG256AContorller.cs</FileName>
-    </TypeIdentifier>
-    <ShowAsAssociation>
-      <Property Name="TlakomerTG256ADriver" />
-    </ShowAsAssociation>
-  </Class>
-  <Class Name="JDLMLab.TlakomerPR4000Controller" Collapsed="true">
-    <Position X="9.25" Y="5.25" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAA=</HashCode>
-      <FileName>TlakomerPR4000Controller.cs</FileName>
-    </TypeIdentifier>
-    <ShowAsAssociation>
-      <Property Name="TlakomerPR4000Driver" />
-    </ShowAsAssociation>
-  </Class>
-  <Class Name="JDLMLab.TeplomerController" Collapsed="true">
-    <Position X="9.25" Y="7.5" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>TeplomerController.cs</FileName>
-    </TypeIdentifier>
-    <ShowAsAssociation>
-      <Property Name="TeplomerDriver" />
-    </ShowAsAssociation>
-  </Class>
   <Class Name="JDLMLab.TeplomerDriver" Collapsed="true">
     <Position X="12" Y="7.5" Width="1.5" />
+    <InheritanceLine Type="JDLMLab.SerialPortDriver" ManuallyRouted="true">
+      <Path>
+        <Point X="12.75" Y="3.959" />
+        <Point X="12.75" Y="4.304" />
+        <Point X="13.875" Y="4.304" />
+        <Point X="13.875" Y="7.846" />
+        <Point X="13.5" Y="7.846" />
+      </Path>
+    </InheritanceLine>
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAIAAAAAAAAA=</HashCode>
       <FileName>TeplomerDriver.cs</FileName>
@@ -235,14 +215,14 @@
   <Class Name="JDLMLab.NoveMeranieWindow" Collapsed="true">
     <Position X="6" Y="9" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>/wCgAAgAAKAAQJBAQYagIAADAAI4EBCSECQUIAEdDjA=</HashCode>
+      <HashCode>/wCgAAgAAKAAQJBAQYagIAADAAI4FBCSECQUIAEdDjA=</HashCode>
       <FileName>NoveMeranieWindow.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="JDLMLab.Main" Collapsed="true">
     <Position X="3" Y="5.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>A8AAALAAgCAAABoCggCAAAAWQEASAAAAQKEIAQBQAAI=</HashCode>
+      <HashCode>A8AAALAAgCAAABoCggCABAAWQAASABCAQKEYAQBQAAI=</HashCode>
       <FileName>Main.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
@@ -263,37 +243,28 @@
       <FileName>ExportWindow.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="JDLMLab.DeviceControllers" Collapsed="true">
-    <Position X="6.5" Y="6.75" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AQAADAAAAQRAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>DeviceControllers.cs</FileName>
-    </TypeIdentifier>
-    <ShowAsAssociation>
-      <Property Name="AMeterController" />
-      <Property Name="TlakomerPR4000Controller" />
-      <Property Name="VMeterController" />
-      <Property Name="TlakomerTPG256AContorller" />
-      <Property Name="TeplomerController" />
-      <Property Name="QmsController" />
-    </ShowAsAssociation>
-  </Class>
   <Class Name="JDLMLab.QmsDriver" Collapsed="true">
     <Position X="12" Y="8.25" Width="1.5" />
+    <InheritanceLine Type="JDLMLab.SerialPortDriver" ManuallyRouted="true">
+      <Path>
+        <Point X="12.75" Y="3.959" />
+        <Point X="12.75" Y="4.286" />
+        <Point X="13.875" Y="4.286" />
+        <Point X="13.875" Y="8.596" />
+        <Point X="13.5" Y="8.596" />
+      </Path>
+    </InheritanceLine>
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAIAAAAAAAAA=</HashCode>
       <FileName>QmsDriver.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="JDLMLab.QmsController" Collapsed="true">
-    <Position X="9.25" Y="8.25" Width="1.5" />
+  <Class Name="JDLMLab.SerialPortDeviceController" Collapsed="true">
+    <Position X="10.25" Y="6.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIA=</HashCode>
-      <FileName>QmsController.cs</FileName>
+      <HashCode>AAAAAAAAAAAAAAAAADIAAACAQABAAAAIAACAAAAAAAA=</HashCode>
+      <FileName>SerialPortDeviceController.cs</FileName>
     </TypeIdentifier>
-    <ShowAsAssociation>
-      <Property Name="QmsDriver" />
-    </ShowAsAssociation>
   </Class>
   <Interface Name="JDLMLab.SerialPortDriverInterface">
     <Position X="9.5" Y="1.75" Width="1.5" />

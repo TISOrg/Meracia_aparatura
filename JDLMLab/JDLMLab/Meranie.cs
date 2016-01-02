@@ -4,14 +4,14 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using System.Timers;
 namespace JDLMLab
 {
     /// <summary>
     ///  Trieda pre jedno meranie
     /// Autor - Jano
     /// </summary>
-    class Meranie
+    class Meranie 
     {
         public MeasurementParameters Parameters { get; private set; }
 
@@ -39,6 +39,7 @@ namespace JDLMLab
                 foreach(CyklusMerania c in cykly)
                 {
                     t.Merge(c.Table);
+                    
                 }
                 return t;
             }

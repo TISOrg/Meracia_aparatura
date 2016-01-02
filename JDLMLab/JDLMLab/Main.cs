@@ -132,6 +132,59 @@ namespace JDLMLab
         }
 
         event EventHandler ev;
-       
+
+        SerialPortDeviceController c;
+        private void startbutton_click(object sender, EventArgs e)
+        {
+            
+            
+            //AutoResetEvent autoEvent = new AutoResetEvent(false);
+
+            //SerialPortDeviceController statusChecker = new SerialPortDeviceController(new XXXDriver());
+            
+            //// Create an inferred delegate that invokes methods for the timer.
+            //TimerCallback tcb = statusChecker.readAndSave;
+
+            //// Create a timer that signals the delegate to invoke 
+            //// CheckStatus after one second, and every 1/4 second 
+            //// thereafter.
+            //richTextBox1.AppendText("{0} Creating timer.\n"+DateTime.Now.ToString("h:mm:ss.fff"));
+            //System.Threading.Timer stateTimer = new System.Threading.Timer(tcb, autoEvent, 1000, 1500);
+
+            //// When autoEvent signals, change the period to every
+            //// 1/2 second.
+            //autoEvent.WaitOne(5000, false);
+            //stateTimer.Change(0, 500);
+            //richTextBox1.AppendText("\nChanging period.\n");
+
+            //// When autoEvent signals the second time, dispose of 
+            //// the timer.
+            //autoEvent.WaitOne(5000, false);
+            //stateTimer.Dispose();
+            //richTextBox1.AppendText("\nDestroying timer.");
+
+            //for (int i = 0; i < 10; i++)
+            //{
+            //    try
+            //    {  
+            //        richTextBox1.AppendText(c.q.Dequeue().ToString() + "\n");
+            //    }
+            //    catch(InvalidOperationException ex)
+            //    {
+            //        richTextBox1.AppendText("<prazdny>" + "\n");
+            //    }
+            //}
+        }
+
+        private void button2_Click_1(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void Main_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            
+
+        }
     }
 }
