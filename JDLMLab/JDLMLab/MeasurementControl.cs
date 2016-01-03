@@ -16,27 +16,15 @@ namespace JDLMLab
     {
         public MeasurementControl(MeasurementParameters mp)
         {
-            db = new DbCommunication();
-            db.open();
+            Parameters = mp;
             //vytvoritMeranievDB(mp);
             //vygenerovatSkusobne2dMerania(mp);
-            db.close();
-
-            //voltmeter.open();
-            //voltmeter.setTimer(2500;)
-            //voltmeter.startReading();
-
-            //double v;
-            //voltmeter.readNext(out v);
         }
 
         DbCommunication db;
         private void vytvoritMeranievDB(MeasurementParameters mp)
-        {
-            
-            
-            db.vytvoritNoveMeranie(mp);
-            
+        {   
+            db.vytvoritNoveMeranie(mp);   
         }
 
         private void vygenerovatSkusobneMerania(MeasurementParameters mp)
@@ -113,143 +101,219 @@ namespace JDLMLab
 
         }
 
-
+        /// <summary>
+        /// v tomto parametri je vsetko k nastaveniam merania. viem zistit aj typ;
+        /// </summary>
+        public MeasurementParameters Parameters { get; set; }
+        private Meranie Meranie { get; set; }
+        private KrokMerania KrokMerania { get; set; }
         static VMeterDriver voltmeter = new VMeterDriver();
         static AMeterDriver ampermeter = new AMeterDriver();
         static TeplomerDriver teplomer = new TeplomerDriver();
         static TlakomerPR4000Driver tlakpr4000 = new TlakomerPR4000Driver();
         static TlakomerTG256ADriver tlak256 = new TlakomerTG256ADriver();
         static QmsDriver qms = new QmsDriver();
-        
+
+        DbCommunication database;
+        public bool zastavitPoSkonceniCyklu {
+            get; set; }
+
+        string typ { get; set; }
         /// <summary>
         /// Metoda nastartuje meranie s prednastavenymi parametrami.
         /// spusta sa v samostatnom vlakne. 
         /// </summary>
         public void start()
         {
-            new Thread(this.startThread);   //vykonavame meranie v samostatnom threade
-        }
+            db = new DbCommunication();
+            db.open();
+            db.vytvoritNoveMeranie(Parameters);
 
-        public int pocetCyklov { get; set; }
-        public string typ { get; set; }
-        private int pocetBodov { get; set; }
-        public int pocetKrokov { get; private set; }
-        public MeasurementParameters parameters { get; set; }
-        public double krokNapatia { get; private set; }
+            typ = Parameters.Typ;
+           
+            new Thread(this.startThread);   //vykonavame meranie v samostatnom threade
+            
+            db.close();
+        }
+        public void stop()
+        {
+            db.close();
+        }
 
         private void startThread()
         {
-            //zisti typ
-            //nakonfigurovat pristroje
-            if (typ.Equals("EnergyScan"))
+            inicializujPristroje();
+            int aktualnyCyklus = 1;
+            while (Parameters.PocetCyklov == 0 || aktualnyCyklus <= Parameters.PocetCyklov)
             {
-                //start point,end point,cas na 1 krok -> TEM
-                //cez AD
+                vytvorNovyCyklus(); //vytvori datovu strukturu CyklusMerania v strukture Meranie
+                merajVAktualnomCykle(); //zacne meranie aktualneho cyklu
 
-                //konstanta, resolution -> QMS
-                //cez RS232
-
-                pocetBodov = pocetKrokov + 1;
-                //krokNapatia = (parameters.EndPoint - parameters.StartPoint) / parameters.pocetKrokov;
+                if (zastavitPoSkonceniCyklu) break;
+                aktualnyCyklus++;
             }
-            if (typ.Equals("MassScan"))
-            {
-                //start,end,resolution,steptime ->QMS
-                //konstanta -> TEM
 
-
-                //pre massscan nacitat konstantu merania z voltmetra do hlavicky merania
-
-            }
-            if (typ.Equals("2DScan"))
-            {
-
-            }
-            meraj();
+            //skoncili sa cykly, alebo user nastavil ze sa ma skoncit po ukonceni cyklu
+            //ulozime do db
+            db.addMeranie(Meranie);
+            stop(); 
         }
-        int teplota = 0, tlakKapilara = 0, tlakTPG = 0, det = 0;
-        double napatie = 0, prud = 0, x, y;
-        Meranie meranie;
-        Stopwatch watch = new Stopwatch();
 
-        private void meraj()
+        /// <summary>
+        /// podla typu merania nastavi pristrojom vsetky potrebne udaje
+        /// </summary>
+        private void inicializujPristroje()
         {
-            //vykonat meranie podla zadaneho poctu cyklov, alebo nekonecne ak je pocet=0
-            meranie = new Meranie(parameters);
-            int pCyklus = 0;
-            while (pCyklus < pocetCyklov || pocetCyklov == 0)
-            {
-                //pre kazdy cyklus merania, urob vsetky body merania
-                int pBod = 0;
-                x = parameters.StartPoint; y = parameters.Constant;
-                while (pBod < pocetBodov)
-                {
-                    zmerajBod(pBod);
-                    pBod++;
-                }
-                meranie.addKrok(pCyklus, new KrokMerania(x, y, det, prud, tlakKapilara, tlakTPG, teplota));
-                pCyklus++;
-            }
+            inicializujQms();
+            inicializujTem();
         }
 
-        private void zmerajBod(int pBod)
+        private void inicializujTem()
         {
-            //nacitaj detektor
-            //...
-            if (typ.Equals("2DScan"))
-            {
-                /////
-                //x=parameters.startPoint
-            }
-            else
-            {
-                //ak je energy scan, urob krok, tj zvys eV na TEM o krokNapatia
-                if (typ.Equals("EnergyScan"))
-                {
-                    x = parameters.StartPoint + (krokNapatia * pBod);
-
-                    // class PristrojTEM.write(...
-
-                    //vynuluj trigger v AD
-                    //class AD.write(...
-
-                }
-                //mass scan, zvys krok na QMS
-                if (typ.Equals("MassScan"))
-                {
-                    // class PristrojQMS.write(...
-                    x = parameters.StartPoint + (pBod);
-
-                    //vynuluj trigger v AD
-                    //class AD.write(...
-                }
-            }
-            //cakaj cas t na nacitanie zaznameneho poctu TTL v AD
-            // wait(t)...
-
-            //nacitaj TTL, 
-            //det=class ADDet.read()
-            det = 0;
-            //prud
-            prud = 0;
-            //napatie
-            napatie = 0;
-
-            //tlak1,tlak2,teplota kazdych x sekund, kde x je nastavene v global nastaveniach
-            if (watch.ElapsedMilliseconds > parameters.TlakomerTPG256AFrekvenciaMerania)
-            {
-                //zatial je tento interval pre vsetky tri pristroje
-                // tlakKapilara = Class TLAK . read(...)
-                // tlakTPG = Class TlakTPG . read(...)
-                // teplota = Class Teplota . read(...)
-                watch.Restart();
-            }
-
-
-
+            TemDriver.setPoint(Parameters.StartPoint);
         }
 
-     
+        private void inicializujQms()
+        {
+            QmsDriver.setPoint(Parameters.StartPoint);
+            
+        }
+        int cisloKroku { get; set; }
+        private void merajVAktualnomCykle()
+        {
+           
+            if(typ.Equals("Mass Scan"))
+            {
+                /// v pripade mass  scan
+                /// 
+                /// Y - y je teraz sig. napatovy bod je konstantny, podla hodnoty parameters.constant
+                /// ^ 
+                /// |
+                /// |
+                /// |                 f(amu)=sig
+                /// |                 |
+                /// |                 |
+                /// |     pre amu=3.7 |
+                /// Y------------------------> X os (meni sa hmotnostny bod od start point do end point)
+                /// 
+
+            }
+            else if(typ.Equals("Energy Scan"))
+            {
+                /// v pripade mass  scan
+                /// 
+                /// Y - y je teraz sig. hmotnostny bod je konstantny, podla hodnoty parameters.constant
+                /// ^ 
+                /// |
+                /// |
+                /// |                f(eV)=sig
+                /// |                |
+                /// |                |
+                /// |     pre eV=7.2 |
+                /// Y------------------------> X os (meni sa napatovy bod od start point do end point)
+                /// 
+                merajEnergyScanCyklus();
+            }
+
+            else if(typ.Equals("2D Scan"))
+            {
+                /// v pripade 2DSCan
+                /// 
+                /// Y napatovy bod
+                /// ^ 
+                /// |
+                /// |eV--------[amu,ev]=sig
+                /// |          |
+                /// |          |
+                /// |          |
+                /// |         amu
+                /// Y-------------------> X os (hmotnostny bod)
+                /// 
+                /// najprv prechadza cez x, pre dane y. Potom zvysi y a znova prechadza cez x
+                /// 
+
+            }
+
+            
+        }
+
+        private void merajEnergyScanCyklus()
+        {
+            cisloKroku = 0;
+            double krok = ((EnergyScanParameters)Parameters).StartPoint; //ziskame zaciatocny krok = start point pre TEM
+            while (cisloKroku < ((EnergyScanParameters)Parameters).PocetBodov)
+            {
+                TemDriver.setPoint(krok);   //posle na TEM vypocitany bod
+
+                //ADprevodnik. vynulujTrigger;
+                Thread.Sleep((int)((EnergyScanParameters)Parameters).StepTime * 1000);    //pockame cas stanoveny v parametroch
+                                                                                          //pocas cakania treba zistovat hodnoty na ampermetri //vymysliet ako to urobit,
+                                                                                          // napirklad urobit vlakno alebo Task, a v nom cekovat kedy je AD prevodnik hotovy.  v hlavnom vlakne (tomto) ziskat merane hodnoty
+                                                                                          // a nastavit eventHandler ktory bude zavolany z vytvoreneho vlakna, ked bude AD pripraveny.
+                                                                                          // potom pokracovat v krokoch
+                checkAD();
+                //zaznamenat
+                zapisKrokMerania();
+
+                cisloKroku++;
+                krok += ((EnergyScanParameters)Parameters).KrokNapatia;
+            }
+        }
+
+        private void zapisKrokMerania()
+        {
+            KrokMerania.chamber = tlak256.read();
+            //....atd pre ostatne pristroje
+            //pre ampermeter asi nie.
+        }
+
+        /// <summary>
+        /// toto by malo mozno v threade alebo tak testovat ci uz ad prevodnik prestal merat.
+        /// </summary>
+        private void checkAD()
+        {
+            throw new NotImplementedException();
+        }
+
+        private double vypocitajAktualnyKrok()
+        {
+            return vypocitajKrokPreTem(cisloKroku);
+        }
+
+        /// <summary>
+        /// vrati aktualny napatovy krok pre i-ty krok
+        /// </summary>
+        /// <param name="i">kolkaty krok hladame</param>
+        /// <returns></returns>
+        private double vypocitajKrokPreTem(int i)
+        {
+            if (i < 0)
+            {
+                return 0;
+            }
+            if (typ.Equals("Energy Scan"))
+            {
+                return Parameters.StartPoint + i * ((EnergyScanParameters)Parameters).KrokNapatia;
+            }
+            else if (typ.Equals("2D Scan"))
+            {
+                return ((Scan2DParameters)Parameters).EnergyScanParameters.StartPoint + i * ((Scan2DParameters)Parameters).EnergyScanParameters.KrokNapatia;
+            }
+            return 0;
+            
+        }
+         
+        
+
+        private void vytvorNovyCyklus()
+        {
+            throw new NotImplementedException();
+        }
+
+        private void nastavNaDalsiKrokMerania()
+        {
+            throw new NotImplementedException();
+        }
     }
 
 }

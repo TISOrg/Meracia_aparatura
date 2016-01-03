@@ -149,6 +149,7 @@
       <DependentUpon>PosledneParametreMerania.settings</DependentUpon>
     </Compile>
     <Compile Include="Scan2DParameters.cs" />
+    <Compile Include="TemDriver.cs" />
     <Compile Include="TeplomerDriver.cs" />
     <Compile Include="TlakomerPR4000Driver.cs" />
     <Compile Include="TlakomerTG256ADriver.cs" />

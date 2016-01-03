@@ -22,5 +22,10 @@ namespace JDLMLab
         {
             throw new NotImplementedException();
         }
+
+        internal static void setPoint(double startPoint)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

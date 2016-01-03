@@ -143,6 +143,7 @@ namespace JDLMLab
                 return false;
             }
         }
+
         
 
         //=================================CITANIE=============================================
@@ -405,6 +406,14 @@ namespace JDLMLab
         {
             addKroky(c.getKroky(),c.cisloCyklu);
         }
-      
+        internal void addMeranie(Meranie meranie)
+        {
+            foreach(CyklusMerania c in meranie.cykly)
+            {
+                addCyklus(c);
+            }
+        }
+
+
     }
 }
