@@ -391,7 +391,7 @@
             this.TEM.Controls.Add(this.label3);
             this.TEM.Controls.Add(this.label6);
             this.TEM.Controls.Add(this.label4);
-            this.TEM.Location = new System.Drawing.Point(188, 25);
+            this.TEM.Location = new System.Drawing.Point(197, 25);
             this.TEM.Name = "TEM";
             this.TEM.Size = new System.Drawing.Size(226, 121);
             this.TEM.TabIndex = 27;

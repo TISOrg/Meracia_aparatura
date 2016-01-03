@@ -156,7 +156,7 @@ namespace JDLMLab
             {
                 sql += " and r.cycle_num= " + cycleNum;
             }
-            sql += " order by r.cycle_num asc,m.x asc";
+            sql += " order by r.cycle_num asc,r.y asc,m.x asc";
             return getDataSet(sql);
         }
         public DataSet meraniePreGraf(int headerId)
