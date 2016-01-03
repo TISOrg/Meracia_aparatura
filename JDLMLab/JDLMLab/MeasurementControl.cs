@@ -23,7 +23,7 @@ namespace JDLMLab
             db.close();
 
             //voltmeter.open();
-            //voltmeter.setTimer(2500);
+            //voltmeter.setTimer(2500;)
             //voltmeter.startReading();
 
             //double v;

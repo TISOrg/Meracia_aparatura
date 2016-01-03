@@ -11,69 +11,47 @@ namespace JDLMLab
     /// </summary>
     class TlakomerTG256ADriver : SerialPortDriver
     {
+        int kanal;
         public override void close()
         {
-            throw new NotImplementedException();
+            serialPort.Close();
         }
 
         public override void open()
         {
-            throw new NotImplementedException();
-        }
+            serialPort = new System.IO.Ports.SerialPort(Properties.Devices.Default.tpg256aPort, 9600, System.IO.Ports.Parity.None, 8, System.IO.Ports.StopBits.One);
 
-        private char[] znaky = new char[3];
-        string data;
-        protected override void readRequest()
-        {
-            //serialPort2.Write("\r");
-            //tlakomerBox.AppendText(serialPort2.ReadLine());
-            //serialPort2.Write("@sts1");
-            //serialPort2.Write("\r");
-            int i = 1;
-            Thread.Sleep(3000);
-            serialPort.Write("PR" + "1" + "\r\n");
-            Thread.Sleep(100);
-            serialPort.ReadLine();
-            serialPort.Write(znaky, 2, 1);
-            i++;
-            Thread.Sleep(100);
-            data = serialPort.ReadLine();
-            spracujStatusTlak(data);
-
-        }
-
-        public Thread zistovacTlakov;
-
-
-
-        private void button3_Click(object sender, EventArgs e)
-        {
-
-
-            serialPort.NewLine = "\r\n";
-            serialPort.Open();
-
+            kanal = Properties.Devices.Default.tpg256aChannel;
+            serialPort.Handshake = System.IO.Ports.Handshake.None;
             znaky[0] = '\x02';
             znaky[1] = '\x03';
             znaky[2] = '\x05';
-
-            //for (int i = 0; i <= 5; i++)
-            //{
-            //    Senzory.Add(new Senzor());
-            //}
-
-            
-
+            serialPort.NewLine = "\r\n";
+            serialPort.ReceivedBytesThreshold = 10; //format je x,x.xxxEsx
+            serialPort.Open();
         }
-        private void spracujStatusTlak(string prijate)
+
+        private char[] znaky = new char[3];
+       
+        protected override void readRequest()
         {
-            char[] sep = new char[1];
-            sep[0] = ',';
-
-            string[] temp = prijate.Split(sep, 2);
-
-            //hodnota = temp[0] + "\t" + temp[1] + "\n";
-
+            serialPort.Write("PR" + kanal.ToString() + "\r\n");
+            //serialPort.Write(znaky, 2, 1);// je to potrebne???
         }
+
+        /// <summary>
+        /// treba prekonat tuto metodu, lebo data prijate z tlakomera su vo formate y,x.xxxEsx <CR><LF>
+        /// kde x.xxx je vzdy v exponecialnom formate, a y je 0 ak je meranie ok, ostatne cisla pozriet v dokumentacii pristroja
+        /// y=3 je sensor error
+        /// </summary>
+        /// <param name="data"></param>
+        /// <returns></returns>
+        protected override double convertToDouble(string data)
+        {
+            string[] temp = data.Split(new char[] { ',' }, 2);
+            //teoreticky by sa dalo vyuzit temp[0] pre osetrenie pripadu nefunkcneho senzora
+            return base.convertToDouble(temp[1]);
+        }
+        
     }
 }

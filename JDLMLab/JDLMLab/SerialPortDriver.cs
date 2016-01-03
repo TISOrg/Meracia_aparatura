@@ -14,7 +14,6 @@ namespace JDLMLab
     /// </summary>
     abstract class SerialPortDriver : SerialPortDriverInterface
     {
-     
         protected SerialPort serialPort;
         public abstract void close();
 
