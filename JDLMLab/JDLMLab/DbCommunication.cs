@@ -192,7 +192,7 @@ namespace JDLMLab
         //metoda na vratenie zoznamu existujucich rokov kedy boli robene merania
         public DataSet roky()
         {
-            string sql = "select distinct(extract(year from datetime)) as rok from headers order by rok asc";
+            string sql = "select distinct(extract(year from datetime)) as rok from headers order by rok desc";
             return getDataSet(sql);
         }
 
@@ -214,7 +214,7 @@ namespace JDLMLab
         /// <returns>Vracia DataSet datumov merani</returns>
         public DataSet datumyMerani(string rok,string name)
         {
-            string sql = "select distinct(date_format(datetime,'%d.%b')) as datum from headers where extract(year from datetime)=" + rok +" and name like '"+name+ "' order by datum asc";
+            string sql = "select distinct(date_format(datetime,'%d.%b')) as datum from headers where extract(year from datetime)=" + rok +" and name like '"+name+ "' order by datum desc";
             return getDataSet(sql);
         }
 
