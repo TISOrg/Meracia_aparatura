@@ -90,7 +90,6 @@
       <DependentUpon>Database.settings</DependentUpon>
     </Compile>
     <Compile Include="DbCommunication.cs" />
-    <Compile Include="DbConnectionSettings.cs" />
     <Compile Include="EnergyScanParameters.cs" />
     <Compile Include="ExportWindow.cs">
       <SubType>Form</SubType>
@@ -108,12 +107,6 @@
     </Compile>
     <Compile Include="NastaveniaWindow.Designer.cs">
       <DependentUpon>NastaveniaWindow.cs</DependentUpon>
-    </Compile>
-    <Compile Include="HeaderInfo.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="HeaderInfo.Designer.cs">
-      <DependentUpon>HeaderInfo.cs</DependentUpon>
     </Compile>
     <Compile Include="Load.cs">
       <SubType>Form</SubType>
@@ -172,9 +165,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Main.resx">
       <DependentUpon>Main.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="HeaderInfo.resx">
-      <DependentUpon>HeaderInfo.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Load.resx">
       <DependentUpon>Load.cs</DependentUpon>

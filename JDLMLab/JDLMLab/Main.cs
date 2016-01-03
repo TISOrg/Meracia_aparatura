@@ -67,7 +67,11 @@ namespace JDLMLab
             {
                 //hodnota setMerania.parametreMerania obsahuje instanciu triedy measurementsparameters
                 //ktora obsahuje vsetky informacie na zacatie merania.
-                measurementControl = new MeasurementControl();
+                measurementControl = new MeasurementControl(setmerania.parametreMerania);
+
+                
+                
+
             }
         }
 

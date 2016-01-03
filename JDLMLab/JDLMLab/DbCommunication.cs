@@ -45,8 +45,54 @@ namespace JDLMLab
             "`note` varchar(500) NOT NULL,PRIMARY KEY(`id`),KEY `id(PK)` (`id`)) ENGINE = InnoDB AUTO_INCREMENT = 29 DEFAULT CHARSET = latin1;";
             sql += "CREATE TABLE `rows` (`id` int(11) NOT NULL AUTO_INCREMENT,`y` double NOT NULL,`cycle_num` int(254) NOT NULL,`header_id` int(11) NOT NULL,PRIMARY KEY(`id`),KEY `header_id(PK)` (`header_id`),KEY `id` (`id`),CONSTRAINT `obmedzenie` FOREIGN KEY (`header_id`) REFERENCES `headers` (`id`) ON DELETE CASCADE ON UPDATE CASCADE) ENGINE = InnoDB AUTO_INCREMENT = 28 DEFAULT CHARSET = latin1 ;";
             sql += "CREATE TABLE `merania` (`id` int(11) NOT NULL AUTO_INCREMENT,`x` double NOT NULL,`y_id` int(11) NOT NULL,`sig` int(11) NOT NULL,`current` double NOT NULL,`kapillar` double NOT NULL,`chamber` double NOT NULL,`temperature` double NOT NULL,PRIMARY KEY(`id`),KEY `id_y` (`y_id`),CONSTRAINT `obmedzenie2` FOREIGN KEY (`y_id`) REFERENCES `rows` (`id`) ON DELETE CASCADE ON UPDATE CASCADE) ENGINE = InnoDB AUTO_INCREMENT = 90 DEFAULT CHARSET = latin1;";
+
+            sql+="CREATE TABLE `energy_scan_header` ("+
+	            "`id` INT(11) NOT NULL AUTO_INCREMENT,"+
+	            "`header_id` INT(11) NOT NULL,"+
+	            "`start_point` DOUBLE NOT NULL,"+
+	            "`end_point` DOUBLE NOT NULL,"+
+	            "`constant` DOUBLE NOT NULL,"+
+	            "`steptime` DOUBLE NOT NULL,"+
+	            "`pocet_krokov` INT(11) NOT NULL,"+
+                "PRIMARY KEY(`id`),"+
+                "INDEX `header_id` (`header_id`),"+
+                "CONSTRAINT `es_header_contraint` FOREIGN KEY (`header_id`) REFERENCES `headers` (`id`) ON UPDATE CASCADE ON DELETE CASCADE)" +
+                "COLLATE = 'utf8_slovak_ci'"+
+                "ENGINE = InnoDB; ";
+            sql += "CREATE TABLE `mass_scan_header` (" +
+                "`id` INT(11) NOT NULL AUTO_INCREMENT," +
+                "`header_id` INT(11) NOT NULL," +
+                "`start_point` DOUBLE NOT NULL," +
+                "`end_point` DOUBLE NOT NULL," +
+                "`constant` DOUBLE NOT NULL," +
+                "`steptime` DOUBLE NOT NULL," +
+                "PRIMARY KEY(`id`)," +
+                "INDEX `header_id` (`header_id`)," +
+                "CONSTRAINT `ms_header_contraint` FOREIGN KEY (`header_id`) REFERENCES `headers` (`id`) ON UPDATE CASCADE ON DELETE CASCADE)" +
+                "COLLATE = 'utf8_slovak_ci'" +
+                "ENGINE = InnoDB; ";
+
+            sql+="CREATE TABLE `scan2d_header` ("+
+                "`id` INT(11) NOT NULL AUTO_INCREMENT," +
+                "`header_id` INT(11) NOT NULL," +
+                "`e_start_point` DOUBLE NOT NULL," +
+                "`e_end_point` DOUBLE NOT NULL," +
+                "`e_steptime` DOUBLE NOT NULL," +
+                "`pocet_krokov` INT(11) NOT NULL," +
+                "`m_start_point` DOUBLE NOT NULL," +
+                "`m_end_point` DOUBLE NOT NULL," +
+                "`m_steptime` DOUBLE NOT NULL," +
+                "PRIMARY KEY (`id`)," +
+                "INDEX `header_id` (`header_id`)," +
+                "CONSTRAINT `s2_header_contraint` FOREIGN KEY (`header_id`) REFERENCES `headers` (`id`) ON UPDATE CASCADE ON DELETE CASCADE)" +
+                "COLLATE = 'utf8_slovak_ci'" +
+                "ENGINE = InnoDB;";
+
+
             MySqlCommand c = new MySqlCommand(sql, conn);
             c.ExecuteNonQuery();   
+
+
         }
 
         public Boolean open()
@@ -199,8 +245,36 @@ namespace JDLMLab
 
         public DataSet header(int headerId)
         {
-            string sql =
-                "select h.name,h.type_name,h.datetime,h.start_point,h.end_point,h.constant,h.resolution,h.steptime,h.cycles,h.note from headers h where id=" + headerId;
+
+            MySqlCommand c = new MySqlCommand("select type_name from headers where id=@header_id", conn);
+            c.Parameters.AddWithValue("@header_id", headerId);
+            conn.Open();
+            MySqlDataReader rdr = c.ExecuteReader();
+            string typ="";
+            while (rdr.Read())
+            {
+                typ = rdr.GetString(0);
+            }
+            rdr.Close();
+            conn.Close();
+
+            string sql="";
+            if(typ.Equals("Energy Scan"))
+            {
+                sql =
+                "select * from headers h left join energy_scan_header e on e.header_id=h.id where h.id=" + headerId;
+            }
+            if (typ.Equals("Mass Scan"))
+            {
+                sql =
+                "select * from headers h left join mass_scan_header e on e.header_id=h.id where h.id=" + headerId;
+            }
+            if (typ.Equals("2D Scan"))
+            {
+                sql =
+                "select * from headers h left join scan2d_header e on e.header_id=h.id where h.id=" + headerId;
+            }
+
 
             return getDataSet(sql);
         }
@@ -213,19 +287,54 @@ namespace JDLMLab
 
         public void vytvoritNoveMeranie(MeasurementParameters mp)
         {
+            
+            MySqlCommand c = new MySqlCommand("insert into headers (name,type_name,resolution,cycles,note) values(@name,@type_name,@resolution,@cycles,@note)", conn);
 
-            MySqlCommand c = new MySqlCommand("insert into headers (name,type_name,start_point,end_point,constant,resolution,steptime,cycles,note) values(@name,@type_name,@start_point,@end_point,@constant,@resolution,@steptime,@cycles,@note)", conn);
             c.Parameters.AddWithValue("@name", mp.Name);
             c.Parameters.AddWithValue("@type_name", mp.Typ);
-            c.Parameters.AddWithValue("@start_point", mp.StartPoint);
-            c.Parameters.AddWithValue("@end_point", mp.EndPoint);
-            c.Parameters.AddWithValue("@constant", mp.Constant);
             c.Parameters.AddWithValue("@resolution", mp.Resolution);
-            c.Parameters.AddWithValue("@steptime", mp.StepTime);
             c.Parameters.AddWithValue("@cycles", mp.PocetCyklov);
             c.Parameters.AddWithValue("@note", mp.Note);
             c.ExecuteNonQuery();
             aktualneMeranie = c.LastInsertedId;
+
+            if (mp.Typ.Equals("Energy Scan"))
+            {
+                c = new MySqlCommand("insert into energy_scan_header (header_id,start_point,end_point,constant,steptime,pocet_krokov) values(@header_id,@start_point,@end_point,@constant,@steptime,@pocet_krokov)", conn);
+                c.Parameters.AddWithValue("@header_id",aktualneMeranie);
+                c.Parameters.AddWithValue("@steptime", ((EnergyScanParameters)mp).StepTime);
+                c.Parameters.AddWithValue("@start_point", ((EnergyScanParameters)mp).StartPoint);
+                c.Parameters.AddWithValue("@end_point", ((EnergyScanParameters)mp).EndPoint);
+                c.Parameters.AddWithValue("@constant", ((EnergyScanParameters)mp).Constant);
+                c.Parameters.AddWithValue("@pocet_krokov", ((EnergyScanParameters)mp).PocetKrokov);
+            }
+            else if (mp.Typ.Equals("Mass Scan"))
+            {
+                c = new MySqlCommand("insert into mass_scan_header (header_id,start_point,end_point,constant,steptime) values(@header_id,@start_point,@end_point,@constant,@steptime)", conn);
+                c.Parameters.AddWithValue("@header_id", aktualneMeranie);
+                c.Parameters.AddWithValue("@steptime", ((MassScanParameters)mp).StepTime);
+                c.Parameters.AddWithValue("@start_point", ((MassScanParameters)mp).StartPoint);
+                c.Parameters.AddWithValue("@end_point", ((MassScanParameters)mp).EndPoint);
+                c.Parameters.AddWithValue("@constant", ((MassScanParameters)mp).Constant);
+                
+            }
+            else if (mp.Typ.Equals("2D Scan"))
+            {
+                c = new MySqlCommand("insert into scan2d_header(header_id,e_start_point,e_end_point,e_steptime,pocet_krokov,m_start_point,m_end_point,m_steptime) values (@header_id,@e_start_point,@e_end_point,@e_steptime,@pocet_krokov,@m_start_point,@m_end_point,@m_steptime)", conn);
+                c.Parameters.AddWithValue("@header_id", aktualneMeranie);
+                c.Parameters.AddWithValue("@e_steptime", ((Scan2DParameters)mp).EnergyScanParameters.StepTime);
+                c.Parameters.AddWithValue("@e_start_point", ((Scan2DParameters)mp).EnergyScanParameters.StartPoint);
+                c.Parameters.AddWithValue("@e_end_point", ((Scan2DParameters)mp).EnergyScanParameters.EndPoint);
+                c.Parameters.AddWithValue("@pocet_krokov", ((Scan2DParameters)mp).EnergyScanParameters.PocetKrokov);
+                c.Parameters.AddWithValue("@m_steptime", ((Scan2DParameters)mp).MassScanParameters.StepTime);
+                c.Parameters.AddWithValue("@m_start_point", ((Scan2DParameters)mp).MassScanParameters.StartPoint);
+                c.Parameters.AddWithValue("@m_end_point", ((Scan2DParameters)mp).MassScanParameters.EndPoint);
+
+            }
+            c.ExecuteNonQuery();
+      
+
+            
 
         }
 

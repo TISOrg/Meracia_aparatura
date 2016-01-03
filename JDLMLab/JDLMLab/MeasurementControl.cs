@@ -14,6 +14,98 @@ namespace JDLMLab
     /// </summary>
     class MeasurementControl
     {
+        public MeasurementControl(MeasurementParameters mp)
+        {
+            db = new DbCommunication();
+            db.open();
+            //vytvoritMeranievDB(mp);
+            //vygenerovatSkusobne2dMerania(mp);
+            db.close();
+        }
+
+        DbCommunication db;
+        private void vytvoritMeranievDB(MeasurementParameters mp)
+        {
+            
+            
+            db.vytvoritNoveMeranie(mp);
+            
+        }
+
+        private void vygenerovatSkusobneMerania(MeasurementParameters mp)
+        {
+            Meranie m = new Meranie(mp);
+            m.addKrok(1, new KrokMerania(1, 5, 120, 3.4, 3.4, 6.7, 3.2));
+            m.addKrok(1, new KrokMerania(2, 5, 130, 3.4, 3.4, 6.7, 3.2));
+            m.addKrok(1, new KrokMerania(3, 5, 160, 3.4, 3.4, 6.7, 3.2));
+            m.addKrok(1, new KrokMerania(4, 5, 170, 3.4, 3.4, 6.7, 3.2));
+
+            m.addKrok(2, new KrokMerania(1, 5, 156, 3.4, 3.4, 6.7, 3.2));
+            m.addKrok(2, new KrokMerania(2, 5, 100, 3.4, 3.4, 6.7, 3.2));
+            m.addKrok(2, new KrokMerania(3, 5, 132, 3.4, 3.4, 6.7, 3.2));
+            m.addKrok(2, new KrokMerania(4, 5, 110, 3.4, 3.4, 6.7, 3.2));
+
+            m.addKrok(3, new KrokMerania(1, 5, 156, 3.4, 3.4, 6.7, 3.2));
+            m.addKrok(3, new KrokMerania(2, 5, 100, 3.4, 3.4, 6.7, 3.2));
+            m.addKrok(3, new KrokMerania(3, 5, 132, 3.4, 3.4, 6.7, 3.2));
+            m.addKrok(3, new KrokMerania(4, 5, 110, 3.4, 3.4, 6.7, 3.2));
+
+            db.addCyklus(m.getCyklus(1));
+            db.addCyklus(m.getCyklus(2));
+            db.addCyklus(m.getCyklus(3));
+            
+        }
+
+        private void vygenerovatSkusobne2dMerania(MeasurementParameters mp)
+        {
+            Meranie m = new Meranie(mp);
+            m.addKrok(1, new KrokMerania(1, 5, 120, 3.4, 3.4, 6.7, 3.2));
+            m.addKrok(1, new KrokMerania(2, 5, 130, 3.4, 3.4, 6.7, 3.2));
+            m.addKrok(1, new KrokMerania(3, 5, 160, 3.4, 3.4, 6.7, 3.2));
+            m.addKrok(1, new KrokMerania(4, 5, 170, 3.4, 3.4, 6.7, 3.2));
+
+            m.addKrok(1, new KrokMerania(1, 6, 156, 3.4, 3.4, 6.7, 3.2));
+            m.addKrok(1, new KrokMerania(2, 6, 100, 3.4, 3.4, 6.7, 3.2));
+            m.addKrok(1, new KrokMerania(3, 6, 132, 3.4, 3.4, 6.7, 3.2));
+            m.addKrok(1, new KrokMerania(4, 6, 110, 3.4, 3.4, 6.7, 3.2));
+
+            m.addKrok(1, new KrokMerania(1, 7, 156, 3.4, 3.4, 6.7, 3.2));
+            m.addKrok(1, new KrokMerania(2, 7, 100, 3.4, 3.4, 6.7, 3.2));
+            m.addKrok(1, new KrokMerania(3, 7, 132, 3.4, 3.4, 6.7, 3.2));
+            m.addKrok(1, new KrokMerania(4, 7, 110, 3.4, 3.4, 6.7, 3.2));
+
+            m.addKrok(1, new KrokMerania(1, 8, 256, 3.4, 3.4, 6.7, 3.2));
+            m.addKrok(1, new KrokMerania(2, 8, 200, 3.4, 3.4, 6.7, 3.2));
+            m.addKrok(1, new KrokMerania(3, 8, 232, 3.4, 3.4, 6.7, 3.2));
+            m.addKrok(1, new KrokMerania(4, 8, 210, 3.4, 3.4, 6.7, 3.2));
+
+            m.addKrok(2, new KrokMerania(1, 5, 120, 3.4, 3.4, 6.7, 3.2));
+            m.addKrok(2, new KrokMerania(2, 5, 130, 3.4, 3.4, 6.7, 3.2));
+            m.addKrok(2, new KrokMerania(3, 5, 160, 3.4, 3.4, 6.7, 3.2));
+            m.addKrok(2, new KrokMerania(4, 5, 170, 3.4, 3.4, 6.7, 3.2));
+
+            m.addKrok(2, new KrokMerania(1, 6, 156, 3.4, 3.4, 6.7, 3.2));
+            m.addKrok(2, new KrokMerania(2, 6, 100, 3.4, 3.4, 6.7, 3.2));
+            m.addKrok(2, new KrokMerania(3, 6, 132, 3.4, 3.4, 6.7, 3.2));
+            m.addKrok(2, new KrokMerania(4, 6, 110, 3.4, 3.4, 6.7, 3.2));
+
+            m.addKrok(2, new KrokMerania(1, 7, 156, 3.4, 3.4, 6.7, 3.2));
+            m.addKrok(2, new KrokMerania(2, 7, 100, 3.4, 3.4, 6.7, 3.2));
+            m.addKrok(2, new KrokMerania(3, 7, 132, 3.4, 3.4, 6.7, 3.2));
+            m.addKrok(2, new KrokMerania(4, 7, 110, 3.4, 3.4, 6.7, 3.2));
+
+            m.addKrok(2, new KrokMerania(1, 8, 256, 3.4, 3.4, 6.7, 3.2));
+            m.addKrok(2, new KrokMerania(2, 8, 200, 3.4, 3.4, 6.7, 3.2));
+            m.addKrok(2, new KrokMerania(3, 8, 232, 3.4, 3.4, 6.7, 3.2));
+            m.addKrok(2, new KrokMerania(4, 8, 210, 3.4, 3.4, 6.7, 3.2));
+
+
+            db.addCyklus(m.getCyklus(1));
+            db.addCyklus(m.getCyklus(2));
+            
+
+        }
+
         /// <summary>
         /// Metoda nastartuje meranie s prednastavenymi parametrami.
         /// spusta sa v samostatnom vlakne. 

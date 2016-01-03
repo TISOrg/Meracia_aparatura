@@ -17,12 +17,6 @@ namespace JDLMLab
         {
             InitializeComponent();
             filter = new Filter();
-            DbConnectionSettings dbpar = new DbConnectionSettings();
-            dbpar.database = Database.Default.database;
-            dbpar.serverName = Database.Default.host;
-            dbpar.userName = Database.Default.user;
-            dbpar.password = Database.Default.password;
-            dbpar.port = Database.Default.port;
 
             init();
         }
@@ -97,17 +91,49 @@ namespace JDLMLab
         {
             if (e.RowIndex >= 0)
             {
-                DataTable dt = db.header((int)dataMerania[e.ColumnIndex, e.RowIndex].Value).Tables[0];
-                nameValue.Text = dt.Rows[0]["name"].ToString();
-                startPointValue.Text = dt.Rows[0]["start_point"].ToString();
-                endPointValue.Text = dt.Rows[0]["end_point"].ToString();
-                constantValue.Text = dt.Rows[0]["constant"].ToString();
-                noteValue.Text = dt.Rows[0]["note"].ToString();
-                resolutionValue.Text = dt.Rows[0]["resolution"].ToString();
-                stepTimeValue.Text = dt.Rows[0]["steptime"].ToString();
-                dateValue.Text = dt.Rows[0]["datetime"].ToString();
-                cyclesValue.Text = dt.Rows[0]["cycles"].ToString();
-                
+                DataRow dr = db.header((int)dataMerania[e.ColumnIndex, e.RowIndex].Value).Tables[0].Rows[0];
+                name.Text = dr["name"].ToString();
+                date.Text = dr["datetime"].ToString();
+                cycles.Text = dr["cycles"].ToString();
+                noteValue.Text = dr["note"].ToString();
+                resolution.Text = dr["resolution"].ToString();
+                typ.Text = dr["type_name"].ToString();
+                energy_start_point.Text = "";
+                energy_end_point.Text = "";
+                mass_constant.Text = "";
+                energy_steptime.Text = "";
+                mass_start_point.Text = "";
+                mass_end_point.Text = "";
+                energy_constant.Text = "";
+                mass_steptime.Text = "";
+                pocet_krokov.Text = "";
+
+                if (dr["type_name"].Equals("Energy Scan"))
+                {
+                    energy_start_point.Text = dr["start_point"].ToString();
+                    energy_end_point.Text = dr["end_point"].ToString();
+                    mass_constant.Text = dr["constant"].ToString();
+                    energy_steptime.Text = dr["steptime"].ToString();
+                    pocet_krokov.Text = dr["pocet_krokov"].ToString();
+                }
+                if (dr["type_name"].Equals("Mass Scan"))
+                {
+                    mass_start_point.Text = dr["start_point"].ToString();
+                    mass_end_point.Text = dr["end_point"].ToString();
+                    energy_constant.Text = dr["constant"].ToString();
+                    mass_steptime.Text = dr["steptime"].ToString();
+                }
+                if (dr["type_name"].Equals("2D Scan"))
+                {
+                    energy_start_point.Text = dr["e_start_point"].ToString();
+                    energy_end_point.Text = dr["e_end_point"].ToString();
+                    energy_steptime.Text = dr["e_steptime"].ToString();
+                    pocet_krokov.Text = dr["pocet_krokov"].ToString();
+                    mass_start_point.Text = dr["m_start_point"].ToString();
+                    mass_end_point.Text = dr["m_end_point"].ToString();
+                    mass_steptime.Text = dr["m_steptime"].ToString();
+                }
+
             }
         }
 
@@ -155,6 +181,11 @@ namespace JDLMLab
         }
 
         private void Load_Shown(object sender, EventArgs e)
+        {
+
+        }
+
+        private void groupBox2_Enter(object sender, EventArgs e)
         {
 
         }

@@ -72,9 +72,11 @@ namespace JDLMLab
         }
         internal void addMeranie(int meranie)   
         {
-
+            ///komunikaciu asi neriesit tu v triede ale inde
             DbCommunication db = new DbCommunication();
             DataSet h = db.header(meranie);
+            DataRow header = h.Tables[0].Rows[0];
+            
             graf.ChartAreas[0].AxisX.Minimum = (double)(h.Tables[0].Rows[0]["start_point"]);
             graf.ChartAreas[0].AxisX.Maximum =(double)(h.Tables[0].Rows[0]["end_point"]);
             graf.ChartAreas[0].AxisY.Maximum = 500;

@@ -29,7 +29,7 @@ namespace JDLMLab
             this.StepTime = steptime;
             this.PocetKrokov = pocetkrokov;
             
-            Typ = "EnergyScan";
+            Typ = "Energy Scan";
             init();
         }
         public void init()

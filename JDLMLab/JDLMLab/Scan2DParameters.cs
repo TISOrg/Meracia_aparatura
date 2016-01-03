@@ -21,7 +21,7 @@ namespace JDLMLab
         {
             EnergyScanParameters = e;
             MassScanParameters = m;
-            Typ = "2DScan";
+            Typ = "2D Scan";
             init();
         }
 
