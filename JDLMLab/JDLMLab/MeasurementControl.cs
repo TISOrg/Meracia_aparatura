@@ -21,6 +21,13 @@ namespace JDLMLab
             //vytvoritMeranievDB(mp);
             //vygenerovatSkusobne2dMerania(mp);
             db.close();
+
+            //voltmeter.open();
+            //voltmeter.setTimer(2500);
+            //voltmeter.startReading();
+
+            //double v;
+            //voltmeter.readNext(out v);
         }
 
         DbCommunication db;
@@ -106,6 +113,14 @@ namespace JDLMLab
 
         }
 
+
+        static VMeterDriver voltmeter = new VMeterDriver();
+        static AMeterDriver ampermeter = new AMeterDriver();
+        static TeplomerDriver teplomer = new TeplomerDriver();
+        static TlakomerPR4000Driver tlakpr4000 = new TlakomerPR4000Driver();
+        static TlakomerTG256ADriver tlak256 = new TlakomerTG256ADriver();
+        static QmsDriver qms = new QmsDriver();
+        
         /// <summary>
         /// Metoda nastartuje meranie s prednastavenymi parametrami.
         /// spusta sa v samostatnom vlakne. 

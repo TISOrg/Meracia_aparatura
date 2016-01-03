@@ -72,22 +72,18 @@ namespace JDLMLab
 
         public double read()
         {
-            if (last == null)
-            {
-                return 0;
-            }
             return last;
         }
         public void readNext(out double value)
         {
             if (!blockingCollection.TryTake(out value))
             {
-                value = -1;
+                value = last;
             }
 
             return;
             
-            //uvidime ci bude treba taks alebo vlakno
+            //uvidime ci bude treba task alebo vlakno...mozno vobec -> tak potom odstranit nasledujuce
             using (Task t2 = Task.Factory.StartNew(() =>
             {
                 // Consume consume the BlockingCollection
