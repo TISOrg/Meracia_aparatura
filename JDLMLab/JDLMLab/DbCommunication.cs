@@ -11,19 +11,32 @@ namespace JDLMLab
 {
     class DbCommunication
     {
-        private string connectionString;
+        
         private MySqlConnection conn;
-        public DbCommunication()
+
+        private static string setConnectionString()
         {
-            connectionString =
+            string c=
                 "Server=" + Database.Default.host +
                 ";Port=" + Database.Default.port.ToString() +
                 ";Database=" + Database.Default.database +
                 ";Uid=" + Database.Default.user +
                 ";Password=" + Database.Default.password;
-            conn = new MySqlConnection(connectionString);
 
-            bool tabulkyExistuju = false; ;
+            return c;
+        }
+        public static void testConnection()
+        {
+            MySqlConnection test = new MySqlConnection(setConnectionString());
+            test.Open();
+            test.Close();
+        }
+
+        public DbCommunication()
+        {
+            conn = new MySqlConnection(setConnectionString());
+
+            bool tabulkyExistuju = false; 
             MySqlCommand c = new MySqlCommand("show tables like 'headers'", conn);
             conn.Open();
             MySqlDataReader r = c.ExecuteReader();
@@ -356,7 +369,7 @@ namespace JDLMLab
         }
 
 
-        long aktualnyRow;
+        
         private long novyRow(double y, int cycle, long header)
         {
             MySqlCommand c = new MySqlCommand("insert into rows (y,cycle_num,header_id) values(@y,@cycle,@header)", conn);
@@ -365,7 +378,6 @@ namespace JDLMLab
             c.Parameters.AddWithValue("@header", header);
 
             c.ExecuteNonQuery();
-            aktualnyRow = c.LastInsertedId;
             return c.LastInsertedId;
         }
         public void addKroky(List<KrokMerania> ks,int cyklus=1)

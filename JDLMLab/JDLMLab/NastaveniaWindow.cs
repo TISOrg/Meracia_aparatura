@@ -198,12 +198,19 @@ namespace JDLMLab
                 fillDbSettings();   //vyplni db nastavenia do settings filu docasne
                 try
                 {
-                    DbCommunication db = new DbCommunication();
+                    DbCommunication.testConnection();
                     MessageBox.Show("Pripojenie úspešné", "Pripojenie úspešné", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
-                catch(MySql.Data.MySqlClient.MySqlException ex)
+                catch (MySql.Data.MySqlClient.MySqlException ex)
                 {
-                    FormValidateError("Pripojenie k databáze zlyhalo\n", "Chybné spojenie");
+                    if (ex.Number == 0)
+                    {
+                        FormValidateError("Pripojenie k databáze zlyhalo. Zadajte správne prihlasovacie údaje!\n", "Chybné prihlásenie");
+                    }
+                    else
+                    {
+                        FormValidateError("Nepodarilo sa pripojiť na doménu " + dbSettingsFieldHost.Text, "Chybná doména");
+                    }
                 }
                 Database.Default.Reset();   //zresetuje povodne nastavenia v settings file
                 
