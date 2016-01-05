@@ -184,8 +184,8 @@ namespace JDLMLab
         {
             if (hodnota >= 2)
             {
-                this.grafmerani.ChartAreas[0].AxisY.LogarithmBase = hodnota;
-                this.grafmerani.ChartAreas[0].AxisX.LogarithmBase = hodnota;
+                this.graf.ChartAreas[0].AxisY.LogarithmBase = hodnota;
+                this.graf.ChartAreas[0].AxisX.LogarithmBase = hodnota;
 
             }
         }
