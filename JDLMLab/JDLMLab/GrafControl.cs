@@ -180,7 +180,16 @@ namespace JDLMLab
             }
         }
 
+        public void setlogbase(int hodnota)
+        {
+            if (hodnota >= 2)
+            {
+                this.grafmerani.ChartAreas[0].AxisY.LogarithmBase = hodnota;
+                this.grafmerani.ChartAreas[0].AxisX.LogarithmBase = hodnota;
 
+            }
+        }
+        
         public void prepnizobrazenie()
         {
             if (this.graf.ChartAreas[0].AxisX.IsLogarithmic == true)//jezapnute logaritmicke zobrazenie vypni ho
