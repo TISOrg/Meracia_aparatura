@@ -141,18 +141,26 @@ namespace JDLMLab
         }
 
         event EventHandler ev;
+        VMeterDriver v;
 
-        
         private void startbutton_click(object sender, EventArgs e)
         {
-
-
+           v = new VMeterDriver();
+            v.setTimer(1000);
            
+            v.open();
+            v.startReading();
+
+            timer1.Enabled = true;
+            Thread.Sleep(1000);
+
         }
 
         private void button2_Click_1(object sender, EventArgs e)
         {
-            
+            v.stopReading();
+            v.close();
+
         }
 
         private void Main_FormClosing(object sender, FormClosingEventArgs e)
@@ -164,6 +172,35 @@ namespace JDLMLab
         private void timer1_Tick(object sender, EventArgs e)
         {
             
+        }
+
+        private void timer1_Tick_1(object sender, EventArgs e)
+        {
+  
+                //MessageBox.Show("fdfsdf");
+                
+
+                double d = 1;
+                try
+                {
+                    v.readNext(out d);
+                    richTextBox1.AppendText(d.ToString());
+                }
+                catch (Exception f)
+                {
+                    richTextBox1.AppendText(f.ToString());
+                }
+
+
+
+
+
+
+
+            
+
+
+
         }
     }
 }

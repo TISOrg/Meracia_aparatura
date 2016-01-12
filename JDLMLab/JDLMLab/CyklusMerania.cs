@@ -9,8 +9,11 @@ namespace JDLMLab
 {
     class CyklusMerania 
     {
+
         public CyklusMerania(int i)
         {
+
+          
             kroky = new List<KrokMerania>();
             cisloCyklu = i;
         }

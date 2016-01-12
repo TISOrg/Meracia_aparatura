@@ -23,15 +23,18 @@ namespace JDLMLab
         /// <returns>textovy retazec zo vstupu premeneny na double</returns>
         virtual protected double convertToDouble(string data)
         {
+            
+            
             return Convert.ToDouble(data);
         }
-
+        static int c=0;
         double last { get; set; }
         protected void dataRecieved(object sender,SerialDataReceivedEventArgs e)
         {
             last = convertToDouble(serialPort.ReadLine());
             blockingCollection.Add(last);
-            
+            blockingCollection.Take();
+            c++;
         }
         public abstract void open();
 
@@ -44,6 +47,7 @@ namespace JDLMLab
             IntervalMerania = delay;
             timer = new System.Timers.Timer(delay);
             timer.Elapsed += Timer_Elapsed;
+            blockingCollection = new BlockingCollection<double>();
             timer.AutoReset = true;
         }
         public void startReading()
@@ -75,11 +79,14 @@ namespace JDLMLab
         }
         public void readNext(out double value)
         {
+            
             if (!blockingCollection.TryTake(out value))
             {
                 value = last;
+                c--;
+                return;
             }
-
+            throw new Exception("neni na bafri nic");
             return;
             
             //uvidime ci bude treba task alebo vlakno...mozno vobec -> tak potom odstranit nasledujuce
