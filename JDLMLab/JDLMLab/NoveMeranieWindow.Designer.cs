@@ -55,6 +55,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.startPointFieldEs = new System.Windows.Forms.TextBox();
             this.tabPage4 = new System.Windows.Forms.TabPage();
+            this.label9 = new System.Windows.Forms.Label();
             this.stepTimeFieldMs = new System.Windows.Forms.ComboBox();
             this.label15 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
@@ -93,7 +94,8 @@
             this.label25 = new System.Windows.Forms.Label();
             this.startPointField2DEs = new System.Windows.Forms.TextBox();
             this.tabControl1 = new System.Windows.Forms.TabControl();
-            this.label9 = new System.Windows.Forms.Label();
+            this.label13 = new System.Windows.Forms.Label();
+            this.label21 = new System.Windows.Forms.Label();
             this.tabPage2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pocetCyklovField)).BeginInit();
             this.typyMeraniaTaby.SuspendLayout();
@@ -107,6 +109,8 @@
             // 
             // tabPage2
             // 
+            this.tabPage2.Controls.Add(this.label21);
+            this.tabPage2.Controls.Add(this.label13);
             this.tabPage2.Controls.Add(this.pocetCyklovField);
             this.tabPage2.Controls.Add(this.pocetCyklovFieldLabel);
             this.tabPage2.Controls.Add(this.button3);
@@ -122,11 +126,10 @@
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Nové meranie";
             this.tabPage2.UseVisualStyleBackColor = true;
-
             // 
             // pocetCyklovField
             // 
-            this.pocetCyklovField.Location = new System.Drawing.Point(418, 17);
+            this.pocetCyklovField.Location = new System.Drawing.Point(485, 81);
             this.pocetCyklovField.Maximum = new decimal(new int[] {
             10000,
             0,
@@ -139,11 +142,12 @@
             // pocetCyklovFieldLabel
             // 
             this.pocetCyklovFieldLabel.AutoSize = true;
-            this.pocetCyklovFieldLabel.Location = new System.Drawing.Point(243, 20);
+            this.pocetCyklovFieldLabel.Location = new System.Drawing.Point(302, 83);
             this.pocetCyklovFieldLabel.Name = "pocetCyklovFieldLabel";
             this.pocetCyklovFieldLabel.Size = new System.Drawing.Size(169, 13);
             this.pocetCyklovFieldLabel.TabIndex = 16;
             this.pocetCyklovFieldLabel.Text = "Počet cyklov(0 pre neobmedzene)";
+            this.pocetCyklovFieldLabel.Click += new System.EventHandler(this.pocetCyklovFieldLabel_Click);
             // 
             // button3
             // 
@@ -176,23 +180,19 @@
             // 
             // noteField
             // 
-            this.noteField.Location = new System.Drawing.Point(9, 44);
+            this.noteField.Location = new System.Drawing.Point(73, 44);
             this.noteField.Multiline = true;
             this.noteField.Name = "noteField";
             this.noteField.Size = new System.Drawing.Size(223, 52);
             this.noteField.TabIndex = 1;
-            this.noteField.Text = "Poznámka";
-
             // 
             // nameField
             // 
             this.nameField.ForeColor = System.Drawing.SystemColors.WindowFrame;
-            this.nameField.Location = new System.Drawing.Point(9, 17);
+            this.nameField.Location = new System.Drawing.Point(73, 18);
             this.nameField.Name = "nameField";
             this.nameField.Size = new System.Drawing.Size(223, 20);
             this.nameField.TabIndex = 0;
-            this.nameField.Text = "Názov merania";
-
             // 
             // typyMeraniaTaby
             // 
@@ -355,7 +355,6 @@
             this.label1.Size = new System.Drawing.Size(55, 13);
             this.label1.TabIndex = 1;
             this.label1.Text = "Start point";
-
             // 
             // startPointFieldEs
             // 
@@ -390,6 +389,15 @@
             this.tabPage4.Text = "Mass scan";
             this.tabPage4.UseVisualStyleBackColor = true;
             // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(172, 126);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(15, 13);
+            this.label9.TabIndex = 39;
+            this.label9.Text = "s.";
+            // 
             // stepTimeFieldMs
             // 
             this.stepTimeFieldMs.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
@@ -398,7 +406,6 @@
             this.stepTimeFieldMs.Name = "stepTimeFieldMs";
             this.stepTimeFieldMs.Size = new System.Drawing.Size(61, 21);
             this.stepTimeFieldMs.TabIndex = 38;
-            
             // 
             // label15
             // 
@@ -489,7 +496,6 @@
             this.endPointFieldMs.Name = "endPointFieldMs";
             this.endPointFieldMs.Size = new System.Drawing.Size(100, 20);
             this.endPointFieldMs.TabIndex = 19;
-
             // 
             // label18
             // 
@@ -517,7 +523,7 @@
             this.tabPage5.Name = "tabPage5";
             this.tabPage5.Size = new System.Drawing.Size(544, 245);
             this.tabPage5.TabIndex = 2;
-            this.tabPage5.Text = "2D Scan";
+            this.tabPage5.Text = "2D scan";
             this.tabPage5.UseVisualStyleBackColor = true;
             // 
             // groupBox2
@@ -584,7 +590,6 @@
             this.endPointField2DMs.Name = "endPointField2DMs";
             this.endPointField2DMs.Size = new System.Drawing.Size(100, 20);
             this.endPointField2DMs.TabIndex = 50;
-            
             // 
             // label29
             // 
@@ -676,7 +681,6 @@
             this.steptimeField2DEs.Name = "steptimeField2DEs";
             this.steptimeField2DEs.Size = new System.Drawing.Size(100, 20);
             this.steptimeField2DEs.TabIndex = 42;
-            
             // 
             // label20
             // 
@@ -760,14 +764,23 @@
             this.tabControl1.Size = new System.Drawing.Size(573, 455);
             this.tabControl1.TabIndex = 0;
             // 
-            // label9
+            // label13
             // 
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(172, 126);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(15, 13);
-            this.label9.TabIndex = 39;
-            this.label9.Text = "s.";
+            this.label13.AutoSize = true;
+            this.label13.Location = new System.Drawing.Point(8, 18);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(38, 13);
+            this.label13.TabIndex = 18;
+            this.label13.Text = "Názov";
+            // 
+            // label21
+            // 
+            this.label21.AutoSize = true;
+            this.label21.Location = new System.Drawing.Point(10, 51);
+            this.label21.Name = "label21";
+            this.label21.Size = new System.Drawing.Size(57, 13);
+            this.label21.TabIndex = 19;
+            this.label21.Text = "Poznámka";
             // 
             // NoveMeranieWindow
             // 
@@ -866,5 +879,7 @@
         private System.Windows.Forms.ComboBox stepTimeFieldMs;
         private System.Windows.Forms.ComboBox stepTimeField2DMs;
         private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Label label21;
+        private System.Windows.Forms.Label label13;
     }
 }
