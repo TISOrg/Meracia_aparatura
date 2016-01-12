@@ -15,7 +15,7 @@ namespace JDLMLab
             this.EndPoint = endpoint;
             this.Constant = constant;
             this.StepTime = steptime;
-            Typ = "MassScan";
+            Typ = "Mass Scan";
             init();
         }
 

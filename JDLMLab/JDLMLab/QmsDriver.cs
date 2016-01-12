@@ -18,7 +18,12 @@ namespace JDLMLab
             throw new NotImplementedException();
         }
 
-        public override double read()
+        protected override void readRequest()
+        {
+            throw new NotImplementedException();
+        }
+
+        internal static void setPoint(double startPoint)
         {
             throw new NotImplementedException();
         }

@@ -15,14 +15,18 @@ namespace JDLMLab
 
         public override void open()
         {
-            throw new NotImplementedException();
-        }
-
-        public override double read()
-        {
-            throw new NotImplementedException();
+            serialPort = new System.IO.Ports.SerialPort(Properties.Devices.Default.tpg256aPort, 9600, System.IO.Ports.Parity.Odd, 7, System.IO.Ports.StopBits.One);
+            //overit spravne hodnoty
+            serialPort.Handshake = System.IO.Ports.Handshake.None;
+            
             
         }
 
+        protected override void readRequest()
+        {
+            serialPort.Write("\r");
+            serialPort.Write("@sts1");
+            serialPort.Write("\r");
+        }
     }
 }

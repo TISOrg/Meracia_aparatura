@@ -1,12 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace JDLMLab
@@ -17,9 +10,12 @@ namespace JDLMLab
         AboutBox1 info;
         GrafControl grafcontrol;
         MeasurementControl measurementControl;
+        
         public Main()
         {
+
             
+           
             InitializeComponent();
             
             
@@ -34,8 +30,17 @@ namespace JDLMLab
             //grafcontrol.addMeranie(1);
             //grafcontrol.Cyklus = 2;
             //grafcontrol.repaintGraf();
-        }
 
+
+            //x=new XXXDriver();
+            //x.open();
+            //x.setTimer(1000);
+            //Thread t = new Thread(new ThreadStart(x.startReading));
+            // t.Start();
+            
+            
+        }
+        XXXDriver x;
         internal MeasurementControl MeasurementControl
         {
             get
@@ -62,7 +67,11 @@ namespace JDLMLab
             {
                 //hodnota setMerania.parametreMerania obsahuje instanciu triedy measurementsparameters
                 //ktora obsahuje vsetky informacie na zacatie merania.
-                measurementControl = new MeasurementControl();
+                measurementControl = new MeasurementControl(setmerania.parametreMerania);
+
+                
+                
+
             }
         }
 
@@ -132,6 +141,29 @@ namespace JDLMLab
         }
 
         event EventHandler ev;
-       
+
+        
+        private void startbutton_click(object sender, EventArgs e)
+        {
+
+
+           
+        }
+
+        private void button2_Click_1(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void Main_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            
+
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            
+        }
     }
 }

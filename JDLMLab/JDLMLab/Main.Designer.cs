@@ -49,7 +49,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.sidebarExportButton = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
+            this.startbutton = new System.Windows.Forms.Button();
             this.radioButton2 = new System.Windows.Forms.RadioButton();
             this.radioButton1 = new System.Windows.Forms.RadioButton();
             this.menuStrip1.SuspendLayout();
@@ -88,7 +88,7 @@
             // nastaveniaMeraniaToolStripMenuItem
             // 
             this.nastaveniaMeraniaToolStripMenuItem.Name = "nastaveniaMeraniaToolStripMenuItem";
-            this.nastaveniaMeraniaToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.nastaveniaMeraniaToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
             this.nastaveniaMeraniaToolStripMenuItem.Text = "Nové meranie";
             this.nastaveniaMeraniaToolStripMenuItem.Click += new System.EventHandler(this.nastaveniaMeraniaToolStripMenuItem_Click);
             // 
@@ -154,7 +154,7 @@
             this.panel1.Controls.Add(this.label2);
             this.panel1.Controls.Add(this.sidebarExportButton);
             this.panel1.Controls.Add(this.button2);
-            this.panel1.Controls.Add(this.button4);
+            this.panel1.Controls.Add(this.startbutton);
             this.panel1.Controls.Add(this.radioButton2);
             this.panel1.Controls.Add(this.radioButton1);
             this.panel1.Controls.Add(this.label1);
@@ -237,17 +237,19 @@
             this.button2.TabIndex = 15;
             this.button2.Text = "Zastav meranie";
             this.button2.UseVisualStyleBackColor = false;
+            this.button2.Click += new System.EventHandler(this.button2_Click_1);
             // 
-            // button4
+            // startbutton
             // 
-            this.button4.BackColor = System.Drawing.Color.Green;
-            this.button4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.button4.Location = new System.Drawing.Point(40, 410);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(145, 83);
-            this.button4.TabIndex = 17;
-            this.button4.Text = "Štart";
-            this.button4.UseVisualStyleBackColor = false;
+            this.startbutton.BackColor = System.Drawing.Color.Green;
+            this.startbutton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.startbutton.Location = new System.Drawing.Point(40, 410);
+            this.startbutton.Name = "startbutton";
+            this.startbutton.Size = new System.Drawing.Size(145, 83);
+            this.startbutton.TabIndex = 17;
+            this.startbutton.Text = "Štart";
+            this.startbutton.UseVisualStyleBackColor = false;
+            this.startbutton.Click += new System.EventHandler(this.startbutton_click);
             // 
             // radioButton2
             // 
@@ -283,6 +285,7 @@
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "Main";
             this.Text = "Meracia aparatúra";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Main_FormClosing);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.graf)).EndInit();
@@ -306,7 +309,7 @@
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Button sidebarExportButton;
         private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.Button startbutton;
         private System.Windows.Forms.RadioButton radioButton2;
         private System.Windows.Forms.RadioButton radioButton1;
         private System.Windows.Forms.Label label2;
