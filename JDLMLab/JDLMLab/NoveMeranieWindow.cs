@@ -193,42 +193,39 @@ namespace JDLMLab
             if (resolution == 0) throw new ValidateParametersException("Neplatná hodnota resulution nemoze byt 0");
         }
 
-        private void validateMassScanTab()
+     private void validateMassScanTab()
         {
             Double startpoint;
             Double endpoint;
             Double resolution;
             string nazov;
-            int step;
+            
             int krok;
             double constant;
             if (nameField.Text.Length <= 0)
             {
-                new ValidateParametersException("nazov merania musi mat aspon jeden znak");
+               throw new ValidateParametersException("nazov merania musi mat aspon jeden znak");
             }
-            else
-            {
-                nazov = nameField.Text;
-            }
+            
 
             if (!Double.TryParse(startPointFieldMs.Text, out startpoint)) throw new ValidateParametersException("Neplatná hodnota pre startpoint");
-            else Double.TryParse(startPointFieldMs.Text, out startpoint);
+           
             if (!Double.TryParse(endPointFieldMs.Text, out endpoint)) throw new ValidateParametersException("Neplatná hodnota pre endpoint");
-            else Double.TryParse(endPointFieldMs.Text, out endpoint);
+          
             if (!Double.TryParse(resolutionFieldMs.Text, out resolution)) throw new ValidateParametersException("Neplatná hodnota pre resolution");
-            else Double.TryParse(resolutionFieldMs.Text, out resolution);
+       
             if (!Double.TryParse(constantFieldMs.Text, out constant)) throw new ValidateParametersException("Neplatná hodnota pre constant");
             
-            if (!int.TryParse(stepTimeFieldMs.Text, out step)) throw new ValidateParametersException("Neplatná hodnota pre steptime");
+           
             
             
             
-            if (startpoint > endpoint) throw new ValidateParametersException("Neplatná hodnota startpoint nemoze byt vacsi ako endpoint");
+            if (startpoint >= endpoint) throw new ValidateParametersException("Neplatná hodnota endpoint musi byt vacsi ako startpoint");
             if (resolution == 0) throw new ValidateParametersException("Neplatná hodnota resulution nemoze byt 0");
 
         }
 
-        private void validateEnergyScanTab()
+        private void validateEnergyScanTab()//uprava validate e scan a mass scan
         {
             Double startpoint;
             Double endpoint;
@@ -238,28 +235,26 @@ namespace JDLMLab
             int krok;
             if (nameField.Text.Length <= 0)
             {
-                new ValidateParametersException("nazov merania musi mat aspon jeden znak");
+               throw new ValidateParametersException("nazov merania musi mat aspon jeden znak");
             }
-            else
-            {
-                nazov = nameField.Text;
-            }
+           
             double constant;
             if (!Double.TryParse(startPointFieldEs.Text, out startpoint)) throw new ValidateParametersException("Neplatná hodnota pre startpoint");
-            else Double.TryParse(startPointFieldEs.Text, out startpoint);
+            
             if (!Double.TryParse(endPointFieldEs.Text, out endpoint)) throw new ValidateParametersException("Neplatná hodnota pre endpoint");
-            else Double.TryParse(endPointFieldEs.Text, out endpoint);
+           
             if (!Double.TryParse(resolutionFieldEs.Text, out resolution)) throw new ValidateParametersException("Neplatná hodnota pre resolution");
-            else Double.TryParse(resolutionFieldEs.Text, out resolution);
+           
             if (!Double.TryParse(constantFieldEs.Text, out constant)) throw new ValidateParametersException("Neplatná hodnota pre constant");
             
             if (!int.TryParse(stepTimeFieldEs.Text, out step)) throw new ValidateParametersException("Neplatná hodnota pre steptime");
-            else int.TryParse(stepTimeFieldEs.Text, out step);
+            
             if (!int.TryParse(pocetKrokovFieldEs.Text, out krok)) throw new ValidateParametersException("Neplatná hodnota pre pocetkrokov");
-            else int.TryParse(pocetKrokovFieldEs.Text, out krok);
-            if (startpoint > endpoint) throw new ValidateParametersException("Neplatná hodnota startpoint nemoze byt vacsi ako endpoint");
+            
+            if (startpoint >= endpoint) throw new ValidateParametersException("Neplatná hodnota endpoint musi byt vacsi ako startpoint");
             if (resolution == 0) throw new ValidateParametersException("Neplatná hodnota resulution nemoze byt 0");
         }
+
 
 
 
