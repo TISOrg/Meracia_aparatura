@@ -162,35 +162,42 @@ namespace JDLMLab
             
         }
 
-        private void validateMass2DScanTab()
+        private void validateMass2DScanTab()//treba upravit ak neni yadane vsetko tak by to padlo
         {
-            Double startpoint;
-            Double endpoint;
+            Double startpointqms;
+            Double endpointqms;
+            Double startpointtem;
+            Double endpointtem;
             Double resolution;
             string nazov;
             int step;
             int krok;
             if (nameField.Text.Length <= 0)
             {
-                new ValidateParametersException("nazov merania musi mat aspon jeden znak");
+                throw new ValidateParametersException("nazov merania musi mat aspon jeden znak");
             }
-            else {
-                nazov = nameField.Text;
-            }
-
-            if (!Double.TryParse(startPointField2DMs.Text, out startpoint)) throw new ValidateParametersException("Neplatná hodnota pre startpoint");
-            else Double.TryParse(startPointField2DMs.Text, out startpoint);
-            if (!Double.TryParse(endPointField2DMs.Text, out endpoint)) throw new ValidateParametersException("Neplatná hodnota pre endpoint");
-            else Double.TryParse(endPointField2DMs.Text, out endpoint);
-            if (!Double.TryParse(resolutionField2D.Text, out resolution)) throw new ValidateParametersException("Neplatná hodnota pre resolution");
-            else Double.TryParse(resolutionField2D.Text, out resolution);
+           
+			if (!Double.TryParse(startPointField2DEs.Text, out startpointqms)) throw new ValidateParametersException("Neplatná hodnota pre startpointtem");
             
-            if (!int.TryParse(stepTimeField2DMs.Text, out step)) throw new ValidateParametersException("Neplatná hodnota pre steptime");
-            else int.TryParse(stepTimeField2DMs.Text, out step);
-            if (!int.TryParse(pocetKrokovField2DEs.Text, out krok)) throw new ValidateParametersException("Neplatná hodnota pre pocetkrokov");
+            if (!Double.TryParse(endPointField2DEs.Text, out endpointqms)) throw new ValidateParametersException("Neplatná hodnota pre endpointtem");
+          
+            if (!int.TryParse(pocetKrokovField2DEs.Text, out krok)) throw new ValidateParametersException("Neplatná hodnota pre pocetkrokoqtem");
             
-            if (startpoint > endpoint) throw new ValidateParametersException("Neplatná hodnota startpoint nemoze byt vacsi ako endpoint");
-            if (resolution == 0) throw new ValidateParametersException("Neplatná hodnota resulution nemoze byt 0");
+            if (!int.TryParse(steptimeField2DEs.Text, out krok)) throw new ValidateParametersException("Neplatná hodnota pre pocetkrokoqtem");
+            if (!Double.TryParse(startPointField2DMs.Text, out startpointtem)) throw new ValidateParametersException("Neplatná hodnota pre startpointqms");
+            
+            if (!Double.TryParse(endPointField2DMs.Text, out endpointtem)) throw new ValidateParametersException("Neplatná hodnota pre endpointqms");
+            
+           if (!Double.TryParse(resolutionField2D.Text, out resolution)) throw new ValidateParametersException("Neplatná hodnota pre resolutionqms");
+            
+            
+            
+            if (!int.TryParse(pocetKrokovField2DEs.Text, out krok)) throw new ValidateParametersException("Neplatná hodnota pre pocetkrokoqms");
+            
+            if (startpointtem >= endpointtem) throw new ValidateParametersException("Neplatná hodnota endpoint musi byt vacsi ako startpointqms");
+            
+            if (startpointqms >= endpointqms) throw new ValidateParametersException("Neplatná hodnota endpoint musi byt vacsi ako startpointqms");
+            
         }
 
      private void validateMassScanTab()
