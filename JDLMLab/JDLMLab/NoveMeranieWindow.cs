@@ -206,7 +206,7 @@ namespace JDLMLab
             Double endpoint;
             Double resolution;
             string nazov;
-            
+            Double step;
             int krok;
             double constant;
             if (nameField.Text.Length <= 0)
@@ -220,12 +220,10 @@ namespace JDLMLab
             if (!Double.TryParse(endPointFieldMs.Text, out endpoint)) throw new ValidateParametersException("Neplatná hodnota pre endpoint");
           
             if (!Double.TryParse(resolutionFieldMs.Text, out resolution)) throw new ValidateParametersException("Neplatná hodnota pre resolution");
-       
+       	    
             if (!Double.TryParse(constantFieldMs.Text, out constant)) throw new ValidateParametersException("Neplatná hodnota pre constant");
-            
-           
-            
-            
+          
+            if (!Double.TryParse(stepTimeFieldMs.Text, out step)) throw new ValidateParametersException("Neplatná hodnota pre steptime");
             
             if (startpoint >= endpoint) throw new ValidateParametersException("Neplatná hodnota endpoint musi byt vacsi ako startpoint");
             if (resolution == 0) throw new ValidateParametersException("Neplatná hodnota resulution nemoze byt 0");
