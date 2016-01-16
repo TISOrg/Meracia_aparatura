@@ -170,7 +170,7 @@ namespace JDLMLab
             Double endpointtem;
             Double resolution;
             string nazov;
-            int step;
+            Double step;
             int krok;
             if (nameField.Text.Length <= 0)
             {
@@ -183,7 +183,7 @@ namespace JDLMLab
           
             if (!int.TryParse(pocetKrokovField2DEs.Text, out krok)) throw new ValidateParametersException("Neplatná hodnota pre pocetkrokoqtem");
             
-            if (!int.TryParse(steptimeField2DEs.Text, out krok)) throw new ValidateParametersException("Neplatná hodnota pre pocetkrokoqtem");
+            if (!Double.TryParse(steptimeField2DEs.Text, out krok)) throw new ValidateParametersException("Neplatná hodnota pre pocetkrokoqtem");
             if (!Double.TryParse(startPointField2DMs.Text, out startpointtem)) throw new ValidateParametersException("Neplatná hodnota pre startpointqms");
             
             if (!Double.TryParse(endPointField2DMs.Text, out endpointtem)) throw new ValidateParametersException("Neplatná hodnota pre endpointqms");
@@ -238,7 +238,7 @@ namespace JDLMLab
             Double endpoint;
             Double resolution;
             string nazov;
-            int step;
+            Double step;
             int krok;
             if (nameField.Text.Length <= 0)
             {
@@ -254,7 +254,7 @@ namespace JDLMLab
            
             if (!Double.TryParse(constantFieldEs.Text, out constant)) throw new ValidateParametersException("Neplatná hodnota pre constant");
             
-            if (!int.TryParse(stepTimeFieldEs.Text, out step)) throw new ValidateParametersException("Neplatná hodnota pre steptime");
+            if (!Double.TryParse(stepTimeFieldEs.Text, out step)) throw new ValidateParametersException("Neplatná hodnota pre steptime");
             
             if (!int.TryParse(pocetKrokovFieldEs.Text, out krok)) throw new ValidateParametersException("Neplatná hodnota pre pocetkrokov");
             
