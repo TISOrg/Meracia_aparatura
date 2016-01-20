@@ -6,27 +6,56 @@ using System.Threading.Tasks;
 
 namespace JDLMLab
 {
-    class TlakomerPR4000Driver : SerialPortDriver
+    class TlakomerPR4000Driver 
     {
-        public override void close()
+        public  void close()
         {
             throw new NotImplementedException();
         }
 
-        public override void open()
+        public  void open()
         {
-            serialPort = new System.IO.Ports.SerialPort(Properties.Devices.Default.tpg256aPort, 9600, System.IO.Ports.Parity.Odd, 7, System.IO.Ports.StopBits.One);
-            //overit spravne hodnoty
-            serialPort.Handshake = System.IO.Ports.Handshake.None;
-            
             
         }
 
-        protected override void readRequest()
+
+        System.Timers.Timer timer;
+
+        public int IntervalMerania { get; private set; }
+
+        public void setTimer(int delay)
         {
-            serialPort.Write("\r");
-            serialPort.Write("@sts1");
-            serialPort.Write("\r");
+            //IntervalMerania = delay;
+            //timer = new System.Timers.Timer(delay);
+            //timer.Elapsed += Timer_Elapsed;
+            //blockingCollection = new BlockingCollection<double>();
+            //timer.AutoReset = true;
+            //// blockingCollection.Add(6);
         }
+        public void startReading()
+        {
+            timer.Enabled = true;
+        }
+
+        /// <summary>
+        /// zastavi timer
+        /// </summary>
+        public void stopReading()
+        {
+            timer.Enabled = false;
+        }
+
+        /// <summary>
+        /// toto bude volat funckiu readrequest
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        //private void Timer_Elapsed(object sender, ElapsedEventArgs e)
+        //{
+        //    readRequest();
+        //}
+
+
+
     }
 }

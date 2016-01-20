@@ -106,6 +106,7 @@
       <DependentUpon>ExportWindow.cs</DependentUpon>
     </Compile>
     <Compile Include="GrafControl.cs" />
+    <Compile Include="NIDriver.cs" />
     <Compile Include="QmsDriver.cs" />
     <Compile Include="SerialPortDriver.cs" />
     <Compile Include="SerialPortDriverInterface.cs" />

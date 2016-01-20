@@ -41,6 +41,9 @@ namespace JDLMLab
         {
             serialPort.Write(":INITiate:CONTinuous ON");
             serialPort.Write("\r\n");
+
+
+
             serialPort.Close();
         }
 

@@ -203,17 +203,18 @@ namespace JDLMLab
 
         private void timer1_Tick_1(object sender, EventArgs e)
         {
-                double d = 1;
                 try
                 {
-    
-                foreach (SerialPortDriver dr in drivers) {
+
+                foreach (SerialPortDriver dr in drivers)
+                {
                     richTextBox1.AppendText(dr.readNext().ToString() + "\t");
 
                 }
-                richTextBox1.AppendText("\n");
+                // richTextBox1.AppendText(r.readNext().ToString());
+                //  richTextBox1.AppendText("\n");
 
-                }
+            }
                 catch (Exception f)
                 {
                     richTextBox1.AppendText(f.ToString());
@@ -234,24 +235,47 @@ namespace JDLMLab
         private void Main_Load(object sender, EventArgs e)
         { 
         }
-
+        double i;
         private void button1_Click(object sender, EventArgs e)
         {
-            drivers[1].close();
+            NI.setAnalogOutput(i);
+            i++;
         }
 
         private void Main_FormClosed(object sender, FormClosedEventArgs e)
         {
-            foreach (SerialPortDriver driver in drivers) {
-                if (driver.isOpen()) {
-                    driver.close();
+            if (drivers != null)
+            {
+
+                foreach (SerialPortDriver driver in drivers)
+                {
+                    if (driver.isOpen())
+                    {
+                        driver.close();
+                    }
+
                 }
-                
             }
            
         }
-
+        VMeterDriver r;
+        NIDriver NI;
         private void sidebarExportButton_Click_2(object sender, EventArgs e)
+        {
+            i = 0;
+            NI = new NIDriver();
+            NI.setAnalogOutput(5);
+
+
+            r = new VMeterDriver();
+            r.setTimer(1000);
+            r.open();
+            r.startReading();
+            //// Thread.Sleep(100);
+            timer1.Enabled = true;
+        }
+
+        private void panel1_Paint(object sender, PaintEventArgs e)
         {
 
         }

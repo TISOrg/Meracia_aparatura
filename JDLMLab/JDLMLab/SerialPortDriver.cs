@@ -37,7 +37,7 @@ namespace JDLMLab
            
             last = convertToDouble(x);
             blockingCollection.Add(last);
-          
+           // System.Windows.Forms.MessageBox.Show("dd");
             //           blockingCollection.Take();
             c++;
         }
@@ -80,11 +80,18 @@ namespace JDLMLab
         }
 
         public bool isOpen() {
-            return serialPort.IsOpen;
+            try {
+                return serialPort.IsOpen;
+            }
+            catch (Exception e) {
+                return false;
+            }
+            
         }
 
         public double read()
         {
+          
             return last;
         }
         public double  readNext()
