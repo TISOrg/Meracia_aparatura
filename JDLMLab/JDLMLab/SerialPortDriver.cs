@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.IO.Ports;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
+using System.Threading;
 using System.Timers;
 
 namespace JDLMLab
@@ -14,6 +14,7 @@ namespace JDLMLab
     /// </summary>
     abstract class SerialPortDriver : SerialPortDriverInterface
     {
+       
         protected SerialPort serialPort;
         public abstract void close();
 
@@ -21,19 +22,23 @@ namespace JDLMLab
         /// vseobecna virtualna funckia na vratenie double typu pre ziskany text zo zariadenia. Pre ine zariadenie moze byt konverzia menej trivialna, a tak sa iba overriduje  tato funckia
         /// </summary>
         /// <returns>textovy retazec zo vstupu premeneny na double</returns>
-        virtual protected double convertToDouble(string data)
+         virtual protected double convertToDouble(string data)
         {
-            
-            
             return Convert.ToDouble(data);
         }
         static int c=0;
         double last { get; set; }
+
+
         protected void dataRecieved(object sender,SerialDataReceivedEventArgs e)
         {
-            last = convertToDouble(serialPort.ReadLine());
+            
+            string x = serialPort.ReadLine();
+           
+            last = convertToDouble(x);
             blockingCollection.Add(last);
-            blockingCollection.Take();
+          
+            //           blockingCollection.Take();
             c++;
         }
         public abstract void open();
@@ -49,6 +54,7 @@ namespace JDLMLab
             timer.Elapsed += Timer_Elapsed;
             blockingCollection = new BlockingCollection<double>();
             timer.AutoReset = true;
+           // blockingCollection.Add(6);
         }
         public void startReading()
         {
@@ -73,16 +79,32 @@ namespace JDLMLab
             readRequest();
         }
 
+        public bool isOpen() {
+            return serialPort.IsOpen;
+        }
+
         public double read()
         {
             return last;
         }
-        public void readNext(out double value)
+        public double  readNext()
         {
             
+            try {
+                return blockingCollection.Take();
+            }
+            catch (Exception e) {
+                throw new Exception("neni na bafri nic");
+            }
+
+            return -1;
+
+/*
             if (!blockingCollection.TryTake(out value))
             {
-                value = last;
+                //System.Windows.Forms.MessageBox.Show(value.ToString());
+
+                //value = last;
                 c--;
                 return;
             }
@@ -104,7 +126,7 @@ namespace JDLMLab
 
             }))
                 ;
-
+*/
         }
 
         public int IntervalMerania { get; set; }

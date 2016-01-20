@@ -26,6 +26,8 @@ namespace JDLMLab
             
             serialPort.Open();
             serialPort.NewLine = "\r\n";
+
+
             serialPort.Write(":System:Preset");
             serialPort.Write("\r\n");
             serialPort.Write("*RST");
@@ -51,7 +53,7 @@ namespace JDLMLab
         {
             NumberStyles styles;
             //styles = NumberStyles.AllowExponent;
-            double d=Double.Parse(data.Replace('.',','), System.Globalization.NumberStyles.Float);
+            double d=Double.Parse(data, System.Globalization.NumberStyles.Float);
             //MessageBox.Show(d.ToString());
             return d;
         }

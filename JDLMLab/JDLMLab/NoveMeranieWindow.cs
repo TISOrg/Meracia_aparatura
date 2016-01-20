@@ -183,7 +183,8 @@ namespace JDLMLab
           
             if (!int.TryParse(pocetKrokovField2DEs.Text, out krok)) throw new ValidateParametersException("Neplatná hodnota pre pocetkrokoqtem");
             
-            if (!Double.TryParse(steptimeField2DEs.Text, out krok)) throw new ValidateParametersException("Neplatná hodnota pre pocetkrokoqtem");
+            if (!Double.TryParse(steptimeField2DEs.Text, out step)) throw new ValidateParametersException("Neplatná hodnota pre pocetkrokoqtem");
+
             if (!Double.TryParse(startPointField2DMs.Text, out startpointtem)) throw new ValidateParametersException("Neplatná hodnota pre startpointqms");
             
             if (!Double.TryParse(endPointField2DMs.Text, out endpointtem)) throw new ValidateParametersException("Neplatná hodnota pre endpointqms");

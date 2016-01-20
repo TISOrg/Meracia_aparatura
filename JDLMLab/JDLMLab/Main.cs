@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Threading;
 using System.Windows.Forms;
+using System.IO.Ports;
+using System.Collections.Generic;
 
 namespace JDLMLab
 {
@@ -141,25 +143,50 @@ namespace JDLMLab
         }
 
         event EventHandler ev;
-        VMeterDriver v;
-
+        SerialPortDriver v;
+        List<SerialPortDriver> drivers;
         private void startbutton_click(object sender, EventArgs e)
         {
-           v = new VMeterDriver();
-            v.setTimer(1000);
-           
-            v.open();
-            v.startReading();
+            drivers = new List<SerialPortDriver>();
+            SerialPortDriver voltmeter = new VMeterDriver();
+            SerialPortDriver ampermeter = new AMeterDriver();
+            SerialPortDriver tlakomer = new TlakomerTG256ADriver();
+            SerialPortDriver teplomer = new TeplomerDriver();
+
+
+            voltmeter.setTimer(500);
+            ampermeter.setTimer(500);
+            tlakomer.setTimer(500);
+            teplomer.setTimer(500);
+
+            drivers.Add(ampermeter);
+            drivers.Add(tlakomer);
+            drivers.Add(teplomer);
+            drivers.Add(voltmeter);
+
+
+            foreach (SerialPortDriver driver in drivers) {
+                driver.open();
+                driver.startReading();
+
+            }
 
             timer1.Enabled = true;
-            Thread.Sleep(1000);
+            
 
         }
 
         private void button2_Click_1(object sender, EventArgs e)
         {
-            v.stopReading();
-            v.close();
+
+            foreach (SerialPortDriver driver in drivers)
+            {
+                driver.stopReading();
+                driver.close();
+                
+
+            }
+            timer1.Enabled = false;
 
         }
 
@@ -176,30 +203,56 @@ namespace JDLMLab
 
         private void timer1_Tick_1(object sender, EventArgs e)
         {
-  
-                //MessageBox.Show("fdfsdf");
-                
-
                 double d = 1;
                 try
                 {
-                    v.readNext(out d);
-                    richTextBox1.AppendText(d.ToString());
+    
+                foreach (SerialPortDriver dr in drivers) {
+                    richTextBox1.AppendText(dr.readNext().ToString() + "\t");
+
+                }
+                richTextBox1.AppendText("\n");
+
                 }
                 catch (Exception f)
                 {
                     richTextBox1.AppendText(f.ToString());
                 }
 
+        }
+         SerialPort serialPort;
+        
+        
+        static string text="";
+        private void dataRecieved(object sender, SerialDataReceivedEventArgs e)
+        {
+            text = serialPort.ReadLine();
+            //richTextBox1.AppendText("dd");
+            richTextBox1.AppendText(text);
+        }
 
+        private void Main_Load(object sender, EventArgs e)
+        { 
+        }
 
+        private void button1_Click(object sender, EventArgs e)
+        {
+            drivers[1].close();
+        }
 
+        private void Main_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            foreach (SerialPortDriver driver in drivers) {
+                if (driver.isOpen()) {
+                    driver.close();
+                }
+                
+            }
+           
+        }
 
-
-
-            
-
-
+        private void sidebarExportButton_Click_2(object sender, EventArgs e)
+        {
 
         }
     }

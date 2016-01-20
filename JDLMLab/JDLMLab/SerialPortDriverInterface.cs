@@ -38,6 +38,6 @@ namespace JDLMLab
         /// precita dalsiu hodnotu z kolekcie
         /// </summary>
         /// <param name="value">hodnota do ktrorej ma ulozit dalsi precitanu hodnotu</param>
-        void readNext(out double value);
+        double readNext();
     }
 }

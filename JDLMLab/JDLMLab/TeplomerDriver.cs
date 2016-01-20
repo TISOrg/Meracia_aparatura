@@ -11,10 +11,11 @@ namespace JDLMLab
         {
             serialPort.Close();
         }
-
+      
+       
         public override void open()
         {
-            serialPort = new System.IO.Ports.SerialPort(Properties.Devices.Default.tempPort, 4800, System.IO.Ports.Parity.Even, 7, System.IO.Ports.StopBits.One); //4800 je default
+            serialPort = new System.IO.Ports.SerialPort(Properties.Devices.Default.tempPort, 9600, System.IO.Ports.Parity.Even, 7, System.IO.Ports.StopBits.One); //4800 je default
 
             //The transmitter must not start transmission until 3 character times have elapsed since
             //reception of the last character in a message, and must release the transmission line within 3
@@ -22,13 +23,15 @@ namespace JDLMLab
             //Note:Three character times = 1.5ms at 19200, 3ms at 9600, 6ms at 4800, 12ms at 2400 and 24ms at 1200 bps.
             serialPort.DataReceived += dataRecieved;
             serialPort.ReceivedBytesThreshold = 10; //lebo format odpovede je L1Mabcd0A* 
+            serialPort.NewLine = "*";
             serialPort.Open();
 
         }
 
         protected override void readRequest()
         {
-            serialPort.Write("L1M?*");            
+            serialPort.Write("L1M?*");
+           // serialPort.Write("\n");
         }
 
         /// <summary>
@@ -39,9 +42,10 @@ namespace JDLMLab
         /// <returns></returns>
         protected override double convertToDouble(string data)
         {
-
+            
             string value = data.Substring(3, 4); //to je nase {DATA} bez poslednej cifry, cize iba abcd
-            return base.convertToDouble(data);
+         //   System.Windows.Forms.MessageBox.Show(value);
+            return base.convertToDouble(value);
         }
         ///tabulka formatov {DATA}
         /// abcd0    +abcd   Positive value, no decimal place

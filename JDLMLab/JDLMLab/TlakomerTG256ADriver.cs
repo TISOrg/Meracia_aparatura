@@ -22,21 +22,26 @@ namespace JDLMLab
             serialPort = new System.IO.Ports.SerialPort(Properties.Devices.Default.tpg256aPort, 9600, System.IO.Ports.Parity.None, 8, System.IO.Ports.StopBits.One);
 
             kanal = Properties.Devices.Default.tpg256aChannel;
-            serialPort.Handshake = System.IO.Ports.Handshake.None;
+            // serialPort.Handshake = System.IO.Ports.Handshake.None;
+            serialPort.DataReceived += dataRecieved;
             znaky[0] = '\x02';
             znaky[1] = '\x03';
             znaky[2] = '\x05';
             serialPort.NewLine = "\r\n";
-            serialPort.ReceivedBytesThreshold = 10; //format je x,x.xxxEsx
+           // serialPort.ReceivedBytesThreshold = 1; //format je x,x.xxxEsx
             serialPort.Open();
-        }
+            serialPort.Write("PR" + kanal.ToString() + "\r\n");
+           
+
+            serialPort.ReadLine();
+        } 
 
         private char[] znaky = new char[3];
        
         protected override void readRequest()
         {
-            serialPort.Write("PR" + kanal.ToString() + "\r\n");
-            //serialPort.Write(znaky, 2, 1);// je to potrebne???
+  
+            serialPort.Write(znaky,2,1);
         }
 
         /// <summary>
@@ -50,7 +55,8 @@ namespace JDLMLab
         {
             string[] temp = data.Split(new char[] { ',' }, 2);
             //teoreticky by sa dalo vyuzit temp[0] pre osetrenie pripadu nefunkcneho senzora
-            return base.convertToDouble(temp[1]);
+            //    return 5;
+            return Double.Parse(temp[1], System.Globalization.NumberStyles.Float);
         }
         
     }
