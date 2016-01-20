@@ -131,9 +131,8 @@ namespace JDLMLab
 
             typ = Parameters.Typ;
            
-            new Thread(this.startThread);   //vykonavame meranie v samostatnom threade
+            new Thread(this.startThread).Start();   //vykonavame meranie v samostatnom threade
             
-            db.close();
         }
         public void stop()
         {
