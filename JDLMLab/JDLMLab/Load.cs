@@ -121,7 +121,8 @@ namespace JDLMLab
                     mass_start_point.Text = dr["start_point"].ToString();
                     mass_end_point.Text = dr["end_point"].ToString();
                     energy_constant.Text = dr["constant"].ToString();
-                    mass_steptime.Text = dr["steptime"].ToString();
+                    mass_steptime.Text = dr["time_for_amu"].ToString();
+                    
                 }
                 if (dr["type_name"].Equals("2D Scan"))
                 {
@@ -131,7 +132,7 @@ namespace JDLMLab
                     pocet_krokov.Text = dr["pocet_krokov"].ToString();
                     mass_start_point.Text = dr["m_start_point"].ToString();
                     mass_end_point.Text = dr["m_end_point"].ToString();
-                    mass_steptime.Text = dr["m_steptime"].ToString();
+                    mass_steptime.Text = dr["time_for_amu"].ToString();
                 }
 
             }

@@ -326,9 +326,10 @@ namespace JDLMLab
             }
             else if (mp.Typ.Equals("Mass Scan"))
             {
-                c = new MySqlCommand("insert into mass_scan_header (header_id,start_point,end_point,constant,steptime) values(@header_id,@start_point,@end_point,@constant,@steptime)", conn);
+                c = new MySqlCommand("insert into mass_scan_header (header_id,start_point,end_point,constant,time_for_amu,density) values(@header_id,@start_point,@end_point,@constant,@time_for_amu,@density)", conn);
                 c.Parameters.AddWithValue("@header_id", aktualneMeranie);
-                c.Parameters.AddWithValue("@steptime", ((MassScanParameters)mp).Dens);
+                c.Parameters.AddWithValue("@time_for_amu", ((MassScanParameters)mp).TimeperAmu);
+                c.Parameters.AddWithValue("@density", ((MassScanParameters)mp).Dens);
                 c.Parameters.AddWithValue("@start_point", ((MassScanParameters)mp).StartPoint);
                 c.Parameters.AddWithValue("@end_point", ((MassScanParameters)mp).EndPoint);
                 c.Parameters.AddWithValue("@constant", ((MassScanParameters)mp).Constant);
@@ -336,13 +337,14 @@ namespace JDLMLab
             }
             else if (mp.Typ.Equals("2D Scan"))
             {
-                c = new MySqlCommand("insert into scan2d_header(header_id,e_start_point,e_end_point,e_steptime,pocet_krokov,m_start_point,m_end_point,m_steptime) values (@header_id,@e_start_point,@e_end_point,@e_steptime,@pocet_krokov,@m_start_point,@m_end_point,@m_steptime)", conn);
+                c = new MySqlCommand("insert into scan2d_header(header_id,e_start_point,e_end_point,e_steptime,pocet_krokov,m_start_point,m_end_point,time_for_amu,density) values (@header_id,@e_start_point,@e_end_point,@e_steptime,@pocet_krokov,@m_start_point,@m_end_point,@time_for_amu,@density)", conn);
                 c.Parameters.AddWithValue("@header_id", aktualneMeranie);
                 c.Parameters.AddWithValue("@e_steptime", ((Scan2DParameters)mp).EnergyScanParameters.Dens);
                 c.Parameters.AddWithValue("@e_start_point", ((Scan2DParameters)mp).EnergyScanParameters.StartPoint);
                 c.Parameters.AddWithValue("@e_end_point", ((Scan2DParameters)mp).EnergyScanParameters.EndPoint);
                 c.Parameters.AddWithValue("@pocet_krokov", ((Scan2DParameters)mp).EnergyScanParameters.PocetKrokov);
-                c.Parameters.AddWithValue("@m_steptime", ((Scan2DParameters)mp).MassScanParameters.Dens);
+                c.Parameters.AddWithValue("@time_for_amu", ((Scan2DParameters)mp).MassScanParameters.TimeperAmu);
+                c.Parameters.AddWithValue("@density", ((Scan2DParameters)mp).MassScanParameters.Dens);
                 c.Parameters.AddWithValue("@m_start_point", ((Scan2DParameters)mp).MassScanParameters.StartPoint);
                 c.Parameters.AddWithValue("@m_end_point", ((Scan2DParameters)mp).MassScanParameters.EndPoint);
 
