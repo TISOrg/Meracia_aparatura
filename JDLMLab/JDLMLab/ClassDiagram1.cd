@@ -62,14 +62,14 @@
   <Class Name="JDLMLab.MeasurementControl" Collapsed="true">
     <Position X="7.25" Y="1.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAABACAAAAAggiAABgAAAIAAAWAAIAABgghCBAAA=</HashCode>
+      <HashCode>AAAAgBAKAAA0BixgCACAARBAAgAhEAAgAKgAAAATAAA=</HashCode>
       <FileName>MeasurementControl.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="JDLMLab.DbCommunication" Collapsed="true">
     <Position X="4" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>ABQQAAQMCAAAEAgACCEAIAEgACQEQAQAAIAAAAgCAAA=</HashCode>
+      <HashCode>ABQQAAQECAAAkAAACCEAIAEgACQEQAQEAIAAAAgCAIA=</HashCode>
       <FileName>DbCommunication.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -86,22 +86,15 @@
   </Class>
   <Class Name="JDLMLab.GrafControl" Collapsed="true">
     <Position X="6.5" Y="5.5" Width="1.5" />
-    <NestedTypes>
-      <Enum Name="JDLMLab.GrafControl.RezimZobrazenia" Collapsed="true">
-        <TypeIdentifier>
-          <NewMemberFileName>GrafControl.cs</NewMemberFileName>
-        </TypeIdentifier>
-      </Enum>
-    </NestedTypes>
     <TypeIdentifier>
-      <HashCode>ACwCgAAAoAIBAQgQCiAAQBACAACAAIIIAQBhAAAA4IQ=</HashCode>
+      <HashCode>ACwCgAgAoAIBAQgQCiAAQBACAACAAIIIAQBhAAAA4IQ=</HashCode>
       <FileName>GrafControl.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="JDLMLab.AMeterDriver" Collapsed="true">
     <Position X="12" Y="4.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAIABAAAAAAA=</HashCode>
+      <HashCode>QAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAIABAAAAAAA=</HashCode>
       <FileName>AMeterDriver.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -118,40 +111,22 @@
   <Class Name="JDLMLab.SerialPortDriver">
     <Position X="12" Y="1.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>QAQAAAACAAAAAAAAAKIAAAAAAABEAAAAAqBNAAACAgA=</HashCode>
+      <HashCode>QAQAAAACAAAAAAAAAKIAAAAAAABEAACAAqBNACACAgA=</HashCode>
       <FileName>SerialPortDriver.cs</FileName>
     </TypeIdentifier>
     <Lollipop Orientation="Left" Position="0.164" />
   </Class>
   <Class Name="JDLMLab.TlakomerPR4000Driver" Collapsed="true">
     <Position X="12" Y="5.25" Width="1.5" />
-    <InheritanceLine Type="JDLMLab.SerialPortDriver" ManuallyRouted="true" FixedToPoint="true">
-      <Path>
-        <Point X="12.999" Y="1.25" />
-        <Point X="12.999" Y="1.55" />
-        <Point X="13.875" Y="1.55" />
-        <Point X="13.875" Y="5.562" />
-        <Point X="13.5" Y="5.562" />
-      </Path>
-    </InheritanceLine>
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAIABAAAAAAA=</HashCode>
+      <HashCode>AAQAAAAAAAAAAAAAACIAAAAAAABAAAAAAIAEAAACAAA=</HashCode>
       <FileName>TlakomerPR4000Driver.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="JDLMLab.TlakomerTG256ADriver" Collapsed="true">
     <Position X="12" Y="6.75" Width="1.5" />
-    <InheritanceLine Type="JDLMLab.SerialPortDriver" ManuallyRouted="true">
-      <Path>
-        <Point X="12.75" Y="6.334" />
-        <Point X="12.75" Y="4.267" />
-        <Point X="13.875" Y="4.267" />
-        <Point X="13.875" Y="7.096" />
-        <Point X="13.5" Y="7.096" />
-      </Path>
-    </InheritanceLine>
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAECAAAAAQAAAAAAAAAJAVAAAAAAA=</HashCode>
+      <HashCode>QAAAAAAAAAAAAAAAACAAAAAAAAAAAIAAAIAFAAAAAAA=</HashCode>
       <FileName>TlakomerTG256ADriver.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -167,23 +142,14 @@
       </Path>
     </InheritanceLine>
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAIABAAAAAAA=</HashCode>
+      <HashCode>QAAAAAAAAAAAAAAAACAAAAAAAAAAAAAACIARAAAAAAA=</HashCode>
       <FileName>VMeterDriver.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="JDLMLab.TeplomerDriver" Collapsed="true">
     <Position X="12" Y="7.5" Width="1.5" />
-    <InheritanceLine Type="JDLMLab.SerialPortDriver" ManuallyRouted="true">
-      <Path>
-        <Point X="12.75" Y="6.334" />
-        <Point X="12.75" Y="4.304" />
-        <Point X="13.875" Y="4.304" />
-        <Point X="13.875" Y="7.846" />
-        <Point X="13.5" Y="7.846" />
-      </Path>
-    </InheritanceLine>
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAIABAAAAAAA=</HashCode>
+      <HashCode>QAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAIABAAAAAAA=</HashCode>
       <FileName>TeplomerDriver.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -204,7 +170,7 @@
   <Class Name="JDLMLab.Main" Collapsed="true">
     <Position X="3" Y="5.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>A8QAALAAgCAAABoCggCABAAWQAASIBAAQKFYAQBQAAI=</HashCode>
+      <HashCode>A9QAALQCgCAAABoCggiABAAWQAAaIBAKYvFZgQBQAAI=</HashCode>
       <FileName>Main.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
@@ -214,7 +180,7 @@
   <Class Name="JDLMLab.Load" Collapsed="true">
     <Position X="2.5" Y="9" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>UAAgAAAgICiQAFAEBACAEgRDAABYQQIAQGQQYAAAQgE=</HashCode>
+      <HashCode>fwAAAAAgAiCQAFaAiACAEjRDCAFcQQIAAGQgQYAAQpE=</HashCode>
       <FileName>Load.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -227,17 +193,8 @@
   </Class>
   <Class Name="JDLMLab.QmsDriver" Collapsed="true">
     <Position X="12" Y="8.25" Width="1.5" />
-    <InheritanceLine Type="JDLMLab.SerialPortDriver" ManuallyRouted="true">
-      <Path>
-        <Point X="12.75" Y="6.334" />
-        <Point X="12.75" Y="4.286" />
-        <Point X="13.875" Y="4.286" />
-        <Point X="13.875" Y="8.596" />
-        <Point X="13.5" Y="8.596" />
-      </Path>
-    </InheritanceLine>
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAIABAAAAAAA=</HashCode>
+      <HashCode>AAACAAAAAAAAAAAAACAAAAAAAAAAAAAAAIABAAAAAAA=</HashCode>
       <FileName>QmsDriver.cs</FileName>
     </TypeIdentifier>
   </Class>
