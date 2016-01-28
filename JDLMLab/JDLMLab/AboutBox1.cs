@@ -116,7 +116,7 @@ namespace JDLMLab
         {
             if (e.KeyCode == Keys.Escape) ;
             {
-                DialogResult = DialogResult.Cancel;
+                //DialogResult = DialogResult.Cancel;
             }
         }
     }

@@ -86,9 +86,9 @@ namespace JDLMLab {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("0")]
-        public double eKonstanta {
+        public int eKonstanta {
             get {
-                return ((double)(this["eKonstanta"]));
+                return ((int)(this["eKonstanta"]));
             }
             set {
                 this["eKonstanta"] = value;
@@ -98,9 +98,9 @@ namespace JDLMLab {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("0")]
-        public double mStart {
+        public int mStart {
             get {
-                return ((double)(this["mStart"]));
+                return ((int)(this["mStart"]));
             }
             set {
                 this["mStart"] = value;
@@ -110,9 +110,9 @@ namespace JDLMLab {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("0")]
-        public double mEnd {
+        public int mEnd {
             get {
-                return ((double)(this["mEnd"]));
+                return ((int)(this["mEnd"]));
             }
             set {
                 this["mEnd"] = value;
@@ -146,12 +146,12 @@ namespace JDLMLab {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("0")]
-        public double mStepTime {
+        public int mDensOfMeas {
             get {
-                return ((double)(this["mStepTime"]));
+                return ((int)(this["mDensOfMeas"]));
             }
             set {
-                this["mStepTime"] = value;
+                this["mDensOfMeas"] = value;
             }
         }
         
@@ -206,9 +206,9 @@ namespace JDLMLab {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("0")]
-        public double m2DStartPoint {
+        public int m2DStartPoint {
             get {
-                return ((double)(this["m2DStartPoint"]));
+                return ((int)(this["m2DStartPoint"]));
             }
             set {
                 this["m2DStartPoint"] = value;
@@ -218,9 +218,9 @@ namespace JDLMLab {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("0")]
-        public double m2DEndPoint {
+        public int m2DEndPoint {
             get {
-                return ((double)(this["m2DEndPoint"]));
+                return ((int)(this["m2DEndPoint"]));
             }
             set {
                 this["m2DEndPoint"] = value;
@@ -242,12 +242,36 @@ namespace JDLMLab {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("0")]
-        public double m2DStepTime {
+        public int m2DDensOfMeas {
             get {
-                return ((double)(this["m2DStepTime"]));
+                return ((int)(this["m2DDensOfMeas"]));
             }
             set {
-                this["m2DStepTime"] = value;
+                this["m2DDensOfMeas"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public double m2DTimePerAmu {
+            get {
+                return ((double)(this["m2DTimePerAmu"]));
+            }
+            set {
+                this["m2DTimePerAmu"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public double mTimePerAmu {
+            get {
+                return ((double)(this["mTimePerAmu"]));
+            }
+            set {
+                this["mTimePerAmu"] = value;
             }
         }
     }

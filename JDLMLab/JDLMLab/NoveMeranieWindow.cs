@@ -41,7 +41,7 @@ namespace JDLMLab
             InitializeComponent();
 
             //dynamicky nabindovane hodnoty a kluce pre dropdown list
-            Dictionary<string, double> dict = new Dictionary<string, double>();
+            Dictionary<string, int> dict = new Dictionary<string, int>();
             if (Properties.Devices.Default.QmsType == 2048)
             {
                 dict.Add("8", 8);
@@ -53,16 +53,55 @@ namespace JDLMLab
                 dict.Add("64", 64);
             }
 
-                stepTimeFieldMs.DataSource = new BindingSource(dict, null);
-            stepTimeFieldMs.DisplayMember = "Key";
-            stepTimeFieldMs.ValueMember = "Value";
+                DensOfMeasFieldMs.DataSource = new BindingSource(dict, null);
+            DensOfMeasFieldMs.DisplayMember = "Key";
+            DensOfMeasFieldMs.ValueMember = "Value";
 
-            stepTimeField2DMs.DataSource = new BindingSource(dict, null);
-            stepTimeField2DMs.DisplayMember = "Key";
-            stepTimeField2DMs.ValueMember = "Value";
+            DensOfMeasField2DMS.DataSource = new BindingSource(dict, null);
+            DensOfMeasField2DMS.DisplayMember = "Key";
+            DensOfMeasField2DMS.ValueMember = "Value";
 
+            Dictionary<string, int> dictTime = new Dictionary<string, int>();
+            dictTime.Add("10 s", 10000);
+            dictTime.Add("5 s", 5000);
+            dictTime.Add("2 s", 2000);
+            dictTime.Add("1 s", 1000);
+            dictTime.Add("500 ms", 500);
+            dictTime.Add("200 ms", 200);
+            dictTime.Add("100 ms", 100);
+            dictTime.Add("50 ms", 50);
+            dictTime.Add("20 ms", 20);
+
+
+
+            timePerAmuFieldMs.DataSource = new BindingSource(dictTime, null);
+            timePerAmuFieldMs.DisplayMember = "Key";
+            timePerAmuFieldMs.ValueMember = "Value";
+
+            timePerAmuField2DMs.DataSource = new BindingSource(dictTime, null);
+            timePerAmuField2DMs.DisplayMember = "Key";
+            timePerAmuField2DMs.ValueMember = "Value";
+
+            startPointField2DMs.Text = PosledneParametreMerania.Default.m2DStartPoint.ToString();
+            endPointField2DMs.Text = PosledneParametreMerania.Default.m2DEndPoint.ToString();
+            resolutionField2D.Text = PosledneParametreMerania.Default.m2DResolution.ToString();
+            DensOfMeasField2DMS.Text = PosledneParametreMerania.Default.m2DDensOfMeas.ToString();
+            timePerAmuField2DMs.Text = PosledneParametreMerania.Default.m2DTimePerAmu.ToString();
+            steptimeField2DEs.Text = PosledneParametreMerania.Default.e2DStepTime.ToString();
+            startPointField2DEs.Text = PosledneParametreMerania.Default.e2DStartPoint.ToString();
+            endPointField2DEs.Text = PosledneParametreMerania.Default.e2DEndPoint.ToString();
+            pocetKrokovField2DEs.Text = PosledneParametreMerania.Default.e2DPocetKrokov.ToString();
+
+            startPointFieldMs.Text = PosledneParametreMerania.Default.mStart.ToString();
+            endPointFieldMs.Text = PosledneParametreMerania.Default.mEnd.ToString();
+            resolutionFieldMs.Text = PosledneParametreMerania.Default.mResolution.ToString();
+            DensOfMeasFieldMs.Text = PosledneParametreMerania.Default.mDensOfMeas.ToString();
+            constantFieldMs.Text = PosledneParametreMerania.Default.mKonstanta.ToString();
+            MessageBox.Show(timePerAmuFieldMs.Text);
+            timePerAmuFieldMs.Text = PosledneParametreMerania.Default.mTimePerAmu.ToString();
 
         }
+
         public MeasurementParameters parametreMerania;
 
 
@@ -116,7 +155,7 @@ namespace JDLMLab
                     validateMassScanTab();
 
 
-                    parametreMerania = new MassScanParameters(Convert.ToDouble(startPointFieldMs.Text), Convert.ToDouble(endPointFieldMs.Text), Convert.ToDouble(constantFieldMs.Text), (double)stepTimeFieldMs.SelectedValue);
+                    parametreMerania = new MassScanParameters(Convert.ToInt32(startPointFieldMs.Text), Convert.ToInt32(endPointFieldMs.Text), Convert.ToDouble(constantFieldMs.Text), (int)DensOfMeasFieldMs.SelectedValue);
                     parametreMerania.setParameters(nameField
                         .Text, Convert.ToDouble(resolutionFieldMs.Text), Convert.ToInt32(pocetCyklovField.Value), noteField.Text);
                     ulozParametreMassScan();
@@ -135,7 +174,7 @@ namespace JDLMLab
                     EnergyScanParameters parametreMeraniaEnergy = new EnergyScanParameters(Convert.ToDouble(startPointField2DEs.Text), Convert.ToDouble(endPointField2DEs.Text),0.0,Convert.ToDouble(steptimeField2DEs.Text), Convert.ToInt32(pocetKrokovField2DEs.Text));
 
 
-                    MassScanParameters parametreMeraniaMass = new MassScanParameters(Convert.ToDouble(startPointField2DMs.Text), Convert.ToDouble(endPointField2DMs.Text), 0, (double)stepTimeField2DMs.SelectedValue);
+                    MassScanParameters parametreMeraniaMass = new MassScanParameters(Convert.ToInt32(startPointField2DMs.Text), Convert.ToInt32(endPointField2DMs.Text), 0, (double)DensOfMeasField2DMS.SelectedValue);
 
                     parametreMerania = new Scan2DParameters(parametreMeraniaEnergy, parametreMeraniaMass);
 
@@ -153,18 +192,21 @@ namespace JDLMLab
         }
 
         /// <summary>
-        /// metoda na ulozanie akutalne zadanych parametrov pre 2dscan do settign filu PosledneParametreMerania. nic nevaliduje. vola sa az po validacii, takze fieldy sa mozu bezpecne ulozit
+        /// metoda na ulozanie akutalne zadanych parametrov pre 2dscan do settign filu PosledneParametreMerania. 
+        /// nic nevaliduje. vola sa az po validacii, takze fieldy sa mozu bezpecne ulozit
         /// </summary>
         private void ulozParametre2DScan()
         {
             PosledneParametreMerania.Default.m2DStartPoint = int.Parse(startPointField2DMs.Text);
             PosledneParametreMerania.Default.m2DEndPoint = int.Parse(endPointField2DEs.Text);
-            PosledneParametreMerania.Default.m2DResolution = int.Parse(resolutionField2D.Text);
-            PosledneParametreMerania.Default.m2DStepTime = int.Parse(stepTimeField2DMs.Text);
-            PosledneParametreMerania.Default.e2DStepTime = int.Parse(steptimeField2DEs.Text);
-            PosledneParametreMerania.Default.e2DStartPoint = int.Parse(startPointField2DEs.Text);
-            PosledneParametreMerania.Default.e2DEndPoint = int.Parse(endPointField2DEs.Text);
+            PosledneParametreMerania.Default.m2DResolution = double.Parse(resolutionField2D.Text);
+            PosledneParametreMerania.Default.m2DDensOfMeas = int.Parse(DensOfMeasField2DMS.SelectedValue.ToString());
+            PosledneParametreMerania.Default.m2DTimePerAmu = int.Parse(timePerAmuField2DMs.SelectedValue.ToString());
+            PosledneParametreMerania.Default.e2DStepTime = double.Parse(steptimeField2DEs.Text);
+            PosledneParametreMerania.Default.e2DStartPoint = double.Parse(startPointField2DEs.Text);
+            PosledneParametreMerania.Default.e2DEndPoint = double.Parse(endPointField2DEs.Text);
             PosledneParametreMerania.Default.e2DPocetKrokov = int.Parse(pocetKrokovField2DEs.Text);
+            
 
         }
 
@@ -172,18 +214,20 @@ namespace JDLMLab
         {
             PosledneParametreMerania.Default.mStart= int.Parse(startPointFieldMs.Text);
             PosledneParametreMerania.Default.mEnd = int.Parse(endPointFieldMs.Text);
-            PosledneParametreMerania.Default.mResolution = int.Parse(resolutionFieldMs.Text);
-            PosledneParametreMerania.Default.mStepTime = int.Parse(stepTimeFieldMs.Text);
-            PosledneParametreMerania.Default.mKonstanta= int.Parse(constantFieldMs.Text);
+            PosledneParametreMerania.Default.mResolution = double.Parse(resolutionFieldMs.Text);
+            PosledneParametreMerania.Default.mDensOfMeas = int.Parse(DensOfMeasFieldMs.SelectedValue.ToString());
+            PosledneParametreMerania.Default.mKonstanta= double.Parse(constantFieldMs.Text);
+            PosledneParametreMerania.Default.mTimePerAmu = int.Parse(timePerAmuFieldMs.SelectedValue.ToString());
+            MessageBox.Show(PosledneParametreMerania.Default.mTimePerAmu.ToString());
             
         }
 
         private void ulozParametreEnergyScan()
         {
-            PosledneParametreMerania.Default.eStartPoint = int.Parse(startPointFieldEs.Text);
-            PosledneParametreMerania.Default.eEndPoint = int.Parse(endPointFieldEs.Text);
-            PosledneParametreMerania.Default.eResolution = int.Parse(resolutionFieldEs.Text);
-            PosledneParametreMerania.Default.eStepTime = int.Parse(stepTimeFieldEs.Text);
+            PosledneParametreMerania.Default.eStartPoint = double.Parse(startPointFieldEs.Text);
+            PosledneParametreMerania.Default.eEndPoint = double.Parse(endPointFieldEs.Text);
+            PosledneParametreMerania.Default.eResolution = double.Parse(resolutionFieldEs.Text);
+            PosledneParametreMerania.Default.eStepTime = double.Parse(stepTimeFieldEs.Text);
             PosledneParametreMerania.Default.eKonstanta = int.Parse(constantFieldEs.Text);
             PosledneParametreMerania.Default.ePocetKrokov = int.Parse(pocetKrokovFieldEs.Text);
             
@@ -252,7 +296,7 @@ namespace JDLMLab
        	    
             if (!Double.TryParse(constantFieldMs.Text, out constant)) throw new ValidateParametersException("Neplatná hodnota pre constant");
           
-            if (!Double.TryParse(stepTimeFieldMs.Text, out step)) throw new ValidateParametersException("Neplatná hodnota pre steptime");
+            if (!Double.TryParse(DensOfMeasFieldMs.Text, out step)) throw new ValidateParametersException("Neplatná hodnota pre steptime");
             
             if (startpoint >= endpoint) throw new ValidateParametersException("Neplatná hodnota endpoint musi byt vacsi ako startpoint");
             if (resolution == 0) throw new ValidateParametersException("Neplatná hodnota resulution nemoze byt 0");
@@ -388,7 +432,7 @@ namespace JDLMLab
 
                 double start = int.Parse(startPointField2DMs.Text);
                 double end = int.Parse(endPointField2DMs.Text);
-                double casnakrok = double.Parse(stepTimeField2DMs.SelectedValue.ToString());
+                double casnakrok = double.Parse(DensOfMeasField2DMS.SelectedValue.ToString());
                 StepValue2DMsLabel.Text = (((end - start) * casnakrok)).ToString();
                 StepValue2DMsLabel.Visible = true;
                 label36.Visible = true;
@@ -406,7 +450,7 @@ namespace JDLMLab
                 double start = int.Parse(startPointFieldMs.Text);
                 double end = int.Parse(endPointFieldMs.Text);
                 
-                double casnakrok = double.Parse(stepTimeFieldMs.SelectedValue.ToString());
+                double casnakrok = double.Parse(DensOfMeasFieldMs.SelectedValue.ToString());
                 StepValueMsLabel.Text = (((end - start) * casnakrok)).ToString();
                 StepValueMsLabel.Visible = true;
                 label37.Visible = true;
@@ -506,10 +550,20 @@ namespace JDLMLab
 
         private void NoveMeranieWindow_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.KeyCode== Keys.Escape) ;
+            if (e.KeyCode == Keys.Escape) ;
             {
-                DialogResult = DialogResult.Cancel;
+                //DialogResult = DialogResult.Cancel;
             }
+        }
+
+        private void DensOfMeasFieldMs_SelectedValueChanged(object sender, EventArgs e)
+        {
+            vypocitajStepPreMs();
+        }
+
+        private void DensOfMeasField2DMS_SelectedValueChanged(object sender, EventArgs e)
+        {
+            vypocitajStepPre2DMs();
         }
     }
 

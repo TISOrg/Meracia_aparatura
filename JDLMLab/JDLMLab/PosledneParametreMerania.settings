@@ -17,13 +17,13 @@
     <Setting Name="ePocetKrokov" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">0</Value>
     </Setting>
-    <Setting Name="eKonstanta" Type="System.Double" Scope="User">
+    <Setting Name="eKonstanta" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">0</Value>
     </Setting>
-    <Setting Name="mStart" Type="System.Double" Scope="User">
+    <Setting Name="mStart" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">0</Value>
     </Setting>
-    <Setting Name="mEnd" Type="System.Double" Scope="User">
+    <Setting Name="mEnd" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">0</Value>
     </Setting>
     <Setting Name="mResolution" Type="System.Double" Scope="User">
@@ -32,7 +32,7 @@
     <Setting Name="mKonstanta" Type="System.Double" Scope="User">
       <Value Profile="(Default)">0</Value>
     </Setting>
-    <Setting Name="mStepTime" Type="System.Double" Scope="User">
+    <Setting Name="mDensOfMeas" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">0</Value>
     </Setting>
     <Setting Name="e2DStartPoint" Type="System.Double" Scope="User">
@@ -47,16 +47,22 @@
     <Setting Name="e2DPocetKrokov" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">0</Value>
     </Setting>
-    <Setting Name="m2DStartPoint" Type="System.Double" Scope="User">
+    <Setting Name="m2DStartPoint" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">0</Value>
     </Setting>
-    <Setting Name="m2DEndPoint" Type="System.Double" Scope="User">
+    <Setting Name="m2DEndPoint" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">0</Value>
     </Setting>
     <Setting Name="m2DResolution" Type="System.Double" Scope="User">
       <Value Profile="(Default)">0</Value>
     </Setting>
-    <Setting Name="m2DStepTime" Type="System.Double" Scope="User">
+    <Setting Name="m2DDensOfMeas" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="m2DTimePerAmu" Type="System.Double" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="mTimePerAmu" Type="System.Double" Scope="User">
       <Value Profile="(Default)">0</Value>
     </Setting>
   </Settings>

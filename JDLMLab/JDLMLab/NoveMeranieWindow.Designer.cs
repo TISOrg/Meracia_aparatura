@@ -59,9 +59,11 @@
             this.label1 = new System.Windows.Forms.Label();
             this.startPointFieldEs = new System.Windows.Forms.TextBox();
             this.tabPage4 = new System.Windows.Forms.TabPage();
+            this.timePerAmuFieldMs = new System.Windows.Forms.ComboBox();
+            this.label27 = new System.Windows.Forms.Label();
             this.label37 = new System.Windows.Forms.Label();
             this.StepValueMsLabel = new System.Windows.Forms.Label();
-            this.stepTimeFieldMs = new System.Windows.Forms.ComboBox();
+            this.DensOfMeasFieldMs = new System.Windows.Forms.ComboBox();
             this.label15 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
@@ -76,9 +78,11 @@
             this.startPointFieldMs = new System.Windows.Forms.TextBox();
             this.tabPage5 = new System.Windows.Forms.TabPage();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.timePerAmuField2DMs = new System.Windows.Forms.ComboBox();
+            this.label9 = new System.Windows.Forms.Label();
             this.label36 = new System.Windows.Forms.Label();
             this.StepValue2DMsLabel = new System.Windows.Forms.Label();
-            this.stepTimeField2DMs = new System.Windows.Forms.ComboBox();
+            this.DensOfMeasField2DMS = new System.Windows.Forms.ComboBox();
             this.startPointField2DMs = new System.Windows.Forms.TextBox();
             this.label34 = new System.Windows.Forms.Label();
             this.endPointField2DMs = new System.Windows.Forms.TextBox();
@@ -102,12 +106,6 @@
             this.label25 = new System.Windows.Forms.Label();
             this.startPointField2DEs = new System.Windows.Forms.TextBox();
             this.tabControl1 = new System.Windows.Forms.TabControl();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.label9 = new System.Windows.Forms.Label();
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
-            this.label27 = new System.Windows.Forms.Label();
-            this.label38 = new System.Windows.Forms.Label();
-            this.label39 = new System.Windows.Forms.Label();
             this.tabPage2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pocetCyklovField)).BeginInit();
             this.typyMeraniaTaby.SuspendLayout();
@@ -425,12 +423,11 @@
             // 
             // tabPage4
             // 
-            this.tabPage4.Controls.Add(this.label38);
-            this.tabPage4.Controls.Add(this.comboBox2);
+            this.tabPage4.Controls.Add(this.timePerAmuFieldMs);
             this.tabPage4.Controls.Add(this.label27);
             this.tabPage4.Controls.Add(this.label37);
             this.tabPage4.Controls.Add(this.StepValueMsLabel);
-            this.tabPage4.Controls.Add(this.stepTimeFieldMs);
+            this.tabPage4.Controls.Add(this.DensOfMeasFieldMs);
             this.tabPage4.Controls.Add(this.label15);
             this.tabPage4.Controls.Add(this.label10);
             this.tabPage4.Controls.Add(this.label11);
@@ -452,6 +449,24 @@
             this.tabPage4.UseVisualStyleBackColor = true;
             this.tabPage4.Click += new System.EventHandler(this.tabPage4_Click);
             // 
+            // timePerAmuFieldMs
+            // 
+            this.timePerAmuFieldMs.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.timePerAmuFieldMs.FormattingEnabled = true;
+            this.timePerAmuFieldMs.Location = new System.Drawing.Point(105, 152);
+            this.timePerAmuFieldMs.Name = "timePerAmuFieldMs";
+            this.timePerAmuFieldMs.Size = new System.Drawing.Size(61, 21);
+            this.timePerAmuFieldMs.TabIndex = 66;
+            // 
+            // label27
+            // 
+            this.label27.AutoSize = true;
+            this.label27.Location = new System.Drawing.Point(20, 155);
+            this.label27.Name = "label27";
+            this.label27.Size = new System.Drawing.Size(71, 13);
+            this.label27.TabIndex = 65;
+            this.label27.Text = "Time per amu";
+            // 
             // label37
             // 
             this.label37.AutoSize = true;
@@ -470,16 +485,16 @@
             this.StepValueMsLabel.TabIndex = 47;
             this.StepValueMsLabel.Text = "0";
             // 
-            // stepTimeFieldMs
+            // DensOfMeasFieldMs
             // 
-            this.stepTimeFieldMs.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.stepTimeFieldMs.FormattingEnabled = true;
-            this.stepTimeFieldMs.Location = new System.Drawing.Point(105, 123);
-            this.stepTimeFieldMs.Name = "stepTimeFieldMs";
-            this.stepTimeFieldMs.Size = new System.Drawing.Size(61, 21);
-            this.stepTimeFieldMs.TabIndex = 38;
-            this.stepTimeFieldMs.SelectedIndexChanged += new System.EventHandler(this.stepTimeFieldMs_SelectedIndexChanged);
-            this.stepTimeFieldMs.ValueMemberChanged += new System.EventHandler(this.stepTimeFieldMs_ValueMemberChanged);
+            this.DensOfMeasFieldMs.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.DensOfMeasFieldMs.FormattingEnabled = true;
+            this.DensOfMeasFieldMs.Location = new System.Drawing.Point(105, 123);
+            this.DensOfMeasFieldMs.Name = "DensOfMeasFieldMs";
+            this.DensOfMeasFieldMs.Size = new System.Drawing.Size(61, 21);
+            this.DensOfMeasFieldMs.TabIndex = 38;
+            this.DensOfMeasFieldMs.ValueMemberChanged += new System.EventHandler(this.stepTimeFieldMs_ValueMemberChanged);
+            this.DensOfMeasFieldMs.SelectedValueChanged += new System.EventHandler(this.DensOfMeasFieldMs_SelectedValueChanged);
             // 
             // label15
             // 
@@ -604,12 +619,11 @@
             // 
             // groupBox2
             // 
-            this.groupBox2.Controls.Add(this.label39);
-            this.groupBox2.Controls.Add(this.comboBox1);
+            this.groupBox2.Controls.Add(this.timePerAmuField2DMs);
             this.groupBox2.Controls.Add(this.label9);
             this.groupBox2.Controls.Add(this.label36);
             this.groupBox2.Controls.Add(this.StepValue2DMsLabel);
-            this.groupBox2.Controls.Add(this.stepTimeField2DMs);
+            this.groupBox2.Controls.Add(this.DensOfMeasField2DMS);
             this.groupBox2.Controls.Add(this.startPointField2DMs);
             this.groupBox2.Controls.Add(this.label34);
             this.groupBox2.Controls.Add(this.endPointField2DMs);
@@ -625,6 +639,24 @@
             this.groupBox2.TabIndex = 1;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "QMS";
+            // 
+            // timePerAmuField2DMs
+            // 
+            this.timePerAmuField2DMs.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.timePerAmuField2DMs.FormattingEnabled = true;
+            this.timePerAmuField2DMs.Location = new System.Drawing.Point(99, 139);
+            this.timePerAmuField2DMs.Name = "timePerAmuField2DMs";
+            this.timePerAmuField2DMs.Size = new System.Drawing.Size(61, 21);
+            this.timePerAmuField2DMs.TabIndex = 64;
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(14, 142);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(71, 13);
+            this.label9.TabIndex = 63;
+            this.label9.Text = "Time per amu";
             // 
             // label36
             // 
@@ -645,15 +677,16 @@
             this.StepValue2DMsLabel.TabIndex = 61;
             this.StepValue2DMsLabel.Text = "xxx";
             // 
-            // stepTimeField2DMs
+            // DensOfMeasField2DMS
             // 
-            this.stepTimeField2DMs.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.stepTimeField2DMs.FormattingEnabled = true;
-            this.stepTimeField2DMs.Location = new System.Drawing.Point(99, 106);
-            this.stepTimeField2DMs.Name = "stepTimeField2DMs";
-            this.stepTimeField2DMs.Size = new System.Drawing.Size(61, 21);
-            this.stepTimeField2DMs.TabIndex = 60;
-            this.stepTimeField2DMs.ValueMemberChanged += new System.EventHandler(this.stepTimeField2DMs_ValueMemberChanged);
+            this.DensOfMeasField2DMS.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.DensOfMeasField2DMS.FormattingEnabled = true;
+            this.DensOfMeasField2DMS.Location = new System.Drawing.Point(99, 106);
+            this.DensOfMeasField2DMS.Name = "DensOfMeasField2DMS";
+            this.DensOfMeasField2DMS.Size = new System.Drawing.Size(61, 21);
+            this.DensOfMeasField2DMS.TabIndex = 60;
+            this.DensOfMeasField2DMS.ValueMemberChanged += new System.EventHandler(this.stepTimeField2DMs_ValueMemberChanged);
+            this.DensOfMeasField2DMS.SelectedValueChanged += new System.EventHandler(this.DensOfMeasField2DMS_SelectedValueChanged);
             // 
             // startPointField2DMs
             // 
@@ -883,60 +916,6 @@
             this.tabControl1.Size = new System.Drawing.Size(573, 455);
             this.tabControl1.TabIndex = 0;
             // 
-            // comboBox1
-            // 
-            this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(99, 139);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(61, 21);
-            this.comboBox1.TabIndex = 64;
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(14, 142);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(71, 13);
-            this.label9.TabIndex = 63;
-            this.label9.Text = "Time per amu";
-            // 
-            // comboBox2
-            // 
-            this.comboBox2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Location = new System.Drawing.Point(105, 152);
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(61, 21);
-            this.comboBox2.TabIndex = 66;
-            // 
-            // label27
-            // 
-            this.label27.AutoSize = true;
-            this.label27.Location = new System.Drawing.Point(20, 155);
-            this.label27.Name = "label27";
-            this.label27.Size = new System.Drawing.Size(71, 13);
-            this.label27.TabIndex = 65;
-            this.label27.Text = "Time per amu";
-            // 
-            // label38
-            // 
-            this.label38.AutoSize = true;
-            this.label38.Location = new System.Drawing.Point(172, 155);
-            this.label38.Name = "label38";
-            this.label38.Size = new System.Drawing.Size(27, 13);
-            this.label38.TabIndex = 67;
-            this.label38.Text = "sec.";
-            // 
-            // label39
-            // 
-            this.label39.AutoSize = true;
-            this.label39.Location = new System.Drawing.Point(166, 142);
-            this.label39.Name = "label39";
-            this.label39.Size = new System.Drawing.Size(27, 13);
-            this.label39.TabIndex = 68;
-            this.label39.Text = "sec.";
-            // 
             // NoveMeranieWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1032,8 +1011,8 @@
         private System.Windows.Forms.Label label26;
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.ComboBox stepTimeFieldMs;
-        private System.Windows.Forms.ComboBox stepTimeField2DMs;
+        private System.Windows.Forms.ComboBox DensOfMeasFieldMs;
+        private System.Windows.Forms.ComboBox DensOfMeasField2DMS;
         private System.Windows.Forms.Label label21;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.Label StepValueEsLabel;
@@ -1044,11 +1023,9 @@
         private System.Windows.Forms.Label StepValueMsLabel;
         private System.Windows.Forms.Label label36;
         private System.Windows.Forms.Label StepValue2DMsLabel;
-        private System.Windows.Forms.Label label38;
-        private System.Windows.Forms.ComboBox comboBox2;
+        private System.Windows.Forms.ComboBox timePerAmuFieldMs;
         private System.Windows.Forms.Label label27;
-        private System.Windows.Forms.Label label39;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox timePerAmuField2DMs;
         private System.Windows.Forms.Label label9;
     }
 }
