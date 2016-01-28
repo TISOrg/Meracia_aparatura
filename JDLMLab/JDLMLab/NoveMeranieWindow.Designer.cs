@@ -41,6 +41,8 @@
             this.nameField = new System.Windows.Forms.TextBox();
             this.typyMeraniaTaby = new System.Windows.Forms.TabControl();
             this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.label28 = new System.Windows.Forms.Label();
+            this.StepValueEsLabel = new System.Windows.Forms.Label();
             this.label26 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.stepTimeFieldEs = new System.Windows.Forms.TextBox();
@@ -57,7 +59,8 @@
             this.label1 = new System.Windows.Forms.Label();
             this.startPointFieldEs = new System.Windows.Forms.TextBox();
             this.tabPage4 = new System.Windows.Forms.TabPage();
-            this.label9 = new System.Windows.Forms.Label();
+            this.label37 = new System.Windows.Forms.Label();
+            this.StepValueMsLabel = new System.Windows.Forms.Label();
             this.stepTimeFieldMs = new System.Windows.Forms.ComboBox();
             this.label15 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
@@ -73,8 +76,9 @@
             this.startPointFieldMs = new System.Windows.Forms.TextBox();
             this.tabPage5 = new System.Windows.Forms.TabPage();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.label36 = new System.Windows.Forms.Label();
+            this.StepValue2DMsLabel = new System.Windows.Forms.Label();
             this.stepTimeField2DMs = new System.Windows.Forms.ComboBox();
-            this.label27 = new System.Windows.Forms.Label();
             this.startPointField2DMs = new System.Windows.Forms.TextBox();
             this.label34 = new System.Windows.Forms.Label();
             this.endPointField2DMs = new System.Windows.Forms.TextBox();
@@ -85,6 +89,8 @@
             this.label30 = new System.Windows.Forms.Label();
             this.label31 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.label35 = new System.Windows.Forms.Label();
+            this.StepValue2DEsLabel = new System.Windows.Forms.Label();
             this.label19 = new System.Windows.Forms.Label();
             this.steptimeField2DEs = new System.Windows.Forms.TextBox();
             this.label20 = new System.Windows.Forms.Label();
@@ -96,6 +102,12 @@
             this.label25 = new System.Windows.Forms.Label();
             this.startPointField2DEs = new System.Windows.Forms.TextBox();
             this.tabControl1 = new System.Windows.Forms.TabControl();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.label9 = new System.Windows.Forms.Label();
+            this.comboBox2 = new System.Windows.Forms.ComboBox();
+            this.label27 = new System.Windows.Forms.Label();
+            this.label38 = new System.Windows.Forms.Label();
+            this.label39 = new System.Windows.Forms.Label();
             this.tabPage2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pocetCyklovField)).BeginInit();
             this.typyMeraniaTaby.SuspendLayout();
@@ -155,7 +167,7 @@
             0});
             this.pocetCyklovField.Name = "pocetCyklovField";
             this.pocetCyklovField.Size = new System.Drawing.Size(56, 20);
-            this.pocetCyklovField.TabIndex = 17;
+            this.pocetCyklovField.TabIndex = 2;
             // 
             // pocetCyklovFieldLabel
             // 
@@ -223,10 +235,12 @@
             this.typyMeraniaTaby.Name = "typyMeraniaTaby";
             this.typyMeraniaTaby.SelectedIndex = 0;
             this.typyMeraniaTaby.Size = new System.Drawing.Size(552, 271);
-            this.typyMeraniaTaby.TabIndex = 1;
+            this.typyMeraniaTaby.TabIndex = 2;
             // 
             // tabPage3
             // 
+            this.tabPage3.Controls.Add(this.label28);
+            this.tabPage3.Controls.Add(this.StepValueEsLabel);
             this.tabPage3.Controls.Add(this.label26);
             this.tabPage3.Controls.Add(this.label8);
             this.tabPage3.Controls.Add(this.stepTimeFieldEs);
@@ -249,6 +263,26 @@
             this.tabPage3.TabIndex = 0;
             this.tabPage3.Text = "Energy scan";
             this.tabPage3.UseVisualStyleBackColor = true;
+            // 
+            // label28
+            // 
+            this.label28.AutoSize = true;
+            this.label28.Location = new System.Drawing.Point(370, 25);
+            this.label28.Name = "label28";
+            this.label28.Size = new System.Drawing.Size(32, 13);
+            this.label28.TabIndex = 39;
+            this.label28.Text = "Step ";
+            this.label28.Visible = false;
+            // 
+            // StepValueEsLabel
+            // 
+            this.StepValueEsLabel.AutoSize = true;
+            this.StepValueEsLabel.Location = new System.Drawing.Point(417, 25);
+            this.StepValueEsLabel.Name = "StepValueEsLabel";
+            this.StepValueEsLabel.Size = new System.Drawing.Size(22, 13);
+            this.StepValueEsLabel.TabIndex = 38;
+            this.StepValueEsLabel.Text = "xxx";
+            this.StepValueEsLabel.Visible = false;
             // 
             // label26
             // 
@@ -311,7 +345,9 @@
             this.pocetKrokovFieldEs.MaxLength = 50;
             this.pocetKrokovFieldEs.Name = "pocetKrokovFieldEs";
             this.pocetKrokovFieldEs.Size = new System.Drawing.Size(100, 20);
-            this.pocetKrokovFieldEs.TabIndex = 8;
+            this.pocetKrokovFieldEs.TabIndex = 15;
+            this.pocetKrokovFieldEs.TextChanged += new System.EventHandler(this.pocetKrokovFieldEs_TextChanged);
+            this.pocetKrokovFieldEs.KeyUp += new System.Windows.Forms.KeyEventHandler(this.pocetKrokovFieldEs_KeyUp);
             // 
             // label5
             // 
@@ -366,6 +402,7 @@
             this.endPointFieldEs.Name = "endPointFieldEs";
             this.endPointFieldEs.Size = new System.Drawing.Size(100, 20);
             this.endPointFieldEs.TabIndex = 2;
+            this.endPointFieldEs.KeyUp += new System.Windows.Forms.KeyEventHandler(this.endPointFieldEs_KeyUp);
             // 
             // label1
             // 
@@ -384,10 +421,15 @@
             this.startPointFieldEs.Name = "startPointFieldEs";
             this.startPointFieldEs.Size = new System.Drawing.Size(100, 20);
             this.startPointFieldEs.TabIndex = 0;
+            this.startPointFieldEs.KeyUp += new System.Windows.Forms.KeyEventHandler(this.startPointFieldEs_KeyUp);
             // 
             // tabPage4
             // 
-            this.tabPage4.Controls.Add(this.label9);
+            this.tabPage4.Controls.Add(this.label38);
+            this.tabPage4.Controls.Add(this.comboBox2);
+            this.tabPage4.Controls.Add(this.label27);
+            this.tabPage4.Controls.Add(this.label37);
+            this.tabPage4.Controls.Add(this.StepValueMsLabel);
             this.tabPage4.Controls.Add(this.stepTimeFieldMs);
             this.tabPage4.Controls.Add(this.label15);
             this.tabPage4.Controls.Add(this.label10);
@@ -408,15 +450,25 @@
             this.tabPage4.TabIndex = 1;
             this.tabPage4.Text = "Mass scan";
             this.tabPage4.UseVisualStyleBackColor = true;
+            this.tabPage4.Click += new System.EventHandler(this.tabPage4_Click);
             // 
-            // label9
+            // label37
             // 
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(172, 126);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(15, 13);
-            this.label9.TabIndex = 39;
-            this.label9.Text = "s.";
+            this.label37.AutoSize = true;
+            this.label37.Location = new System.Drawing.Point(68, 183);
+            this.label37.Name = "label37";
+            this.label37.Size = new System.Drawing.Size(32, 13);
+            this.label37.TabIndex = 48;
+            this.label37.Text = "Step ";
+            // 
+            // StepValueMsLabel
+            // 
+            this.StepValueMsLabel.AutoSize = true;
+            this.StepValueMsLabel.Location = new System.Drawing.Point(115, 183);
+            this.StepValueMsLabel.Name = "StepValueMsLabel";
+            this.StepValueMsLabel.Size = new System.Drawing.Size(13, 13);
+            this.StepValueMsLabel.TabIndex = 47;
+            this.StepValueMsLabel.Text = "0";
             // 
             // stepTimeFieldMs
             // 
@@ -426,6 +478,8 @@
             this.stepTimeFieldMs.Name = "stepTimeFieldMs";
             this.stepTimeFieldMs.Size = new System.Drawing.Size(61, 21);
             this.stepTimeFieldMs.TabIndex = 38;
+            this.stepTimeFieldMs.SelectedIndexChanged += new System.EventHandler(this.stepTimeFieldMs_SelectedIndexChanged);
+            this.stepTimeFieldMs.ValueMemberChanged += new System.EventHandler(this.stepTimeFieldMs_ValueMemberChanged);
             // 
             // label15
             // 
@@ -448,11 +502,11 @@
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(27, 126);
+            this.label11.Location = new System.Drawing.Point(16, 126);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(73, 13);
+            this.label11.Size = new System.Drawing.Size(85, 13);
             this.label11.TabIndex = 30;
-            this.label11.Text = "Čas na 1 krok";
+            this.label11.Text = "Density of meas.";
             // 
             // label12
             // 
@@ -516,6 +570,7 @@
             this.endPointFieldMs.Name = "endPointFieldMs";
             this.endPointFieldMs.Size = new System.Drawing.Size(100, 20);
             this.endPointFieldMs.TabIndex = 19;
+            this.endPointFieldMs.KeyUp += new System.Windows.Forms.KeyEventHandler(this.endPointFieldMs_KeyUp);
             // 
             // label18
             // 
@@ -534,6 +589,7 @@
             this.startPointFieldMs.Name = "startPointFieldMs";
             this.startPointFieldMs.Size = new System.Drawing.Size(100, 20);
             this.startPointFieldMs.TabIndex = 17;
+            this.startPointFieldMs.KeyUp += new System.Windows.Forms.KeyEventHandler(this.startPointFieldMs_KeyUp);
             // 
             // tabPage5
             // 
@@ -548,8 +604,12 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.label39);
+            this.groupBox2.Controls.Add(this.comboBox1);
+            this.groupBox2.Controls.Add(this.label9);
+            this.groupBox2.Controls.Add(this.label36);
+            this.groupBox2.Controls.Add(this.StepValue2DMsLabel);
             this.groupBox2.Controls.Add(this.stepTimeField2DMs);
-            this.groupBox2.Controls.Add(this.label27);
             this.groupBox2.Controls.Add(this.startPointField2DMs);
             this.groupBox2.Controls.Add(this.label34);
             this.groupBox2.Controls.Add(this.endPointField2DMs);
@@ -566,6 +626,25 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "QMS";
             // 
+            // label36
+            // 
+            this.label36.AutoSize = true;
+            this.label36.Location = new System.Drawing.Point(56, 175);
+            this.label36.Name = "label36";
+            this.label36.Size = new System.Drawing.Size(32, 13);
+            this.label36.TabIndex = 62;
+            this.label36.Text = "Step ";
+            // 
+            // StepValue2DMsLabel
+            // 
+            this.StepValue2DMsLabel.AutoSize = true;
+            this.StepValue2DMsLabel.BackColor = System.Drawing.Color.Transparent;
+            this.StepValue2DMsLabel.Location = new System.Drawing.Point(103, 175);
+            this.StepValue2DMsLabel.Name = "StepValue2DMsLabel";
+            this.StepValue2DMsLabel.Size = new System.Drawing.Size(22, 13);
+            this.StepValue2DMsLabel.TabIndex = 61;
+            this.StepValue2DMsLabel.Text = "xxx";
+            // 
             // stepTimeField2DMs
             // 
             this.stepTimeField2DMs.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
@@ -574,15 +653,7 @@
             this.stepTimeField2DMs.Name = "stepTimeField2DMs";
             this.stepTimeField2DMs.Size = new System.Drawing.Size(61, 21);
             this.stepTimeField2DMs.TabIndex = 60;
-            // 
-            // label27
-            // 
-            this.label27.AutoSize = true;
-            this.label27.Location = new System.Drawing.Point(167, 109);
-            this.label27.Name = "label27";
-            this.label27.Size = new System.Drawing.Size(15, 13);
-            this.label27.TabIndex = 59;
-            this.label27.Text = "s,";
+            this.stepTimeField2DMs.ValueMemberChanged += new System.EventHandler(this.stepTimeField2DMs_ValueMemberChanged);
             // 
             // startPointField2DMs
             // 
@@ -592,6 +663,7 @@
             this.startPointField2DMs.Name = "startPointField2DMs";
             this.startPointField2DMs.Size = new System.Drawing.Size(100, 20);
             this.startPointField2DMs.TabIndex = 48;
+            this.startPointField2DMs.KeyUp += new System.Windows.Forms.KeyEventHandler(this.startPointField2DMs_KeyUp);
             // 
             // label34
             // 
@@ -610,6 +682,7 @@
             this.endPointField2DMs.Name = "endPointField2DMs";
             this.endPointField2DMs.Size = new System.Drawing.Size(100, 20);
             this.endPointField2DMs.TabIndex = 50;
+            this.endPointField2DMs.KeyUp += new System.Windows.Forms.KeyEventHandler(this.endPointField2DMs_KeyUp);
             // 
             // label29
             // 
@@ -650,11 +723,11 @@
             // label30
             // 
             this.label30.AutoSize = true;
-            this.label30.Location = new System.Drawing.Point(14, 109);
+            this.label30.Location = new System.Drawing.Point(7, 109);
             this.label30.Name = "label30";
-            this.label30.Size = new System.Drawing.Size(73, 13);
+            this.label30.Size = new System.Drawing.Size(85, 13);
             this.label30.TabIndex = 55;
-            this.label30.Text = "Čas na 1 krok";
+            this.label30.Text = "Density of meas.";
             // 
             // label31
             // 
@@ -667,6 +740,8 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.label35);
+            this.groupBox1.Controls.Add(this.StepValue2DEsLabel);
             this.groupBox1.Controls.Add(this.label19);
             this.groupBox1.Controls.Add(this.steptimeField2DEs);
             this.groupBox1.Controls.Add(this.label20);
@@ -683,6 +758,26 @@
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "TEM";
+            // 
+            // label35
+            // 
+            this.label35.AutoSize = true;
+            this.label35.Location = new System.Drawing.Point(56, 147);
+            this.label35.Name = "label35";
+            this.label35.Size = new System.Drawing.Size(32, 13);
+            this.label35.TabIndex = 46;
+            this.label35.Text = "Step ";
+            this.label35.Visible = false;
+            // 
+            // StepValue2DEsLabel
+            // 
+            this.StepValue2DEsLabel.AutoSize = true;
+            this.StepValue2DEsLabel.Location = new System.Drawing.Point(103, 147);
+            this.StepValue2DEsLabel.Name = "StepValue2DEsLabel";
+            this.StepValue2DEsLabel.Size = new System.Drawing.Size(22, 13);
+            this.StepValue2DEsLabel.TabIndex = 45;
+            this.StepValue2DEsLabel.Text = "xxx";
+            this.StepValue2DEsLabel.Visible = false;
             // 
             // label19
             // 
@@ -719,6 +814,8 @@
             this.pocetKrokovField2DEs.Name = "pocetKrokovField2DEs";
             this.pocetKrokovField2DEs.Size = new System.Drawing.Size(100, 20);
             this.pocetKrokovField2DEs.TabIndex = 43;
+            this.pocetKrokovField2DEs.TextChanged += new System.EventHandler(this.pocetKrokovField2DEs_TextChanged);
+            this.pocetKrokovField2DEs.KeyUp += new System.Windows.Forms.KeyEventHandler(this.pocetKrokovField2DEs_KeyUp);
             // 
             // label22
             // 
@@ -755,6 +852,7 @@
             this.endPointField2DEs.Name = "endPointField2DEs";
             this.endPointField2DEs.Size = new System.Drawing.Size(100, 20);
             this.endPointField2DEs.TabIndex = 35;
+            this.endPointField2DEs.KeyUp += new System.Windows.Forms.KeyEventHandler(this.endPointField2DEs_KeyUp);
             // 
             // label25
             // 
@@ -773,6 +871,7 @@
             this.startPointField2DEs.Name = "startPointField2DEs";
             this.startPointField2DEs.Size = new System.Drawing.Size(100, 20);
             this.startPointField2DEs.TabIndex = 33;
+            this.startPointField2DEs.KeyUp += new System.Windows.Forms.KeyEventHandler(this.startPointField2DEs_KeyUp);
             // 
             // tabControl1
             // 
@@ -784,6 +883,60 @@
             this.tabControl1.Size = new System.Drawing.Size(573, 455);
             this.tabControl1.TabIndex = 0;
             // 
+            // comboBox1
+            // 
+            this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Location = new System.Drawing.Point(99, 139);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(61, 21);
+            this.comboBox1.TabIndex = 64;
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(14, 142);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(71, 13);
+            this.label9.TabIndex = 63;
+            this.label9.Text = "Time per amu";
+            // 
+            // comboBox2
+            // 
+            this.comboBox2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox2.FormattingEnabled = true;
+            this.comboBox2.Location = new System.Drawing.Point(105, 152);
+            this.comboBox2.Name = "comboBox2";
+            this.comboBox2.Size = new System.Drawing.Size(61, 21);
+            this.comboBox2.TabIndex = 66;
+            // 
+            // label27
+            // 
+            this.label27.AutoSize = true;
+            this.label27.Location = new System.Drawing.Point(20, 155);
+            this.label27.Name = "label27";
+            this.label27.Size = new System.Drawing.Size(71, 13);
+            this.label27.TabIndex = 65;
+            this.label27.Text = "Time per amu";
+            // 
+            // label38
+            // 
+            this.label38.AutoSize = true;
+            this.label38.Location = new System.Drawing.Point(172, 155);
+            this.label38.Name = "label38";
+            this.label38.Size = new System.Drawing.Size(27, 13);
+            this.label38.TabIndex = 67;
+            this.label38.Text = "sec.";
+            // 
+            // label39
+            // 
+            this.label39.AutoSize = true;
+            this.label39.Location = new System.Drawing.Point(166, 142);
+            this.label39.Name = "label39";
+            this.label39.Size = new System.Drawing.Size(27, 13);
+            this.label39.TabIndex = 68;
+            this.label39.Text = "sec.";
+            // 
             // NoveMeranieWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -793,9 +946,11 @@
             this.ClientSize = new System.Drawing.Size(573, 455);
             this.Controls.Add(this.tabControl1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.KeyPreview = true;
             this.Name = "NoveMeranieWindow";
             this.Text = "Nastavenie merania";
             this.Load += new System.EventHandler(this.NoveMeranieWindow_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.NoveMeranieWindow_KeyDown);
             this.tabPage2.ResumeLayout(false);
             this.tabPage2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pocetCyklovField)).EndInit();
@@ -851,7 +1006,6 @@
         private System.Windows.Forms.TextBox startPointFieldMs;
         private System.Windows.Forms.TabPage tabPage5;
         private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.Label label27;
         private System.Windows.Forms.TextBox startPointField2DMs;
         private System.Windows.Forms.Label label34;
         private System.Windows.Forms.TextBox endPointField2DMs;
@@ -880,8 +1034,21 @@
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.ComboBox stepTimeFieldMs;
         private System.Windows.Forms.ComboBox stepTimeField2DMs;
-        private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label21;
         private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.Label StepValueEsLabel;
+        private System.Windows.Forms.Label label28;
+        private System.Windows.Forms.Label label35;
+        private System.Windows.Forms.Label StepValue2DEsLabel;
+        private System.Windows.Forms.Label label37;
+        private System.Windows.Forms.Label StepValueMsLabel;
+        private System.Windows.Forms.Label label36;
+        private System.Windows.Forms.Label StepValue2DMsLabel;
+        private System.Windows.Forms.Label label38;
+        private System.Windows.Forms.ComboBox comboBox2;
+        private System.Windows.Forms.Label label27;
+        private System.Windows.Forms.Label label39;
+        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.Label label9;
     }
 }

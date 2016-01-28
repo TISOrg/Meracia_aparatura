@@ -208,5 +208,13 @@ namespace JDLMLab
                 radioButton1.BackColor = default(Color);
             }
         }
+
+        private void ExportWindow_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Escape) ;
+            {
+                DialogResult = DialogResult.Cancel;
+            }
+        }
     }
 }

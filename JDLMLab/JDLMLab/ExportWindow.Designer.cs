@@ -208,9 +208,11 @@
             this.Controls.Add(this.dataMeranie);
             this.Controls.Add(this.button1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.KeyPreview = true;
             this.Name = "ExportWindow";
             this.Text = "Export";
             this.Load += new System.EventHandler(this.Export_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.ExportWindow_KeyDown);
             ((System.ComponentModel.ISupportInitialize)(this.dataMeranie)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

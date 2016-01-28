@@ -279,5 +279,22 @@ namespace JDLMLab
         {
 
         }
+
+        private void Main_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Control && e.KeyCode.ToString() == "N")
+            {
+                NoveMeranieWindow setmerania = new NoveMeranieWindow();
+                DialogResult res = setmerania.ShowDialog();
+                if (res == DialogResult.OK)
+                {
+                    //hodnota setMerania.parametreMerania obsahuje instanciu triedy measurementsparameters
+                    //ktora obsahuje vsetky informacie na zacatie merania.
+                    measurementControl = new MeasurementControl(setmerania.parametreMerania);
+
+
+                }
+            }
+        }
     }
 }

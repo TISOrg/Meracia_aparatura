@@ -42,11 +42,18 @@ namespace JDLMLab
 
             //dynamicky nabindovane hodnoty a kluce pre dropdown list
             Dictionary<string, double> dict = new Dictionary<string, double>();
-            dict.Add("1/8", 0.125);
-            dict.Add("1/16", 0.0625);
-            dict.Add("1/32", 0.03125);
+            if (Properties.Devices.Default.QmsType == 2048)
+            {
+                dict.Add("8", 8);
+            }
+                dict.Add("16", 16);
+                dict.Add("32", 32);
+            if (Properties.Devices.Default.QmsType == 1024 || Properties.Devices.Default.QmsType == 512)
+            {
+                dict.Add("64", 64);
+            }
 
-            stepTimeFieldMs.DataSource = new BindingSource(dict, null);
+                stepTimeFieldMs.DataSource = new BindingSource(dict, null);
             stepTimeFieldMs.DisplayMember = "Key";
             stepTimeFieldMs.ValueMember = "Value";
 
@@ -333,6 +340,176 @@ namespace JDLMLab
         private void nameField_TextChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void stepTimeFieldMs_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        
+        private void vypocitajStepPreEs()
+        {
+            try {
+                double start = int.Parse(startPointFieldEs.Text);
+                double end = int.Parse(endPointFieldEs.Text);
+                int pocetkrokov = int.Parse(pocetKrokovFieldEs.Text);
+                StepValueEsLabel.Text = (((end - start) / pocetkrokov) ).ToString();
+                StepValueEsLabel.Visible = true;
+                label28.Visible = true;
+            }
+            
+            catch(Exception e)
+            {
+                StepValueEsLabel.Visible = false;
+                label28.Visible = false;
+            }
+}
+        private void vypocitajStepPre2DEs()
+        {
+            try {
+                double start = int.Parse(startPointField2DEs.Text);
+                double end = int.Parse(endPointField2DEs.Text);
+                int pocetkrokov = int.Parse(pocetKrokovField2DEs.Text);
+                StepValue2DEsLabel.Text = (((end - start) / pocetkrokov)).ToString();
+                StepValue2DEsLabel.Visible = true;
+                label35.Visible = true;
+            }
+            
+            catch(Exception e)
+            {
+                StepValue2DEsLabel.Visible = false;
+                label35.Visible = false;
+            }
+}
+        private void vypocitajStepPre2DMs()
+        {
+            try { 
+
+                double start = int.Parse(startPointField2DMs.Text);
+                double end = int.Parse(endPointField2DMs.Text);
+                double casnakrok = double.Parse(stepTimeField2DMs.SelectedValue.ToString());
+                StepValue2DMsLabel.Text = (((end - start) * casnakrok)).ToString();
+                StepValue2DMsLabel.Visible = true;
+                label36.Visible = true;
+            }
+
+            catch(Exception e)
+            {
+                StepValue2DMsLabel.Visible = false;
+                label36.Visible = false;
+            }
+}
+        private void vypocitajStepPreMs()
+        {
+            try {
+                double start = int.Parse(startPointFieldMs.Text);
+                double end = int.Parse(endPointFieldMs.Text);
+                
+                double casnakrok = double.Parse(stepTimeFieldMs.SelectedValue.ToString());
+                StepValueMsLabel.Text = (((end - start) * casnakrok)).ToString();
+                StepValueMsLabel.Visible = true;
+                label37.Visible = true;
+            }
+            catch(Exception e)
+            {
+                StepValueMsLabel.Visible = false;
+                label37.Visible = false;
+            }
+          
+        }
+        private void tabPage4_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void startPointFieldEs_KeyUp(object sender, KeyEventArgs e)
+        {
+            vypocitajStepPreEs();
+
+        }
+
+        private void endPointFieldEs_KeyUp(object sender, KeyEventArgs e)
+        {
+            vypocitajStepPreEs();
+        }
+
+        private void pocetKrokovFieldEs_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void pocetKrokovFieldEs_KeyUp(object sender, KeyEventArgs e)
+        {
+            vypocitajStepPreEs();
+        }
+
+        private void startPointFieldMs_KeyUp(object sender, KeyEventArgs e)
+        {
+            vypocitajStepPreMs();
+        }
+
+        private void endPointFieldMs_KeyUp(object sender, KeyEventArgs e)
+        {
+            vypocitajStepPreMs();
+        }
+
+        private void stepTimeFieldMs_KeyUp(object sender, KeyEventArgs e)
+        {
+
+        }
+
+        private void stepTimeFieldMs_TextChanged(object sender, EventArgs e)
+        {
+            vypocitajStepPreMs();
+        }
+
+        private void stepTimeFieldMs_ValueMemberChanged(object sender, EventArgs e)
+        {
+            vypocitajStepPreMs();
+        }
+
+        private void stepTimeField2DMs_ValueMemberChanged(object sender, EventArgs e)
+        {
+            vypocitajStepPre2DMs();
+        }
+
+        private void startPointField2DMs_KeyUp(object sender, KeyEventArgs e)
+        {
+            vypocitajStepPre2DMs();
+        }
+
+        private void endPointField2DMs_KeyUp(object sender, KeyEventArgs e)
+        {
+            vypocitajStepPre2DMs();
+        }
+
+        private void startPointField2DEs_KeyUp(object sender, KeyEventArgs e)
+        {
+            vypocitajStepPre2DEs();
+        }
+
+        private void endPointField2DEs_KeyUp(object sender, KeyEventArgs e)
+        {
+            vypocitajStepPre2DEs();
+        }
+
+        private void pocetKrokovField2DEs_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void pocetKrokovField2DEs_KeyUp(object sender, KeyEventArgs e)
+        {
+            vypocitajStepPre2DEs();
+        }
+
+        private void NoveMeranieWindow_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode== Keys.Escape) ;
+            {
+                DialogResult = DialogResult.Cancel;
+            }
         }
     }
 

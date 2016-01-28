@@ -302,21 +302,8 @@ namespace JDLMLab
             return 0;
             
         }
-        /// <summary>
-        /// vypocita delta pre tem
-        /// </summary>
-        private double vypocitajDeltaPreTem(int i)
-        {
-            if (typ.Equals("Energy Scan"))
-            {
-                return (Parameters.EndPoint - Parameters.StartPoint) / ((EnergyScanParameters)Parameters).PocetCyklov;
-            }
-            else if (typ.Equals("2D Scan"))
-            {
-                return (Parameters.EndPoint - Parameters.StartPoint) / ((MassScanParameters)Parameters).PocetCyklov;
-            }
-            return 0;
-        }
+     
+        
 
 
 

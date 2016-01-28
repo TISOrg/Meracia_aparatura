@@ -35,5 +35,8 @@
     <Setting Name="TemConstant" Type="System.Double" Scope="User">
       <Value Profile="(Default)">15</Value>
     </Setting>
+    <Setting Name="QmsType" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">2048</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

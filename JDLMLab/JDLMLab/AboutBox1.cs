@@ -111,5 +111,13 @@ namespace JDLMLab
         {
 
         }
+
+        private void AboutBox1_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Escape) ;
+            {
+                DialogResult = DialogResult.Cancel;
+            }
+        }
     }
 }

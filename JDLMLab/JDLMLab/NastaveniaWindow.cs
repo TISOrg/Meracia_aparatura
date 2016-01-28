@@ -39,7 +39,19 @@ namespace JDLMLab
             devChamberFreqTextField.Text = Properties.Devices.Default.tpg256aFreq.ToString();
             devChamberChannel.Value = Properties.Devices.Default.tpg256aChannel;
             TemConstantField.Text = Properties.Devices.Default.TemConstant.ToString();
+            Dictionary<string, int> dict = new Dictionary<string, int>();
+            dict.Add("512", 512);
+            dict.Add("1024", 1024);
+            dict.Add("2048", 2048);
 
+            QmsTypeCombo.DataSource = new BindingSource(dict, null);
+            QmsTypeCombo.DisplayMember = "Key";
+            QmsTypeCombo.ValueMember = "Value";
+
+            QmsTypeCombo.SelectedValue = Properties.Devices.Default.QmsType;
+
+            
+          
             export_path_text.Text = Paths.Default.export_path;
         }
 
@@ -176,6 +188,7 @@ namespace JDLMLab
                 Properties.Devices.Default.pr4000Freq = int.Parse(devKapillarFreqTextField.Text);
                 Properties.Devices.Default.pr4000Port = devKapillarComTextField.Text;
                 Properties.Devices.Default.TemConstant=double.Parse(TemConstantField.Text);
+                Properties.Devices.Default.QmsType = int.Parse(QmsTypeCombo.Text);
                 Properties.Devices.Default.Save();
                 showSaveInfo();
             }
@@ -218,6 +231,19 @@ namespace JDLMLab
                 }
                 Database.Default.Reset();   //zresetuje povodne nastavenia v settings file
                 
+            }
+        }
+
+        private void QmsTypeCombo_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void NastaveniaWindow_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Escape) ;
+            {
+                DialogResult = DialogResult.Cancel;
             }
         }
     }
