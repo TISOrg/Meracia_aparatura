@@ -9,12 +9,13 @@ namespace JDLMLab
     class MassScanParameters : MeasurementParameters
     {
 
-        public MassScanParameters(double startpoint, double endpoint, double constant, double  steptime)
+        public MassScanParameters(double startpoint, double endpoint, double constant, double  density,double timeperamu)
         {
             this.StartPoint = startpoint;
             this.EndPoint = endpoint;
             this.Constant = constant;
-            this.StepTime = steptime;
+            this.Dens = density;
+            this.TimeperAmu = timeperamu;
             Typ = "Mass Scan";
             init();
         }
@@ -25,14 +26,14 @@ namespace JDLMLab
 
         public void init()
         {
-            pb = (EndPoint - StartPoint) * StepTime + 1;
+            pb = (EndPoint - StartPoint) * Dens + 1;
         }
 
         public override int PocetBodov
         {
             get
             {
-                return  (int)((EndPoint - StartPoint) * StepTime + 1);
+                return  (int)((EndPoint - StartPoint) * Dens + 1);
             }
         }
         private double pb;

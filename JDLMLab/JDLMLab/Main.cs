@@ -291,10 +291,27 @@ namespace JDLMLab
                     //hodnota setMerania.parametreMerania obsahuje instanciu triedy measurementsparameters
                     //ktora obsahuje vsetky informacie na zacatie merania.
                     measurementControl = new MeasurementControl(setmerania.parametreMerania);
-
+        
 
                 }
             }
+            if (e.KeyCode == Keys.Escape)
+            {
+                DialogResult res = MessageBox.Show("Do you really want to quit the program?", "Quit?", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
+                if (res == DialogResult.Yes)
+                {
+                    this.Close();
+                    return;
+
+                    }
+
+                {
+
+                }    
+
+                }
+                
+            
         }
     }
 }

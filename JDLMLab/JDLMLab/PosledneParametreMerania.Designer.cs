@@ -254,9 +254,9 @@ namespace JDLMLab {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("0")]
-        public int m2DTimePerAmu {
+        public double m2DTimePerAmu {
             get {
-                return ((int)(this["m2DTimePerAmu"]));
+                return ((double)(this["m2DTimePerAmu"]));
             }
             set {
                 this["m2DTimePerAmu"] = value;
@@ -266,9 +266,9 @@ namespace JDLMLab {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("0")]
-        public int mTimePerAmu {
+        public double mTimePerAmu {
             get {
-                return ((int)(this["mTimePerAmu"]));
+                return ((double)(this["mTimePerAmu"]));
             }
             set {
                 this["mTimePerAmu"] = value;
