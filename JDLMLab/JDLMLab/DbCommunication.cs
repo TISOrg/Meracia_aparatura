@@ -78,7 +78,8 @@ namespace JDLMLab
                 "`start_point` DOUBLE NOT NULL," +
                 "`end_point` DOUBLE NOT NULL," +
                 "`constant` DOUBLE NOT NULL," +
-                "`steptime` DOUBLE NOT NULL," +
+                "`time_for_amu` double NOT NULL," +
+                "`density` int(11) NOT NULL," +
                 "PRIMARY KEY(`id`)," +
                 "INDEX `header_id` (`header_id`)," +
                 "CONSTRAINT `ms_header_contraint` FOREIGN KEY (`header_id`) REFERENCES `headers` (`id`) ON UPDATE CASCADE ON DELETE CASCADE)" +
@@ -94,7 +95,8 @@ namespace JDLMLab
                 "`pocet_krokov` INT(11) NOT NULL," +
                 "`m_start_point` DOUBLE NOT NULL," +
                 "`m_end_point` DOUBLE NOT NULL," +
-                "`m_steptime` DOUBLE NOT NULL," +
+                "`time_for_amu` double NOT NULL,"+
+                "`density` int(11) NOT NULL,"+
                 "PRIMARY KEY (`id`)," +
                 "INDEX `header_id` (`header_id`)," +
                 "CONSTRAINT `s2_header_contraint` FOREIGN KEY (`header_id`) REFERENCES `headers` (`id`) ON UPDATE CASCADE ON DELETE CASCADE)" +
