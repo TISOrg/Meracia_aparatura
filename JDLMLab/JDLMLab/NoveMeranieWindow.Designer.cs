@@ -62,7 +62,7 @@
             this.timePerAmuFieldMs = new System.Windows.Forms.ComboBox();
             this.label27 = new System.Windows.Forms.Label();
             this.label37 = new System.Windows.Forms.Label();
-            this.StepValueMsLabel = new System.Windows.Forms.Label();
+            this.NumberOfStepValueMsLabel = new System.Windows.Forms.Label();
             this.DensOfMeasFieldMs = new System.Windows.Forms.ComboBox();
             this.label15 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
@@ -81,7 +81,7 @@
             this.timePerAmuField2DMs = new System.Windows.Forms.ComboBox();
             this.label9 = new System.Windows.Forms.Label();
             this.label36 = new System.Windows.Forms.Label();
-            this.StepValue2DMsLabel = new System.Windows.Forms.Label();
+            this.NumberOfStepValue2DMsLabel = new System.Windows.Forms.Label();
             this.DensOfMeasField2DMS = new System.Windows.Forms.ComboBox();
             this.startPointField2DMs = new System.Windows.Forms.TextBox();
             this.label34 = new System.Windows.Forms.Label();
@@ -106,6 +106,12 @@
             this.label25 = new System.Windows.Forms.Label();
             this.startPointField2DEs = new System.Windows.Forms.TextBox();
             this.tabControl1 = new System.Windows.Forms.TabControl();
+            this.label38 = new System.Windows.Forms.Label();
+            this.label39 = new System.Windows.Forms.Label();
+            this.label40 = new System.Windows.Forms.Label();
+            this.StepValueMsLabel = new System.Windows.Forms.Label();
+            this.label41 = new System.Windows.Forms.Label();
+            this.StepValue2DMsLabel = new System.Windows.Forms.Label();
             this.tabPage2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pocetCyklovField)).BeginInit();
             this.typyMeraniaTaby.SuspendLayout();
@@ -296,9 +302,9 @@
             this.label8.AutoSize = true;
             this.label8.Location = new System.Drawing.Point(27, 129);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(73, 13);
+            this.label8.Size = new System.Drawing.Size(55, 13);
             this.label8.TabIndex = 13;
-            this.label8.Text = "Čas na 1 krok";
+            this.label8.Text = "Step Time";
             // 
             // stepTimeFieldEs
             // 
@@ -330,11 +336,11 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(29, 156);
+            this.label6.Location = new System.Drawing.Point(12, 157);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(71, 13);
+            this.label6.Size = new System.Drawing.Size(84, 13);
             this.label6.TabIndex = 9;
-            this.label6.Text = "Počet krokov";
+            this.label6.Text = "Number of steps";
             // 
             // pocetKrokovFieldEs
             // 
@@ -423,10 +429,13 @@
             // 
             // tabPage4
             // 
+            this.tabPage4.Controls.Add(this.label40);
+            this.tabPage4.Controls.Add(this.StepValueMsLabel);
+            this.tabPage4.Controls.Add(this.label38);
             this.tabPage4.Controls.Add(this.timePerAmuFieldMs);
             this.tabPage4.Controls.Add(this.label27);
             this.tabPage4.Controls.Add(this.label37);
-            this.tabPage4.Controls.Add(this.StepValueMsLabel);
+            this.tabPage4.Controls.Add(this.NumberOfStepValueMsLabel);
             this.tabPage4.Controls.Add(this.DensOfMeasFieldMs);
             this.tabPage4.Controls.Add(this.label15);
             this.tabPage4.Controls.Add(this.label10);
@@ -457,6 +466,7 @@
             this.timePerAmuFieldMs.Name = "timePerAmuFieldMs";
             this.timePerAmuFieldMs.Size = new System.Drawing.Size(61, 21);
             this.timePerAmuFieldMs.TabIndex = 66;
+            this.timePerAmuFieldMs.SelectedValueChanged += new System.EventHandler(this.timePerAmuFieldMs_SelectedValueChanged);
             // 
             // label27
             // 
@@ -470,20 +480,20 @@
             // label37
             // 
             this.label37.AutoSize = true;
-            this.label37.Location = new System.Drawing.Point(68, 183);
+            this.label37.Location = new System.Drawing.Point(16, 183);
             this.label37.Name = "label37";
-            this.label37.Size = new System.Drawing.Size(32, 13);
+            this.label37.Size = new System.Drawing.Size(84, 13);
             this.label37.TabIndex = 48;
-            this.label37.Text = "Step ";
+            this.label37.Text = "Number of steps";
             // 
-            // StepValueMsLabel
+            // NumberOfStepValueMsLabel
             // 
-            this.StepValueMsLabel.AutoSize = true;
-            this.StepValueMsLabel.Location = new System.Drawing.Point(115, 183);
-            this.StepValueMsLabel.Name = "StepValueMsLabel";
-            this.StepValueMsLabel.Size = new System.Drawing.Size(13, 13);
-            this.StepValueMsLabel.TabIndex = 47;
-            this.StepValueMsLabel.Text = "0";
+            this.NumberOfStepValueMsLabel.AutoSize = true;
+            this.NumberOfStepValueMsLabel.Location = new System.Drawing.Point(115, 183);
+            this.NumberOfStepValueMsLabel.Name = "NumberOfStepValueMsLabel";
+            this.NumberOfStepValueMsLabel.Size = new System.Drawing.Size(13, 13);
+            this.NumberOfStepValueMsLabel.TabIndex = 47;
+            this.NumberOfStepValueMsLabel.Text = "0";
             // 
             // DensOfMeasFieldMs
             // 
@@ -493,7 +503,6 @@
             this.DensOfMeasFieldMs.Name = "DensOfMeasFieldMs";
             this.DensOfMeasFieldMs.Size = new System.Drawing.Size(61, 21);
             this.DensOfMeasFieldMs.TabIndex = 38;
-            this.DensOfMeasFieldMs.ValueMemberChanged += new System.EventHandler(this.stepTimeFieldMs_ValueMemberChanged);
             this.DensOfMeasFieldMs.SelectedValueChanged += new System.EventHandler(this.DensOfMeasFieldMs_SelectedValueChanged);
             // 
             // label15
@@ -619,10 +628,13 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.label41);
+            this.groupBox2.Controls.Add(this.StepValue2DMsLabel);
+            this.groupBox2.Controls.Add(this.label39);
             this.groupBox2.Controls.Add(this.timePerAmuField2DMs);
             this.groupBox2.Controls.Add(this.label9);
             this.groupBox2.Controls.Add(this.label36);
-            this.groupBox2.Controls.Add(this.StepValue2DMsLabel);
+            this.groupBox2.Controls.Add(this.NumberOfStepValue2DMsLabel);
             this.groupBox2.Controls.Add(this.DensOfMeasField2DMS);
             this.groupBox2.Controls.Add(this.startPointField2DMs);
             this.groupBox2.Controls.Add(this.label34);
@@ -648,6 +660,7 @@
             this.timePerAmuField2DMs.Name = "timePerAmuField2DMs";
             this.timePerAmuField2DMs.Size = new System.Drawing.Size(61, 21);
             this.timePerAmuField2DMs.TabIndex = 64;
+            this.timePerAmuField2DMs.SelectedValueChanged += new System.EventHandler(this.timePerAmuField2DMs_SelectedValueChanged);
             // 
             // label9
             // 
@@ -661,21 +674,23 @@
             // label36
             // 
             this.label36.AutoSize = true;
-            this.label36.Location = new System.Drawing.Point(56, 175);
+            this.label36.Location = new System.Drawing.Point(8, 175);
             this.label36.Name = "label36";
-            this.label36.Size = new System.Drawing.Size(32, 13);
+            this.label36.Size = new System.Drawing.Size(84, 13);
             this.label36.TabIndex = 62;
-            this.label36.Text = "Step ";
+            this.label36.Text = "Number of steps";
+            this.label36.Visible = false;
             // 
-            // StepValue2DMsLabel
+            // NumberOfStepValue2DMsLabel
             // 
-            this.StepValue2DMsLabel.AutoSize = true;
-            this.StepValue2DMsLabel.BackColor = System.Drawing.Color.Transparent;
-            this.StepValue2DMsLabel.Location = new System.Drawing.Point(103, 175);
-            this.StepValue2DMsLabel.Name = "StepValue2DMsLabel";
-            this.StepValue2DMsLabel.Size = new System.Drawing.Size(22, 13);
-            this.StepValue2DMsLabel.TabIndex = 61;
-            this.StepValue2DMsLabel.Text = "xxx";
+            this.NumberOfStepValue2DMsLabel.AutoSize = true;
+            this.NumberOfStepValue2DMsLabel.BackColor = System.Drawing.Color.Transparent;
+            this.NumberOfStepValue2DMsLabel.Location = new System.Drawing.Point(111, 175);
+            this.NumberOfStepValue2DMsLabel.Name = "NumberOfStepValue2DMsLabel";
+            this.NumberOfStepValue2DMsLabel.Size = new System.Drawing.Size(13, 13);
+            this.NumberOfStepValue2DMsLabel.TabIndex = 61;
+            this.NumberOfStepValue2DMsLabel.Text = "0";
+            this.NumberOfStepValue2DMsLabel.Visible = false;
             // 
             // DensOfMeasField2DMS
             // 
@@ -685,7 +700,6 @@
             this.DensOfMeasField2DMS.Name = "DensOfMeasField2DMS";
             this.DensOfMeasField2DMS.Size = new System.Drawing.Size(61, 21);
             this.DensOfMeasField2DMS.TabIndex = 60;
-            this.DensOfMeasField2DMS.ValueMemberChanged += new System.EventHandler(this.stepTimeField2DMs_ValueMemberChanged);
             this.DensOfMeasField2DMS.SelectedValueChanged += new System.EventHandler(this.DensOfMeasField2DMS_SelectedValueChanged);
             // 
             // startPointField2DMs
@@ -916,6 +930,64 @@
             this.tabControl1.Size = new System.Drawing.Size(573, 455);
             this.tabControl1.TabIndex = 0;
             // 
+            // label38
+            // 
+            this.label38.AutoSize = true;
+            this.label38.Location = new System.Drawing.Point(172, 155);
+            this.label38.Name = "label38";
+            this.label38.Size = new System.Drawing.Size(41, 13);
+            this.label38.TabIndex = 67;
+            this.label38.Text = "milisec.";
+            // 
+            // label39
+            // 
+            this.label39.AutoSize = true;
+            this.label39.Location = new System.Drawing.Point(166, 147);
+            this.label39.Name = "label39";
+            this.label39.Size = new System.Drawing.Size(41, 13);
+            this.label39.TabIndex = 68;
+            this.label39.Text = "milisec.";
+            // 
+            // label40
+            // 
+            this.label40.AutoSize = true;
+            this.label40.Location = new System.Drawing.Point(62, 206);
+            this.label40.Name = "label40";
+            this.label40.Size = new System.Drawing.Size(34, 13);
+            this.label40.TabIndex = 69;
+            this.label40.Text = "Steps";
+            this.label40.Visible = false;
+            // 
+            // StepValueMsLabel
+            // 
+            this.StepValueMsLabel.AutoSize = true;
+            this.StepValueMsLabel.Location = new System.Drawing.Point(115, 207);
+            this.StepValueMsLabel.Name = "StepValueMsLabel";
+            this.StepValueMsLabel.Size = new System.Drawing.Size(13, 13);
+            this.StepValueMsLabel.TabIndex = 68;
+            this.StepValueMsLabel.Text = "0";
+            this.StepValueMsLabel.Visible = false;
+            // 
+            // label41
+            // 
+            this.label41.AutoSize = true;
+            this.label41.Location = new System.Drawing.Point(58, 198);
+            this.label41.Name = "label41";
+            this.label41.Size = new System.Drawing.Size(34, 13);
+            this.label41.TabIndex = 71;
+            this.label41.Text = "Steps";
+            this.label41.Visible = false;
+            // 
+            // StepValue2DMsLabel
+            // 
+            this.StepValue2DMsLabel.AutoSize = true;
+            this.StepValue2DMsLabel.Location = new System.Drawing.Point(111, 199);
+            this.StepValue2DMsLabel.Name = "StepValue2DMsLabel";
+            this.StepValue2DMsLabel.Size = new System.Drawing.Size(13, 13);
+            this.StepValue2DMsLabel.TabIndex = 70;
+            this.StepValue2DMsLabel.Text = "0";
+            this.StepValue2DMsLabel.Visible = false;
+            // 
             // NoveMeranieWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1020,12 +1092,18 @@
         private System.Windows.Forms.Label label35;
         private System.Windows.Forms.Label StepValue2DEsLabel;
         private System.Windows.Forms.Label label37;
-        private System.Windows.Forms.Label StepValueMsLabel;
+        private System.Windows.Forms.Label NumberOfStepValueMsLabel;
         private System.Windows.Forms.Label label36;
-        private System.Windows.Forms.Label StepValue2DMsLabel;
+        private System.Windows.Forms.Label NumberOfStepValue2DMsLabel;
         private System.Windows.Forms.ComboBox timePerAmuFieldMs;
         private System.Windows.Forms.Label label27;
         private System.Windows.Forms.ComboBox timePerAmuField2DMs;
         private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Label label38;
+        private System.Windows.Forms.Label label39;
+        private System.Windows.Forms.Label label40;
+        private System.Windows.Forms.Label StepValueMsLabel;
+        private System.Windows.Forms.Label label41;
+        private System.Windows.Forms.Label StepValue2DMsLabel;
     }
 }

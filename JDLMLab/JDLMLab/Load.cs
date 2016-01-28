@@ -192,9 +192,9 @@ namespace JDLMLab
 
         private void Load_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.KeyCode == Keys.Escape) ;
+            if (e.KeyCode == Keys.Escape) 
             {
-                //DialogResult = DialogResult.Cancel;
+                DialogResult = DialogResult.Cancel;
             }
         }
     }

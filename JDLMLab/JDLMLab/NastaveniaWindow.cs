@@ -97,23 +97,23 @@ namespace JDLMLab
             }
             else
             {
-                DialogResult res = MessageBox.Show("Zadaná zložka neexistuje. Vytvoriť?","Zložka neexistuje",MessageBoxButtons.YesNo,MessageBoxIcon.Question,MessageBoxDefaultButton.Button1);
-                if (res == DialogResult.Yes)
+            DialogResult res = MessageBox.Show("Zadaná zložka neexistuje. Vytvoriť?","Zložka neexistuje",MessageBoxButtons.YesNo,MessageBoxIcon.Question,MessageBoxDefaultButton.Button1);
+            if (res == DialogResult.Yes)
+            {
+                try
                 {
-                    try
-                    {
-                        DirectoryInfo i = Directory.CreateDirectory(export_path_text.Text);
-                        export_path_text.Text = i.FullName;
-                        Paths.Default.export_path = i.FullName;
-
-                    }
-                    catch (Exception ef)
-                    {
-                        FormValidateError("Zadajte správnu cestu", "Chyba");
-                        return;
-                    }
+                    DirectoryInfo i = Directory.CreateDirectory(export_path_text.Text);
+                    export_path_text.Text = i.FullName;
+                    Paths.Default.export_path = i.FullName;
 
                 }
+                catch (Exception ef)
+                {
+                    FormValidateError("Zadajte správnu cestu", "Chyba");
+                    return;
+                }
+
+            }
                 else return;
             }
             Paths.Default.Save();
@@ -241,9 +241,9 @@ namespace JDLMLab
 
         private void NastaveniaWindow_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.KeyCode == Keys.Escape) ;
+            if (e.KeyCode == Keys.Escape) 
             {
-                //DialogResult = DialogResult.Cancel;
+                DialogResult = DialogResult.Cancel;
             }
         }
     }

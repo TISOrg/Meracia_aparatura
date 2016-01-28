@@ -34,6 +34,7 @@ namespace JDLMLab
         }
         public void init()
         {
+            //kn=krok napatia
             kn = (EndPoint - StartPoint) / PocetKrokov;
         }
         

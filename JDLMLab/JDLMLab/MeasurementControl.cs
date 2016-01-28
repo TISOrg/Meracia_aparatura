@@ -246,7 +246,7 @@ namespace JDLMLab
                 TemDriver.setPoint(krok);   //posle na TEM vypocitany bod
 
                 //ADprevodnik. vynulujTrigger;
-                Thread.Sleep((int)((EnergyScanParameters)Parameters).StepTime * 1000);    //pockame cas stanoveny v parametroch
+                Thread.Sleep((int)((EnergyScanParameters)Parameters).Dens * 1000);    //pockame cas stanoveny v parametroch
                                                                                           //pocas cakania treba zistovat hodnoty na ampermetri //vymysliet ako to urobit,
                                                                                           // napirklad urobit vlakno alebo Task, a v nom cekovat kedy je AD prevodnik hotovy.  v hlavnom vlakne (tomto) ziskat merane hodnoty
                                                                                           // a nastavit eventHandler ktory bude zavolany z vytvoreneho vlakna, ked bude AD pripraveny.
