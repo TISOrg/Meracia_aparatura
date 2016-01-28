@@ -98,7 +98,7 @@ namespace JDLMLab
             DensOfMeasFieldMs.Text = PosledneParametreMerania.Default.mDensOfMeas.ToString();
             constantFieldMs.Text = PosledneParametreMerania.Default.mKonstanta.ToString();
             MessageBox.Show(timePerAmuFieldMs.Text);
-            timePerAmuFieldMs.Text = PosledneParametreMerania.Default.mTimePerAmu.ToString();
+            timePerAmuFieldMs.SelectedValue = PosledneParametreMerania.Default.mTimePerAmu.ToString();
 
         }
 
@@ -173,11 +173,9 @@ namespace JDLMLab
 
                     EnergyScanParameters parametreMeraniaEnergy = new EnergyScanParameters(Convert.ToDouble(startPointField2DEs.Text), Convert.ToDouble(endPointField2DEs.Text),0.0,Convert.ToDouble(steptimeField2DEs.Text), Convert.ToInt32(pocetKrokovField2DEs.Text));
 
-
                     MassScanParameters parametreMeraniaMass = new MassScanParameters(Convert.ToInt32(startPointField2DMs.Text), Convert.ToInt32(endPointField2DMs.Text), 0, (double)DensOfMeasField2DMS.SelectedValue);
 
                     parametreMerania = new Scan2DParameters(parametreMeraniaEnergy, parametreMeraniaMass);
-
                     parametreMerania.setParameters(nameField
                         .Text, Convert.ToDouble(resolutionField2D.Text), Convert.ToInt32(pocetCyklovField.Value), noteField.Text);
 
@@ -206,7 +204,7 @@ namespace JDLMLab
             PosledneParametreMerania.Default.e2DStartPoint = double.Parse(startPointField2DEs.Text);
             PosledneParametreMerania.Default.e2DEndPoint = double.Parse(endPointField2DEs.Text);
             PosledneParametreMerania.Default.e2DPocetKrokov = int.Parse(pocetKrokovField2DEs.Text);
-            
+            PosledneParametreMerania.Default.Save();
 
         }
 
@@ -218,8 +216,9 @@ namespace JDLMLab
             PosledneParametreMerania.Default.mDensOfMeas = int.Parse(DensOfMeasFieldMs.SelectedValue.ToString());
             PosledneParametreMerania.Default.mKonstanta= double.Parse(constantFieldMs.Text);
             PosledneParametreMerania.Default.mTimePerAmu = int.Parse(timePerAmuFieldMs.SelectedValue.ToString());
-            MessageBox.Show(PosledneParametreMerania.Default.mTimePerAmu.ToString());
-            
+            //MessageBox.Show(timePerAmuFieldMs.SelectedValue.ToString());
+            PosledneParametreMerania.Default.Save();
+
         }
 
         private void ulozParametreEnergyScan()
@@ -230,7 +229,7 @@ namespace JDLMLab
             PosledneParametreMerania.Default.eStepTime = double.Parse(stepTimeFieldEs.Text);
             PosledneParametreMerania.Default.eKonstanta = int.Parse(constantFieldEs.Text);
             PosledneParametreMerania.Default.ePocetKrokov = int.Parse(pocetKrokovFieldEs.Text);
-            
+            PosledneParametreMerania.Default.Save();
         }
 
         private void validateMass2DScanTab()//treba upravit ak neni yadane vsetko tak by to padlo
