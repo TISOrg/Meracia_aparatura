@@ -35,7 +35,7 @@ namespace JDLMLab
             {
             }
         }
-
+        bool testRun;
         public NoveMeranieWindow()
         {
             InitializeComponent();
@@ -63,6 +63,7 @@ namespace JDLMLab
         {
             try
             {
+                testRun = false;
                 nastavParametre();
                 DialogResult = DialogResult.OK; //okno sa zatvori a parameter parametreMerania bude pripraveny na meranie
             }
@@ -88,9 +89,10 @@ namespace JDLMLab
                     
                     validateEnergyScanTab();
                     parametreMerania = new EnergyScanParameters(Convert.ToDouble(startPointFieldEs.Text), Convert.ToDouble(endPointFieldEs.Text), Convert.ToDouble(constantFieldEs.Text), Convert.ToDouble(stepTimeFieldEs.Text), Convert.ToInt32(pocetKrokovFieldEs.Text));
-                    parametreMerania.setParameters(nameField
+                    
+                        parametreMerania.setParameters(nameField
                         .Text, Convert.ToDouble(resolutionFieldEs.Text), Convert.ToInt32(pocetCyklovField.Value), noteField.Text);
-
+                    
                     ulozParametreEnergyScan();
                 }
                 catch (ValidateParametersException e)
@@ -140,6 +142,7 @@ namespace JDLMLab
                     throw e;
                 }
             }
+            parametreMerania.testRun = testRun;
         }
 
         /// <summary>
@@ -148,17 +151,34 @@ namespace JDLMLab
         private void ulozParametre2DScan()
         {
             PosledneParametreMerania.Default.m2DStartPoint = int.Parse(startPointField2DMs.Text);
-            ///atd...
+            PosledneParametreMerania.Default.m2DEndPoint = int.Parse(endPointField2DEs.Text);
+            PosledneParametreMerania.Default.m2DResolution = int.Parse(resolutionField2D.Text);
+            PosledneParametreMerania.Default.m2DStepTime = int.Parse(stepTimeField2DMs.Text);
+            PosledneParametreMerania.Default.e2DStepTime = int.Parse(steptimeField2DEs.Text);
+            PosledneParametreMerania.Default.e2DStartPoint = int.Parse(startPointField2DEs.Text);
+            PosledneParametreMerania.Default.e2DEndPoint = int.Parse(endPointField2DEs.Text);
+            PosledneParametreMerania.Default.e2DPocetKrokov = int.Parse(pocetKrokovField2DEs.Text);
 
         }
 
         private void ulozParametreMassScan()
         {
+            PosledneParametreMerania.Default.mStart= int.Parse(startPointFieldMs.Text);
+            PosledneParametreMerania.Default.mEnd = int.Parse(endPointFieldMs.Text);
+            PosledneParametreMerania.Default.mResolution = int.Parse(resolutionFieldMs.Text);
+            PosledneParametreMerania.Default.mStepTime = int.Parse(stepTimeFieldMs.Text);
+            PosledneParametreMerania.Default.mKonstanta= int.Parse(constantFieldMs.Text);
             
         }
 
         private void ulozParametreEnergyScan()
         {
+            PosledneParametreMerania.Default.eStartPoint = int.Parse(startPointFieldEs.Text);
+            PosledneParametreMerania.Default.eEndPoint = int.Parse(endPointFieldEs.Text);
+            PosledneParametreMerania.Default.eResolution = int.Parse(resolutionFieldEs.Text);
+            PosledneParametreMerania.Default.eStepTime = int.Parse(stepTimeFieldEs.Text);
+            PosledneParametreMerania.Default.eKonstanta = int.Parse(constantFieldEs.Text);
+            PosledneParametreMerania.Default.ePocetKrokov = int.Parse(pocetKrokovFieldEs.Text);
             
         }
 
@@ -172,8 +192,9 @@ namespace JDLMLab
             string nazov;
             Double step;
             int krok;
-            if (nameField.Text.Length <= 0)
+            if (nameField.Text.Length <= 0 && !testRun)
             {
+
                 throw new ValidateParametersException("nazov merania musi mat aspon jeden znak");
             }
            
@@ -210,7 +231,7 @@ namespace JDLMLab
             Double step;
             int krok;
             double constant;
-            if (nameField.Text.Length <= 0)
+            if (nameField.Text.Length <= 0 && !testRun)
             {
                throw new ValidateParametersException("nazov merania musi mat aspon jeden znak");
             }
@@ -239,7 +260,7 @@ namespace JDLMLab
             string nazov;
             Double step;
             int krok;
-            if (nameField.Text.Length <= 0)
+            if (nameField.Text.Length <= 0 && !testRun)
             {
                throw new ValidateParametersException("nazov merania musi mat aspon jeden znak");
             }
@@ -288,6 +309,28 @@ namespace JDLMLab
         }
 
         private void pocetCyklovFieldLabel_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                testRun = true;
+                nastavParametre();
+                DialogResult = DialogResult.OK; //okno sa zatvori a parameter parametreMerania bude pripraveny na meranie
+            }
+            catch (ValidateParametersException ex)
+            {
+                MessageBox.Show(ex.Message.ToString(), "Chyba", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            // Trieda NoveMeranieWindow (pripadne aj measurementcontrol): 
+            //vymysliet ako spravit aby pri stlaceni buttonu test run, nekontroloval vyplneny nazov, a aby potom trieda measurement control 
+            //vedela ze nema namerane veci posielat do db. pozri si ako je spraveny normalny run a co robi a ako sa dostane az do triedy mesarurementcontrol...
+        }
+
+        private void nameField_TextChanged(object sender, EventArgs e)
         {
 
         }

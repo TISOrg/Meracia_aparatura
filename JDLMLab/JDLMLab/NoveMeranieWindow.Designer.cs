@@ -30,6 +30,8 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(NoveMeranieWindow));
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.label21 = new System.Windows.Forms.Label();
+            this.label13 = new System.Windows.Forms.Label();
             this.pocetCyklovField = new System.Windows.Forms.NumericUpDown();
             this.pocetCyklovFieldLabel = new System.Windows.Forms.Label();
             this.button3 = new System.Windows.Forms.Button();
@@ -94,8 +96,6 @@
             this.label25 = new System.Windows.Forms.Label();
             this.startPointField2DEs = new System.Windows.Forms.TextBox();
             this.tabControl1 = new System.Windows.Forms.TabControl();
-            this.label13 = new System.Windows.Forms.Label();
-            this.label21 = new System.Windows.Forms.Label();
             this.tabPage2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pocetCyklovField)).BeginInit();
             this.typyMeraniaTaby.SuspendLayout();
@@ -126,6 +126,24 @@
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Nové meranie";
             this.tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // label21
+            // 
+            this.label21.AutoSize = true;
+            this.label21.Location = new System.Drawing.Point(10, 51);
+            this.label21.Name = "label21";
+            this.label21.Size = new System.Drawing.Size(57, 13);
+            this.label21.TabIndex = 19;
+            this.label21.Text = "Poznámka";
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Location = new System.Drawing.Point(8, 18);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(38, 13);
+            this.label13.TabIndex = 18;
+            this.label13.Text = "Názov";
             // 
             // pocetCyklovField
             // 
@@ -177,6 +195,7 @@
             this.button1.TabIndex = 3;
             this.button1.Text = "Test run";
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // noteField
             // 
@@ -193,6 +212,7 @@
             this.nameField.Name = "nameField";
             this.nameField.Size = new System.Drawing.Size(223, 20);
             this.nameField.TabIndex = 0;
+            this.nameField.TextChanged += new System.EventHandler(this.nameField_TextChanged);
             // 
             // typyMeraniaTaby
             // 
@@ -763,24 +783,6 @@
             this.tabControl1.SelectedIndex = 0;
             this.tabControl1.Size = new System.Drawing.Size(573, 455);
             this.tabControl1.TabIndex = 0;
-            // 
-            // label13
-            // 
-            this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(8, 18);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(38, 13);
-            this.label13.TabIndex = 18;
-            this.label13.Text = "Názov";
-            // 
-            // label21
-            // 
-            this.label21.AutoSize = true;
-            this.label21.Location = new System.Drawing.Point(10, 51);
-            this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(57, 13);
-            this.label21.TabIndex = 19;
-            this.label21.Text = "Poznámka";
             // 
             // NoveMeranieWindow
             // 

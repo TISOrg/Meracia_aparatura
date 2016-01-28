@@ -113,6 +113,7 @@ namespace JDLMLab
         static TlakomerPR4000Driver tlakpr4000 = new TlakomerPR4000Driver();
         static TlakomerTG256ADriver tlak256 = new TlakomerTG256ADriver();
         static QmsDriver qms = new QmsDriver();
+        //static TemDriver tem new TemDriver();
 
         DbCommunication database;
         public bool zastavitPoSkonceniCyklu {
@@ -301,8 +302,23 @@ namespace JDLMLab
             return 0;
             
         }
-         
-        
+        /// <summary>
+        /// vypocita delta pre tem
+        /// </summary>
+        private double vypocitajDeltaPreTem(int i)
+        {
+            if (typ.Equals("Energy Scan"))
+            {
+                return (Parameters.EndPoint - Parameters.StartPoint) / ((EnergyScanParameters)Parameters).PocetCyklov;
+            }
+            else if (typ.Equals("2D Scan"))
+            {
+                return (Parameters.EndPoint - Parameters.StartPoint) / ((MassScanParameters)Parameters).PocetCyklov;
+            }
+            return 0;
+        }
+
+
 
         private void vytvorNovyCyklus()
         {

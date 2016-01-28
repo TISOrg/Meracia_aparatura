@@ -38,6 +38,7 @@ namespace JDLMLab
             devChamberComTextField.Text = Properties.Devices.Default.tpg256aPort.ToString();
             devChamberFreqTextField.Text = Properties.Devices.Default.tpg256aFreq.ToString();
             devChamberChannel.Value = Properties.Devices.Default.tpg256aChannel;
+            TemConstantField.Text = Properties.Devices.Default.TemConstant.ToString();
 
             export_path_text.Text = Paths.Default.export_path;
         }
@@ -153,6 +154,7 @@ namespace JDLMLab
         private void devicesSaveButton_Click_1(object sender, EventArgs e)
         {
             int a;
+            double b;
             if (devVoltmeterComTextField.Text.Length < 1) FormValidateError("Zadajte hodnotu názov portu voltmetra", "Neplatná hodnota");
             else if (devAmpermeterComTextField.Text.Length < 1) FormValidateError("Zadajte hodnotu názov portu ampérmetra", "Neplatná hodnota");
             else if (devQmsComTextField.Text.Length < 1) FormValidateError("Zadajte hodnotu názov portu QMS", "Neplatná hodnota");
@@ -160,6 +162,7 @@ namespace JDLMLab
             else if (!int.TryParse(devKapillarFreqTextField.Text, out a)) FormValidateError("Zadajte hodnotu frekvencia čítania tlakomera PR4000", "Neplatná hodnota");
             else if (devChamberComTextField.Text.Length < 1) FormValidateError("Zadajte hodnotu názov portu tlakomera TPG256a", "Neplatná hodnota");
             else if (!int.TryParse(devChamberFreqTextField.Text, out a)) FormValidateError("Zadajte hodnotu frekvencia čítania portu tlakomera TPG256a", "Neplatná hodnota");
+            else if (!double.TryParse(TemConstantField.Text, out b) || TemConstantField.Text.IndexOf(',')!=-1) FormValidateError("Zadajte správnu hodnotu TEM Constant", "Neplatná hodnota");
             else
             {
                 Properties.Devices.Default.ampermeterPort = devAmpermeterComTextField.Text;
@@ -172,6 +175,7 @@ namespace JDLMLab
                 Properties.Devices.Default.qmsPort = devQmsComTextField.Text;
                 Properties.Devices.Default.pr4000Freq = int.Parse(devKapillarFreqTextField.Text);
                 Properties.Devices.Default.pr4000Port = devKapillarComTextField.Text;
+                Properties.Devices.Default.TemConstant=double.Parse(TemConstantField.Text);
                 Properties.Devices.Default.Save();
                 showSaveInfo();
             }
