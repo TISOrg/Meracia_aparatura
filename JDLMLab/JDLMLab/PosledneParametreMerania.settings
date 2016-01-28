@@ -59,11 +59,17 @@
     <Setting Name="m2DDensOfMeas" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">0</Value>
     </Setting>
-    <Setting Name="m2DTimePerAmu" Type="System.Double" Scope="User">
+    <Setting Name="m2DTimePerAmu" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">0</Value>
     </Setting>
-    <Setting Name="mTimePerAmu" Type="System.Double" Scope="User">
+    <Setting Name="mTimePerAmu" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="nameBox" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="noteBox" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
     </Setting>
   </Settings>
 </SettingsFile>
