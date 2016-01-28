@@ -82,6 +82,9 @@ namespace JDLMLab
             timePerAmuField2DMs.DisplayMember = "Key";
             timePerAmuField2DMs.ValueMember = "Value";
 
+
+            nameField.Text = PosledneParametreMerania.Default.nameBox;
+            noteField.Text = PosledneParametreMerania.Default.noteBox;
             startPointField2DMs.Text = PosledneParametreMerania.Default.m2DStartPoint.ToString();
             endPointField2DMs.Text = PosledneParametreMerania.Default.m2DEndPoint.ToString();
             resolutionField2D.Text = PosledneParametreMerania.Default.m2DResolution.ToString();
@@ -97,8 +100,14 @@ namespace JDLMLab
             resolutionFieldMs.Text = PosledneParametreMerania.Default.mResolution.ToString();
             DensOfMeasFieldMs.Text = PosledneParametreMerania.Default.mDensOfMeas.ToString();
             constantFieldMs.Text = PosledneParametreMerania.Default.mKonstanta.ToString();
-            MessageBox.Show(timePerAmuFieldMs.Text);
+            
             timePerAmuFieldMs.Text = PosledneParametreMerania.Default.mTimePerAmu.ToString();
+
+            startPointFieldEs.Text = PosledneParametreMerania.Default.eStartPoint.ToString();
+            endPointFieldEs.Text = PosledneParametreMerania.Default.eEndPoint.ToString();
+            resolutionFieldEs.Text = PosledneParametreMerania.Default.eResolution.ToString();
+            constantFieldEs.Text = PosledneParametreMerania.Default.eKonstanta.ToString();
+            stepTimeFieldEs.Text = PosledneParametreMerania.Default.eStepTime.ToString();
 
         }
 
@@ -155,7 +164,7 @@ namespace JDLMLab
                     validateMassScanTab();
 
 
-                    parametreMerania = new MassScanParameters(Convert.ToInt32(startPointFieldMs.Text), Convert.ToInt32(endPointFieldMs.Text), Convert.ToDouble(constantFieldMs.Text), (int)DensOfMeasFieldMs.SelectedValue);
+                    parametreMerania = new MassScanParameters(Convert.ToInt32(startPointFieldMs.Text), Convert.ToInt32(endPointFieldMs.Text), Convert.ToDouble(constantFieldMs.Text), (int)DensOfMeasFieldMs.SelectedValue,(int)timePerAmuFieldMs.SelectedValue);
                     parametreMerania.setParameters(nameField
                         .Text, Convert.ToDouble(resolutionFieldMs.Text), Convert.ToInt32(pocetCyklovField.Value), noteField.Text);
                     ulozParametreMassScan();
@@ -174,7 +183,7 @@ namespace JDLMLab
                     EnergyScanParameters parametreMeraniaEnergy = new EnergyScanParameters(Convert.ToDouble(startPointField2DEs.Text), Convert.ToDouble(endPointField2DEs.Text),0.0,Convert.ToDouble(steptimeField2DEs.Text), Convert.ToInt32(pocetKrokovField2DEs.Text));
 
 
-                    MassScanParameters parametreMeraniaMass = new MassScanParameters(Convert.ToInt32(startPointField2DMs.Text), Convert.ToInt32(endPointField2DMs.Text), 0, (double)DensOfMeasField2DMS.SelectedValue);
+                    MassScanParameters parametreMeraniaMass = new MassScanParameters(Convert.ToInt32(startPointField2DMs.Text), Convert.ToInt32(endPointField2DMs.Text), 0, (double)DensOfMeasField2DMS.SelectedValue,(int)timePerAmuField2DMs.SelectedValue);
 
                     parametreMerania = new Scan2DParameters(parametreMeraniaEnergy, parametreMeraniaMass);
 
@@ -206,7 +215,9 @@ namespace JDLMLab
             PosledneParametreMerania.Default.e2DStartPoint = double.Parse(startPointField2DEs.Text);
             PosledneParametreMerania.Default.e2DEndPoint = double.Parse(endPointField2DEs.Text);
             PosledneParametreMerania.Default.e2DPocetKrokov = int.Parse(pocetKrokovField2DEs.Text);
-            
+            PosledneParametreMerania.Default.nameBox = (nameField.Text);
+            PosledneParametreMerania.Default.noteBox = (noteField.Text);
+
 
         }
 
@@ -217,9 +228,9 @@ namespace JDLMLab
             PosledneParametreMerania.Default.mResolution = double.Parse(resolutionFieldMs.Text);
             PosledneParametreMerania.Default.mDensOfMeas = int.Parse(DensOfMeasFieldMs.SelectedValue.ToString());
             PosledneParametreMerania.Default.mKonstanta= double.Parse(constantFieldMs.Text);
-            PosledneParametreMerania.Default.mTimePerAmu = int.Parse(timePerAmuFieldMs.SelectedValue.ToString());
-            MessageBox.Show(PosledneParametreMerania.Default.mTimePerAmu.ToString());
-            
+            PosledneParametreMerania.Default.save.mTimePerAmu = int.Parse(timePerAmuFieldMs.SelectedValue.ToString());
+            PosledneParametreMerania.Default.nameBox = (nameField.Text);
+            PosledneParametreMerania.Default.noteBox = (noteField.Text);
         }
 
         private void ulozParametreEnergyScan()
@@ -230,7 +241,8 @@ namespace JDLMLab
             PosledneParametreMerania.Default.eStepTime = double.Parse(stepTimeFieldEs.Text);
             PosledneParametreMerania.Default.eKonstanta = int.Parse(constantFieldEs.Text);
             PosledneParametreMerania.Default.ePocetKrokov = int.Parse(pocetKrokovFieldEs.Text);
-            
+            PosledneParametreMerania.Default.nameBox = (nameField.Text);
+            PosledneParametreMerania.Default.noteBox = (noteField.Text);
         }
 
         private void validateMass2DScanTab()//treba upravit ak neni yadane vsetko tak by to padlo
@@ -279,7 +291,7 @@ namespace JDLMLab
             Double endpoint;
             Double resolution;
             string nazov;
-            Double step;
+            Double dens;
             int krok;
             double constant;
             if (nameField.Text.Length <= 0 && !testRun)
@@ -296,7 +308,7 @@ namespace JDLMLab
        	    
             if (!Double.TryParse(constantFieldMs.Text, out constant)) throw new ValidateParametersException("Neplatná hodnota pre constant");
           
-            if (!Double.TryParse(DensOfMeasFieldMs.Text, out step)) throw new ValidateParametersException("Neplatná hodnota pre steptime");
+            if (!Double.TryParse(DensOfMeasFieldMs.Text, out dens)) throw new ValidateParametersException("Neplatná hodnota pre steptime");
             
             if (startpoint >= endpoint) throw new ValidateParametersException("Neplatná hodnota endpoint musi byt vacsi ako startpoint");
             if (resolution == 0) throw new ValidateParametersException("Neplatná hodnota resulution nemoze byt 0");

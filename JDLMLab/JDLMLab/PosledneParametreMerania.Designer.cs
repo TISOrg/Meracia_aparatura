@@ -254,9 +254,9 @@ namespace JDLMLab {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("0")]
-        public double m2DTimePerAmu {
+        public int m2DTimePerAmu {
             get {
-                return ((double)(this["m2DTimePerAmu"]));
+                return ((int)(this["m2DTimePerAmu"]));
             }
             set {
                 this["m2DTimePerAmu"] = value;
@@ -266,12 +266,36 @@ namespace JDLMLab {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("0")]
-        public double mTimePerAmu {
+        public int mTimePerAmu {
             get {
-                return ((double)(this["mTimePerAmu"]));
+                return ((int)(this["mTimePerAmu"]));
             }
             set {
                 this["mTimePerAmu"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string nameBox {
+            get {
+                return ((string)(this["nameBox"]));
+            }
+            set {
+                this["nameBox"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string noteBox {
+            get {
+                return ((string)(this["noteBox"]));
+            }
+            set {
+                this["noteBox"] = value;
             }
         }
     }
