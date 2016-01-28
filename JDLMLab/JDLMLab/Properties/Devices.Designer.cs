@@ -142,5 +142,29 @@ namespace JDLMLab.Properties {
                 this["tempFreq"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("15")]
+        public double TemConstant {
+            get {
+                return ((double)(this["TemConstant"]));
+            }
+            set {
+                this["TemConstant"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("2048")]
+        public int QmsType {
+            get {
+                return ((int)(this["QmsType"]));
+            }
+            set {
+                this["QmsType"] = value;
+            }
+        }
     }
 }

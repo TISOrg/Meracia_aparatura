@@ -46,6 +46,14 @@
             this.dbSettingsFieldDatabase = new System.Windows.Forms.TextBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.groupBoxZariadenia = new System.Windows.Forms.GroupBox();
+            this.groupBox8 = new System.Windows.Forms.GroupBox();
+            this.QmsTypeCombo = new System.Windows.Forms.ComboBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.groupBox7 = new System.Windows.Forms.GroupBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.TemConstantField = new System.Windows.Forms.TextBox();
             this.devicesSaveButton = new System.Windows.Forms.Button();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
             this.label46 = new System.Windows.Forms.Label();
@@ -86,6 +94,8 @@
             this.groupBoxDatabase.SuspendLayout();
             this.tabPage2.SuspendLayout();
             this.groupBoxZariadenia.SuspendLayout();
+            this.groupBox8.SuspendLayout();
+            this.groupBox7.SuspendLayout();
             this.groupBox6.SuspendLayout();
             this.groupBox5.SuspendLayout();
             this.groupBox4.SuspendLayout();
@@ -105,7 +115,7 @@
             this.tabControl1.Location = new System.Drawing.Point(0, 0);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(446, 539);
+            this.tabControl1.Size = new System.Drawing.Size(465, 665);
             this.tabControl1.TabIndex = 0;
             // 
             // tabPage1
@@ -114,7 +124,7 @@
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(438, 513);
+            this.tabPage1.Size = new System.Drawing.Size(457, 639);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Databáza";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -136,7 +146,7 @@
             this.groupBoxDatabase.Dock = System.Windows.Forms.DockStyle.Top;
             this.groupBoxDatabase.Location = new System.Drawing.Point(3, 3);
             this.groupBoxDatabase.Name = "groupBoxDatabase";
-            this.groupBoxDatabase.Size = new System.Drawing.Size(432, 273);
+            this.groupBoxDatabase.Size = new System.Drawing.Size(451, 273);
             this.groupBoxDatabase.TabIndex = 26;
             this.groupBoxDatabase.TabStop = false;
             this.groupBoxDatabase.Text = "Database";
@@ -255,13 +265,15 @@
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(438, 513);
+            this.tabPage2.Size = new System.Drawing.Size(457, 639);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Zariadenia";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
             // groupBoxZariadenia
             // 
+            this.groupBoxZariadenia.Controls.Add(this.groupBox8);
+            this.groupBoxZariadenia.Controls.Add(this.groupBox7);
             this.groupBoxZariadenia.Controls.Add(this.devicesSaveButton);
             this.groupBoxZariadenia.Controls.Add(this.groupBox6);
             this.groupBoxZariadenia.Controls.Add(this.groupBox5);
@@ -272,14 +284,90 @@
             this.groupBoxZariadenia.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBoxZariadenia.Location = new System.Drawing.Point(3, 3);
             this.groupBoxZariadenia.Name = "groupBoxZariadenia";
-            this.groupBoxZariadenia.Size = new System.Drawing.Size(432, 507);
+            this.groupBoxZariadenia.Size = new System.Drawing.Size(451, 633);
             this.groupBoxZariadenia.TabIndex = 2;
             this.groupBoxZariadenia.TabStop = false;
             this.groupBoxZariadenia.Text = "Nastavenie nástrojov";
             // 
+            // groupBox8
+            // 
+            this.groupBox8.Controls.Add(this.QmsTypeCombo);
+            this.groupBox8.Controls.Add(this.label3);
+            this.groupBox8.Controls.Add(this.label5);
+            this.groupBox8.Dock = System.Windows.Forms.DockStyle.Top;
+            this.groupBox8.Location = new System.Drawing.Point(3, 517);
+            this.groupBox8.Name = "groupBox8";
+            this.groupBox8.Size = new System.Drawing.Size(445, 50);
+            this.groupBox8.TabIndex = 17;
+            this.groupBox8.TabStop = false;
+            this.groupBox8.Text = "QMS Type";
+            // 
+            // QmsTypeCombo
+            // 
+            this.QmsTypeCombo.FormattingEnabled = true;
+            this.QmsTypeCombo.Location = new System.Drawing.Point(107, 17);
+            this.QmsTypeCombo.Name = "QmsTypeCombo";
+            this.QmsTypeCombo.Size = new System.Drawing.Size(121, 21);
+            this.QmsTypeCombo.TabIndex = 10;
+            this.QmsTypeCombo.SelectedIndexChanged += new System.EventHandler(this.QmsTypeCombo_SelectedIndexChanged);
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(232, 25);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(0, 13);
+            this.label3.TabIndex = 9;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(7, 25);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(70, 13);
+            this.label5.TabIndex = 1;
+            this.label5.Text = "Rozsah QMS";
+            // 
+            // groupBox7
+            // 
+            this.groupBox7.Controls.Add(this.label2);
+            this.groupBox7.Controls.Add(this.label4);
+            this.groupBox7.Controls.Add(this.TemConstantField);
+            this.groupBox7.Dock = System.Windows.Forms.DockStyle.Top;
+            this.groupBox7.Location = new System.Drawing.Point(3, 467);
+            this.groupBox7.Name = "groupBox7";
+            this.groupBox7.Size = new System.Drawing.Size(445, 50);
+            this.groupBox7.TabIndex = 16;
+            this.groupBox7.TabStop = false;
+            this.groupBox7.Text = "TEM";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(232, 25);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(0, 13);
+            this.label2.TabIndex = 9;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(7, 25);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(75, 13);
+            this.label4.TabIndex = 1;
+            this.label4.Text = "TEM Constant";
+            // 
+            // TemConstantField
+            // 
+            this.TemConstantField.Location = new System.Drawing.Point(108, 22);
+            this.TemConstantField.Name = "TemConstantField";
+            this.TemConstantField.Size = new System.Drawing.Size(118, 20);
+            this.TemConstantField.TabIndex = 8;
+            // 
             // devicesSaveButton
             // 
-            this.devicesSaveButton.Location = new System.Drawing.Point(5, 473);
+            this.devicesSaveButton.Location = new System.Drawing.Point(3, 604);
             this.devicesSaveButton.Name = "devicesSaveButton";
             this.devicesSaveButton.Size = new System.Drawing.Size(86, 23);
             this.devicesSaveButton.TabIndex = 15;
@@ -297,7 +385,7 @@
             this.groupBox6.Dock = System.Windows.Forms.DockStyle.Top;
             this.groupBox6.Location = new System.Drawing.Point(3, 388);
             this.groupBox6.Name = "groupBox6";
-            this.groupBox6.Size = new System.Drawing.Size(426, 79);
+            this.groupBox6.Size = new System.Drawing.Size(445, 79);
             this.groupBox6.TabIndex = 11;
             this.groupBox6.TabStop = false;
             this.groupBox6.Text = "ECO 24 teplomer";
@@ -353,7 +441,7 @@
             this.groupBox5.Dock = System.Windows.Forms.DockStyle.Top;
             this.groupBox5.Location = new System.Drawing.Point(3, 292);
             this.groupBox5.Name = "groupBox5";
-            this.groupBox5.Size = new System.Drawing.Size(426, 96);
+            this.groupBox5.Size = new System.Drawing.Size(445, 96);
             this.groupBox5.TabIndex = 10;
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "PR4000 tlakomer kapilary";
@@ -411,7 +499,7 @@
             this.groupBox4.Dock = System.Windows.Forms.DockStyle.Top;
             this.groupBox4.Location = new System.Drawing.Point(3, 194);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(426, 98);
+            this.groupBox4.Size = new System.Drawing.Size(445, 98);
             this.groupBox4.TabIndex = 9;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "TPG256A tlakomer";
@@ -496,7 +584,7 @@
             this.groupBox3.Dock = System.Windows.Forms.DockStyle.Top;
             this.groupBox3.Location = new System.Drawing.Point(3, 118);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(426, 76);
+            this.groupBox3.Size = new System.Drawing.Size(445, 76);
             this.groupBox3.TabIndex = 2;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "QMS";
@@ -525,7 +613,7 @@
             this.groupBox2.Dock = System.Windows.Forms.DockStyle.Top;
             this.groupBox2.Location = new System.Drawing.Point(3, 67);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(426, 51);
+            this.groupBox2.Size = new System.Drawing.Size(445, 51);
             this.groupBox2.TabIndex = 1;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Keithley 2000 Ampérmeter";
@@ -553,7 +641,7 @@
             this.groupBox1.Dock = System.Windows.Forms.DockStyle.Top;
             this.groupBox1.Location = new System.Drawing.Point(3, 16);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(426, 51);
+            this.groupBox1.Size = new System.Drawing.Size(445, 51);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Keithley 2000 Voltmeter";
@@ -582,7 +670,7 @@
             this.tabPage3.Controls.Add(this.button1);
             this.tabPage3.Location = new System.Drawing.Point(4, 22);
             this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Size = new System.Drawing.Size(438, 513);
+            this.tabPage3.Size = new System.Drawing.Size(457, 639);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Export";
             this.tabPage3.UseVisualStyleBackColor = true;
@@ -629,17 +717,23 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(446, 539);
+            this.ClientSize = new System.Drawing.Size(465, 665);
             this.Controls.Add(this.tabControl1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.KeyPreview = true;
             this.Name = "NastaveniaWindow";
             this.Text = "Nastavenia";
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.NastaveniaWindow_KeyDown);
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.groupBoxDatabase.ResumeLayout(false);
             this.groupBoxDatabase.PerformLayout();
             this.tabPage2.ResumeLayout(false);
             this.groupBoxZariadenia.ResumeLayout(false);
+            this.groupBox8.ResumeLayout(false);
+            this.groupBox8.PerformLayout();
+            this.groupBox7.ResumeLayout(false);
+            this.groupBox7.PerformLayout();
             this.groupBox6.ResumeLayout(false);
             this.groupBox6.PerformLayout();
             this.groupBox5.ResumeLayout(false);
@@ -713,5 +807,13 @@
         private System.Windows.Forms.Label label44;
         private System.Windows.Forms.TextBox devChamberComTextField;
         private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.GroupBox groupBox7;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.TextBox TemConstantField;
+        private System.Windows.Forms.GroupBox groupBox8;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.ComboBox QmsTypeCombo;
     }
 }

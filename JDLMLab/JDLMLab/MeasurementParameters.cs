@@ -12,7 +12,8 @@ namespace JDLMLab
         {
 
         }
-        public bool TestRun { get; set; }
+        
+        public bool testRun { get; set; }
         public int PocetCyklov {get; set;}
         public string Name { get; set; }
         
@@ -44,6 +45,7 @@ namespace JDLMLab
         public int TlakomerPR4000FrekvenciaMerania { get { return Properties.Devices.Default.pr4000Freq; } }
         public int TlakomerTPG256AFrekvenciaMerania { get { return Properties.Devices.Default.tpg256aFreq; } }
         public int TlakomerTPG256AKanal { get { return Properties.Devices.Default.tpg256aChannel; } }
+        public double TemConstantValue { get { return Properties.Devices.Default.TemConstant; } }
     }
 }
 

@@ -25,14 +25,14 @@ namespace JDLMLab
 
         public void init()
         {
-            pb = (EndPoint - StartPoint) / StepTime + 1;
+            pb = (EndPoint - StartPoint) * StepTime + 1;
         }
 
         public override int PocetBodov
         {
             get
             {
-                return  (int)((EndPoint - StartPoint) / StepTime + 1);
+                return  (int)((EndPoint - StartPoint) * StepTime + 1);
             }
         }
         private double pb;
