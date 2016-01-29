@@ -113,7 +113,7 @@ namespace JDLMLab
                     energy_start_point.Text = dr["start_point"].ToString();
                     energy_end_point.Text = dr["end_point"].ToString();
                     mass_constant.Text = dr["constant"].ToString();
-                    energy_steptime.Text = dr["steptime"].ToString();
+                    energy_steptime.Text = dr["steptime"].ToString();  ///double,time_for_amu  vytvoriť field do Load tak ako ostatnym ///int,pre density//
                     pocet_krokov.Text = dr["pocet_krokov"].ToString();
                 }
                 if (dr["type_name"].Equals("Mass Scan"))
