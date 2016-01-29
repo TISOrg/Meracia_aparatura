@@ -126,7 +126,7 @@
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage1.Size = new System.Drawing.Size(457, 639);
             this.tabPage1.TabIndex = 0;
-            this.tabPage1.Text = "Databáza";
+            this.tabPage1.Text = "Database";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
             // groupBoxDatabase
@@ -157,7 +157,7 @@
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(130, 23);
             this.button3.TabIndex = 27;
-            this.button3.Text = "Otestovať pripojenie";
+            this.button3.Text = "Test connection";
             this.button3.UseVisualStyleBackColor = true;
             this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
@@ -183,7 +183,7 @@
             this.saveDbSettingsButton.Name = "saveDbSettingsButton";
             this.saveDbSettingsButton.Size = new System.Drawing.Size(75, 23);
             this.saveDbSettingsButton.TabIndex = 5;
-            this.saveDbSettingsButton.Text = "Uložiť";
+            this.saveDbSettingsButton.Text = "Save";
             this.saveDbSettingsButton.UseVisualStyleBackColor = true;
             this.saveDbSettingsButton.Click += new System.EventHandler(this.saveDbSettingsButton_Click_1);
             // 
@@ -267,7 +267,7 @@
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage2.Size = new System.Drawing.Size(457, 639);
             this.tabPage2.TabIndex = 1;
-            this.tabPage2.Text = "Zariadenia";
+            this.tabPage2.Text = "Devices";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
             // groupBoxZariadenia
@@ -287,7 +287,7 @@
             this.groupBoxZariadenia.Size = new System.Drawing.Size(451, 633);
             this.groupBoxZariadenia.TabIndex = 2;
             this.groupBoxZariadenia.TabStop = false;
-            this.groupBoxZariadenia.Text = "Nastavenie nástrojov";
+            this.groupBoxZariadenia.Text = "Devices settings";
             // 
             // groupBox8
             // 
@@ -297,15 +297,17 @@
             this.groupBox8.Dock = System.Windows.Forms.DockStyle.Top;
             this.groupBox8.Location = new System.Drawing.Point(3, 517);
             this.groupBox8.Name = "groupBox8";
+            this.groupBox8.Padding = new System.Windows.Forms.Padding(3, 4, 3, 3);
             this.groupBox8.Size = new System.Drawing.Size(445, 50);
-            this.groupBox8.TabIndex = 17;
+            this.groupBox8.TabIndex = 13;
             this.groupBox8.TabStop = false;
             this.groupBox8.Text = "QMS Type";
             // 
             // QmsTypeCombo
             // 
+            this.QmsTypeCombo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.QmsTypeCombo.FormattingEnabled = true;
-            this.QmsTypeCombo.Location = new System.Drawing.Point(107, 17);
+            this.QmsTypeCombo.Location = new System.Drawing.Point(105, 22);
             this.QmsTypeCombo.Name = "QmsTypeCombo";
             this.QmsTypeCombo.Size = new System.Drawing.Size(121, 21);
             this.QmsTypeCombo.TabIndex = 10;
@@ -314,7 +316,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(232, 25);
+            this.label3.Location = new System.Drawing.Point(232, 26);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(0, 13);
             this.label3.TabIndex = 9;
@@ -322,11 +324,11 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(7, 25);
+            this.label5.Location = new System.Drawing.Point(7, 26);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(70, 13);
+            this.label5.Size = new System.Drawing.Size(59, 13);
             this.label5.TabIndex = 1;
-            this.label5.Text = "Rozsah QMS";
+            this.label5.Text = "QMS scale";
             // 
             // groupBox7
             // 
@@ -336,15 +338,16 @@
             this.groupBox7.Dock = System.Windows.Forms.DockStyle.Top;
             this.groupBox7.Location = new System.Drawing.Point(3, 467);
             this.groupBox7.Name = "groupBox7";
+            this.groupBox7.Padding = new System.Windows.Forms.Padding(3, 4, 3, 3);
             this.groupBox7.Size = new System.Drawing.Size(445, 50);
-            this.groupBox7.TabIndex = 16;
+            this.groupBox7.TabIndex = 12;
             this.groupBox7.TabStop = false;
             this.groupBox7.Text = "TEM";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(232, 25);
+            this.label2.Location = new System.Drawing.Point(232, 26);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(0, 13);
             this.label2.TabIndex = 9;
@@ -352,7 +355,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(7, 25);
+            this.label4.Location = new System.Drawing.Point(7, 26);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(75, 13);
             this.label4.TabIndex = 1;
@@ -371,7 +374,7 @@
             this.devicesSaveButton.Name = "devicesSaveButton";
             this.devicesSaveButton.Size = new System.Drawing.Size(86, 23);
             this.devicesSaveButton.TabIndex = 15;
-            this.devicesSaveButton.Text = "Uložiť";
+            this.devicesSaveButton.Text = "Save";
             this.devicesSaveButton.UseVisualStyleBackColor = true;
             this.devicesSaveButton.Click += new System.EventHandler(this.devicesSaveButton_Click_1);
             // 
@@ -385,15 +388,16 @@
             this.groupBox6.Dock = System.Windows.Forms.DockStyle.Top;
             this.groupBox6.Location = new System.Drawing.Point(3, 388);
             this.groupBox6.Name = "groupBox6";
+            this.groupBox6.Padding = new System.Windows.Forms.Padding(3, 4, 3, 3);
             this.groupBox6.Size = new System.Drawing.Size(445, 79);
             this.groupBox6.TabIndex = 11;
             this.groupBox6.TabStop = false;
-            this.groupBox6.Text = "ECO 24 teplomer";
+            this.groupBox6.Text = "ECO 24 thermometer";
             // 
             // label46
             // 
             this.label46.AutoSize = true;
-            this.label46.Location = new System.Drawing.Point(232, 51);
+            this.label46.Location = new System.Drawing.Point(232, 52);
             this.label46.Name = "label46";
             this.label46.Size = new System.Drawing.Size(27, 13);
             this.label46.TabIndex = 4;
@@ -402,11 +406,11 @@
             // label47
             // 
             this.label47.AutoSize = true;
-            this.label47.Location = new System.Drawing.Point(7, 51);
+            this.label47.Location = new System.Drawing.Point(7, 52);
             this.label47.Name = "label47";
-            this.label47.Size = new System.Drawing.Size(100, 13);
+            this.label47.Size = new System.Drawing.Size(86, 13);
             this.label47.TabIndex = 3;
-            this.label47.Text = "Frekvencia merania";
+            this.label47.Text = "Meas. frequency";
             // 
             // devTempFreqTextField
             // 
@@ -418,11 +422,11 @@
             // label48
             // 
             this.label48.AutoSize = true;
-            this.label48.Location = new System.Drawing.Point(7, 25);
+            this.label48.Location = new System.Drawing.Point(7, 26);
             this.label48.Name = "label48";
-            this.label48.Size = new System.Drawing.Size(65, 13);
+            this.label48.Size = new System.Drawing.Size(55, 13);
             this.label48.TabIndex = 1;
-            this.label48.Text = "Názov portu";
+            this.label48.Text = "Port name";
             // 
             // devTempComTextField
             // 
@@ -441,15 +445,16 @@
             this.groupBox5.Dock = System.Windows.Forms.DockStyle.Top;
             this.groupBox5.Location = new System.Drawing.Point(3, 292);
             this.groupBox5.Name = "groupBox5";
+            this.groupBox5.Padding = new System.Windows.Forms.Padding(3, 4, 3, 3);
             this.groupBox5.Size = new System.Drawing.Size(445, 96);
             this.groupBox5.TabIndex = 10;
             this.groupBox5.TabStop = false;
-            this.groupBox5.Text = "PR4000 tlakomer kapilary";
+            this.groupBox5.Text = "PR4000 capilar barometer";
             // 
             // label42
             // 
             this.label42.AutoSize = true;
-            this.label42.Location = new System.Drawing.Point(232, 51);
+            this.label42.Location = new System.Drawing.Point(232, 52);
             this.label42.Name = "label42";
             this.label42.Size = new System.Drawing.Size(27, 13);
             this.label42.TabIndex = 4;
@@ -458,11 +463,11 @@
             // label41
             // 
             this.label41.AutoSize = true;
-            this.label41.Location = new System.Drawing.Point(7, 51);
+            this.label41.Location = new System.Drawing.Point(7, 52);
             this.label41.Name = "label41";
-            this.label41.Size = new System.Drawing.Size(100, 13);
+            this.label41.Size = new System.Drawing.Size(86, 13);
             this.label41.TabIndex = 3;
-            this.label41.Text = "Frekvencia merania";
+            this.label41.Text = "Meas. frequency";
             // 
             // devKapillarFreqTextField
             // 
@@ -474,11 +479,11 @@
             // label39
             // 
             this.label39.AutoSize = true;
-            this.label39.Location = new System.Drawing.Point(7, 25);
+            this.label39.Location = new System.Drawing.Point(7, 26);
             this.label39.Name = "label39";
-            this.label39.Size = new System.Drawing.Size(65, 13);
+            this.label39.Size = new System.Drawing.Size(55, 13);
             this.label39.TabIndex = 1;
-            this.label39.Text = "Názov portu";
+            this.label39.Text = "Port name";
             // 
             // devKapillarComTextField
             // 
@@ -499,10 +504,11 @@
             this.groupBox4.Dock = System.Windows.Forms.DockStyle.Top;
             this.groupBox4.Location = new System.Drawing.Point(3, 194);
             this.groupBox4.Name = "groupBox4";
+            this.groupBox4.Padding = new System.Windows.Forms.Padding(3, 4, 3, 3);
             this.groupBox4.Size = new System.Drawing.Size(445, 98);
             this.groupBox4.TabIndex = 9;
             this.groupBox4.TabStop = false;
-            this.groupBox4.Text = "TPG256A tlakomer";
+            this.groupBox4.Text = "TPG256A barometer";
             this.groupBox4.Enter += new System.EventHandler(this.groupBox9_Enter);
             // 
             // devChamberChannel
@@ -530,16 +536,16 @@
             // label45
             // 
             this.label45.AutoSize = true;
-            this.label45.Location = new System.Drawing.Point(7, 49);
+            this.label45.Location = new System.Drawing.Point(7, 50);
             this.label45.Name = "label45";
             this.label45.Size = new System.Drawing.Size(34, 13);
             this.label45.TabIndex = 6;
-            this.label45.Text = "Kanál";
+            this.label45.Text = "Canal";
             // 
             // label40
             // 
             this.label40.AutoSize = true;
-            this.label40.Location = new System.Drawing.Point(232, 75);
+            this.label40.Location = new System.Drawing.Point(232, 76);
             this.label40.Name = "label40";
             this.label40.Size = new System.Drawing.Size(27, 13);
             this.label40.TabIndex = 4;
@@ -548,11 +554,11 @@
             // label43
             // 
             this.label43.AutoSize = true;
-            this.label43.Location = new System.Drawing.Point(7, 75);
+            this.label43.Location = new System.Drawing.Point(7, 76);
             this.label43.Name = "label43";
-            this.label43.Size = new System.Drawing.Size(100, 13);
+            this.label43.Size = new System.Drawing.Size(86, 13);
             this.label43.TabIndex = 3;
-            this.label43.Text = "Frekvencia merania";
+            this.label43.Text = "Meas. frequency";
             // 
             // devChamberFreqTextField
             // 
@@ -564,11 +570,11 @@
             // label44
             // 
             this.label44.AutoSize = true;
-            this.label44.Location = new System.Drawing.Point(7, 25);
+            this.label44.Location = new System.Drawing.Point(7, 26);
             this.label44.Name = "label44";
-            this.label44.Size = new System.Drawing.Size(65, 13);
+            this.label44.Size = new System.Drawing.Size(55, 13);
             this.label44.TabIndex = 1;
-            this.label44.Text = "Názov portu";
+            this.label44.Text = "Port name";
             // 
             // devChamberComTextField
             // 
@@ -584,6 +590,7 @@
             this.groupBox3.Dock = System.Windows.Forms.DockStyle.Top;
             this.groupBox3.Location = new System.Drawing.Point(3, 118);
             this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Padding = new System.Windows.Forms.Padding(3, 4, 3, 3);
             this.groupBox3.Size = new System.Drawing.Size(445, 76);
             this.groupBox3.TabIndex = 2;
             this.groupBox3.TabStop = false;
@@ -593,11 +600,11 @@
             // label26
             // 
             this.label26.AutoSize = true;
-            this.label26.Location = new System.Drawing.Point(7, 25);
+            this.label26.Location = new System.Drawing.Point(7, 26);
             this.label26.Name = "label26";
-            this.label26.Size = new System.Drawing.Size(65, 13);
+            this.label26.Size = new System.Drawing.Size(55, 13);
             this.label26.TabIndex = 1;
-            this.label26.Text = "Názov portu";
+            this.label26.Text = "Port name";
             // 
             // devQmsComTextField
             // 
@@ -613,19 +620,20 @@
             this.groupBox2.Dock = System.Windows.Forms.DockStyle.Top;
             this.groupBox2.Location = new System.Drawing.Point(3, 67);
             this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Padding = new System.Windows.Forms.Padding(3, 4, 3, 3);
             this.groupBox2.Size = new System.Drawing.Size(445, 51);
             this.groupBox2.TabIndex = 1;
             this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Keithley 2000 Ampérmeter";
+            this.groupBox2.Text = "Keithley 2000 Ampermeter";
             // 
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(7, 25);
+            this.label10.Location = new System.Drawing.Point(7, 26);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(65, 13);
+            this.label10.Size = new System.Drawing.Size(55, 13);
             this.label10.TabIndex = 1;
-            this.label10.Text = "Názov portu";
+            this.label10.Text = "Port name";
             // 
             // devAmpermeterComTextField
             // 
@@ -641,6 +649,7 @@
             this.groupBox1.Dock = System.Windows.Forms.DockStyle.Top;
             this.groupBox1.Location = new System.Drawing.Point(3, 16);
             this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(3, 4, 3, 3);
             this.groupBox1.Size = new System.Drawing.Size(445, 51);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
@@ -649,11 +658,11 @@
             // label28
             // 
             this.label28.AutoSize = true;
-            this.label28.Location = new System.Drawing.Point(7, 25);
+            this.label28.Location = new System.Drawing.Point(7, 26);
             this.label28.Name = "label28";
-            this.label28.Size = new System.Drawing.Size(65, 13);
+            this.label28.Size = new System.Drawing.Size(55, 13);
             this.label28.TabIndex = 1;
-            this.label28.Text = "Názov portu";
+            this.label28.Text = "Port name";
             // 
             // devVoltmeterComTextField
             // 
@@ -681,7 +690,7 @@
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(75, 23);
             this.button2.TabIndex = 3;
-            this.button2.Text = "Uložiť";
+            this.button2.Text = "Save";
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
@@ -690,9 +699,9 @@
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(8, 21);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(173, 13);
+            this.label1.Size = new System.Drawing.Size(196, 13);
             this.label1.TabIndex = 2;
-            this.label1.Text = "Predvolená cesta na export meraní";
+            this.label1.Text = "Pre-defined way for measurement export";
             // 
             // export_path_text
             // 
@@ -708,8 +717,8 @@
             this.button1.Location = new System.Drawing.Point(274, 45);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 0;
-            this.button1.Text = "Zmeniť...";
+            this.button1.TabIndex = 2;
+            this.button1.Text = "Change";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
@@ -722,7 +731,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.KeyPreview = true;
             this.Name = "NastaveniaWindow";
-            this.Text = "Nastavenia";
+            this.Text = "Settings";
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.NastaveniaWindow_KeyDown);
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);

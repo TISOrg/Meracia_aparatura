@@ -599,6 +599,17 @@ namespace JDLMLab
         {
             vypocitajStepPre2DMs();
         }
+
+        private void DensOfMeasField2DMS_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+
+        }
+
+        private void label7_MouseHover(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 
 

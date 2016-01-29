@@ -1,4 +1,4 @@
-﻿using System;
+﻿    using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -197,6 +197,11 @@ namespace JDLMLab
             {
                 DialogResult = DialogResult.Cancel;
             }
+        }
+
+        private void mass_constant_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

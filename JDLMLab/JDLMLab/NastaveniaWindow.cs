@@ -39,12 +39,13 @@ namespace JDLMLab
             devChamberFreqTextField.Text = Properties.Devices.Default.tpg256aFreq.ToString();
             devChamberChannel.Value = Properties.Devices.Default.tpg256aChannel;
             TemConstantField.Text = Properties.Devices.Default.TemConstant.ToString();
-            Dictionary<string, int> dict = new Dictionary<string, int>();
-            dict.Add("512", 512);
-            dict.Add("1024", 1024);
-            dict.Add("2048", 2048);
 
-            QmsTypeCombo.DataSource = new BindingSource(dict, null);
+            Dictionary<string, int> dictqms = new Dictionary<string, int>();
+            dictqms.Add("512", 512);
+            dictqms.Add("1024", 1024);
+            dictqms.Add("2048", 2048);
+
+            QmsTypeCombo.DataSource = new BindingSource(dictqms, null);
             QmsTypeCombo.DisplayMember = "Key";
             QmsTypeCombo.ValueMember = "Value";
 
