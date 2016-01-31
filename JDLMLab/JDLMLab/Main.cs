@@ -302,14 +302,8 @@ namespace JDLMLab
                 {
                     this.Close();
                     return;
-
-                    }
-
-                {
-
-                }    
-
                 }
+            }
                 
             
         }
