@@ -76,15 +76,15 @@
             this.checkedListBoxInclude.Items.AddRange(new object[] {
             "x",
             "y",
-            "signál",
+            "signal",
             "prúd",
-            "tlak kapilara",
+            "capillar pressure",
             "tlak komora",
-            "teplota",
-            "cyklus"});
+            "temperature",
+            "cycle"});
             this.checkedListBoxInclude.Location = new System.Drawing.Point(12, 325);
             this.checkedListBoxInclude.Name = "checkedListBoxInclude";
-            this.checkedListBoxInclude.Size = new System.Drawing.Size(97, 124);
+            this.checkedListBoxInclude.Size = new System.Drawing.Size(105, 124);
             this.checkedListBoxInclude.TabIndex = 2;
             this.checkedListBoxInclude.ItemCheck += new System.Windows.Forms.ItemCheckEventHandler(this.checkedListBoxInclude_ItemCheck);
             // 
@@ -122,9 +122,9 @@
             this.checkBoxCyklyInclude.AutoSize = true;
             this.checkBoxCyklyInclude.Location = new System.Drawing.Point(137, 459);
             this.checkBoxCyklyInclude.Name = "checkBoxCyklyInclude";
-            this.checkBoxCyklyInclude.Size = new System.Drawing.Size(94, 17);
+            this.checkBoxCyklyInclude.Size = new System.Drawing.Size(68, 17);
             this.checkBoxCyklyInclude.TabIndex = 6;
-            this.checkBoxCyklyInclude.Text = "Všetky/žiadne";
+            this.checkBoxCyklyInclude.Text = "All/None";
             this.checkBoxCyklyInclude.UseVisualStyleBackColor = true;
             this.checkBoxCyklyInclude.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
             // 
@@ -133,9 +133,9 @@
             this.checkBoxIncludeAll.AutoSize = true;
             this.checkBoxIncludeAll.Location = new System.Drawing.Point(12, 459);
             this.checkBoxIncludeAll.Name = "checkBoxIncludeAll";
-            this.checkBoxIncludeAll.Size = new System.Drawing.Size(94, 17);
+            this.checkBoxIncludeAll.Size = new System.Drawing.Size(68, 17);
             this.checkBoxIncludeAll.TabIndex = 7;
-            this.checkBoxIncludeAll.Text = "Všetky/žiadne";
+            this.checkBoxIncludeAll.Text = "All/None";
             this.checkBoxIncludeAll.UseVisualStyleBackColor = true;
             this.checkBoxIncludeAll.CheckedChanged += new System.EventHandler(this.checkBox2_CheckedChanged);
             // 
@@ -160,9 +160,9 @@
             this.radioButton1.AutoSize = true;
             this.radioButton1.Location = new System.Drawing.Point(281, 373);
             this.radioButton1.Name = "radioButton1";
-            this.radioButton1.Size = new System.Drawing.Size(146, 17);
+            this.radioButton1.Size = new System.Drawing.Size(110, 17);
             this.radioButton1.TabIndex = 10;
-            this.radioButton1.Text = "Suma zo všetkých cyklov";
+            this.radioButton1.Text = "Suma of all cycles";
             this.radioButton1.UseVisualStyleBackColor = true;
             this.radioButton1.CheckedChanged += new System.EventHandler(this.radioButton1_CheckedChanged);
             // 
@@ -171,9 +171,9 @@
             this.radioButton2.AutoSize = true;
             this.radioButton2.Location = new System.Drawing.Point(281, 350);
             this.radioButton2.Name = "radioButton2";
-            this.radioButton2.Size = new System.Drawing.Size(154, 17);
+            this.radioButton2.Size = new System.Drawing.Size(108, 17);
             this.radioButton2.TabIndex = 11;
-            this.radioButton2.Text = "Priemer zo všetkých cyklov";
+            this.radioButton2.Text = "Delta of all cycles";
             this.radioButton2.UseVisualStyleBackColor = true;
             this.radioButton2.CheckedChanged += new System.EventHandler(this.radioButton2_CheckedChanged);
             // 
@@ -183,10 +183,10 @@
             this.radioButton3.Checked = true;
             this.radioButton3.Location = new System.Drawing.Point(281, 325);
             this.radioButton3.Name = "radioButton3";
-            this.radioButton3.Size = new System.Drawing.Size(87, 17);
+            this.radioButton3.Size = new System.Drawing.Size(83, 17);
             this.radioButton3.TabIndex = 12;
             this.radioButton3.TabStop = true;
-            this.radioButton3.Text = "Každý cyklus";
+            this.radioButton3.Text = "Each cyclus";
             this.radioButton3.UseVisualStyleBackColor = true;
             this.radioButton3.CheckedChanged += new System.EventHandler(this.radioButton3_CheckedChanged);
             // 

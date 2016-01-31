@@ -168,7 +168,7 @@
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "About Meracia apartúra";
+            this.Text = "About CEMBA";
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.AboutBox1_KeyDown);
             this.tableLayoutPanel.ResumeLayout(false);
             this.tableLayoutPanel.PerformLayout();

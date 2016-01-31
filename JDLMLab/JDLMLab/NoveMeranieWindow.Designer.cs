@@ -59,6 +59,9 @@
             this.label1 = new System.Windows.Forms.Label();
             this.startPointFieldEs = new System.Windows.Forms.TextBox();
             this.tabPage4 = new System.Windows.Forms.TabPage();
+            this.label40 = new System.Windows.Forms.Label();
+            this.StepValueMsLabel = new System.Windows.Forms.Label();
+            this.label38 = new System.Windows.Forms.Label();
             this.timePerAmuFieldMs = new System.Windows.Forms.ComboBox();
             this.label27 = new System.Windows.Forms.Label();
             this.label37 = new System.Windows.Forms.Label();
@@ -78,6 +81,9 @@
             this.startPointFieldMs = new System.Windows.Forms.TextBox();
             this.tabPage5 = new System.Windows.Forms.TabPage();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.label41 = new System.Windows.Forms.Label();
+            this.StepValue2DMsLabel = new System.Windows.Forms.Label();
+            this.label39 = new System.Windows.Forms.Label();
             this.timePerAmuField2DMs = new System.Windows.Forms.ComboBox();
             this.label9 = new System.Windows.Forms.Label();
             this.label36 = new System.Windows.Forms.Label();
@@ -106,12 +112,6 @@
             this.label25 = new System.Windows.Forms.Label();
             this.startPointField2DEs = new System.Windows.Forms.TextBox();
             this.tabControl1 = new System.Windows.Forms.TabControl();
-            this.label38 = new System.Windows.Forms.Label();
-            this.label39 = new System.Windows.Forms.Label();
-            this.label40 = new System.Windows.Forms.Label();
-            this.StepValueMsLabel = new System.Windows.Forms.Label();
-            this.label41 = new System.Windows.Forms.Label();
-            this.StepValue2DMsLabel = new System.Windows.Forms.Label();
             this.tabPage2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pocetCyklovField)).BeginInit();
             this.typyMeraniaTaby.SuspendLayout();
@@ -140,26 +140,26 @@
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage2.Size = new System.Drawing.Size(565, 429);
             this.tabPage2.TabIndex = 1;
-            this.tabPage2.Text = "Nové meranie";
+            this.tabPage2.Text = "New measurement";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
             // label21
             // 
             this.label21.AutoSize = true;
-            this.label21.Location = new System.Drawing.Point(10, 51);
+            this.label21.Location = new System.Drawing.Point(31, 48);
             this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(57, 13);
+            this.label21.Size = new System.Drawing.Size(30, 13);
             this.label21.TabIndex = 19;
-            this.label21.Text = "Poznámka";
+            this.label21.Text = "Note";
             // 
             // label13
             // 
             this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(8, 18);
+            this.label13.Location = new System.Drawing.Point(28, 20);
             this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(38, 13);
+            this.label13.Size = new System.Drawing.Size(35, 13);
             this.label13.TabIndex = 18;
-            this.label13.Text = "Názov";
+            this.label13.Text = "Name";
             // 
             // pocetCyklovField
             // 
@@ -176,16 +176,16 @@
             // pocetCyklovFieldLabel
             // 
             this.pocetCyklovFieldLabel.AutoSize = true;
-            this.pocetCyklovFieldLabel.Location = new System.Drawing.Point(302, 83);
+            this.pocetCyklovFieldLabel.Location = new System.Drawing.Point(324, 83);
             this.pocetCyklovFieldLabel.Name = "pocetCyklovFieldLabel";
-            this.pocetCyklovFieldLabel.Size = new System.Drawing.Size(169, 13);
+            this.pocetCyklovFieldLabel.Size = new System.Drawing.Size(146, 13);
             this.pocetCyklovFieldLabel.TabIndex = 16;
-            this.pocetCyklovFieldLabel.Text = "Počet cyklov(0 pre neobmedzene)";
+            this.pocetCyklovFieldLabel.Text = "Number of steps (0 for infinity)";
             this.pocetCyklovFieldLabel.Click += new System.EventHandler(this.pocetCyklovFieldLabel_Click);
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(439, 388);
+            this.button3.Location = new System.Drawing.Point(439, 393);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(102, 23);
             this.button3.TabIndex = 5;
@@ -195,7 +195,7 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(208, 388);
+            this.button2.Location = new System.Drawing.Point(211, 393);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(102, 23);
             this.button2.TabIndex = 4;
@@ -205,7 +205,7 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(13, 388);
+            this.button1.Location = new System.Drawing.Point(13, 393);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(102, 23);
             this.button1.TabIndex = 3;
@@ -215,6 +215,7 @@
             // 
             // noteField
             // 
+            this.noteField.ForeColor = System.Drawing.SystemColors.WindowFrame;
             this.noteField.Location = new System.Drawing.Point(73, 44);
             this.noteField.Multiline = true;
             this.noteField.Name = "noteField";
@@ -223,7 +224,7 @@
             // 
             // nameField
             // 
-            this.nameField.ForeColor = System.Drawing.SystemColors.WindowFrame;
+            this.nameField.ForeColor = System.Drawing.SystemColors.WindowText;
             this.nameField.Location = new System.Drawing.Point(73, 18);
             this.nameField.Name = "nameField";
             this.nameField.Size = new System.Drawing.Size(223, 20);
@@ -271,7 +272,8 @@
             // label28
             // 
             this.label28.AutoSize = true;
-            this.label28.Location = new System.Drawing.Point(370, 25);
+            this.label28.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.label28.Location = new System.Drawing.Point(66, 191);
             this.label28.Name = "label28";
             this.label28.Size = new System.Drawing.Size(32, 13);
             this.label28.TabIndex = 39;
@@ -281,11 +283,12 @@
             // StepValueEsLabel
             // 
             this.StepValueEsLabel.AutoSize = true;
-            this.StepValueEsLabel.Location = new System.Drawing.Point(417, 25);
+            this.StepValueEsLabel.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.StepValueEsLabel.Location = new System.Drawing.Point(106, 191);
             this.StepValueEsLabel.Name = "StepValueEsLabel";
-            this.StepValueEsLabel.Size = new System.Drawing.Size(22, 13);
+            this.StepValueEsLabel.Size = new System.Drawing.Size(13, 13);
             this.StepValueEsLabel.TabIndex = 38;
-            this.StepValueEsLabel.Text = "xxx";
+            this.StepValueEsLabel.Text = "0";
             this.StepValueEsLabel.Visible = false;
             // 
             // label26
@@ -300,7 +303,7 @@
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(27, 129);
+            this.label8.Location = new System.Drawing.Point(42, 129);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(55, 13);
             this.label8.TabIndex = 13;
@@ -318,11 +321,12 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(5, 99);
+            this.label7.Location = new System.Drawing.Point(21, 99);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(95, 13);
+            this.label7.Size = new System.Drawing.Size(80, 13);
             this.label7.TabIndex = 11;
-            this.label7.Text = "Konštanta merania";
+            this.label7.Text = "Meas. constant";
+            this.label7.MouseHover += new System.EventHandler(this.label7_MouseHover);
             // 
             // constantFieldEs
             // 
@@ -336,7 +340,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(12, 157);
+            this.label6.Location = new System.Drawing.Point(14, 157);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(84, 13);
             this.label6.TabIndex = 9;
@@ -350,7 +354,6 @@
             this.pocetKrokovFieldEs.Name = "pocetKrokovFieldEs";
             this.pocetKrokovFieldEs.Size = new System.Drawing.Size(100, 20);
             this.pocetKrokovFieldEs.TabIndex = 15;
-            this.pocetKrokovFieldEs.TextChanged += new System.EventHandler(this.pocetKrokovFieldEs_TextChanged);
             this.pocetKrokovFieldEs.KeyUp += new System.Windows.Forms.KeyEventHandler(this.pocetKrokovFieldEs_KeyUp);
             // 
             // label5
@@ -458,6 +461,37 @@
             this.tabPage4.UseVisualStyleBackColor = true;
             this.tabPage4.Click += new System.EventHandler(this.tabPage4_Click);
             // 
+            // label40
+            // 
+            this.label40.AutoSize = true;
+            this.label40.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.label40.Location = new System.Drawing.Point(62, 206);
+            this.label40.Name = "label40";
+            this.label40.Size = new System.Drawing.Size(34, 13);
+            this.label40.TabIndex = 69;
+            this.label40.Text = "Steps";
+            this.label40.Visible = false;
+            // 
+            // StepValueMsLabel
+            // 
+            this.StepValueMsLabel.AutoSize = true;
+            this.StepValueMsLabel.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.StepValueMsLabel.Location = new System.Drawing.Point(115, 207);
+            this.StepValueMsLabel.Name = "StepValueMsLabel";
+            this.StepValueMsLabel.Size = new System.Drawing.Size(13, 13);
+            this.StepValueMsLabel.TabIndex = 68;
+            this.StepValueMsLabel.Text = "0";
+            this.StepValueMsLabel.Visible = false;
+            // 
+            // label38
+            // 
+            this.label38.AutoSize = true;
+            this.label38.Location = new System.Drawing.Point(172, 155);
+            this.label38.Name = "label38";
+            this.label38.Size = new System.Drawing.Size(41, 13);
+            this.label38.TabIndex = 67;
+            this.label38.Text = "milisec.";
+            // 
             // timePerAmuFieldMs
             // 
             this.timePerAmuFieldMs.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
@@ -480,6 +514,7 @@
             // label37
             // 
             this.label37.AutoSize = true;
+            this.label37.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
             this.label37.Location = new System.Drawing.Point(16, 183);
             this.label37.Name = "label37";
             this.label37.Size = new System.Drawing.Size(84, 13);
@@ -489,6 +524,7 @@
             // NumberOfStepValueMsLabel
             // 
             this.NumberOfStepValueMsLabel.AutoSize = true;
+            this.NumberOfStepValueMsLabel.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
             this.NumberOfStepValueMsLabel.Location = new System.Drawing.Point(115, 183);
             this.NumberOfStepValueMsLabel.Name = "NumberOfStepValueMsLabel";
             this.NumberOfStepValueMsLabel.Size = new System.Drawing.Size(13, 13);
@@ -535,11 +571,11 @@
             // label12
             // 
             this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(5, 103);
+            this.label12.Location = new System.Drawing.Point(18, 103);
             this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(95, 13);
+            this.label12.Size = new System.Drawing.Size(80, 13);
             this.label12.TabIndex = 28;
-            this.label12.Text = "Konštanta merania";
+            this.label12.Text = "Meas. constant";
             // 
             // constantFieldMs
             // 
@@ -652,6 +688,37 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "QMS";
             // 
+            // label41
+            // 
+            this.label41.AutoSize = true;
+            this.label41.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.label41.Location = new System.Drawing.Point(58, 198);
+            this.label41.Name = "label41";
+            this.label41.Size = new System.Drawing.Size(34, 13);
+            this.label41.TabIndex = 71;
+            this.label41.Text = "Steps";
+            this.label41.Visible = false;
+            // 
+            // StepValue2DMsLabel
+            // 
+            this.StepValue2DMsLabel.AutoSize = true;
+            this.StepValue2DMsLabel.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.StepValue2DMsLabel.Location = new System.Drawing.Point(111, 199);
+            this.StepValue2DMsLabel.Name = "StepValue2DMsLabel";
+            this.StepValue2DMsLabel.Size = new System.Drawing.Size(13, 13);
+            this.StepValue2DMsLabel.TabIndex = 70;
+            this.StepValue2DMsLabel.Text = "0";
+            this.StepValue2DMsLabel.Visible = false;
+            // 
+            // label39
+            // 
+            this.label39.AutoSize = true;
+            this.label39.Location = new System.Drawing.Point(166, 145);
+            this.label39.Name = "label39";
+            this.label39.Size = new System.Drawing.Size(41, 13);
+            this.label39.TabIndex = 68;
+            this.label39.Text = "milisec.";
+            // 
             // timePerAmuField2DMs
             // 
             this.timePerAmuField2DMs.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
@@ -674,6 +741,7 @@
             // label36
             // 
             this.label36.AutoSize = true;
+            this.label36.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
             this.label36.Location = new System.Drawing.Point(8, 175);
             this.label36.Name = "label36";
             this.label36.Size = new System.Drawing.Size(84, 13);
@@ -685,6 +753,7 @@
             // 
             this.NumberOfStepValue2DMsLabel.AutoSize = true;
             this.NumberOfStepValue2DMsLabel.BackColor = System.Drawing.Color.Transparent;
+            this.NumberOfStepValue2DMsLabel.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
             this.NumberOfStepValue2DMsLabel.Location = new System.Drawing.Point(111, 175);
             this.NumberOfStepValue2DMsLabel.Name = "NumberOfStepValue2DMsLabel";
             this.NumberOfStepValue2DMsLabel.Size = new System.Drawing.Size(13, 13);
@@ -700,6 +769,7 @@
             this.DensOfMeasField2DMS.Name = "DensOfMeasField2DMS";
             this.DensOfMeasField2DMS.Size = new System.Drawing.Size(61, 21);
             this.DensOfMeasField2DMS.TabIndex = 60;
+            this.DensOfMeasField2DMS.SelectedIndexChanged += new System.EventHandler(this.DensOfMeasField2DMS_SelectedIndexChanged);
             this.DensOfMeasField2DMS.SelectedValueChanged += new System.EventHandler(this.DensOfMeasField2DMS_SelectedValueChanged);
             // 
             // startPointField2DMs
@@ -809,6 +879,7 @@
             // label35
             // 
             this.label35.AutoSize = true;
+            this.label35.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
             this.label35.Location = new System.Drawing.Point(56, 147);
             this.label35.Name = "label35";
             this.label35.Size = new System.Drawing.Size(32, 13);
@@ -819,11 +890,12 @@
             // StepValue2DEsLabel
             // 
             this.StepValue2DEsLabel.AutoSize = true;
-            this.StepValue2DEsLabel.Location = new System.Drawing.Point(103, 147);
+            this.StepValue2DEsLabel.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.StepValue2DEsLabel.Location = new System.Drawing.Point(99, 147);
+            this.StepValue2DEsLabel.MaximumSize = new System.Drawing.Size(10, 10);
             this.StepValue2DEsLabel.Name = "StepValue2DEsLabel";
-            this.StepValue2DEsLabel.Size = new System.Drawing.Size(22, 13);
+            this.StepValue2DEsLabel.Size = new System.Drawing.Size(0, 10);
             this.StepValue2DEsLabel.TabIndex = 45;
-            this.StepValue2DEsLabel.Text = "xxx";
             this.StepValue2DEsLabel.Visible = false;
             // 
             // label19
@@ -831,9 +903,9 @@
             this.label19.AutoSize = true;
             this.label19.Location = new System.Drawing.Point(14, 76);
             this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(73, 13);
+            this.label19.Size = new System.Drawing.Size(77, 13);
             this.label19.TabIndex = 44;
-            this.label19.Text = "Čas na 1 krok";
+            this.label19.Text = "Time for 1 step";
             // 
             // steptimeField2DEs
             // 
@@ -847,11 +919,11 @@
             // label20
             // 
             this.label20.AutoSize = true;
-            this.label20.Location = new System.Drawing.Point(16, 102);
+            this.label20.Location = new System.Drawing.Point(9, 102);
             this.label20.Name = "label20";
-            this.label20.Size = new System.Drawing.Size(71, 13);
+            this.label20.Size = new System.Drawing.Size(84, 13);
             this.label20.TabIndex = 42;
-            this.label20.Text = "Počet krokov";
+            this.label20.Text = "Number of steps";
             // 
             // pocetKrokovField2DEs
             // 
@@ -930,64 +1002,6 @@
             this.tabControl1.Size = new System.Drawing.Size(573, 455);
             this.tabControl1.TabIndex = 0;
             // 
-            // label38
-            // 
-            this.label38.AutoSize = true;
-            this.label38.Location = new System.Drawing.Point(172, 155);
-            this.label38.Name = "label38";
-            this.label38.Size = new System.Drawing.Size(41, 13);
-            this.label38.TabIndex = 67;
-            this.label38.Text = "milisec.";
-            // 
-            // label39
-            // 
-            this.label39.AutoSize = true;
-            this.label39.Location = new System.Drawing.Point(166, 147);
-            this.label39.Name = "label39";
-            this.label39.Size = new System.Drawing.Size(41, 13);
-            this.label39.TabIndex = 68;
-            this.label39.Text = "milisec.";
-            // 
-            // label40
-            // 
-            this.label40.AutoSize = true;
-            this.label40.Location = new System.Drawing.Point(62, 206);
-            this.label40.Name = "label40";
-            this.label40.Size = new System.Drawing.Size(34, 13);
-            this.label40.TabIndex = 69;
-            this.label40.Text = "Steps";
-            this.label40.Visible = false;
-            // 
-            // StepValueMsLabel
-            // 
-            this.StepValueMsLabel.AutoSize = true;
-            this.StepValueMsLabel.Location = new System.Drawing.Point(115, 207);
-            this.StepValueMsLabel.Name = "StepValueMsLabel";
-            this.StepValueMsLabel.Size = new System.Drawing.Size(13, 13);
-            this.StepValueMsLabel.TabIndex = 68;
-            this.StepValueMsLabel.Text = "0";
-            this.StepValueMsLabel.Visible = false;
-            // 
-            // label41
-            // 
-            this.label41.AutoSize = true;
-            this.label41.Location = new System.Drawing.Point(58, 198);
-            this.label41.Name = "label41";
-            this.label41.Size = new System.Drawing.Size(34, 13);
-            this.label41.TabIndex = 71;
-            this.label41.Text = "Steps";
-            this.label41.Visible = false;
-            // 
-            // StepValue2DMsLabel
-            // 
-            this.StepValue2DMsLabel.AutoSize = true;
-            this.StepValue2DMsLabel.Location = new System.Drawing.Point(111, 199);
-            this.StepValue2DMsLabel.Name = "StepValue2DMsLabel";
-            this.StepValue2DMsLabel.Size = new System.Drawing.Size(13, 13);
-            this.StepValue2DMsLabel.TabIndex = 70;
-            this.StepValue2DMsLabel.Text = "0";
-            this.StepValue2DMsLabel.Visible = false;
-            // 
             // NoveMeranieWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -999,7 +1013,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.KeyPreview = true;
             this.Name = "NoveMeranieWindow";
-            this.Text = "Nastavenie merania";
+            this.Text = "Measurement settings";
             this.Load += new System.EventHandler(this.NoveMeranieWindow_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.NoveMeranieWindow_KeyDown);
             this.tabPage2.ResumeLayout(false);

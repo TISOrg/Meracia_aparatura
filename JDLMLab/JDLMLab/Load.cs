@@ -1,4 +1,4 @@
-﻿using System;
+﻿    using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -113,7 +113,7 @@ namespace JDLMLab
                     energy_start_point.Text = dr["start_point"].ToString();
                     energy_end_point.Text = dr["end_point"].ToString();
                     mass_constant.Text = dr["constant"].ToString();
-                    energy_steptime.Text = dr["steptime"].ToString();
+                    energy_steptime.Text = dr["steptime"].ToString();  ///double,time_for_amu  vytvoriť field do Load tak ako ostatnym ///int,pre density//
                     pocet_krokov.Text = dr["pocet_krokov"].ToString();
                 }
                 if (dr["type_name"].Equals("Mass Scan"))
@@ -197,6 +197,11 @@ namespace JDLMLab
             {
                 DialogResult = DialogResult.Cancel;
             }
+        }
+
+        private void mass_constant_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

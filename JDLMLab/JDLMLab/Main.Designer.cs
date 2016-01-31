@@ -91,29 +91,29 @@
             // nastaveniaMeraniaToolStripMenuItem
             // 
             this.nastaveniaMeraniaToolStripMenuItem.Name = "nastaveniaMeraniaToolStripMenuItem";
-            this.nastaveniaMeraniaToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
-            this.nastaveniaMeraniaToolStripMenuItem.Text = "Nové meranie";
+            this.nastaveniaMeraniaToolStripMenuItem.Size = new System.Drawing.Size(174, 22);
+            this.nastaveniaMeraniaToolStripMenuItem.Text = "New measurement";
             this.nastaveniaMeraniaToolStripMenuItem.Click += new System.EventHandler(this.nastaveniaMeraniaToolStripMenuItem_Click);
             // 
             // toolsToolStripMenuItem
             // 
             this.toolsToolStripMenuItem.Name = "toolsToolStripMenuItem";
-            this.toolsToolStripMenuItem.Size = new System.Drawing.Size(77, 20);
-            this.toolsToolStripMenuItem.Text = "Nastavenia";
+            this.toolsToolStripMenuItem.Size = new System.Drawing.Size(61, 20);
+            this.toolsToolStripMenuItem.Text = "Settings";
             this.toolsToolStripMenuItem.Click += new System.EventHandler(this.toolsToolStripMenuItem_Click);
             // 
             // loadToolStripMenuItem
             // 
             this.loadToolStripMenuItem.Name = "loadToolStripMenuItem";
-            this.loadToolStripMenuItem.Size = new System.Drawing.Size(104, 20);
-            this.loadToolStripMenuItem.Text = "Načítať meranie";
+            this.loadToolStripMenuItem.Size = new System.Drawing.Size(121, 20);
+            this.loadToolStripMenuItem.Text = "Load measurement";
             this.loadToolStripMenuItem.Click += new System.EventHandler(this.loadToolStripMenuItem_Click);
             // 
             // oProgrameToolStripMenuItem
             // 
             this.oProgrameToolStripMenuItem.Name = "oProgrameToolStripMenuItem";
-            this.oProgrameToolStripMenuItem.Size = new System.Drawing.Size(83, 20);
-            this.oProgrameToolStripMenuItem.Text = "O programe";
+            this.oProgrameToolStripMenuItem.Size = new System.Drawing.Size(52, 20);
+            this.oProgrameToolStripMenuItem.Text = "About";
             this.oProgrameToolStripMenuItem.Click += new System.EventHandler(this.oProgrameToolStripMenuItem_Click);
             // 
             // label1
@@ -122,9 +122,9 @@
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.label1.Location = new System.Drawing.Point(30, 13);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(155, 20);
+            this.label1.Size = new System.Drawing.Size(71, 20);
             this.label1.TabIndex = 1;
-            this.label1.Text = "Meracia aparatúra";
+            this.label1.Text = "CEMBA";
             // 
             // graf
             // 
@@ -228,9 +228,9 @@
             this.label2.ForeColor = System.Drawing.SystemColors.WindowFrame;
             this.label2.Location = new System.Drawing.Point(58, 65);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(88, 13);
+            this.label2.Size = new System.Drawing.Size(107, 13);
             this.label2.TabIndex = 18;
-            this.label2.Text = "Vyber zobrazenie";
+            this.label2.Text = "Choose display mode";
             // 
             // sidebarExportButton
             // 
@@ -238,7 +238,7 @@
             this.sidebarExportButton.Name = "sidebarExportButton";
             this.sidebarExportButton.Size = new System.Drawing.Size(145, 23);
             this.sidebarExportButton.TabIndex = 16;
-            this.sidebarExportButton.Text = "Export merania";
+            this.sidebarExportButton.Text = "Export ";
             this.sidebarExportButton.UseVisualStyleBackColor = true;
             this.sidebarExportButton.Click += new System.EventHandler(this.sidebarExportButton_Click_2);
             // 
@@ -251,7 +251,7 @@
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(145, 65);
             this.button2.TabIndex = 15;
-            this.button2.Text = "Zastav meranie";
+            this.button2.Text = "STOP";
             this.button2.UseVisualStyleBackColor = false;
             this.button2.Click += new System.EventHandler(this.button2_Click_1);
             // 
@@ -263,7 +263,7 @@
             this.startbutton.Name = "startbutton";
             this.startbutton.Size = new System.Drawing.Size(145, 83);
             this.startbutton.TabIndex = 17;
-            this.startbutton.Text = "Štart";
+            this.startbutton.Text = "START";
             this.startbutton.UseVisualStyleBackColor = false;
             this.startbutton.Click += new System.EventHandler(this.startbutton_click);
             // 
@@ -315,7 +315,7 @@
             this.KeyPreview = true;
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "Main";
-            this.Text = "Meracia aparatúra";
+            this.Text = "CEMBA";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Main_FormClosed);
             this.Load += new System.EventHandler(this.Main_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Main_KeyDown);
