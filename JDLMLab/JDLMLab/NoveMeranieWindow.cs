@@ -204,7 +204,7 @@ namespace JDLMLab
                     throw e;
                 }
             }
-            parametreMerania.PositiveIon =positiveIon.Checked;
+            parametreMerania.IonType =positiveIon.Checked;
             parametreMerania.testRun = testRun;
         }
 
