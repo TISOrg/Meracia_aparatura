@@ -343,7 +343,7 @@
             // 
             this.stepTimeFieldEs.AccessibleName = "Start point";
             this.stepTimeFieldEs.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.stepTimeFieldEs.Location = new System.Drawing.Point(108, 126);
+            this.stepTimeFieldEs.Location = new System.Drawing.Point(106, 126);
             this.stepTimeFieldEs.MaxLength = 50;
             this.stepTimeFieldEs.Name = "stepTimeFieldEs";
             this.stepTimeFieldEs.Size = new System.Drawing.Size(100, 20);
@@ -384,7 +384,7 @@
             // 
             this.pocetKrokovFieldEs.AccessibleName = "Start point";
             this.pocetKrokovFieldEs.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.pocetKrokovFieldEs.Location = new System.Drawing.Point(108, 156);
+            this.pocetKrokovFieldEs.Location = new System.Drawing.Point(106, 157);
             this.pocetKrokovFieldEs.MaxLength = 50;
             this.pocetKrokovFieldEs.Name = "pocetKrokovFieldEs";
             this.pocetKrokovFieldEs.Size = new System.Drawing.Size(100, 20);
@@ -502,7 +502,6 @@
             this.tabPage4.TabIndex = 1;
             this.tabPage4.Text = "Mass scan";
             this.tabPage4.UseVisualStyleBackColor = true;
-            this.tabPage4.Click += new System.EventHandler(this.tabPage4_Click);
             // 
             // label40
             // 
