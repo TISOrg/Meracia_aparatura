@@ -11,6 +11,14 @@ namespace JDLMLab
 {
     class NIDriver
     {
+        NITaskTimerClass mojaUlohaCounter;
+        string prevodnik = "Dev2";  
+        private CIChannel CICh;
+        public CounterReader Counter;
+        public int[] ttlSignal;
+
+        public int aktualnyKrok;
+        public int last;
 
         public NIDriver()
         {
@@ -27,7 +35,7 @@ namespace JDLMLab
             AOChannel myAOChannel;
 
             myAOChannel = analogOutTask.AOChannels.CreateVoltageChannel(
-                "dev1/ao1",
+                prevodnik + "/ao1",
                 "myAOChannel",
                 0,
                 5,
@@ -43,7 +51,26 @@ namespace JDLMLab
         // --------------DIGITAL ZAPIS--------------
         public void triggerInit()
         {
+            last = 0;
+            mojaUlohaCounter = new NITaskTimerClass(this);
 
+            ttlSignal = new int[20];
+
+            CICh = mojaUlohaCounter.UlohaCounter.CIChannels.CreateCountEdgesChannel(
+                prevodnik + "/ctr0",
+                prevodnik + "ctr0",
+                CICountEdgesActiveEdge.Falling,
+                0,
+                CICountEdgesCountDirection.Up
+            );
+
+            mojaUlohaCounter.UlohaCounter.Control(TaskAction.Verify);
+
+            Counter = new CounterReader(mojaUlohaCounter.UlohaCounter.Stream);
+            mojaUlohaCounter.UlohaCounter.Start();
+
+            aktualnyKrok = 0;
+            mojaUlohaCounter.Enabled = true;
         }
 
         public void triggerSetTime()
@@ -82,7 +109,7 @@ namespace JDLMLab
 
         public double readTlakomerPR4000()
         {
-            return 0;
+            return analogReadData();
         }
 
 
@@ -99,14 +126,12 @@ namespace JDLMLab
 
 
 
-        string analogReadData()
+        double analogReadData()
         {
             Task analogInTask = new Task();
             AIChannel myAIChannel;
-
-
             myAIChannel = analogInTask.AIChannels.CreateVoltageChannel(
-                "dev1/ai1",
+                prevodnik + "/ai1",
                 "myAIChannel",
                 AITerminalConfiguration.Differential,
                 0,
@@ -115,10 +140,8 @@ namespace JDLMLab
                 );
 
             AnalogSingleChannelReader reader = new AnalogSingleChannelReader(analogInTask.Stream);
-
             double analogDataIn = reader.ReadSingleSample();
-
-            return analogDataIn.ToString();
+            return analogDataIn;
         }
 
 
@@ -127,11 +150,9 @@ namespace JDLMLab
         void analogWriteData(string vstup)
         {
             Task analogOutTask = new Task();
-
             AOChannel myAOChannel;
-
             myAOChannel = analogOutTask.AOChannels.CreateVoltageChannel(
-                "dev1/ao1",
+                prevodnik + "/ao1",
                 "myAOChannel",
                 0,
                 5,
@@ -139,9 +160,7 @@ namespace JDLMLab
                 );
 
             AnalogSingleChannelWriter writer = new AnalogSingleChannelWriter(analogOutTask.Stream);
-
             double analogDataOut = 0;
-
             if (vstup != "")
             {
                 try
