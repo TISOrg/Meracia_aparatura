@@ -15,9 +15,6 @@ namespace JDLMLab
         private NIDriver f;
        
 
-
-
-
         public NITaskTimerClass(NIDriver formular)
         {                         //konstruktor
             UlohaCounter = new Task("Counter");
@@ -34,14 +31,9 @@ namespace JDLMLab
                 if (f.aktualnyKrok < 20)
                 {
                     int hodnota = f.Counter.ReadSingleSampleInt32();
-
-                    //f.ttlSignal[f.aktualnyKrok++] = hodnota - f.last;
-                    // f.last = hodnota;
                     f.ttlSignal[f.aktualnyKrok++] = hodnota;
                     UlohaCounter.Stop();
-
                     UlohaCounter.Start();
-
                 }
                 else
                 {
@@ -52,10 +44,7 @@ namespace JDLMLab
                         s += i.ToString() + "\n";
                     }
                     MessageBox.Show(s);
-                    //UlohaCounter.Dispose();
                 }
-
-
             }
             catch (Exception ex)
             {

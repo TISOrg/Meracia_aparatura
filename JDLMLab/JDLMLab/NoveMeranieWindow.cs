@@ -150,10 +150,20 @@ namespace JDLMLab
                 {
                     
                     validateEnergyScanTab();
-                    parametreMerania = new EnergyScanParameters(Convert.ToDouble(startPointFieldEs.Text), Convert.ToDouble(endPointFieldEs.Text), Convert.ToDouble(constantFieldEs.Text), Convert.ToDouble(stepTimeFieldEs.Text), Convert.ToInt32(pocetKrokovFieldEs.Text));
+                    parametreMerania = new EnergyScanParameters(
+                        Convert.ToDouble(startPointFieldEs.Text), 
+                        Convert.ToDouble(endPointFieldEs.Text), 
+                        Convert.ToDouble(constantFieldEs.Text), 
+                        Convert.ToDouble(stepTimeFieldEs.Text), 
+                        Convert.ToInt32(pocetKrokovFieldEs.Text)
+                    );
                     
-                        parametreMerania.setParameters(nameField
-                        .Text, Convert.ToDouble(resolutionFieldEs.Text), Convert.ToInt32(pocetCyklovField.Value), noteField.Text);
+                        parametreMerania.setParameters(
+                            nameField.Text, 
+                            Convert.ToDouble(resolutionFieldEs.Text), 
+                            Convert.ToInt32(pocetCyklovField.Value), 
+                            noteField.Text
+                        );
                     
                     ulozParametreEnergyScan();
                 }
@@ -169,11 +179,19 @@ namespace JDLMLab
                 try
                 {
                     validateMassScanTab();
-
-
-                    parametreMerania = new MassScanParameters(Convert.ToInt32(startPointFieldMs.Text), Convert.ToInt32(endPointFieldMs.Text), Convert.ToDouble(constantFieldMs.Text), (int)DensOfMeasFieldMs.SelectedValue,(double) timePerAmuFieldMs.SelectedValue);
-                    parametreMerania.setParameters(nameField
-                        .Text, Convert.ToDouble(resolutionFieldMs.Text), Convert.ToInt32(pocetCyklovField.Value), noteField.Text);
+                    parametreMerania = new MassScanParameters(
+                        Convert.ToInt32(startPointFieldMs.Text), 
+                        Convert.ToInt32(endPointFieldMs.Text), 
+                        Convert.ToDouble(constantFieldMs.Text), 
+                        (int)DensOfMeasFieldMs.SelectedValue,
+                        (double) timePerAmuFieldMs.SelectedValue
+                    );
+                    parametreMerania.setParameters(
+                        nameField.Text, 
+                        Convert.ToDouble(resolutionFieldMs.Text), 
+                        Convert.ToInt32(pocetCyklovField.Value), 
+                        noteField.Text
+                    );
                     ulozParametreMassScan();
                 }
                 catch (ValidateParametersException e)
@@ -187,10 +205,21 @@ namespace JDLMLab
                 {
                     validateMass2DScanTab();
 
-                    EnergyScanParameters parametreMeraniaEnergy = new EnergyScanParameters(Convert.ToDouble(startPointField2DEs.Text), Convert.ToDouble(endPointField2DEs.Text),0.0,Convert.ToDouble(steptimeField2DEs.Text), Convert.ToInt32(pocetKrokovField2DEs.Text));
+                    EnergyScanParameters parametreMeraniaEnergy = new EnergyScanParameters(
+                        Convert.ToDouble(startPointField2DEs.Text), 
+                        Convert.ToDouble(endPointField2DEs.Text),
+                        0.0,
+                        Convert.ToDouble(steptimeField2DEs.Text), 
+                        Convert.ToInt32(pocetKrokovField2DEs.Text)
+                    );
 
-
-                    MassScanParameters parametreMeraniaMass = new MassScanParameters(Convert.ToInt32(startPointField2DMs.Text), Convert.ToInt32(endPointField2DMs.Text), 0, (int)DensOfMeasField2DMS.SelectedValue,(double)timePerAmuField2DMs.SelectedValue);
+                    MassScanParameters parametreMeraniaMass = new MassScanParameters(
+                        Convert.ToInt32(startPointField2DMs.Text), 
+                        Convert.ToInt32(endPointField2DMs.Text), 
+                        0, 
+                        (int)DensOfMeasField2DMS.SelectedValue,
+                        (double)timePerAmuField2DMs.SelectedValue
+                    );
 
                     parametreMerania = new Scan2DParameters(parametreMeraniaEnergy, parametreMeraniaMass);
 
