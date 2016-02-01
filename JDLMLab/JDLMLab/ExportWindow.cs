@@ -26,6 +26,14 @@ namespace JDLMLab
                 checkedListBoxCyklyInclude.Items.Add(i);
             }
             init();
+            jednotky.Add("Intensity", "a.u."); // v db premenovat sig
+            jednotky.Add("Electron_energy", "eV");
+            jednotky.Add("Mass", "amu");
+            jednotky.Add("Temperature", "°C");
+            jednotky.Add("Current", "nA");
+            jednotky.Add("Chamber_pressure", "mbar");
+            jednotky.Add("Capillar_pressure", "Pa");
+            
         }
         private DataSet header;
         private void init()
@@ -67,6 +75,7 @@ namespace JDLMLab
 
 
         static Dictionary<string, string> jednotky = new Dictionary<string, string>();
+        
         /// <summary>
         /// metoda na export dat zobrazenych v datagride do formatu .dat
         /// format dat:
@@ -79,14 +88,7 @@ namespace JDLMLab
         /// <param name="filename"></param>
         private void save(string filename)
         {
-            jednotky.Add("Intensity", "a.u."); // v db premenovat sig
-            jednotky.Add("Electron_energy", "eV");
-            jednotky.Add("Mass", "amu");
-            jednotky.Add("Temperature", "°C");
-            jednotky.Add("Current", "nA");
-            jednotky.Add("Chamber_pressure", "mbar");
-            jednotky.Add("Capillar_pressure", "Pa");
-            jednotky.Add("Intensity", "a.u.");
+            
             StreamWriter file = new StreamWriter(filename, false);
 
             //prvy riadok - nazvy stlpcov - beru sa priamo z nazvov v datagride
