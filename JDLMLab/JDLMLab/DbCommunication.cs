@@ -167,7 +167,7 @@ namespace JDLMLab
         /// <returns></returns>
         public DataSet meranie(int headerId, int cycleNum = 0)
         {
-            string sql = "select m.x,r.y,m.sig,m.current,m.kapillar,m.chamber,m.temperature,r.cycle_num from merania m left join rows r on r.id = m.y_id where header_id = " + headerId;
+            string sql = "select m.x,r.y,m.Intensity,m.Current,m.Capillar_pressure,m.Chamber_pressure,m.Temperature,r.cycle_num from merania m left join rows r on r.id = m.y_id where header_id = " + headerId;
             if (cycleNum > 0)
             {
                 sql += " and r.cycle_num= " + cycleNum;
@@ -177,7 +177,7 @@ namespace JDLMLab
         }
         public DataSet meraniePreGraf(int headerId)
         {
-            string sql = "select m.x as x,m.sig as y,r.cycle_num as cyklus from merania m left join rows r on r.id = m.y_id where header_id = " + headerId;
+            string sql = "select m.x as x,m.Intensity as y,r.cycle_num as cyklus from merania m left join rows r on r.id = m.y_id where header_id = " + headerId;
             sql += " order by cyklus asc,x asc";
             return getDataSet(sql);
         }
