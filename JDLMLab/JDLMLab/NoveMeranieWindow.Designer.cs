@@ -30,6 +30,8 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(NoveMeranieWindow));
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.negativeIon = new System.Windows.Forms.RadioButton();
+            this.positiveIon = new System.Windows.Forms.RadioButton();
             this.label21 = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
             this.pocetCyklovField = new System.Windows.Forms.NumericUpDown();
@@ -112,8 +114,6 @@
             this.label25 = new System.Windows.Forms.Label();
             this.startPointField2DEs = new System.Windows.Forms.TextBox();
             this.tabControl1 = new System.Windows.Forms.TabControl();
-            this.positiveIon = new System.Windows.Forms.RadioButton();
-            this.negativeIon = new System.Windows.Forms.RadioButton();
             this.tabPage2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pocetCyklovField)).BeginInit();
             this.typyMeraniaTaby.SuspendLayout();
@@ -146,6 +146,28 @@
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "New measurement";
             this.tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // negativeIon
+            // 
+            this.negativeIon.AutoSize = true;
+            this.negativeIon.Location = new System.Drawing.Point(327, 44);
+            this.negativeIon.Name = "negativeIon";
+            this.negativeIon.Size = new System.Drawing.Size(90, 17);
+            this.negativeIon.TabIndex = 21;
+            this.negativeIon.Text = "Negative ions";
+            this.negativeIon.UseVisualStyleBackColor = true;
+            // 
+            // positiveIon
+            // 
+            this.positiveIon.AutoSize = true;
+            this.positiveIon.Checked = true;
+            this.positiveIon.Location = new System.Drawing.Point(327, 21);
+            this.positiveIon.Name = "positiveIon";
+            this.positiveIon.Size = new System.Drawing.Size(84, 17);
+            this.positiveIon.TabIndex = 20;
+            this.positiveIon.TabStop = true;
+            this.positiveIon.Text = "Positive ions";
+            this.positiveIon.UseVisualStyleBackColor = true;
             // 
             // label21
             // 
@@ -326,6 +348,7 @@
             this.stepTimeFieldEs.Name = "stepTimeFieldEs";
             this.stepTimeFieldEs.Size = new System.Drawing.Size(100, 20);
             this.stepTimeFieldEs.TabIndex = 12;
+   //         this.stepTimeFieldEs.TextChanged += new System.EventHandler(this.stepTimeFieldEs_TextChanged);
             // 
             // label7
             // 
@@ -1020,28 +1043,6 @@
             this.tabControl1.SelectedIndex = 0;
             this.tabControl1.Size = new System.Drawing.Size(573, 455);
             this.tabControl1.TabIndex = 0;
-            // 
-            // positiveIon
-            // 
-            this.positiveIon.AutoSize = true;
-            this.positiveIon.Checked = true;
-            this.positiveIon.Location = new System.Drawing.Point(327, 21);
-            this.positiveIon.Name = "positiveIon";
-            this.positiveIon.Size = new System.Drawing.Size(84, 17);
-            this.positiveIon.TabIndex = 20;
-            this.positiveIon.TabStop = true;
-            this.positiveIon.Text = "Positive ions";
-            this.positiveIon.UseVisualStyleBackColor = true;
-            // 
-            // negativeIon
-            // 
-            this.negativeIon.AutoSize = true;
-            this.negativeIon.Location = new System.Drawing.Point(327, 44);
-            this.negativeIon.Name = "negativeIon";
-            this.negativeIon.Size = new System.Drawing.Size(90, 17);
-            this.negativeIon.TabIndex = 21;
-            this.negativeIon.Text = "Negative ions";
-            this.negativeIon.UseVisualStyleBackColor = true;
             // 
             // NoveMeranieWindow
             // 

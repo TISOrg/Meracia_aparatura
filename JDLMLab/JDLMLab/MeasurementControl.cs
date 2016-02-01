@@ -17,6 +17,7 @@ namespace JDLMLab
         public MeasurementControl(MeasurementParameters mp)
         {
             Parameters = mp;
+//            ((MassScanParameters)mp).steps;
             //vytvoritMeranievDB(mp);
             //vygenerovatSkusobne2dMerania(mp);
         }
@@ -113,6 +114,8 @@ namespace JDLMLab
         static TlakomerPR4000Driver tlakpr4000 = new TlakomerPR4000Driver();
         static TlakomerTG256ADriver tlak256 = new TlakomerTG256ADriver();
         static QmsDriver qms = new QmsDriver();
+        static NIDriver ADPrevodnik = new NIDriver();
+         
         //static TemDriver tem new TemDriver();
 
         DbCommunication database;
@@ -126,6 +129,7 @@ namespace JDLMLab
         /// </summary>
         public void start()
         {
+           
             db = new DbCommunication();
             db.open();
             db.vytvoritNoveMeranie(Parameters);
@@ -243,6 +247,7 @@ namespace JDLMLab
             double krok = ((EnergyScanParameters)Parameters).StartPoint; //ziskame zaciatocny krok = start point pre TEM
             while (cisloKroku < ((EnergyScanParameters)Parameters).PocetBodov)
             {
+                ADPrevodnik.Interval = ((EnergyScanParameters)Parameters).StepTime;
                 TemDriver.setPoint(krok);   //posle na TEM vypocitany bod
 
                 //ADprevodnik. vynulujTrigger;
@@ -254,6 +259,7 @@ namespace JDLMLab
                 checkAD();
                 //zaznamenat
                 zapisKrokMerania();
+                
 
                 cisloKroku++;
                 krok += ((EnergyScanParameters)Parameters).KrokNapatia;
@@ -269,6 +275,7 @@ namespace JDLMLab
 
         /// <summary>
         /// toto by malo mozno v threade alebo tak testovat ci uz ad prevodnik prestal merat.
+        /// HA! to by si chcel.... :P 
         /// </summary>
         private void checkAD()
         {

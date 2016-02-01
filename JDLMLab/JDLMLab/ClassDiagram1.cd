@@ -44,7 +44,7 @@
       <Compartment Name="Methods" Collapsed="true" />
     </Compartments>
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAABAAAAAAAIAAAAAAIAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAABAAAAAQAAAAABAAAAABAIAAAAAAIAAAAAAAAAAAA=</HashCode>
       <FileName>MassScanParameters.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -55,14 +55,14 @@
       <Compartment Name="Properties" Collapsed="true" />
     </Compartments>
     <TypeIdentifier>
-      <HashCode>IAAAAABBAAAIwAABBAEgAAQIAAAgAAgAAAAIAIEBAAg=</HashCode>
+      <HashCode>AAAAAABBAAAIwAABBAEgAAQIAAQgAAgAAEAIAKEBAAg=</HashCode>
       <FileName>MeasurementParameters.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="JDLMLab.MeasurementControl" Collapsed="true">
     <Position X="7.25" Y="1.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAgBAKAAA0BixgCACAARBAAgAhEAAgAKgAAAATAAA=</HashCode>
+      <HashCode>AAAAgBAKAAA0BixgiACAARBAAgAhEAAgAKgAAAATAAA=</HashCode>
       <FileName>MeasurementControl.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -156,21 +156,21 @@
   <Class Name="JDLMLab.NastaveniaWindow" Collapsed="true">
     <Position X="7.75" Y="9" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>/wCDQAAAAKEASJQABgCAAAZiAAA8EEFABHDEyCARBDA=</HashCode>
+      <HashCode>/wCDwAAAAKEASJQABgCgAAZiAAA8EEFABHDEyCARBDE=</HashCode>
       <FileName>NastaveniaWindow.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="JDLMLab.NoveMeranieWindow" Collapsed="true">
     <Position X="6" Y="9" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>/wCgAAgAAKAAQJBAQYagIAADAAI4FBCSECQUIAEdDjA=</HashCode>
+      <HashCode>/0CgQAgAICCAwNBAcYbwKASjgAK4FBCXMGRUICUfjrA=</HashCode>
       <FileName>NoveMeranieWindow.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="JDLMLab.Main" Collapsed="true">
     <Position X="3" Y="5.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>A9QAALQCgCAAABoCggiABAAWQAAaIBAKYvFZgQBQAAI=</HashCode>
+      <HashCode>Q9QAALQCgCAAABsCggiABAAWQAAaIBAKYvF5gQBQAAI=</HashCode>
       <FileName>Main.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
@@ -180,14 +180,14 @@
   <Class Name="JDLMLab.Load" Collapsed="true">
     <Position X="2.5" Y="9" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>fwAAAAAgAiCQAFaAiACAEjRDCAFcQQIAAGQgQYAAQpE=</HashCode>
+      <HashCode>fQAAAAAgACCQAFaAiACAEjRDCABcQQIAAGQgQaAAQpE=</HashCode>
       <FileName>Load.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="JDLMLab.ExportWindow" Collapsed="true">
     <Position X="4.25" Y="9" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>BBgAEAQAACKgABEAAACACAACAASIAAKAAEAAAQAEgAI=</HashCode>
+      <HashCode>BBgAEAQAACKgABEAAAGACAACAASIAAKAAEAAAQAEgAI=</HashCode>
       <FileName>ExportWindow.cs</FileName>
     </TypeIdentifier>
   </Class>

@@ -238,8 +238,10 @@ namespace JDLMLab
         double i;
         private void button1_Click(object sender, EventArgs e)
         {
-            NI.setAnalogOutput(i);
-            i++;
+            NIDriver prevodnik = new NIDriver();
+            prevodnik.triggerInit();
+           // NI.setAnalogOutput(i);
+           // i++;
         }
 
         private void Main_FormClosed(object sender, FormClosedEventArgs e)
@@ -313,6 +315,11 @@ namespace JDLMLab
             DoubleBuffered = true;
             SetStyle(ControlStyles.OptimizedDoubleBuffer, true);
             grafcontrol.graf.SetBounds(0, 0, Width-200, Height - 100);
+        }
+
+        private void richTextBox1_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

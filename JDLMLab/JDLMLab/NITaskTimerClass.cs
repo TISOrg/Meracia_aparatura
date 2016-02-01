@@ -13,6 +13,9 @@ namespace JDLMLab
     {
         public Task UlohaCounter;
         private NIDriver f;
+       
+
+
 
 
         public NITaskTimerClass(NIDriver formular)
@@ -20,7 +23,7 @@ namespace JDLMLab
             UlohaCounter = new Task("Counter");
             this.Tick += TaskTimerClass_Tick;
             f = formular;
-            Interval = 500;
+           
 
         }
 

@@ -146,7 +146,12 @@ namespace JDLMLab
                 {
                     
                     validateEnergyScanTab();
-                    parametreMerania = new EnergyScanParameters(Convert.ToDouble(startPointFieldEs.Text), Convert.ToDouble(endPointFieldEs.Text), Convert.ToDouble(constantFieldEs.Text), Convert.ToDouble(stepTimeFieldEs.Text), Convert.ToInt32(pocetKrokovFieldEs.Text));
+                    parametreMerania = new EnergyScanParameters(
+                        Convert.ToDouble(startPointFieldEs.Text),
+                        Convert.ToDouble(endPointFieldEs.Text), 
+                        Convert.ToDouble(constantFieldEs.Text),
+                        Convert.ToDouble(stepTimeFieldEs.Text),
+                        Convert.ToInt32(pocetKrokovFieldEs.Text));
                     
                         parametreMerania.setParameters(nameField
                         .Text, Convert.ToDouble(resolutionFieldEs.Text), Convert.ToInt32(pocetCyklovField.Value), noteField.Text);
@@ -167,7 +172,14 @@ namespace JDLMLab
                     validateMassScanTab();
 
 
-                    parametreMerania = new MassScanParameters(Convert.ToInt32(startPointFieldMs.Text), Convert.ToInt32(endPointFieldMs.Text), Convert.ToDouble(constantFieldMs.Text), (int)DensOfMeasFieldMs.SelectedValue,(double) timePerAmuFieldMs.SelectedValue);
+                    parametreMerania = new MassScanParameters(
+                        Convert.ToInt32(startPointFieldMs.Text),
+                        Convert.ToInt32(endPointFieldMs.Text), 
+                        Convert.ToDouble(constantFieldMs.Text), 
+                        (int)DensOfMeasFieldMs.SelectedValue,
+                        (double) timePerAmuFieldMs.SelectedValue
+                    );
+
                     parametreMerania.setParameters(nameField
                         .Text, Convert.ToDouble(resolutionFieldMs.Text), Convert.ToInt32(pocetCyklovField.Value), noteField.Text);
                     ulozParametreMassScan();
@@ -613,6 +625,8 @@ namespace JDLMLab
         {
             vypocitajStepPre2DMs();
         }
+
+        
     }
 
 

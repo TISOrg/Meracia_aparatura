@@ -25,7 +25,7 @@ namespace JDLMLab
         public double Constant { get; set; }
         public double StepTime { get; set; }
         public double Dens { get; set; }
-        public double TimeperAmu { get; set; }
+        //public double TimeperAmu { get; set; }
         public string Typ { get; set; }
         public abstract int PocetBodov { get; }
         public void setParameters(string name,double resolution, int pocetcyklov=0, string note="")    //0 pre pocetcyklov znamena neobmedzene
