@@ -348,7 +348,6 @@
             this.stepTimeFieldEs.Name = "stepTimeFieldEs";
             this.stepTimeFieldEs.Size = new System.Drawing.Size(100, 20);
             this.stepTimeFieldEs.TabIndex = 12;
-   //         this.stepTimeFieldEs.TextChanged += new System.EventHandler(this.stepTimeFieldEs_TextChanged);
             // 
             // label7
             // 
