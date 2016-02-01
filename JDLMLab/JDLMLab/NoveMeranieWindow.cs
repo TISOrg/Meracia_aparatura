@@ -504,11 +504,7 @@ namespace JDLMLab
             }
           
         }
-        private void tabPage4_Click(object sender, EventArgs e)
-        {
-
-        }
-
+        
         private void startPointFieldEs_KeyUp(object sender, KeyEventArgs e)
         {
             vypocitajStepPreEs();
@@ -540,11 +536,7 @@ namespace JDLMLab
             vypocitajStepPreMs();
         }
 
-        private void stepTimeFieldMs_KeyUp(object sender, KeyEventArgs e)
-        {
-
-        }
-
+       
         private void stepTimeFieldMs_TextChanged(object sender, EventArgs e)
         {
             vypocitajStepPreMs();
