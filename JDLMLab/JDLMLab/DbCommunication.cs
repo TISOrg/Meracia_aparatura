@@ -57,7 +57,7 @@ namespace JDLMLab
             "`end_point` double NOT NULL,`constant` double NOT NULL,`resolution` double NOT NULL,`steptime` double NOT NULL,`cycles` int(254) NOT NULL,"+
             "`note` varchar(500) NOT NULL,PRIMARY KEY(`id`),KEY `id(PK)` (`id`)) ENGINE = InnoDB AUTO_INCREMENT = 29 DEFAULT CHARSET = latin1;";
             sql += "CREATE TABLE `rows` (`id` int(11) NOT NULL AUTO_INCREMENT,`y` double NOT NULL,`cycle_num` int(254) NOT NULL,`header_id` int(11) NOT NULL,PRIMARY KEY(`id`),KEY `header_id(PK)` (`header_id`),KEY `id` (`id`),CONSTRAINT `obmedzenie` FOREIGN KEY (`header_id`) REFERENCES `headers` (`id`) ON DELETE CASCADE ON UPDATE CASCADE) ENGINE = InnoDB AUTO_INCREMENT = 28 DEFAULT CHARSET = latin1 ;";
-            sql += "CREATE TABLE `merania` (`id` int(11) NOT NULL AUTO_INCREMENT,`x` double NOT NULL,`y_id` int(11) NOT NULL,`sig` int(11) NOT NULL,`current` double NOT NULL,`kapillar` double NOT NULL,`chamber` double NOT NULL,`temperature` double NOT NULL,PRIMARY KEY(`id`),KEY `id_y` (`y_id`),CONSTRAINT `obmedzenie2` FOREIGN KEY (`y_id`) REFERENCES `rows` (`id`) ON DELETE CASCADE ON UPDATE CASCADE) ENGINE = InnoDB AUTO_INCREMENT = 90 DEFAULT CHARSET = latin1;";
+            sql += "CREATE TABLE `merania` (`id` int(11) NOT NULL AUTO_INCREMENT,`x` double NOT NULL,`y_id` int(11) NOT NULL,`Intensity` int(11) NOT NULL,`Current` double NOT NULL,`Capillar_pressure` double NOT NULL,`Chamber_pressure` double NOT NULL,`Temperature` double NOT NULL,PRIMARY KEY(`id`),KEY `id_y` (`y_id`),CONSTRAINT `obmedzenie2` FOREIGN KEY (`y_id`) REFERENCES `rows` (`id`) ON DELETE CASCADE ON UPDATE CASCADE) ENGINE = InnoDB AUTO_INCREMENT = 90 DEFAULT CHARSET = latin1;";
 
             sql+="CREATE TABLE `energy_scan_header` ("+
 	            "`id` INT(11) NOT NULL AUTO_INCREMENT,"+
@@ -189,7 +189,7 @@ namespace JDLMLab
         /// <returns></returns>
         public DataSet meranieAvg(int headerId)
         {
-            string sql = "select m.x,r.y,avg(m.sig) as sum,m.current,m.kapillar,m.chamber,m.temperature from merania m left join rows r on r.id = m.y_id where header_id = " + headerId;
+            string sql = "select m.x,r.y,avg(m.Intensity) as sum,m.Current,m.Capillar_pressure,m.Chamber_pressure,m.Temperature from merania m left join rows r on r.id = m.y_id where header_id = " + headerId;
             sql += " group by m.x order m.x asc";
             return getDataSet(sql);
         }
@@ -200,7 +200,7 @@ namespace JDLMLab
         /// <returns></returns>
         public DataSet meranieSum(int headerId)
         {
-            string sql = "select m.x,r.y,sum(m.sig) as sum,m.current,m.kapillar,m.chamber,m.temperature from merania m left join rows r on r.id = m.y_id where header_id = " + headerId;
+            string sql = "select m.x,r.y,sum(m.Intensity) as sum,m.Current,m.Capillar_pressure,m.Chamber_pressure,m.Temperature from merania m left join rows r on r.id = m.y_id where header_id = " + headerId;
             sql += " group by m.x order m.x asc";
             return getDataSet(sql);
         }
@@ -396,7 +396,7 @@ namespace JDLMLab
         {
             long y_id = getYID(k.y, cyklus, aktualneMeranie); //ak neexistuje taky zaznam, vytvori novy a vrati id
 
-            MySqlCommand c = new MySqlCommand("insert into merania (x,y_id,sig,current,kapillar,chamber,temperature) values(@x,@y_id,@sig,@current,@kapillar,@chamber,@temperature)", conn);
+            MySqlCommand c = new MySqlCommand("insert into merania (x,y_id,Intensity,Current,Capillar_pressure,Chamber_pressure,Temperature) values(@x,@y_id,@sig,@current,@kapillar,@chamber,@temperature)", conn);
             c.Parameters.AddWithValue("@x", k.x);
             c.Parameters.AddWithValue("@y_id", y_id);
             c.Parameters.AddWithValue("@sig", k.sig);

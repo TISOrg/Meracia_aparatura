@@ -17,8 +17,6 @@ namespace JDLMLab
 
         }
 
-
-
         // ---------------ZAPIS ANALOG-----------
         public void setAnalogOutput(double value)
         {

@@ -112,6 +112,8 @@
             this.label25 = new System.Windows.Forms.Label();
             this.startPointField2DEs = new System.Windows.Forms.TextBox();
             this.tabControl1 = new System.Windows.Forms.TabControl();
+            this.positiveIon = new System.Windows.Forms.RadioButton();
+            this.negativeIon = new System.Windows.Forms.RadioButton();
             this.tabPage2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pocetCyklovField)).BeginInit();
             this.typyMeraniaTaby.SuspendLayout();
@@ -125,6 +127,8 @@
             // 
             // tabPage2
             // 
+            this.tabPage2.Controls.Add(this.negativeIon);
+            this.tabPage2.Controls.Add(this.positiveIon);
             this.tabPage2.Controls.Add(this.label21);
             this.tabPage2.Controls.Add(this.label13);
             this.tabPage2.Controls.Add(this.pocetCyklovField);
@@ -1002,6 +1006,28 @@
             this.tabControl1.Size = new System.Drawing.Size(573, 455);
             this.tabControl1.TabIndex = 0;
             // 
+            // positiveIon
+            // 
+            this.positiveIon.AutoSize = true;
+            this.positiveIon.Checked = true;
+            this.positiveIon.Location = new System.Drawing.Point(327, 21);
+            this.positiveIon.Name = "positiveIon";
+            this.positiveIon.Size = new System.Drawing.Size(84, 17);
+            this.positiveIon.TabIndex = 20;
+            this.positiveIon.TabStop = true;
+            this.positiveIon.Text = "Positive ions";
+            this.positiveIon.UseVisualStyleBackColor = true;
+            // 
+            // negativeIon
+            // 
+            this.negativeIon.AutoSize = true;
+            this.negativeIon.Location = new System.Drawing.Point(327, 44);
+            this.negativeIon.Name = "negativeIon";
+            this.negativeIon.Size = new System.Drawing.Size(90, 17);
+            this.negativeIon.TabIndex = 21;
+            this.negativeIon.Text = "Negative ions";
+            this.negativeIon.UseVisualStyleBackColor = true;
+            // 
             // NoveMeranieWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1119,5 +1145,7 @@
         private System.Windows.Forms.Label StepValueMsLabel;
         private System.Windows.Forms.Label label41;
         private System.Windows.Forms.Label StepValue2DMsLabel;
+        private System.Windows.Forms.RadioButton negativeIon;
+        private System.Windows.Forms.RadioButton positiveIon;
     }
 }
