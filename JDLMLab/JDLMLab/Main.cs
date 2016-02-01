@@ -307,5 +307,12 @@ namespace JDLMLab
                 
             
         }
+
+        private void Main_Resize(object sender, EventArgs e)
+        {
+            DoubleBuffered = true;
+            SetStyle(ControlStyles.OptimizedDoubleBuffer, true);
+            grafcontrol.graf.SetBounds(0, 0, Width-200, Height - 100);
+        }
     }
 }

@@ -142,8 +142,8 @@
             // saveFileDialog1
             // 
             this.saveFileDialog1.AddExtension = false;
-            this.saveFileDialog1.DefaultExt = "csv";
-            this.saveFileDialog1.Filter = "Comma separated values files|*.csv|All files|*.*";
+            this.saveFileDialog1.DefaultExt = "dat";
+            this.saveFileDialog1.Filter = "DAT file|*.dat|All files|*.*";
             this.saveFileDialog1.Title = "Exportovať meranie";
             // 
             // label3

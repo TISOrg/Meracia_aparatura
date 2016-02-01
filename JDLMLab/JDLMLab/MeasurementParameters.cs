@@ -48,6 +48,8 @@ namespace JDLMLab
         public int TlakomerTPG256AFrekvenciaMerania { get { return Properties.Devices.Default.tpg256aFreq; } }
         public int TlakomerTPG256AKanal { get { return Properties.Devices.Default.tpg256aChannel; } }
         public double TemConstantValue { get { return Properties.Devices.Default.TemConstant; } }
+
+        public bool PositiveIon { get; internal set; }
     }
 }
 

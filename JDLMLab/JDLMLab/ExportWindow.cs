@@ -43,11 +43,12 @@ namespace JDLMLab
         }
         private void button1_Click(object sender, EventArgs e)
         {
-            //funkcia export.. exportovat vybrane zaznamy do formatu .csv
+            //funkcia export.. exportovat vybrane zaznamy
             //...
             saveFileDialog1.InitialDirectory = Paths.Default.export_path;
             string date = header.Tables[0].Rows[0]["datetime"].ToString();
             date=date.Replace(":", "-");
+            date = date.Replace("/", "-");
             
             saveFileDialog1.FileName = header.Tables[0].Rows[0]["name"] + " - " + date;
             DialogResult res=saveFileDialog1.ShowDialog();
@@ -64,21 +65,51 @@ namespace JDLMLab
             
         }
 
+
+        static Dictionary<string, string> jednotky = new Dictionary<string, string>();
+        /// <summary>
+        /// metoda na export dat zobrazenych v datagride do formatu .dat
+        /// format dat:
+        /// -prvy riadok: nazov 
+        /// -druhy riadok: jednotka
+        /// -treti riadok: koment
+        /// -ostatne riadky: data
+        /// Oddelovac je taublator,ciarka,bodkociarka,space. Pouzivaju sa desatinne bodky
+        /// </summary>
+        /// <param name="filename"></param>
         private void save(string filename)
         {
+            jednotky.Add("Intensity", "a.u."); // v db premenovat sig
+            jednotky.Add("Electron_energy", "eV");
+            jednotky.Add("Mass", "amu");
+            jednotky.Add("Temperature", "°C");
+            jednotky.Add("Current", "nA");
+            jednotky.Add("Chamber_pressure", "mbar");
+            jednotky.Add("Capillar_pressure", "Pa");
+            jednotky.Add("Intensity", "a.u.");
             StreamWriter file = new StreamWriter(filename, false);
+
+            //prvy riadok - nazvy stlpcov - beru sa priamo z nazvov v datagride
             bool firstColumn = true;
             for (int j = 0; j < dataMeranie.Columns.Count; j++)
             {
                 if (dataMeranie.Columns[j].Visible)
                 {
-                    if (!firstColumn) file.Write(",");
+                    if (!firstColumn) file.Write("\t");
                     file.Write(dataMeranie.Columns[j].HeaderText);
                     firstColumn = false;
                 }
 
             }
             file.WriteLine();
+            //druhy riadok - jednotky stlpcov - zatial nic... TODO. vyriesit cez slovnik... current -> A, temperature -> °C
+            file.WriteLine();
+
+            //treti riadok - commenty - tiez nic.
+
+            file.WriteLine();
+
+            //data
             firstColumn = true;
             for (int i = 0; i < dataMeranie.Rows.Count; i++)
             {
@@ -89,7 +120,7 @@ namespace JDLMLab
                     {
                         if (dataMeranie.Columns[j].Visible)
                         {
-                            if (!firstColumn) file.Write(",");
+                            if (!firstColumn) file.Write("\t");
                             file.Write(dataMeranie[j, i].Value);
                             firstColumn = false;
                         }
