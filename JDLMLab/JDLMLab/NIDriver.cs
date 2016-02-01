@@ -20,12 +20,59 @@ namespace JDLMLab
 
         public int aktualnyKrok;
         public int last;
+        private int pocetKrokov;// = 20;
+        public List<int> Intensity { get; set; }
 
-        public double Interval { get; internal set; }
+        public double Steptime { get {
+                return Steptime;
+            }
+            set {
+               mojaUlohaCounter.Interval = Convert.ToInt32(value) * 1000;
+               Steptime = value;
+            }
+        }
+
+        internal void triggerInit(double stepTime)
+        {
+            last = 0;
+            mojaUlohaCounter = new NITaskTimerClass(this);
+            mojaUlohaCounter.Interval = Convert.ToInt32(stepTime * 1000);
+            MessageBox.Show(mojaUlohaCounter.Interval.ToString());
+            // MessageBox.Show(NumOfSteps.ToString());
+            ttlSignal = new int[NumOfSteps];
+
+            CICh = mojaUlohaCounter.UlohaCounter.CIChannels.CreateCountEdgesChannel(
+                prevodnik + "/ctr0",
+                prevodnik + "ctr0",
+                CICountEdgesActiveEdge.Falling,
+                0,
+                CICountEdgesCountDirection.Up
+            );
+
+            mojaUlohaCounter.UlohaCounter.Control(TaskAction.Verify);
+
+            Counter = new CounterReader(mojaUlohaCounter.UlohaCounter.Stream);
+            mojaUlohaCounter.UlohaCounter.Start();
+
+            aktualnyKrok = 0;
+           
+        }
+
+        public void CounterStart()
+        {
+            mojaUlohaCounter.Enabled = true;
+        }
+
+        public int NumOfSteps { get {
+                return pocetKrokov;
+            } internal set {
+                pocetKrokov = value;
+            } }
 
         public NIDriver()
         {
 
+            Intensity = new List<int>();
         }
 
         // ---------------ZAPIS ANALOG-----------
@@ -61,8 +108,9 @@ namespace JDLMLab
         {
             last = 0;
             mojaUlohaCounter = new NITaskTimerClass(this);
-           
-            ttlSignal = new int[20];
+            MessageBox.Show(mojaUlohaCounter.Interval.ToString());
+           // MessageBox.Show(NumOfSteps.ToString());
+            ttlSignal = new int[NumOfSteps];
 
             CICh = mojaUlohaCounter.UlohaCounter.CIChannels.CreateCountEdgesChannel(
                 prevodnik + "/ctr0",

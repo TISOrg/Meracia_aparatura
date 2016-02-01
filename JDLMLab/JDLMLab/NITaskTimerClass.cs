@@ -20,30 +20,29 @@ namespace JDLMLab
             UlohaCounter = new Task("Counter");
             this.Tick += TaskTimerClass_Tick;
             f = formular;
+            n = 0;
            
 
         }
-
+        int n;
         private void TaskTimerClass_Tick(object sender, EventArgs e)
         {
             try
             {
-                if (f.aktualnyKrok < 20)
+                if (n < 1)
                 {
+                    MessageBox.Show("som tu"); 
                     int hodnota = f.Counter.ReadSingleSampleInt32();
-                    f.ttlSignal[f.aktualnyKrok++] = hodnota;
                     UlohaCounter.Stop();
                     UlohaCounter.Start();
+                    f.Intensity.Add(hodnota);
+                    n++;
                 }
                 else
                 {
                     Enabled = false;
-                    string s = "";
-                    foreach (int i in f.ttlSignal)
-                    {
-                        s += i.ToString() + "\n";
-                    }
-                    MessageBox.Show(s);
+                    
+                    
                 }
             }
             catch (Exception ex)

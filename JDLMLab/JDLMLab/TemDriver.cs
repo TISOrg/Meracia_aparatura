@@ -6,7 +6,7 @@ namespace JDLMLab
     {
         internal static void setPoint(double point)
         {
-            throw new NotImplementedException();
+            
         }
     }
 }
