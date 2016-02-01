@@ -84,7 +84,7 @@ namespace JDLMLab
             timePerAmuField2DMs.DisplayMember = "Key";
             timePerAmuField2DMs.ValueMember = "Value";
 
-
+            //2DMass scan
             nameField.Text = PosledneParametreMerania.Default.nameBox;
             noteField.Text = PosledneParametreMerania.Default.noteBox;
             startPointField2DMs.Text = PosledneParametreMerania.Default.m2DStartPoint.ToString();
@@ -92,19 +92,19 @@ namespace JDLMLab
             resolutionField2D.Text = PosledneParametreMerania.Default.m2DResolution.ToString();
             DensOfMeasField2DMS.Text = PosledneParametreMerania.Default.m2DDensOfMeas.ToString();
             timePerAmuField2DMs.Text = PosledneParametreMerania.Default.m2DTimePerAmu.ToString();
-
+            //2DEnergy scan
             steptimeField2DEs.Text = PosledneParametreMerania.Default.e2DStepTime.ToString();
             startPointField2DEs.Text = PosledneParametreMerania.Default.e2DStartPoint.ToString();
             endPointField2DEs.Text = PosledneParametreMerania.Default.e2DEndPoint.ToString();
             pocetKrokovField2DEs.Text = PosledneParametreMerania.Default.e2DPocetKrokov.ToString();
-
+            //Mass scan
             startPointFieldMs.Text = PosledneParametreMerania.Default.mStart.ToString();
             endPointFieldMs.Text = PosledneParametreMerania.Default.mEnd.ToString();
             resolutionFieldMs.Text = PosledneParametreMerania.Default.mResolution.ToString();
             DensOfMeasFieldMs.Text = PosledneParametreMerania.Default.mDensOfMeas.ToString();
             constantFieldMs.Text = PosledneParametreMerania.Default.mKonstanta.ToString();
             timePerAmuFieldMs.Text = PosledneParametreMerania.Default.mTimePerAmu.ToString();
-
+            //Energy scan
             startPointFieldEs.Text = PosledneParametreMerania.Default.eStartPoint.ToString();
             endPointFieldEs.Text = PosledneParametreMerania.Default.eEndPoint.ToString();
             resolutionFieldEs.Text = PosledneParametreMerania.Default.eResolution.ToString();
@@ -112,6 +112,10 @@ namespace JDLMLab
             stepTimeFieldEs.Text = PosledneParametreMerania.Default.eStepTime.ToString();
             pocetKrokovFieldEs.Text = PosledneParametreMerania.Default.ePocetKrokov.ToString();
 
+            vypocitajStepPre2DMs();
+            vypocitajStepPre2DEs();
+            vypocitajStepPreEs();
+            vypocitajStepPreMs();
         }
 
         public MeasurementParameters parametreMerania;
@@ -200,6 +204,7 @@ namespace JDLMLab
                     throw e;
                 }
             }
+            parametreMerania.PositiveIon =positiveIon.Checked;
             parametreMerania.testRun = testRun;
         }
 
@@ -453,7 +458,7 @@ namespace JDLMLab
                 double end = int.Parse(endPointField2DMs.Text);
                 double tpa = double.Parse(timePerAmuField2DMs.Text);
                 double casnakrok = double.Parse(DensOfMeasField2DMS.SelectedValue.ToString());
-                NumberOfStepValue2DMsLabel.Text = (((end - start) * casnakrok)).ToString();
+                NumberOfStepValue2DMsLabel.Text = ((end - start) * casnakrok).ToString();
                 
                 StepValue2DMsLabel.Text = (tpa / casnakrok).ToString();
                 NumberOfStepValue2DMsLabel.Visible = true;
@@ -506,11 +511,7 @@ namespace JDLMLab
             vypocitajStepPreEs();
         }
 
-        private void pocetKrokovFieldEs_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
+       
         private void pocetKrokovFieldEs_KeyUp(object sender, KeyEventArgs e)
         {
             vypocitajStepPreEs();
@@ -598,6 +599,17 @@ namespace JDLMLab
         private void timePerAmuField2DMs_SelectedValueChanged(object sender, EventArgs e)
         {
             vypocitajStepPre2DMs();
+        }
+
+        private void DensOfMeasField2DMS_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+
+        }
+
+        private void label7_MouseHover(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 
