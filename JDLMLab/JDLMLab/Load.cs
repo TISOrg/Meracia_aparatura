@@ -131,7 +131,7 @@ namespace JDLMLab
                     energy_start_point.Text = dr["e_start_point"].ToString();
                     energy_end_point.Text = dr["e_end_point"].ToString();
                     energy_steptime.Text = dr["e_steptime"].ToString();
-                    //energy_constant.Text = dr["constant"].ToString();
+                    
                     pocet_krokov.Text = dr["pocet_krokov"].ToString();
                     mass_start_point.Text = dr["m_start_point"].ToString();
                     mass_end_point.Text = dr["m_end_point"].ToString();

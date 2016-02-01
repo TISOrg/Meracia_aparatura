@@ -329,7 +329,7 @@ namespace JDLMLab
             {
                 c = new MySqlCommand("insert into mass_scan_header (header_id,start_point,end_point,constant,time_for_amu,density) values(@header_id,@start_point,@end_point,@constant,@time_for_amu,@density)", conn);
                 c.Parameters.AddWithValue("@header_id", aktualneMeranie);
-                c.Parameters.AddWithValue("@time_for_amu", ((MassScanParameters)mp).TimeperAmu);
+                c.Parameters.AddWithValue("@time_for_amu", ((MassScanParameters)mp).timePerAmu);
                 c.Parameters.AddWithValue("@density", ((MassScanParameters)mp).Dens);
                 c.Parameters.AddWithValue("@start_point", ((MassScanParameters)mp).StartPoint);
                 c.Parameters.AddWithValue("@end_point", ((MassScanParameters)mp).EndPoint);
@@ -344,7 +344,7 @@ namespace JDLMLab
                 c.Parameters.AddWithValue("@e_start_point", ((Scan2DParameters)mp).EnergyScanParameters.StartPoint);
                 c.Parameters.AddWithValue("@e_end_point", ((Scan2DParameters)mp).EnergyScanParameters.EndPoint);
                 c.Parameters.AddWithValue("@pocet_krokov", ((Scan2DParameters)mp).EnergyScanParameters.PocetKrokov);
-                c.Parameters.AddWithValue("@time_for_amu", ((Scan2DParameters)mp).MassScanParameters.TimeperAmu);
+                c.Parameters.AddWithValue("@time_for_amu", ((Scan2DParameters)mp).MassScanParameters.timePerAmu);
                 c.Parameters.AddWithValue("@density", ((Scan2DParameters)mp).MassScanParameters.Dens);
                 c.Parameters.AddWithValue("@m_start_point", ((Scan2DParameters)mp).MassScanParameters.StartPoint);
                 c.Parameters.AddWithValue("@m_end_point", ((Scan2DParameters)mp).MassScanParameters.EndPoint);

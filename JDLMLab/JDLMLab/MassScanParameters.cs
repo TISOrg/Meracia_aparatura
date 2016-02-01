@@ -15,7 +15,7 @@ namespace JDLMLab
             this.EndPoint = endpoint;
             this.Constant = constant;
             this.Dens = density;
-            this.TimeperAmu = timeperamu;
+            this.timePerAmu = timeperamu;
             Typ = "Mass Scan";
             init();
         }
@@ -26,17 +26,31 @@ namespace JDLMLab
 
         public void init()
         {
-            pb = (EndPoint - StartPoint) * Dens + 1;
+            double x = (EndPoint - StartPoint) * Dens + 1;
+            pb = Convert.ToInt32(x);
+            steps = timePerAmu / Dens; 
+
         }
 
         public override int PocetBodov
         {
             get
             {
-                return  (int)((EndPoint - StartPoint) * Dens + 1);
+                return pb;// (int)((EndPoint - StartPoint) * Dens + 1);
             }
         }
-        private double pb;
-        
+
+        public double Steps
+        {
+            get
+            {
+                return steps;
+            }
+        }
+
+
+        private int pb;
+        public double timePerAmu;
+        private double steps;
     }
 }
