@@ -385,6 +385,7 @@ namespace JDLMLab
 
         private void button1_Click(object sender, EventArgs e)
         {
+            
             try
             {
                 testRun = true;
@@ -413,11 +414,15 @@ namespace JDLMLab
         
         private void vypocitajStepPreEs()
         {
+            double vypocet;
+
             try {
                 double start = int.Parse(startPointFieldEs.Text);
                 double end = int.Parse(endPointFieldEs.Text);
                 int pocetkrokov = int.Parse(pocetKrokovFieldEs.Text);
-                StepValueEsLabel.Text = (((end - start) / pocetkrokov) ).ToString();
+              
+                vypocet = (((end - start) / pocetkrokov));
+                StepValueEsLabel.Text = String.Format("{0:0.000}", vypocet);
                 StepValueEsLabel.Visible = true;
                 label28.Visible = true;
             }
@@ -430,11 +435,14 @@ namespace JDLMLab
 }       
         private void vypocitajStepPre2DEs()
         {
+            double vypocet;
             try {
                 double start = int.Parse(startPointField2DEs.Text);
                 double end = int.Parse(endPointField2DEs.Text);
                 int pocetkrokov = int.Parse(pocetKrokovField2DEs.Text);
-                StepValue2DEsLabel.Text = (((end - start) / pocetkrokov)).ToString();
+                //StepValue2DEsLabel.Text = (((end - start) / pocetkrokov)).ToString();
+                vypocet = (((end - start) / pocetkrokov));
+                StepValue2DEsLabel.Text = String.Format("{0:0.000}", vypocet);
                 StepValue2DEsLabel.Visible = true;
                 label35.Visible = true;
             }
@@ -447,15 +455,18 @@ namespace JDLMLab
 }
         private void vypocitajStepPre2DMs()
         {
+            
+            double vypocet2;
             try { 
 
                 double start = int.Parse(startPointField2DMs.Text);
                 double end = int.Parse(endPointField2DMs.Text);
                 double tpa = double.Parse(timePerAmuField2DMs.Text);
                 double casnakrok = double.Parse(DensOfMeasField2DMS.SelectedValue.ToString());
-                NumberOfStepValue2DMsLabel.Text = (((end - start) * casnakrok)).ToString();
+                NumberOfStepValue2DMsLabel.Text = ((end - start) * casnakrok).ToString();
                 
-                StepValue2DMsLabel.Text = (tpa / casnakrok).ToString();
+                vypocet2 = (tpa / casnakrok);
+                StepValue2DMsLabel.Text = String.Format("{0:0.000}", vypocet2);
                 NumberOfStepValue2DMsLabel.Visible = true;
                 StepValue2DMsLabel.Visible = true;
                 label36.Visible = true;
@@ -470,14 +481,17 @@ namespace JDLMLab
 }
         private void vypocitajStepPreMs()
         {
+            
+            double vypocet2;
             try {
                 double start = int.Parse(startPointFieldMs.Text);
                 double end = int.Parse(endPointFieldMs.Text);
                 double tpa = double.Parse(timePerAmuFieldMs.Text);
                 double casnakrok = double.Parse(DensOfMeasFieldMs.SelectedValue.ToString());
                 NumberOfStepValueMsLabel.Text = ((end - start) * casnakrok).ToString();
-                
-                StepValueMsLabel.Text = (tpa/casnakrok).ToString();
+                vypocet2 = (tpa / casnakrok);
+                StepValueMsLabel.Text = String.Format("{0:0.000}", vypocet2);
+           
                 NumberOfStepValueMsLabel.Visible = true;
                 StepValueMsLabel.Visible = true;
                 label37.Visible = true;

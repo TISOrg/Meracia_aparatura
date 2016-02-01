@@ -271,6 +271,7 @@
             // 
             // label28
             // 
+            this.label28.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.label28.AutoSize = true;
             this.label28.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
             this.label28.Location = new System.Drawing.Point(66, 191);
@@ -282,6 +283,7 @@
             // 
             // StepValueEsLabel
             // 
+            this.StepValueEsLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.StepValueEsLabel.AutoSize = true;
             this.StepValueEsLabel.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
             this.StepValueEsLabel.Location = new System.Drawing.Point(106, 191);
@@ -293,6 +295,7 @@
             // 
             // label26
             // 
+            this.label26.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.label26.AutoSize = true;
             this.label26.Location = new System.Drawing.Point(214, 99);
             this.label26.Name = "label26";
@@ -302,6 +305,7 @@
             // 
             // label8
             // 
+            this.label8.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.label8.AutoSize = true;
             this.label8.Location = new System.Drawing.Point(42, 129);
             this.label8.Name = "label8";
@@ -312,6 +316,7 @@
             // stepTimeFieldEs
             // 
             this.stepTimeFieldEs.AccessibleName = "Start point";
+            this.stepTimeFieldEs.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.stepTimeFieldEs.Location = new System.Drawing.Point(108, 126);
             this.stepTimeFieldEs.MaxLength = 50;
             this.stepTimeFieldEs.Name = "stepTimeFieldEs";
@@ -320,17 +325,18 @@
             // 
             // label7
             // 
+            this.label7.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.label7.AutoSize = true;
             this.label7.Location = new System.Drawing.Point(21, 99);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(80, 13);
             this.label7.TabIndex = 11;
             this.label7.Text = "Meas. constant";
-            this.label7.MouseHover += new System.EventHandler(this.label7_MouseHover);
             // 
             // constantFieldEs
             // 
             this.constantFieldEs.AccessibleName = "Start point";
+            this.constantFieldEs.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.constantFieldEs.Location = new System.Drawing.Point(106, 96);
             this.constantFieldEs.MaxLength = 50;
             this.constantFieldEs.Name = "constantFieldEs";
@@ -339,6 +345,7 @@
             // 
             // label6
             // 
+            this.label6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.label6.AutoSize = true;
             this.label6.Location = new System.Drawing.Point(14, 157);
             this.label6.Name = "label6";
@@ -349,6 +356,7 @@
             // pocetKrokovFieldEs
             // 
             this.pocetKrokovFieldEs.AccessibleName = "Start point";
+            this.pocetKrokovFieldEs.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.pocetKrokovFieldEs.Location = new System.Drawing.Point(108, 156);
             this.pocetKrokovFieldEs.MaxLength = 50;
             this.pocetKrokovFieldEs.Name = "pocetKrokovFieldEs";
@@ -358,6 +366,7 @@
             // 
             // label5
             // 
+            this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.label5.AutoSize = true;
             this.label5.Location = new System.Drawing.Point(43, 73);
             this.label5.Name = "label5";
@@ -368,6 +377,7 @@
             // resolutionFieldEs
             // 
             this.resolutionFieldEs.AccessibleName = "Start point";
+            this.resolutionFieldEs.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.resolutionFieldEs.Location = new System.Drawing.Point(106, 70);
             this.resolutionFieldEs.MaxLength = 50;
             this.resolutionFieldEs.Name = "resolutionFieldEs";
@@ -376,6 +386,7 @@
             // 
             // label4
             // 
+            this.label4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.label4.AutoSize = true;
             this.label4.Location = new System.Drawing.Point(214, 44);
             this.label4.Name = "label4";
@@ -385,6 +396,7 @@
             // 
             // label3
             // 
+            this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.label3.AutoSize = true;
             this.label3.Location = new System.Drawing.Point(214, 21);
             this.label3.Name = "label3";
@@ -394,6 +406,7 @@
             // 
             // label2
             // 
+            this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(48, 47);
             this.label2.Name = "label2";
@@ -404,6 +417,7 @@
             // endPointFieldEs
             // 
             this.endPointFieldEs.AccessibleName = "Start point";
+            this.endPointFieldEs.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.endPointFieldEs.Location = new System.Drawing.Point(106, 44);
             this.endPointFieldEs.MaxLength = 50;
             this.endPointFieldEs.Name = "endPointFieldEs";
@@ -413,6 +427,7 @@
             // 
             // label1
             // 
+            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(45, 21);
             this.label1.Name = "label1";
@@ -423,6 +438,7 @@
             // startPointFieldEs
             // 
             this.startPointFieldEs.AccessibleName = "Start point";
+            this.startPointFieldEs.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.startPointFieldEs.Location = new System.Drawing.Point(106, 18);
             this.startPointFieldEs.MaxLength = 50;
             this.startPointFieldEs.Name = "startPointFieldEs";
@@ -488,9 +504,9 @@
             this.label38.AutoSize = true;
             this.label38.Location = new System.Drawing.Point(172, 155);
             this.label38.Name = "label38";
-            this.label38.Size = new System.Drawing.Size(41, 13);
+            this.label38.Size = new System.Drawing.Size(27, 13);
             this.label38.TabIndex = 67;
-            this.label38.Text = "milisec.";
+            this.label38.Text = "sec.";
             // 
             // timePerAmuFieldMs
             // 
@@ -715,9 +731,9 @@
             this.label39.AutoSize = true;
             this.label39.Location = new System.Drawing.Point(166, 145);
             this.label39.Name = "label39";
-            this.label39.Size = new System.Drawing.Size(41, 13);
+            this.label39.Size = new System.Drawing.Size(27, 13);
             this.label39.TabIndex = 68;
-            this.label39.Text = "milisec.";
+            this.label39.Text = "sec.";
             // 
             // timePerAmuField2DMs
             // 
@@ -769,7 +785,6 @@
             this.DensOfMeasField2DMS.Name = "DensOfMeasField2DMS";
             this.DensOfMeasField2DMS.Size = new System.Drawing.Size(61, 21);
             this.DensOfMeasField2DMS.TabIndex = 60;
-            this.DensOfMeasField2DMS.SelectedIndexChanged += new System.EventHandler(this.DensOfMeasField2DMS_SelectedIndexChanged);
             this.DensOfMeasField2DMS.SelectedValueChanged += new System.EventHandler(this.DensOfMeasField2DMS_SelectedValueChanged);
             // 
             // startPointField2DMs

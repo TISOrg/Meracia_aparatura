@@ -100,28 +100,30 @@ namespace JDLMLab
                 typ.Text = dr["type_name"].ToString();
                 energy_start_point.Text = "";
                 energy_end_point.Text = "";
-                mass_constant.Text = "";
+                mass_density.Text = "";
                 energy_steptime.Text = "";
                 mass_start_point.Text = "";
                 mass_end_point.Text = "";
                 energy_constant.Text = "";
-                mass_steptime.Text = "";
                 pocet_krokov.Text = "";
+                mass_timepamu.Text = "";
 
                 if (dr["type_name"].Equals("Energy Scan"))
                 {
                     energy_start_point.Text = dr["start_point"].ToString();
                     energy_end_point.Text = dr["end_point"].ToString();
-                    mass_constant.Text = dr["constant"].ToString();
+                    energy_constant.Text = dr["constant"].ToString();
                     energy_steptime.Text = dr["steptime"].ToString();  ///double,time_for_amu  vytvoriť field do Load tak ako ostatnym ///int,pre density//
                     pocet_krokov.Text = dr["pocet_krokov"].ToString();
+
                 }
                 if (dr["type_name"].Equals("Mass Scan"))
                 {
                     mass_start_point.Text = dr["start_point"].ToString();
                     mass_end_point.Text = dr["end_point"].ToString();
                     energy_constant.Text = dr["constant"].ToString();
-                    mass_steptime.Text = dr["time_for_amu"].ToString();
+                    mass_timepamu.Text = dr["time_for_amu"].ToString();
+                    mass_density.Text = dr["density"].ToString();
                     
                 }
                 if (dr["type_name"].Equals("2D Scan"))
@@ -129,10 +131,13 @@ namespace JDLMLab
                     energy_start_point.Text = dr["e_start_point"].ToString();
                     energy_end_point.Text = dr["e_end_point"].ToString();
                     energy_steptime.Text = dr["e_steptime"].ToString();
+                    //energy_constant.Text = dr["constant"].ToString();
                     pocet_krokov.Text = dr["pocet_krokov"].ToString();
                     mass_start_point.Text = dr["m_start_point"].ToString();
                     mass_end_point.Text = dr["m_end_point"].ToString();
-                    mass_steptime.Text = dr["time_for_amu"].ToString();
+                    
+                    mass_timepamu.Text = dr["time_for_amu"].ToString();
+                    mass_density.Text = dr["density"].ToString();
                 }
 
             }
@@ -200,6 +205,11 @@ namespace JDLMLab
         }
 
         private void mass_constant_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void energy_start_point_TextChanged(object sender, EventArgs e)
         {
 
         }
