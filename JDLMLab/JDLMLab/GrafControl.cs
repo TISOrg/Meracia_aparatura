@@ -26,7 +26,7 @@ namespace JDLMLab
         Dictionary<double, double> avgHodnoty = new Dictionary<double, double>();//budu sa uchovavat x a y hdnoty pre zobrazenie suny a priemeru
 
         DataSet suradnicemerani = new DataSet();
-        Chart graf;
+        public Chart graf;
         //System.Windows.Forms.MouseEventArgs mys;
         public GrafControl(Chart chart)
         {
