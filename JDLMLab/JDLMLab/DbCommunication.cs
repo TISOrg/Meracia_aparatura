@@ -167,12 +167,34 @@ namespace JDLMLab
         /// <returns></returns>
         public DataSet meranie(int headerId, int cycleNum = 0)
         {
-            string sql = "select m.x,r.y,m.Intensity,m.Current,m.Capillar_pressure,m.Chamber_pressure,m.Temperature,r.cycle_num from merania m left join rows r on r.id = m.y_id where header_id = " + headerId;
+            string typ = typeOf(headerId);
+            
+            string xAlias="x";
+            string yAlias = "y";
+            if (typ.Equals("Energy Scan")) 
+            {
+                xAlias = "'Electron energy'";
+                yAlias = "'m/z'";
+            }
+            if (typ.Equals("Mass Scan"))
+            {
+                xAlias = "'m/z'";
+                yAlias = "'Electron energy'";
+            }
+            
+            if (typ.Equals("2D Scan"))
+            {
+                xAlias = "'m/z'";
+                yAlias = "'Electron energy'";
+            }
+            string sql = "select m.x as "+xAlias+",r.y as "+yAlias+ ",m.Intensity,m.Current,m.Capillar_pressure as 'Capillar pressure',m.Chamber_pressure as 'Chamber pressure',m.Temperature,r.cycle_num from merania m left join rows r on r.id = m.y_id where header_id = " + headerId;
+
             if (cycleNum > 0)
             {
                 sql += " and r.cycle_num= " + cycleNum;
             }
-            sql += " order by r.cycle_num asc,r.y asc,m.x asc";
+            sql += " order by r.y asc,m.x asc,r.cycle_num asc ";
+            
             return getDataSet(sql);
         }
         public DataSet meraniePreGraf(int headerId)
@@ -189,8 +211,30 @@ namespace JDLMLab
         /// <returns></returns>
         public DataSet meranieAvg(int headerId)
         {
-            string sql = "select m.x,r.y,avg(m.Intensity) as sum,m.Current,m.Capillar_pressure,m.Chamber_pressure,m.Temperature from merania m left join rows r on r.id = m.y_id where header_id = " + headerId;
-            sql += " group by m.x order m.x asc";
+            string typ = typeOf(headerId);
+
+            string xAlias = "x";
+            string yAlias = "y";
+            if (typ.Equals("Energy Scan"))
+            {
+                xAlias = "'Electron energy'";
+                yAlias = "'m/z'";
+            }
+            if (typ.Equals("Mass Scan"))
+            {
+                xAlias = "'m/z'";
+                yAlias = "'Electron energy'";
+            }
+
+            if (typ.Equals("2D Scan"))
+            {
+                xAlias = "'m/z'";
+                yAlias = "'Electron energy'";
+            }
+
+            string sql = "select m.x as "+xAlias+",r.y as "+yAlias+ ",avg(m.Intensity) as Intensity,m.Current,m.Capillar_pressure as 'Capillar pressure',m.Chamber_pressure as 'Chamber pressure',m.Temperature from merania m left join rows r on r.id = m.y_id where header_id = " + headerId;
+            sql += " group by m.x order by r.y asc,m.x asc";
+
             return getDataSet(sql);
         }
         /// <summary>
@@ -200,8 +244,29 @@ namespace JDLMLab
         /// <returns></returns>
         public DataSet meranieSum(int headerId)
         {
-            string sql = "select m.x,r.y,sum(m.Intensity) as sum,m.Current,m.Capillar_pressure,m.Chamber_pressure,m.Temperature from merania m left join rows r on r.id = m.y_id where header_id = " + headerId;
-            sql += " group by m.x order m.x asc";
+            string typ = typeOf(headerId);
+
+            string xAlias = "x";
+            string yAlias = "y";
+            if (typ.Equals("Energy Scan"))
+            {
+                xAlias = "'Electron energy'";
+                yAlias = "'m/z'";
+            }
+            if (typ.Equals("Mass Scan"))
+            {
+                xAlias = "'m/z'";
+                yAlias = "'Electron energy'";
+            }
+
+            if (typ.Equals("2D Scan"))
+            {
+                xAlias = "'m/z'";
+                yAlias = "'Electron energy'";
+            }
+
+            string sql = "select m.x as "+ xAlias + ",r.y as " + yAlias + ",sum(m.Intensity) as Intensity,m.Current,m.Capillar_pressure as 'Capillar pressure',m.Chamber_pressure as 'Chamber pressure',m.Temperature from merania m left join rows r on r.id = m.y_id where header_id = " + headerId;
+            sql += " group by m.x order by r.y asc,m.x asc";
             return getDataSet(sql);
         }
 
@@ -261,21 +326,10 @@ namespace JDLMLab
 
         public DataSet header(int headerId)
         {
+            string typ = typeOf(headerId);
 
-            MySqlCommand c = new MySqlCommand("select type_name from headers where id=@header_id", conn);
-            c.Parameters.AddWithValue("@header_id", headerId);
-            conn.Open();
-            MySqlDataReader rdr = c.ExecuteReader();
-            string typ="";
-            while (rdr.Read())
-            {
-                typ = rdr.GetString(0);
-            }
-            rdr.Close();
-            conn.Close();
-
-            string sql="";
-            if(typ.Equals("Energy Scan"))
+            string sql = "";
+            if (typ.Equals("Energy Scan"))
             {
                 sql =
                 "select * from headers h left join energy_scan_header e on e.header_id=h.id where h.id=" + headerId;
@@ -293,6 +347,22 @@ namespace JDLMLab
 
 
             return getDataSet(sql);
+        }
+
+        public string typeOf(int headerId)
+        {
+            MySqlCommand c = new MySqlCommand("select type_name from headers where id=@header_id", conn);
+            c.Parameters.AddWithValue("@header_id", headerId);
+            conn.Open();
+            MySqlDataReader rdr = c.ExecuteReader();
+            string typ = "";
+            while (rdr.Read())
+            {
+                typ = rdr.GetString(0);
+            }
+            rdr.Close();
+            conn.Close();
+            return typ;
         }
 
 
@@ -397,7 +467,7 @@ namespace JDLMLab
         {
             long y_id = getYID(k.y, cyklus, aktualneMeranie); //ak neexistuje taky zaznam, vytvori novy a vrati id
 
-            MySqlCommand c = new MySqlCommand("insert into merania (x,y_id,Intensity,Current,Capillar_pressure,Chamber_pressure,Temperature) values(@x,@y_id,@sig,@current,@kapillar,@chamber,@temperature)", conn);
+            MySqlCommand c = new MySqlCommand("insert into merania (x,y_id,Intensity,Current,Capillar pressure,Chamber pressure,Temperature) values(@x,@y_id,@sig,@current,@kapillar,@chamber,@temperature)", conn);
             c.Parameters.AddWithValue("@x", k.x);
             c.Parameters.AddWithValue("@y_id", y_id);
             c.Parameters.AddWithValue("@sig", k.sig);

@@ -48,7 +48,7 @@
             this.label17 = new System.Windows.Forms.Label();
             this.TEM = new System.Windows.Forms.GroupBox();
             this.energy_start_point = new System.Windows.Forms.TextBox();
-            this.energy_constant = new System.Windows.Forms.TextBox();
+            this.constantValue = new System.Windows.Forms.TextBox();
             this.energy_end_point = new System.Windows.Forms.TextBox();
             this.energy_steptime = new System.Windows.Forms.TextBox();
             this.pocet_krokov = new System.Windows.Forms.TextBox();
@@ -56,7 +56,7 @@
             this.label10 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
+            this.constantLabel = new System.Windows.Forms.Label();
             this.typ = new System.Windows.Forms.TextBox();
             this.cycles = new System.Windows.Forms.TextBox();
             this.date = new System.Windows.Forms.TextBox();
@@ -65,10 +65,11 @@
             this.label12 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.noteValue = new System.Windows.Forms.RichTextBox();
-            this.label8 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.ionTypeValue = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataRoky)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataNazvy)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataDatumy)).BeginInit();
@@ -77,6 +78,7 @@
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.TEM.SuspendLayout();
+            this.groupBox3.SuspendLayout();
             this.SuspendLayout();
             // 
             // dataRoky
@@ -197,6 +199,9 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.ionTypeValue);
+            this.groupBox1.Controls.Add(this.groupBox3);
+            this.groupBox1.Controls.Add(this.constantValue);
             this.groupBox1.Controls.Add(this.groupBox2);
             this.groupBox1.Controls.Add(this.TEM);
             this.groupBox1.Controls.Add(this.typ);
@@ -204,10 +209,9 @@
             this.groupBox1.Controls.Add(this.date);
             this.groupBox1.Controls.Add(this.name);
             this.groupBox1.Controls.Add(this.label11);
+            this.groupBox1.Controls.Add(this.constantLabel);
             this.groupBox1.Controls.Add(this.label12);
             this.groupBox1.Controls.Add(this.label9);
-            this.groupBox1.Controls.Add(this.noteValue);
-            this.groupBox1.Controls.Add(this.label8);
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Controls.Add(this.button2);
             this.groupBox1.Controls.Add(this.button1);
@@ -218,6 +222,7 @@
             this.groupBox1.TabIndex = 5;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Hlavička merania";
+            this.groupBox1.Enter += new System.EventHandler(this.groupBox1_Enter);
             // 
             // groupBox2
             // 
@@ -231,10 +236,10 @@
             this.groupBox2.Controls.Add(this.resolution);
             this.groupBox2.Controls.Add(this.label16);
             this.groupBox2.Controls.Add(this.label17);
-            this.groupBox2.Location = new System.Drawing.Point(492, 25);
-            this.groupBox2.MinimumSize = new System.Drawing.Size(266, 121);
+            this.groupBox2.Location = new System.Drawing.Point(362, 25);
+            this.groupBox2.MinimumSize = new System.Drawing.Size(100, 121);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(266, 137);
+            this.groupBox2.Size = new System.Drawing.Size(133, 137);
             this.groupBox2.TabIndex = 28;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "QMS";
@@ -264,7 +269,7 @@
             this.mass_density.BackColor = System.Drawing.SystemColors.Control;
             this.mass_density.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.mass_density.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.mass_density.Location = new System.Drawing.Point(73, 90);
+            this.mass_density.Location = new System.Drawing.Point(76, 91);
             this.mass_density.Name = "mass_density";
             this.mass_density.Size = new System.Drawing.Size(45, 11);
             this.mass_density.TabIndex = 33;
@@ -324,7 +329,7 @@
             // 
             this.label16.AutoSize = true;
             this.label16.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label16.Location = new System.Drawing.Point(6, 89);
+            this.label16.Location = new System.Drawing.Point(7, 90);
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(63, 12);
             this.label16.TabIndex = 5;
@@ -334,7 +339,7 @@
             // 
             this.label17.AutoSize = true;
             this.label17.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label17.Location = new System.Drawing.Point(24, 68);
+            this.label17.Location = new System.Drawing.Point(24, 66);
             this.label17.Name = "label17";
             this.label17.Size = new System.Drawing.Size(45, 12);
             this.label17.TabIndex = 6;
@@ -343,7 +348,6 @@
             // TEM
             // 
             this.TEM.Controls.Add(this.energy_start_point);
-            this.TEM.Controls.Add(this.energy_constant);
             this.TEM.Controls.Add(this.energy_end_point);
             this.TEM.Controls.Add(this.energy_steptime);
             this.TEM.Controls.Add(this.pocet_krokov);
@@ -351,11 +355,10 @@
             this.TEM.Controls.Add(this.label10);
             this.TEM.Controls.Add(this.label3);
             this.TEM.Controls.Add(this.label6);
-            this.TEM.Controls.Add(this.label4);
-            this.TEM.Location = new System.Drawing.Point(234, 25);
-            this.TEM.MinimumSize = new System.Drawing.Size(252, 121);
+            this.TEM.Location = new System.Drawing.Point(206, 25);
+            this.TEM.MinimumSize = new System.Drawing.Size(100, 121);
             this.TEM.Name = "TEM";
-            this.TEM.Size = new System.Drawing.Size(252, 137);
+            this.TEM.Size = new System.Drawing.Size(139, 137);
             this.TEM.TabIndex = 27;
             this.TEM.TabStop = false;
             this.TEM.Text = "TEM";
@@ -372,15 +375,15 @@
             this.energy_start_point.TabIndex = 32;
             this.energy_start_point.TextChanged += new System.EventHandler(this.energy_start_point_TextChanged);
             // 
-            // energy_constant
+            // constantValue
             // 
-            this.energy_constant.BackColor = System.Drawing.SystemColors.Control;
-            this.energy_constant.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.energy_constant.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.energy_constant.Location = new System.Drawing.Point(72, 119);
-            this.energy_constant.Name = "energy_constant";
-            this.energy_constant.Size = new System.Drawing.Size(45, 11);
-            this.energy_constant.TabIndex = 38;
+            this.constantValue.BackColor = System.Drawing.SystemColors.Control;
+            this.constantValue.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.constantValue.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.constantValue.Location = new System.Drawing.Point(91, 150);
+            this.constantValue.Name = "constantValue";
+            this.constantValue.Size = new System.Drawing.Size(45, 11);
+            this.constantValue.TabIndex = 38;
             // 
             // energy_end_point
             // 
@@ -397,7 +400,7 @@
             this.energy_steptime.BackColor = System.Drawing.SystemColors.Control;
             this.energy_steptime.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.energy_steptime.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.energy_steptime.Location = new System.Drawing.Point(72, 73);
+            this.energy_steptime.Location = new System.Drawing.Point(74, 68);
             this.energy_steptime.Name = "energy_steptime";
             this.energy_steptime.Size = new System.Drawing.Size(45, 11);
             this.energy_steptime.TabIndex = 30;
@@ -426,7 +429,7 @@
             // 
             this.label10.AutoSize = true;
             this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label10.Location = new System.Drawing.Point(6, 96);
+            this.label10.Location = new System.Drawing.Point(6, 90);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(63, 12);
             this.label10.TabIndex = 18;
@@ -446,27 +449,30 @@
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label6.Location = new System.Drawing.Point(24, 73);
+            this.label6.Location = new System.Drawing.Point(24, 68);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(44, 12);
             this.label6.TabIndex = 7;
             this.label6.Text = "Step time";
             // 
-            // label4
+            // constantLabel
             // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label4.Location = new System.Drawing.Point(28, 119);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(41, 12);
-            this.label4.TabIndex = 5;
-            this.label4.Text = "constant";
+            this.constantLabel.AutoSize = true;
+            this.constantLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
+            this.constantLabel.Location = new System.Drawing.Point(6, 150);
+            this.constantLabel.MaximumSize = new System.Drawing.Size(200, 0);
+            this.constantLabel.Name = "constantLabel";
+            this.constantLabel.Size = new System.Drawing.Size(81, 13);
+            this.constantLabel.TabIndex = 5;
+            this.constantLabel.Text = "Electron energy";
+            this.constantLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.constantLabel.Click += new System.EventHandler(this.constantLabel_Click);
             // 
             // typ
             // 
             this.typ.BackColor = System.Drawing.SystemColors.Control;
             this.typ.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.typ.Location = new System.Drawing.Point(85, 121);
+            this.typ.Location = new System.Drawing.Point(91, 121);
             this.typ.Name = "typ";
             this.typ.Size = new System.Drawing.Size(88, 13);
             this.typ.TabIndex = 26;
@@ -475,7 +481,7 @@
             // 
             this.cycles.BackColor = System.Drawing.SystemColors.Control;
             this.cycles.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.cycles.Location = new System.Drawing.Point(85, 91);
+            this.cycles.Location = new System.Drawing.Point(91, 91);
             this.cycles.Name = "cycles";
             this.cycles.Size = new System.Drawing.Size(75, 13);
             this.cycles.TabIndex = 25;
@@ -484,7 +490,7 @@
             // 
             this.date.BackColor = System.Drawing.SystemColors.Control;
             this.date.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.date.Location = new System.Drawing.Point(85, 62);
+            this.date.Location = new System.Drawing.Point(91, 62);
             this.date.Name = "date";
             this.date.Size = new System.Drawing.Size(97, 13);
             this.date.TabIndex = 24;
@@ -493,7 +499,7 @@
             // 
             this.name.BackColor = System.Drawing.SystemColors.Control;
             this.name.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.name.Location = new System.Drawing.Point(85, 31);
+            this.name.Location = new System.Drawing.Point(91, 31);
             this.name.Name = "name";
             this.name.Size = new System.Drawing.Size(97, 13);
             this.name.TabIndex = 23;
@@ -527,21 +533,13 @@
             // 
             // noteValue
             // 
-            this.noteValue.Location = new System.Drawing.Point(85, 168);
+            this.noteValue.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.noteValue.Location = new System.Drawing.Point(3, 16);
             this.noteValue.Name = "noteValue";
             this.noteValue.ReadOnly = true;
-            this.noteValue.Size = new System.Drawing.Size(401, 35);
+            this.noteValue.Size = new System.Drawing.Size(218, 109);
             this.noteValue.TabIndex = 15;
             this.noteValue.Text = "";
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(41, 179);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(30, 13);
-            this.label8.TabIndex = 14;
-            this.label8.Text = "Note";
             // 
             // label1
             // 
@@ -572,6 +570,26 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
+            // groupBox3
+            // 
+            this.groupBox3.Controls.Add(this.noteValue);
+            this.groupBox3.Location = new System.Drawing.Point(513, 25);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(224, 128);
+            this.groupBox3.TabIndex = 29;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "Note";
+            // 
+            // ionTypeValue
+            // 
+            this.ionTypeValue.BackColor = System.Drawing.SystemColors.Control;
+            this.ionTypeValue.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.ionTypeValue.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
+            this.ionTypeValue.Location = new System.Drawing.Point(23, 179);
+            this.ionTypeValue.Name = "ionTypeValue";
+            this.ionTypeValue.Size = new System.Drawing.Size(60, 13);
+            this.ionTypeValue.TabIndex = 40;
+            // 
             // Load
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -601,6 +619,7 @@
             this.groupBox2.PerformLayout();
             this.TEM.ResumeLayout(false);
             this.TEM.PerformLayout();
+            this.groupBox3.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -615,7 +634,6 @@
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.RichTextBox noteValue;
@@ -625,14 +643,14 @@
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label constantLabel;
         private System.Windows.Forms.TextBox typ;
         private System.Windows.Forms.TextBox cycles;
         private System.Windows.Forms.TextBox date;
         private System.Windows.Forms.TextBox name;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.TextBox energy_constant;
+        private System.Windows.Forms.TextBox constantValue;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.TextBox mass_start_point;
         private System.Windows.Forms.TextBox mass_end_point;
@@ -647,5 +665,7 @@
         private System.Windows.Forms.TextBox pocet_krokov;
         private System.Windows.Forms.TextBox mass_timepamu;
         private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.TextBox ionTypeValue;
+        private System.Windows.Forms.GroupBox groupBox3;
     }
 }

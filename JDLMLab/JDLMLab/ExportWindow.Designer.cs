@@ -73,15 +73,6 @@
             // 
             this.checkedListBoxInclude.CheckOnClick = true;
             this.checkedListBoxInclude.FormattingEnabled = true;
-            this.checkedListBoxInclude.Items.AddRange(new object[] {
-            "x",
-            "y",
-            "signal",
-            "prúd",
-            "capillar pressure",
-            "tlak komora",
-            "temperature",
-            "cycle"});
             this.checkedListBoxInclude.Location = new System.Drawing.Point(12, 325);
             this.checkedListBoxInclude.Name = "checkedListBoxInclude";
             this.checkedListBoxInclude.Size = new System.Drawing.Size(105, 124);
@@ -160,9 +151,9 @@
             this.radioButton1.AutoSize = true;
             this.radioButton1.Location = new System.Drawing.Point(281, 373);
             this.radioButton1.Name = "radioButton1";
-            this.radioButton1.Size = new System.Drawing.Size(110, 17);
+            this.radioButton1.Size = new System.Drawing.Size(104, 17);
             this.radioButton1.TabIndex = 10;
-            this.radioButton1.Text = "Suma of all cycles";
+            this.radioButton1.Text = "Sum of all cycles";
             this.radioButton1.UseVisualStyleBackColor = true;
             this.radioButton1.CheckedChanged += new System.EventHandler(this.radioButton1_CheckedChanged);
             // 
@@ -171,9 +162,9 @@
             this.radioButton2.AutoSize = true;
             this.radioButton2.Location = new System.Drawing.Point(281, 350);
             this.radioButton2.Name = "radioButton2";
-            this.radioButton2.Size = new System.Drawing.Size(108, 17);
+            this.radioButton2.Size = new System.Drawing.Size(102, 17);
             this.radioButton2.TabIndex = 11;
-            this.radioButton2.Text = "Delta of all cycles";
+            this.radioButton2.Text = "Avg of all cycles";
             this.radioButton2.UseVisualStyleBackColor = true;
             this.radioButton2.CheckedChanged += new System.EventHandler(this.radioButton2_CheckedChanged);
             // 
@@ -183,10 +174,10 @@
             this.radioButton3.Checked = true;
             this.radioButton3.Location = new System.Drawing.Point(281, 325);
             this.radioButton3.Name = "radioButton3";
-            this.radioButton3.Size = new System.Drawing.Size(83, 17);
+            this.radioButton3.Size = new System.Drawing.Size(78, 17);
             this.radioButton3.TabIndex = 12;
             this.radioButton3.TabStop = true;
-            this.radioButton3.Text = "Each cyclus";
+            this.radioButton3.Text = "Each cycle";
             this.radioButton3.UseVisualStyleBackColor = true;
             this.radioButton3.CheckedChanged += new System.EventHandler(this.radioButton3_CheckedChanged);
             // 
