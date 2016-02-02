@@ -128,6 +128,8 @@ namespace JDLMLab
                 testRun = false;
                 nastavParametre();
                 DialogResult = DialogResult.OK; //okno sa zatvori a parameter parametreMerania bude pripraveny na meranie
+
+                
             }
             catch (ValidateParametersException ex)
             {
