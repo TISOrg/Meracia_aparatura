@@ -314,5 +314,15 @@ namespace JDLMLab
             SetStyle(ControlStyles.OptimizedDoubleBuffer, true);
             grafcontrol.graf.SetBounds(0, 0, Width-200, Height - 100);
         }
+
+        private void richTextBox1_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void radioButton2_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

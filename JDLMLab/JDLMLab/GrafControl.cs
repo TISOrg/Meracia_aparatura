@@ -223,7 +223,14 @@ namespace JDLMLab
             double pos = graf.ChartAreas[0].CursorX.Position;     //pozicia cervenej ciary zlava
             double max = graf.ChartAreas[0].AxisX.ScaleView.ViewMaximum;  //aktualny najlavejsi zobrazeny bod
             double min = graf.ChartAreas[0].AxisX.ScaleView.ViewMinimum;  //aktualny najpravejsi zobrazeny bod
+           // MessageBox.Show("position ", pos.ToString());
+            //MessageBox.Show("max ", max.ToString());
+            //MessageBox.Show("              min", min.ToString());
             double d = (max - min) * f;
+            if (f==2 && (max == pos || min==pos))
+            {
+                d= d*2;
+            }
             graf.ChartAreas[0].AxisX.ScaleView.Zoom(pos - d / 2, pos + d / 2);
             
            

@@ -278,6 +278,7 @@
             this.radioButton2.TabStop = true;
             this.radioButton2.Text = "log";
             this.radioButton2.UseVisualStyleBackColor = true;
+            this.radioButton2.CheckedChanged += new System.EventHandler(this.radioButton2_CheckedChanged);
             // 
             // radioButton1
             // 
@@ -297,6 +298,7 @@
             this.richTextBox1.Size = new System.Drawing.Size(523, 169);
             this.richTextBox1.TabIndex = 10;
             this.richTextBox1.Text = "";
+            this.richTextBox1.TextChanged += new System.EventHandler(this.richTextBox1_TextChanged);
             // 
             // timer1
             // 
