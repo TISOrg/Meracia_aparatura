@@ -21,14 +21,16 @@ namespace JDLMLab
 
             dataMeranie.DataSource = db.meranie(header_id).Tables[0];
             header = db.header(header_id);
+
             for (int i = 1; i <= (int)header.Tables[0].Rows[0]["cycles"]; i++)
             {
                 checkedListBoxCyklyInclude.Items.Add(i);
             }
+            
             init();
             jednotky.Add("Intensity", "a.u."); // v db premenovat sig
-            jednotky.Add("Electron_energy", "eV");
-            jednotky.Add("Mass", "amu");
+            jednotky.Add("Electron_energy", "eV");  //x v pripade energy scan,
+            jednotky.Add("Mass", "amu");// x v pripade mass scan
             jednotky.Add("Temperature", "°C");
             jednotky.Add("Current", "nA");
             jednotky.Add("Chamber_pressure", "mbar");
@@ -57,8 +59,12 @@ namespace JDLMLab
             string date = header.Tables[0].Rows[0]["datetime"].ToString();
             date=date.Replace(":", "-");
             date = date.Replace("/", "-");
-            
-            saveFileDialog1.FileName = header.Tables[0].Rows[0]["name"] + " - " + date;
+
+            string type = header.Tables[0].Rows[0]["type_name"].ToString();
+            string ionType = header.Tables[0].Rows[0]["ion_type"].ToString();
+            //nazov exportu: nazov - datum - typ - iontype
+
+            saveFileDialog1.FileName = header.Tables[0].Rows[0]["name"] + " - " + date ;
             DialogResult res=saveFileDialog1.ShowDialog();
             switch (res)
             {
@@ -104,6 +110,17 @@ namespace JDLMLab
 
             }
             file.WriteLine();
+            for (int j = 0; j < dataMeranie.Columns.Count; j++)
+            {
+                if (dataMeranie.Columns[j].Visible)
+                {
+                    if (!firstColumn) file.Write("\t");
+                    if(jednotky.ContainsKey(dataMeranie.Columns[j].ToString())) 
+                        file.Write(jednotky[dataMeranie.Columns[j].ToString()]);
+                    firstColumn = false;
+                }
+
+            }
             //druhy riadok - jednotky stlpcov - zatial nic... TODO. vyriesit cez slovnik... current -> A, temperature -> °C
             file.WriteLine();
 

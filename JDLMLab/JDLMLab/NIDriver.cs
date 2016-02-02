@@ -9,23 +9,77 @@ using System.Windows.Forms;
 
 namespace JDLMLab
 {
+
     class NIDriver
     {
         NITaskTimerClass mojaUlohaCounter;
-        string prevodnik = "Dev2";  
+        string prevodnik = "Dev2";
         private CIChannel CICh;
         public CounterReader Counter;
         public int[] ttlSignal;
 
         public int aktualnyKrok;
         public int last;
+        private int pocetKrokov;// = 20;
+        public List<int> Intensity { get; set; }
+
+        public double Steptime { get {
+                return Steptime;
+            }
+            set {
+               mojaUlohaCounter.Interval = Convert.ToInt32(value) * 1000;
+               Steptime = value;
+            }
+        }
+
+        internal void triggerInit(double stepTime)
+        {
+            last = 0;
+            mojaUlohaCounter = new NITaskTimerClass(this);
+            mojaUlohaCounter.Interval = Convert.ToInt32(stepTime * 1000);
+            MessageBox.Show(mojaUlohaCounter.Interval.ToString());
+            // MessageBox.Show(NumOfSteps.ToString());
+            ttlSignal = new int[NumOfSteps];
+
+            CICh = mojaUlohaCounter.UlohaCounter.CIChannels.CreateCountEdgesChannel(
+                prevodnik + "/ctr0",
+                prevodnik + "ctr0",
+                CICountEdgesActiveEdge.Falling,
+                0,
+                CICountEdgesCountDirection.Up
+            );
+
+            mojaUlohaCounter.UlohaCounter.Control(TaskAction.Verify);
+
+            Counter = new CounterReader(mojaUlohaCounter.UlohaCounter.Stream);
+            mojaUlohaCounter.UlohaCounter.Start();
+
+            aktualnyKrok = 0;
+           
+        }
+
+        public void CounterStart()
+        {
+            mojaUlohaCounter.Enabled = true;
+        }
+
+        public int NumOfSteps { get {
+                return pocetKrokov;
+            } internal set {
+                pocetKrokov = value;
+            } }
 
         public NIDriver()
         {
 
+            Intensity = new List<int>();
         }
 
         // ---------------ZAPIS ANALOG-----------
+        /// <summary>
+        /// Metoda nastavuje/zapisuje cez AD prevodnik hodnotu value.
+        /// </summary>
+        /// <param name="value"></param>
         public void setAnalogOutput(double value)
         {
             Task analogOutTask = new Task();
@@ -46,13 +100,17 @@ namespace JDLMLab
         }
 
 
-        // --------------DIGITAL ZAPIS--------------
+        // --------------DIGITAL CITANIE--------------
+        /// <summary>
+        /// 
+        /// </summary>
         public void triggerInit()
         {
             last = 0;
             mojaUlohaCounter = new NITaskTimerClass(this);
-
-            ttlSignal = new int[20];
+            MessageBox.Show(mojaUlohaCounter.Interval.ToString());
+           // MessageBox.Show(NumOfSteps.ToString());
+            ttlSignal = new int[NumOfSteps];
 
             CICh = mojaUlohaCounter.UlohaCounter.CIChannels.CreateCountEdgesChannel(
                 prevodnik + "/ctr0",
@@ -82,8 +140,6 @@ namespace JDLMLab
         }
 
         //-----------DIGITAL CITANIE------------------
-
-
         /// <summary>
         /// Zistuje sa, ci je uz trigger pripraveny
         /// </summary>
@@ -104,27 +160,11 @@ namespace JDLMLab
 
 
         //-------CITANIE ANALOG------
-
+        /// <summary>
+        /// cita hodnotu z Tlakomeru pomocou analogoveho vstupu.
+        /// </summary>
+        /// <returns></returns>
         public double readTlakomerPR4000()
-        {
-            return analogReadData();
-        }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        double analogReadData()
         {
             Task analogInTask = new Task();
             AIChannel myAIChannel;
@@ -143,43 +183,5 @@ namespace JDLMLab
         }
 
 
-
-
-        void analogWriteData(string vstup)
-        {
-            Task analogOutTask = new Task();
-            AOChannel myAOChannel;
-            myAOChannel = analogOutTask.AOChannels.CreateVoltageChannel(
-                prevodnik + "/ao1",
-                "myAOChannel",
-                0,
-                5,
-                AOVoltageUnits.Volts
-                );
-
-            AnalogSingleChannelWriter writer = new AnalogSingleChannelWriter(analogOutTask.Stream);
-            double analogDataOut = 0;
-            if (vstup != "")
-            {
-                try
-                {
-                    analogDataOut = Convert.ToDouble(vstup);
-                }
-                catch (System.FormatException e)
-                {
-                    MessageBox.Show("Vstup " + Convert.ToString(vstup) + " nie je v spravnom tvare.");
-                }
-            }
-            else
-            {
-                vstup = "0";
-                analogDataOut = Convert.ToDouble(vstup);
-            }
-            writer.WriteSingleSample(true, analogDataOut);
-        }
     }
-
-
-
-
 }

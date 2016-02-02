@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace JDLMLab
 {
-    class TlakomerPR4000Driver 
+    class TlakomerPR4000Driver
     {
         public  void close()
         {

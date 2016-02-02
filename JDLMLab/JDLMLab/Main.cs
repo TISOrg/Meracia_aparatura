@@ -19,10 +19,10 @@ namespace JDLMLab
             
            
             InitializeComponent();
-            
-            
-            
-            grafcontrol=new GrafControl(graf);
+            DoubleBuffered = true;
+
+
+            grafcontrol =new GrafControl(graf);
             //nacitat vsetky nastavenia
             Random r= new Random();
             for (double i = 1; i < 100; i++)
@@ -77,11 +77,6 @@ namespace JDLMLab
             }
         }
 
-        private void button2_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void oProgrameToolStripMenuItem_Click(object sender, EventArgs e)
         {
             new AboutBox1().ShowDialog();
@@ -95,13 +90,6 @@ namespace JDLMLab
         private void startMeranie_click(object sender, EventArgs e)
         {
             //zrejme bude sluzit na spustenie a prerusenie aktualneho merania
-        }
-
-        private void listBox1_SelectedValueChanged(object sender, EventArgs e)
-        {
-            
-            
-
         }
 
         private void menuStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
@@ -196,11 +184,6 @@ namespace JDLMLab
 
         }
 
-        private void timer1_Tick(object sender, EventArgs e)
-        {
-            
-        }
-
         private void timer1_Tick_1(object sender, EventArgs e)
         {
                 try
@@ -231,15 +214,14 @@ namespace JDLMLab
             //richTextBox1.AppendText("dd");
             richTextBox1.AppendText(text);
         }
-
-        private void Main_Load(object sender, EventArgs e)
-        { 
-        }
         double i;
         private void button1_Click(object sender, EventArgs e)
         {
-            NI.setAnalogOutput(i);
-            i++;
+            //NIDriver prevodnik = new NIDriver();
+            //prevodnik.triggerInit();
+            // NI.setAnalogOutput(i);
+            // i++;
+            //dateLabel.Text = new Date
         }
 
         private void Main_FormClosed(object sender, FormClosedEventArgs e)
@@ -310,9 +292,44 @@ namespace JDLMLab
 
         private void Main_Resize(object sender, EventArgs e)
         {
-            DoubleBuffered = true;
+          
+        }
+
+        private void richTextBox1_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void stopAfterCycle_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void graf_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void groupBox4_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void timeLabel_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Main_ResizeEnd(object sender, EventArgs e)
+        {
+            
             SetStyle(ControlStyles.OptimizedDoubleBuffer, true);
-            grafcontrol.graf.SetBounds(0, 0, Width-200, Height - 100);
+            grafcontrol.graf.SetBounds(0, 0, Width - 200, Height - 100);
+        }
+
+        private void Main_Load(object sender, EventArgs e)
+        {
+
         }
 
         private void richTextBox1_TextChanged(object sender, EventArgs e)

@@ -4,7 +4,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading;
-
+using System.Windows.Forms;
 
 namespace JDLMLab
 {
@@ -14,11 +14,17 @@ namespace JDLMLab
     /// </summary>
     class MeasurementControl
     {
+        int aktualneCisloCyklu;
+
         public MeasurementControl(MeasurementParameters mp)
         {
             Parameters = mp;
+
+
+            //            ((MassScanParameters)mp).steps;
             //vytvoritMeranievDB(mp);
             //vygenerovatSkusobne2dMerania(mp);
+            start();
         }
 
         DbCommunication db;
@@ -113,6 +119,8 @@ namespace JDLMLab
         static TlakomerPR4000Driver tlakpr4000 = new TlakomerPR4000Driver();
         static TlakomerTG256ADriver tlak256 = new TlakomerTG256ADriver();
         static QmsDriver qms = new QmsDriver();
+        static NIDriver ADPrevodnik = new NIDriver();
+         
         //static TemDriver tem new TemDriver();
 
         DbCommunication database;
@@ -126,6 +134,7 @@ namespace JDLMLab
         /// </summary>
         public void start()
         {
+           
             db = new DbCommunication();
             db.open();
             db.vytvoritNoveMeranie(Parameters);
@@ -139,23 +148,25 @@ namespace JDLMLab
         {
             db.close();
         }
-
+       CyklusMerania aktualnyCyklus;
         private void startThread()
         {
             inicializujPristroje();
-            int aktualnyCyklus = 1;
-            while (Parameters.PocetCyklov == 0 || aktualnyCyklus <= Parameters.PocetCyklov)
+            ADPrevodnik.triggerInit(Parameters.StepTime);
+            aktualneCisloCyklu = 1;
+
+            while (Parameters.PocetCyklov == 0 || aktualneCisloCyklu <= Parameters.PocetCyklov)
             {
-                vytvorNovyCyklus(); //vytvori datovu strukturu CyklusMerania v strukture Meranie
+                vytvorNovyCyklus(aktualneCisloCyklu); //vytvori datovu strukturu CyklusMerania v strukture Meranie
                 merajVAktualnomCykle(); //zacne meranie aktualneho cyklu
 
                 if (zastavitPoSkonceniCyklu) break;
-                aktualnyCyklus++;
+                aktualneCisloCyklu++;
             }
 
             //skoncili sa cykly, alebo user nastavil ze sa ma skoncit po ukonceni cyklu
             //ulozime do db
-            db.addMeranie(Meranie);
+            //db.addMeranie(Meranie);
             stop(); 
         }
 
@@ -166,6 +177,8 @@ namespace JDLMLab
         {
             inicializujQms();
             inicializujTem();
+
+            
         }
 
         private void inicializujTem()
@@ -243,36 +256,44 @@ namespace JDLMLab
             double krok = ((EnergyScanParameters)Parameters).StartPoint; //ziskame zaciatocny krok = start point pre TEM
             while (cisloKroku < ((EnergyScanParameters)Parameters).PocetBodov)
             {
-                TemDriver.setPoint(krok);   //posle na TEM vypocitany bod
 
-                //ADprevodnik. vynulujTrigger;
-                Thread.Sleep((int)((EnergyScanParameters)Parameters).Dens * 1000);    //pockame cas stanoveny v parametroch
-                                                                                          //pocas cakania treba zistovat hodnoty na ampermetri //vymysliet ako to urobit,
-                                                                                          // napirklad urobit vlakno alebo Task, a v nom cekovat kedy je AD prevodnik hotovy.  v hlavnom vlakne (tomto) ziskat merane hodnoty
-                                                                                          // a nastavit eventHandler ktory bude zavolany z vytvoreneho vlakna, ked bude AD pripraveny.
-                                                                                          // potom pokracovat v krokoch
+                KrokMerania = new KrokMerania();
+                //ADPrevodnik.setAnalogOutput(krok);//.setPoint(krok);   //posle na TEM vypocitany bod
+                ADPrevodnik.CounterStart();
+                //treba pridat kratky sleep
+                Thread.Sleep( Convert.ToInt32(Parameters.StepTime * 1000) + 10000);
                 checkAD();
                 //zaznamenat
                 zapisKrokMerania();
+                //Meranie.addKrok(aktualneCisloCyklu, KrokMerania);
+                aktualnyCyklus.pridajKrok(KrokMerania);
 
                 cisloKroku++;
                 krok += ((EnergyScanParameters)Parameters).KrokNapatia;
             }
+            string s = "";
+            foreach (KrokMerania i in aktualnyCyklus.getKroky())
+            {
+                s += i.sig.ToString() + "\n";
+            }
+            MessageBox.Show(s);
         }
 
         private void zapisKrokMerania()
         {
-            KrokMerania.chamber = tlak256.read();
+           // KrokMerania.chamber = tlak256.read();
+            KrokMerania.sig = ADPrevodnik.Intensity[cisloKroku];
             //....atd pre ostatne pristroje
             //pre ampermeter asi nie.
         }
 
         /// <summary>
         /// toto by malo mozno v threade alebo tak testovat ci uz ad prevodnik prestal merat.
+        /// HA! to by si chcel.... :P 
         /// </summary>
         private void checkAD()
         {
-            throw new NotImplementedException();
+            
         }
 
         private double vypocitajAktualnyKrok()
@@ -307,14 +328,14 @@ namespace JDLMLab
 
 
 
-        private void vytvorNovyCyklus()
+        private void vytvorNovyCyklus(int c)
         {
-            throw new NotImplementedException();
+            aktualnyCyklus = new CyklusMerania(c);
         }
 
         private void nastavNaDalsiKrokMerania()
         {
-            throw new NotImplementedException();
+           
         }
     }
 

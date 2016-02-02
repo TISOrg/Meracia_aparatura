@@ -55,7 +55,7 @@ namespace JDLMLab
             string sql="CREATE TABLE `headers` (`id` int(100) NOT NULL AUTO_INCREMENT,`name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_mysql500_ci DEFAULT NULL,"+
             "`type_name` varchar(200) NOT NULL,`datetime` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,`start_point` double NOT NULL,"+
             "`end_point` double NOT NULL,`constant` double NOT NULL,`resolution` double NOT NULL,`steptime` double NOT NULL,`cycles` int(254) NOT NULL,"+
-            "`note` varchar(500) NOT NULL,PRIMARY KEY(`id`),KEY `id(PK)` (`id`)) ENGINE = InnoDB AUTO_INCREMENT = 29 DEFAULT CHARSET = latin1;";
+            "`note` varchar(500) NOT NULL,`ion_type` tinyint(1) NOT NULL,PRIMARY KEY(`id`),KEY `id(PK)` (`id`)) ENGINE = InnoDB AUTO_INCREMENT = 29 DEFAULT CHARSET = latin1;";
             sql += "CREATE TABLE `rows` (`id` int(11) NOT NULL AUTO_INCREMENT,`y` double NOT NULL,`cycle_num` int(254) NOT NULL,`header_id` int(11) NOT NULL,PRIMARY KEY(`id`),KEY `header_id(PK)` (`header_id`),KEY `id` (`id`),CONSTRAINT `obmedzenie` FOREIGN KEY (`header_id`) REFERENCES `headers` (`id`) ON DELETE CASCADE ON UPDATE CASCADE) ENGINE = InnoDB AUTO_INCREMENT = 28 DEFAULT CHARSET = latin1 ;";
             sql += "CREATE TABLE `merania` (`id` int(11) NOT NULL AUTO_INCREMENT,`x` double NOT NULL,`y_id` int(11) NOT NULL,`Intensity` int(11) NOT NULL,`Current` double NOT NULL,`Capillar_pressure` double NOT NULL,`Chamber_pressure` double NOT NULL,`Temperature` double NOT NULL,PRIMARY KEY(`id`),KEY `id_y` (`y_id`),CONSTRAINT `obmedzenie2` FOREIGN KEY (`y_id`) REFERENCES `rows` (`id`) ON DELETE CASCADE ON UPDATE CASCADE) ENGINE = InnoDB AUTO_INCREMENT = 90 DEFAULT CHARSET = latin1;";
 
@@ -304,13 +304,14 @@ namespace JDLMLab
         public void vytvoritNoveMeranie(MeasurementParameters mp)
         {
             
-            MySqlCommand c = new MySqlCommand("insert into headers (name,type_name,resolution,cycles,note) values(@name,@type_name,@resolution,@cycles,@note)", conn);
+            MySqlCommand c = new MySqlCommand("insert into headers (name,type_name,resolution,cycles,note,ion_type) values(@name,@type_name,@resolution,@cycles,@note,@ion_type)", conn);
 
             c.Parameters.AddWithValue("@name", mp.Name);
             c.Parameters.AddWithValue("@type_name", mp.Typ);
             c.Parameters.AddWithValue("@resolution", mp.Resolution);
             c.Parameters.AddWithValue("@cycles", mp.PocetCyklov);
             c.Parameters.AddWithValue("@note", mp.Note);
+            c.Parameters.AddWithValue("@ion_type", mp.IonType);
             c.ExecuteNonQuery();
             aktualneMeranie = c.LastInsertedId;
 
@@ -328,7 +329,7 @@ namespace JDLMLab
             {
                 c = new MySqlCommand("insert into mass_scan_header (header_id,start_point,end_point,constant,time_for_amu,density) values(@header_id,@start_point,@end_point,@constant,@time_for_amu,@density)", conn);
                 c.Parameters.AddWithValue("@header_id", aktualneMeranie);
-                c.Parameters.AddWithValue("@time_for_amu", ((MassScanParameters)mp).TimeperAmu);
+                c.Parameters.AddWithValue("@time_for_amu", ((MassScanParameters)mp).timePerAmu);
                 c.Parameters.AddWithValue("@density", ((MassScanParameters)mp).Dens);
                 c.Parameters.AddWithValue("@start_point", ((MassScanParameters)mp).StartPoint);
                 c.Parameters.AddWithValue("@end_point", ((MassScanParameters)mp).EndPoint);
@@ -343,7 +344,7 @@ namespace JDLMLab
                 c.Parameters.AddWithValue("@e_start_point", ((Scan2DParameters)mp).EnergyScanParameters.StartPoint);
                 c.Parameters.AddWithValue("@e_end_point", ((Scan2DParameters)mp).EnergyScanParameters.EndPoint);
                 c.Parameters.AddWithValue("@pocet_krokov", ((Scan2DParameters)mp).EnergyScanParameters.PocetKrokov);
-                c.Parameters.AddWithValue("@time_for_amu", ((Scan2DParameters)mp).MassScanParameters.TimeperAmu);
+                c.Parameters.AddWithValue("@time_for_amu", ((Scan2DParameters)mp).MassScanParameters.timePerAmu);
                 c.Parameters.AddWithValue("@density", ((Scan2DParameters)mp).MassScanParameters.Dens);
                 c.Parameters.AddWithValue("@m_start_point", ((Scan2DParameters)mp).MassScanParameters.StartPoint);
                 c.Parameters.AddWithValue("@m_end_point", ((Scan2DParameters)mp).MassScanParameters.EndPoint);
