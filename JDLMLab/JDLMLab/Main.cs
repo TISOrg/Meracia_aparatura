@@ -332,10 +332,10 @@ namespace JDLMLab
 
         }
 
-        private void richTextBox1_TextChanged(object sender, EventArgs e)
-        {
+        //private void richTextBox1_TextChanged(object sender, EventArgs e)
+       // {
 
-        }
+      //  }
 
         private void radioButton2_CheckedChanged(object sender, EventArgs e)
         {
