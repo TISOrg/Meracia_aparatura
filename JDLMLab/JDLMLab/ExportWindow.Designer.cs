@@ -108,11 +108,11 @@
             this.label2.TabIndex = 5;
             this.label2.Text = "Cykly";
             // 
-            // checkBoxCyklyInclude
+            // checkBoxCyklyAllInclude
             // 
             this.checkBoxCyklyAllInclude.AutoSize = true;
             this.checkBoxCyklyAllInclude.Location = new System.Drawing.Point(137, 459);
-            this.checkBoxCyklyAllInclude.Name = "checkBoxCyklyInclude";
+            this.checkBoxCyklyAllInclude.Name = "checkBoxCyklyAllInclude";
             this.checkBoxCyklyAllInclude.Size = new System.Drawing.Size(68, 17);
             this.checkBoxCyklyAllInclude.TabIndex = 6;
             this.checkBoxCyklyAllInclude.Text = "All/None";

@@ -283,7 +283,8 @@ namespace JDLMLab
 
         private void Main_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.Control && e.KeyCode.ToString() == "N")
+            //e.Control && 
+            if (e.KeyCode.ToString() == "N")
             {
                 NoveMeranieWindow setmerania = new NoveMeranieWindow();
                 DialogResult res = setmerania.ShowDialog();
@@ -295,8 +296,21 @@ namespace JDLMLab
         
 
                 }
+
             }
-            if (e.KeyCode == Keys.Escape)
+            if (e.KeyCode.ToString() == "L")
+            {
+                Load l = new Load();
+                DialogResult res = l.ShowDialog(this);
+                if (res == DialogResult.OK)
+                {
+                    //zobrazit do grafu vybrate meranie
+                    grafcontrol.clearGraf();
+                    grafcontrol.addMeranie(l.Meranie);
+                }
+                l.Dispose();
+            }
+                if (e.KeyCode == Keys.Escape)
             {
                 DialogResult res = MessageBox.Show("Do you really want to quit the program?", "Quit?", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
                 if (res == DialogResult.Yes)
@@ -363,9 +377,5 @@ namespace JDLMLab
             
         }
 
-        private void Main_Load(object sender, EventArgs e)
-        {
-
-        }
     }
 }
