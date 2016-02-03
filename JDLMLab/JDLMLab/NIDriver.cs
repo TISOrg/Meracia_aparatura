@@ -13,7 +13,7 @@ namespace JDLMLab
     class NIDriver
     {
         NITaskTimerClass mojaUlohaCounter;
-        string prevodnik = "Dev2";
+        string prevodnik = "Dev1";
         private CIChannel CICh;
         public CounterReader Counter;
         public int[] ttlSignal;

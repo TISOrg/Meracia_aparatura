@@ -12,7 +12,8 @@ namespace JDLMLab
         AboutBox1 info;
         GrafControl grafcontrol;
         MeasurementControl measurementControl;
-        
+
+        BufferedChart bufferedChart;
         public Main()
         {
 
@@ -20,6 +21,15 @@ namespace JDLMLab
            
             InitializeComponent();
             DoubleBuffered = true;
+
+            SuspendLayout();
+            bufferedChart = new BufferedChart();
+            bufferedChart.Dock = DockStyle.Fill;
+            bufferedChart.MouseClick += BufferedChart_MouseClick;
+
+            kontainerPreGraf.Controls.Add(bufferedChart);
+
+            ResumeLayout();
 
 
             grafcontrol =new GrafControl(graf);
@@ -42,6 +52,12 @@ namespace JDLMLab
             
             
         }
+
+        private void BufferedChart_MouseClick(object sender, MouseEventArgs e)
+        {
+            bufferedChart.setCursor(e);
+        }
+
         XXXDriver x;
         internal MeasurementControl MeasurementControl
         {
@@ -217,11 +233,14 @@ namespace JDLMLab
         double i;
         private void button1_Click(object sender, EventArgs e)
         {
-            //NIDriver prevodnik = new NIDriver();
+            NIDriver prevodnik = new NIDriver();
             //prevodnik.triggerInit();
-            // NI.setAnalogOutput(i);
-            // i++;
-            //dateLabel.Text = new Date
+
+            prevodnik.setAnalogOutput(5);
+            Thread.Sleep(200);
+            richTextBox1.AppendText(prevodnik.readTlakomerPR4000().ToString());
+            
+            i++;
         }
 
         private void Main_FormClosed(object sender, FormClosedEventArgs e)
@@ -286,15 +305,27 @@ namespace JDLMLab
                     return;
                 }
             }
-                
-            
+            if (e.KeyCode == Keys.PageUp)
+            {
+                bufferedChart.zoomYIn();
+            }
+            if (e.KeyCode == Keys.PageDown)
+            {
+                bufferedChart.zoomYOut();
+            }
+            if (e.KeyCode == Keys.Q)
+            {
+                bufferedChart.zoomXIn();
+            }
+            if (e.KeyCode == Keys.W)
+            {
+                bufferedChart.zoomXOut();
+            }
+
+
         }
 
-        private void Main_Resize(object sender, EventArgs e)
-        {
-          
-        }
-
+       
         private void richTextBox1_TextChanged(object sender, EventArgs e)
         {
 
@@ -319,12 +350,17 @@ namespace JDLMLab
         {
 
         }
+        private void Main_Resize(object sender, EventArgs e)
+        {
+            kontainerPreGraf.Width = Width - sidebar.Width - 20;
+        }
 
         private void Main_ResizeEnd(object sender, EventArgs e)
         {
+            //SetStyle(ControlStyles.OptimizedDoubleBuffer, true);
+            //grafcontrol.graf.SetBounds(0, 0, Width - 200, Height - 100);
+
             
-            SetStyle(ControlStyles.OptimizedDoubleBuffer, true);
-            grafcontrol.graf.SetBounds(0, 0, Width - 200, Height - 100);
         }
 
         private void Main_Load(object sender, EventArgs e)

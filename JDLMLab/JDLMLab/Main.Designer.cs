@@ -40,7 +40,7 @@
             this.loadToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.oProgrameToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.graf = new System.Windows.Forms.DataVisualization.Charting.Chart();
-            this.panel1 = new System.Windows.Forms.Panel();
+            this.sidebar = new System.Windows.Forms.Panel();
             this.button3 = new System.Windows.Forms.Button();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.label7 = new System.Windows.Forms.Label();
@@ -71,9 +71,10 @@
             this.startbutton = new System.Windows.Forms.Button();
             this.richTextBox1 = new System.Windows.Forms.RichTextBox();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.kontainerPreGraf = new System.Windows.Forms.Panel();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.graf)).BeginInit();
-            this.panel1.SuspendLayout();
+            this.sidebar.SuspendLayout();
             this.groupBox4.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -145,38 +146,39 @@
             chartArea1.BorderWidth = 0;
             chartArea1.Name = "ChartArea1";
             this.graf.ChartAreas.Add(chartArea1);
-            this.graf.Dock = System.Windows.Forms.DockStyle.Left;
-            this.graf.Location = new System.Drawing.Point(0, 24);
+            this.graf.Location = new System.Drawing.Point(24, 16);
             this.graf.Margin = new System.Windows.Forms.Padding(0);
             this.graf.Name = "graf";
             series1.ChartArea = "ChartArea1";
             series1.IsVisibleInLegend = false;
             series1.Name = "Series1";
             this.graf.Series.Add(series1);
-            this.graf.Size = new System.Drawing.Size(1037, 681);
+            this.graf.Size = new System.Drawing.Size(56, 59);
             this.graf.TabIndex = 8;
             this.graf.Text = "chart1";
+            this.graf.Visible = false;
             this.graf.Click += new System.EventHandler(this.graf_Click);
             this.graf.KeyDown += new System.Windows.Forms.KeyEventHandler(this.graf_KeyDown);
             // 
-            // panel1
+            // sidebar
             // 
-            this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.panel1.Controls.Add(this.button3);
-            this.panel1.Controls.Add(this.groupBox4);
-            this.panel1.Controls.Add(this.groupBox3);
-            this.panel1.Controls.Add(this.stopAfterCycle);
-            this.panel1.Controls.Add(this.groupBox2);
-            this.panel1.Controls.Add(this.groupBox1);
-            this.panel1.Controls.Add(this.button1);
-            this.panel1.Controls.Add(this.sidebarExportButton);
-            this.panel1.Controls.Add(this.button2);
-            this.panel1.Controls.Add(this.startbutton);
-            this.panel1.Location = new System.Drawing.Point(1040, 24);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(148, 681);
-            this.panel1.TabIndex = 9;
-            this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
+            this.sidebar.AutoScroll = true;
+            this.sidebar.Controls.Add(this.button3);
+            this.sidebar.Controls.Add(this.groupBox4);
+            this.sidebar.Controls.Add(this.groupBox3);
+            this.sidebar.Controls.Add(this.stopAfterCycle);
+            this.sidebar.Controls.Add(this.groupBox2);
+            this.sidebar.Controls.Add(this.groupBox1);
+            this.sidebar.Controls.Add(this.button1);
+            this.sidebar.Controls.Add(this.sidebarExportButton);
+            this.sidebar.Controls.Add(this.button2);
+            this.sidebar.Controls.Add(this.startbutton);
+            this.sidebar.Dock = System.Windows.Forms.DockStyle.Right;
+            this.sidebar.Location = new System.Drawing.Point(1040, 24);
+            this.sidebar.Name = "sidebar";
+            this.sidebar.Size = new System.Drawing.Size(148, 681);
+            this.sidebar.TabIndex = 9;
+            this.sidebar.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
             // 
             // button3
             // 
@@ -383,6 +385,8 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.graf);
+            this.groupBox1.Controls.Add(this.richTextBox1);
             this.groupBox1.Controls.Add(this.displayModeAuto);
             this.groupBox1.Controls.Add(this.displayModeLog);
             this.groupBox1.Controls.Add(this.displayModeLin);
@@ -473,9 +477,9 @@
             // 
             // richTextBox1
             // 
-            this.richTextBox1.Location = new System.Drawing.Point(136, 56);
+            this.richTextBox1.Location = new System.Drawing.Point(100, 42);
             this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.Size = new System.Drawing.Size(523, 169);
+            this.richTextBox1.Size = new System.Drawing.Size(15, 20);
             this.richTextBox1.TabIndex = 10;
             this.richTextBox1.Text = "";
             this.richTextBox1.TextChanged += new System.EventHandler(this.richTextBox1_TextChanged);
@@ -485,14 +489,22 @@
             this.timer1.Interval = 500;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick_1);
             // 
+            // kontainerPreGraf
+            // 
+            this.kontainerPreGraf.BackColor = System.Drawing.Color.Black;
+            this.kontainerPreGraf.Dock = System.Windows.Forms.DockStyle.Left;
+            this.kontainerPreGraf.Location = new System.Drawing.Point(0, 24);
+            this.kontainerPreGraf.Name = "kontainerPreGraf";
+            this.kontainerPreGraf.Size = new System.Drawing.Size(996, 681);
+            this.kontainerPreGraf.TabIndex = 10;
+            // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1188, 705);
-            this.Controls.Add(this.richTextBox1);
-            this.Controls.Add(this.panel1);
-            this.Controls.Add(this.graf);
+            this.Controls.Add(this.kontainerPreGraf);
+            this.Controls.Add(this.sidebar);
             this.Controls.Add(this.menuStrip1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.KeyPreview = true;
@@ -506,8 +518,8 @@
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.graf)).EndInit();
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
+            this.sidebar.ResumeLayout(false);
+            this.sidebar.PerformLayout();
             this.groupBox4.ResumeLayout(false);
             this.groupBox4.PerformLayout();
             this.groupBox3.ResumeLayout(false);
@@ -530,7 +542,7 @@
         private System.Windows.Forms.ToolStripMenuItem toolsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem loadToolStripMenuItem;
         private System.Windows.Forms.DataVisualization.Charting.Chart graf;
-        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Panel sidebar;
         private System.Windows.Forms.Button sidebarExportButton;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button startbutton;
@@ -561,6 +573,7 @@
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Panel kontainerPreGraf;
     }
 }
 

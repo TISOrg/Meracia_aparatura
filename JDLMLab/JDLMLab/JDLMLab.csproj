@@ -85,6 +85,9 @@
       <DependentUpon>AboutBox1.cs</DependentUpon>
     </Compile>
     <Compile Include="AMeterDriver.cs" />
+    <Compile Include="BufferedChart.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="CyklusMerania.cs" />
     <Compile Include="Database.Designer.cs">
       <AutoGen>True</AutoGen>
