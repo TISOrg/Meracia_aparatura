@@ -151,11 +151,23 @@ namespace JDLMLab
        
 
         private void button2_Click(object sender, EventArgs e)
-        {
-            ExportWindow exp = new ExportWindow((int)dataMerania.SelectedCells[0].Value);
-            exp.ShowDialog();
+        {   if (dataMerania.SelectedCells.Count == 1)
+            {
+                ExportWindow exp = new ExportWindow((int)dataMerania.SelectedCells[0].Value);
+                exp.ShowDialog();
+            }
 
-
+            else
+            {
+                int[] pom=new int[dataMerania.SelectedCells.Count];
+                for (int i = 0; i < dataMerania.SelectedCells.Count; i++)
+                {
+                    pom[i] = (int)dataMerania.SelectedCells[i].Value;
+                }
+                ExportWindow exp = new ExportWindow(pom);
+                exp.ShowDialog();
+            }
+            
         }
         public int Meranie {
             get { return meranie; }}

@@ -19,12 +19,24 @@ namespace JDLMLab
         DataTable sumDataTable;
         DataTable normalDataTable;
         int header_id;
+        int[] headers;
+        bool multi = true;
         public ExportWindow(int header_id)
         {
             InitializeComponent();
             this.header_id = header_id;
+            multi = false;
             init();
         }
+        public ExportWindow(int[] headers)
+        {
+            
+            InitializeComponent();
+            this.headers = headers;
+            multi = true;
+            
+        }
+
         private DataSet header;
         private void init()
         {
@@ -35,7 +47,7 @@ namespace JDLMLab
             header = db.header(header_id);
 
             normalItems = new CheckedListBox.ObjectCollection(checkedListBoxInclude);
-
+            
             for (int c = 0; c < dataMeranie.Columns.Count; c++)
             {
                 dataMeranie.Columns[c].SortMode = DataGridViewColumnSortMode.NotSortable;
@@ -79,39 +91,44 @@ namespace JDLMLab
         }
         private void button1_Click(object sender, EventArgs e)
         {
-            //funkcia export.. exportovat vybrane zaznamy
-            //...
-            saveFileDialog1.InitialDirectory = Paths.Default.export_path;
-            string date = header.Tables[0].Rows[0]["datetime"].ToString();
-            DateTime datum = Convert.ToDateTime(date);
-            date = datum.ToString("dd.MM");
+            
+                //funkcia export.. exportovat vybrane zaznamy
+                //...
+                saveFileDialog1.InitialDirectory = Paths.Default.export_path;
 
-            string type = header.Tables[0].Rows[0]["type_name"].ToString();
-            string ionType = (header.Tables[0].Rows[0]["ion_type"].ToString().Equals("1")) ? "Positive ions" : "Negative ions";
-            string constant = "";
-            if (type.Equals("Energy Scan")) {
-                constant = header.Tables[0].Rows[0]["constant"].ToString() + " amu";
-            }
-            if (type.Equals("Mass Scan"))
-            {
-                constant = header.Tables[0].Rows[0]["constant"].ToString() + " eV";
-            }
+                    string date = header.Tables[0].Rows[0]["datetime"].ToString();
+                    DateTime datum = Convert.ToDateTime(date);
+                    date = datum.ToString("dd.MM");
 
-            //nazov exportu: datum(dd.mm.) - typ - constant - iontype
+                    string type = header.Tables[0].Rows[0]["type_name"].ToString();
+                    string ionType = (header.Tables[0].Rows[0]["ion_type"].ToString().Equals("1")) ? "Positive ions" : "Negative ions";
+                    string constant = "";
+                    if (type.Equals("Energy Scan"))
+                    {
+                        constant = header.Tables[0].Rows[0]["constant"].ToString() + " amu";
+                    }
+                    if (type.Equals("Mass Scan"))
+                    {
+                        constant = header.Tables[0].Rows[0]["constant"].ToString() + " eV";
+                    }
 
-            saveFileDialog1.FileName = date + " - " + type + " - " + (constant.Equals("") ? "" : constant + " - ") + ionType;
-            DialogResult res = saveFileDialog1.ShowDialog();
-            switch (res)
-            {
-                case DialogResult.Cancel:
-                    break;
-                case DialogResult.OK:
-                    save(saveFileDialog1.FileName);
-                    break;
-                default:
-                    break;
-            }
+                    //nazov exportu: datum(dd.mm.) - typ - constant - iontype
 
+                    saveFileDialog1.FileName = date + " - " + type + " - " + (constant.Equals("") ? "" : constant + " - ") + ionType;
+                    DialogResult res = saveFileDialog1.ShowDialog();
+                    switch (res)
+                    {
+                        case DialogResult.Cancel:
+                            break;
+                        case DialogResult.OK:
+                            save(saveFileDialog1.FileName);
+                            break;
+                        default:
+                            break;
+                    }
+
+                
+            
         }
 
 
