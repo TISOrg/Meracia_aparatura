@@ -91,10 +91,17 @@ namespace JDLMLab
         }
         private void button1_Click(object sender, EventArgs e)
         {
-            
-                //funkcia export.. exportovat vybrane zaznamy
-                //...
-                saveFileDialog1.InitialDirectory = Paths.Default.export_path;
+            MessageBox.Show(headers[0].ToString());
+            MessageBox.Show(headers[1].ToString());
+            //funkcia export.. exportovat vybrane zaznamy
+            //...
+            if (multi)
+            {
+                for(int i=0; i < headers.Length; i++) {
+                    header_id = i;
+                }
+            }
+            saveFileDialog1.InitialDirectory = Paths.Default.export_path;
 
                     string date = header.Tables[0].Rows[0]["datetime"].ToString();
                     DateTime datum = Convert.ToDateTime(date);

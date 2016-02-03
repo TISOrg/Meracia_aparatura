@@ -236,9 +236,9 @@
             // groupBox3
             // 
             this.groupBox3.Controls.Add(this.noteValue);
-            this.groupBox3.Location = new System.Drawing.Point(513, 25);
+            this.groupBox3.Location = new System.Drawing.Point(527, 25);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(224, 128);
+            this.groupBox3.Size = new System.Drawing.Size(210, 128);
             this.groupBox3.TabIndex = 29;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Note";
@@ -249,7 +249,7 @@
             this.noteValue.Location = new System.Drawing.Point(3, 16);
             this.noteValue.Name = "noteValue";
             this.noteValue.ReadOnly = true;
-            this.noteValue.Size = new System.Drawing.Size(218, 109);
+            this.noteValue.Size = new System.Drawing.Size(204, 109);
             this.noteValue.TabIndex = 15;
             this.noteValue.Text = "";
             // 
@@ -257,11 +257,12 @@
             // 
             this.constantValue.BackColor = System.Drawing.SystemColors.Control;
             this.constantValue.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.constantValue.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.constantValue.Location = new System.Drawing.Point(91, 150);
+            this.constantValue.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.constantValue.Location = new System.Drawing.Point(101, 152);
             this.constantValue.Name = "constantValue";
-            this.constantValue.Size = new System.Drawing.Size(45, 11);
+            this.constantValue.Size = new System.Drawing.Size(67, 13);
             this.constantValue.TabIndex = 38;
+            this.constantValue.TextChanged += new System.EventHandler(this.constantValue_TextChanged);
             // 
             // groupBox2
             // 
@@ -275,7 +276,7 @@
             this.groupBox2.Controls.Add(this.resolution);
             this.groupBox2.Controls.Add(this.label16);
             this.groupBox2.Controls.Add(this.label17);
-            this.groupBox2.Location = new System.Drawing.Point(362, 25);
+            this.groupBox2.Location = new System.Drawing.Point(388, 25);
             this.groupBox2.MinimumSize = new System.Drawing.Size(100, 121);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(133, 137);
@@ -394,7 +395,7 @@
             this.TEM.Controls.Add(this.label10);
             this.TEM.Controls.Add(this.label3);
             this.TEM.Controls.Add(this.label6);
-            this.TEM.Location = new System.Drawing.Point(206, 25);
+            this.TEM.Location = new System.Drawing.Point(243, 25);
             this.TEM.MinimumSize = new System.Drawing.Size(100, 121);
             this.TEM.Name = "TEM";
             this.TEM.Size = new System.Drawing.Size(139, 137);
@@ -488,36 +489,36 @@
             // 
             this.typ.BackColor = System.Drawing.SystemColors.Control;
             this.typ.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.typ.Location = new System.Drawing.Point(91, 121);
+            this.typ.Location = new System.Drawing.Point(101, 121);
             this.typ.Name = "typ";
-            this.typ.Size = new System.Drawing.Size(88, 13);
+            this.typ.Size = new System.Drawing.Size(110, 13);
             this.typ.TabIndex = 26;
             // 
             // cycles
             // 
             this.cycles.BackColor = System.Drawing.SystemColors.Control;
             this.cycles.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.cycles.Location = new System.Drawing.Point(91, 91);
+            this.cycles.Location = new System.Drawing.Point(101, 91);
             this.cycles.Name = "cycles";
-            this.cycles.Size = new System.Drawing.Size(75, 13);
+            this.cycles.Size = new System.Drawing.Size(97, 13);
             this.cycles.TabIndex = 25;
             // 
             // date
             // 
             this.date.BackColor = System.Drawing.SystemColors.Control;
             this.date.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.date.Location = new System.Drawing.Point(91, 62);
+            this.date.Location = new System.Drawing.Point(101, 62);
             this.date.Name = "date";
-            this.date.Size = new System.Drawing.Size(97, 13);
+            this.date.Size = new System.Drawing.Size(119, 13);
             this.date.TabIndex = 24;
             // 
             // name
             // 
             this.name.BackColor = System.Drawing.SystemColors.Control;
             this.name.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.name.Location = new System.Drawing.Point(91, 31);
+            this.name.Location = new System.Drawing.Point(101, 31);
             this.name.Name = "name";
-            this.name.Size = new System.Drawing.Size(97, 13);
+            this.name.Size = new System.Drawing.Size(119, 13);
             this.name.TabIndex = 23;
             // 
             // label11
@@ -531,15 +532,15 @@
             // 
             // constantLabel
             // 
-            this.constantLabel.AutoSize = true;
             this.constantLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
-            this.constantLabel.Location = new System.Drawing.Point(6, 150);
-            this.constantLabel.MaximumSize = new System.Drawing.Size(200, 0);
+            this.constantLabel.Location = new System.Drawing.Point(-6, 149);
+            this.constantLabel.MaximumSize = new System.Drawing.Size(200, 13);
             this.constantLabel.Name = "constantLabel";
-            this.constantLabel.Size = new System.Drawing.Size(81, 13);
+            this.constantLabel.Size = new System.Drawing.Size(89, 13);
             this.constantLabel.TabIndex = 5;
             this.constantLabel.Text = "Electron energy";
             this.constantLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.constantLabel.TextChanged += new System.EventHandler(this.constantLabel_TextChanged);
             this.constantLabel.Click += new System.EventHandler(this.constantLabel_Click);
             // 
             // label12

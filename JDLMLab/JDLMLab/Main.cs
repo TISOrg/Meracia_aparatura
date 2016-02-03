@@ -341,9 +341,5 @@ namespace JDLMLab
             grafcontrol.graf.SetBounds(0, 0, Width - 200, Height - 100);
         }
 
-        private void Main_Load(object sender, EventArgs e)
-        {
-
-        }
     }
 }

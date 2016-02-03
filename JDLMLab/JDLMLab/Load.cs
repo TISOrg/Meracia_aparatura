@@ -164,6 +164,7 @@ namespace JDLMLab
                 {
                     pom[i] = (int)dataMerania.SelectedCells[i].Value;
                 }
+                
                 ExportWindow exp = new ExportWindow(pom);
                 exp.ShowDialog();
             }
@@ -237,6 +238,19 @@ namespace JDLMLab
         }
 
         private void groupBox1_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void constantLabel_TextChanged(object sender, EventArgs e)
+        {
+            if (constantLabel.ToString()== "Electron_energy")
+            {
+                //constantLabel.TextAlign;
+            }
+        }
+
+        private void constantValue_TextChanged(object sender, EventArgs e)
         {
 
         }
