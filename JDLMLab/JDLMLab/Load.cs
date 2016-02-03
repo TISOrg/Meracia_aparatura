@@ -98,13 +98,14 @@ namespace JDLMLab
                 noteValue.Text = dr["note"].ToString();
                 resolution.Text = dr["resolution"].ToString();
                 typ.Text = dr["type_name"].ToString();
+                ionTypeValue.Text = (dr["ion_type"].ToString().Equals("0")) ? "Negative ions" : "Positive ions";
                 energy_start_point.Text = "";
                 energy_end_point.Text = "";
                 mass_density.Text = "";
                 energy_steptime.Text = "";
                 mass_start_point.Text = "";
                 mass_end_point.Text = "";
-                energy_constant.Text = "";
+                constantValue.Text = "";
                 pocet_krokov.Text = "";
                 mass_timepamu.Text = "";
 
@@ -112,7 +113,9 @@ namespace JDLMLab
                 {
                     energy_start_point.Text = dr["start_point"].ToString();
                     energy_end_point.Text = dr["end_point"].ToString();
-                    energy_constant.Text = dr["constant"].ToString();
+                    constantValue.Text = dr["constant"].ToString();
+                    constantLabel.Text = "m/z";
+                    
                     energy_steptime.Text = dr["steptime"].ToString();  ///double,time_for_amu  vytvoriť field do Load tak ako ostatnym ///int,pre density//
                     pocet_krokov.Text = dr["pocet_krokov"].ToString();
 
@@ -121,7 +124,8 @@ namespace JDLMLab
                 {
                     mass_start_point.Text = dr["start_point"].ToString();
                     mass_end_point.Text = dr["end_point"].ToString();
-                    energy_constant.Text = dr["constant"].ToString();
+                    constantValue.Text = dr["constant"].ToString();
+                    constantLabel.Text = "Electron_energy";
                     mass_timepamu.Text = dr["time_for_amu"].ToString();
                     mass_density.Text = dr["density"].ToString();
                     
@@ -131,7 +135,8 @@ namespace JDLMLab
                     energy_start_point.Text = dr["e_start_point"].ToString();
                     energy_end_point.Text = dr["e_end_point"].ToString();
                     energy_steptime.Text = dr["e_steptime"].ToString();
-                    
+                    constantValue.Text = "";
+                    constantLabel.Text = "";
                     pocet_krokov.Text = dr["pocet_krokov"].ToString();
                     mass_start_point.Text = dr["m_start_point"].ToString();
                     mass_end_point.Text = dr["m_end_point"].ToString();
@@ -210,6 +215,16 @@ namespace JDLMLab
         }
 
         private void energy_start_point_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void constantLabel_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void groupBox1_Enter(object sender, EventArgs e)
         {
 
         }

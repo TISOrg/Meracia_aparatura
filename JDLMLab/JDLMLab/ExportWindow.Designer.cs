@@ -35,13 +35,14 @@
             this.label1 = new System.Windows.Forms.Label();
             this.checkedListBoxCyklyInclude = new System.Windows.Forms.CheckedListBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.checkBoxCyklyInclude = new System.Windows.Forms.CheckBox();
+            this.checkBoxCyklyAllInclude = new System.Windows.Forms.CheckBox();
             this.checkBoxIncludeAll = new System.Windows.Forms.CheckBox();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             this.label3 = new System.Windows.Forms.Label();
             this.radioButton1 = new System.Windows.Forms.RadioButton();
             this.radioButton2 = new System.Windows.Forms.RadioButton();
             this.radioButton3 = new System.Windows.Forms.RadioButton();
+            this.includeHeader = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataMeranie)).BeginInit();
             this.SuspendLayout();
             // 
@@ -49,7 +50,7 @@
             // 
             this.button1.Location = new System.Drawing.Point(281, 426);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.Size = new System.Drawing.Size(87, 23);
             this.button1.TabIndex = 0;
             this.button1.Text = "Export";
             this.button1.UseVisualStyleBackColor = true;
@@ -60,7 +61,6 @@
             this.dataMeranie.AllowDrop = true;
             this.dataMeranie.AllowUserToAddRows = false;
             this.dataMeranie.AllowUserToDeleteRows = false;
-            this.dataMeranie.AllowUserToOrderColumns = true;
             this.dataMeranie.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataMeranie.Dock = System.Windows.Forms.DockStyle.Top;
             this.dataMeranie.Location = new System.Drawing.Point(0, 0);
@@ -73,15 +73,6 @@
             // 
             this.checkedListBoxInclude.CheckOnClick = true;
             this.checkedListBoxInclude.FormattingEnabled = true;
-            this.checkedListBoxInclude.Items.AddRange(new object[] {
-            "x",
-            "y",
-            "signal",
-            "prúd",
-            "capillar pressure",
-            "tlak komora",
-            "temperature",
-            "cycle"});
             this.checkedListBoxInclude.Location = new System.Drawing.Point(12, 325);
             this.checkedListBoxInclude.Name = "checkedListBoxInclude";
             this.checkedListBoxInclude.Size = new System.Drawing.Size(105, 124);
@@ -119,14 +110,15 @@
             // 
             // checkBoxCyklyInclude
             // 
-            this.checkBoxCyklyInclude.AutoSize = true;
-            this.checkBoxCyklyInclude.Location = new System.Drawing.Point(137, 459);
-            this.checkBoxCyklyInclude.Name = "checkBoxCyklyInclude";
-            this.checkBoxCyklyInclude.Size = new System.Drawing.Size(68, 17);
-            this.checkBoxCyklyInclude.TabIndex = 6;
-            this.checkBoxCyklyInclude.Text = "All/None";
-            this.checkBoxCyklyInclude.UseVisualStyleBackColor = true;
-            this.checkBoxCyklyInclude.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
+            this.checkBoxCyklyAllInclude.AutoSize = true;
+            this.checkBoxCyklyAllInclude.Location = new System.Drawing.Point(137, 459);
+            this.checkBoxCyklyAllInclude.Name = "checkBoxCyklyInclude";
+            this.checkBoxCyklyAllInclude.Size = new System.Drawing.Size(68, 17);
+            this.checkBoxCyklyAllInclude.TabIndex = 6;
+            this.checkBoxCyklyAllInclude.Text = "All/None";
+            this.checkBoxCyklyAllInclude.UseVisualStyleBackColor = true;
+            this.checkBoxCyklyAllInclude.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
+            this.checkBoxCyklyAllInclude.CheckStateChanged += new System.EventHandler(this.checkBoxCyklyInclude_CheckStateChanged);
             // 
             // checkBoxIncludeAll
             // 
@@ -160,22 +152,22 @@
             this.radioButton1.AutoSize = true;
             this.radioButton1.Location = new System.Drawing.Point(281, 373);
             this.radioButton1.Name = "radioButton1";
-            this.radioButton1.Size = new System.Drawing.Size(110, 17);
+            this.radioButton1.Size = new System.Drawing.Size(104, 17);
             this.radioButton1.TabIndex = 10;
-            this.radioButton1.Text = "Suma of all cycles";
+            this.radioButton1.Text = "Sum of all cycles";
             this.radioButton1.UseVisualStyleBackColor = true;
-            this.radioButton1.CheckedChanged += new System.EventHandler(this.radioButton1_CheckedChanged);
+            this.radioButton1.CheckedChanged += new System.EventHandler(this.sumModeCheckboxChanged);
             // 
             // radioButton2
             // 
             this.radioButton2.AutoSize = true;
             this.radioButton2.Location = new System.Drawing.Point(281, 350);
             this.radioButton2.Name = "radioButton2";
-            this.radioButton2.Size = new System.Drawing.Size(108, 17);
+            this.radioButton2.Size = new System.Drawing.Size(102, 17);
             this.radioButton2.TabIndex = 11;
-            this.radioButton2.Text = "Delta of all cycles";
+            this.radioButton2.Text = "Avg of all cycles";
             this.radioButton2.UseVisualStyleBackColor = true;
-            this.radioButton2.CheckedChanged += new System.EventHandler(this.radioButton2_CheckedChanged);
+            this.radioButton2.CheckedChanged += new System.EventHandler(this.avgModeCheckboxChanged);
             // 
             // radioButton3
             // 
@@ -183,24 +175,37 @@
             this.radioButton3.Checked = true;
             this.radioButton3.Location = new System.Drawing.Point(281, 325);
             this.radioButton3.Name = "radioButton3";
-            this.radioButton3.Size = new System.Drawing.Size(83, 17);
+            this.radioButton3.Size = new System.Drawing.Size(78, 17);
             this.radioButton3.TabIndex = 12;
             this.radioButton3.TabStop = true;
-            this.radioButton3.Text = "Each cyclus";
+            this.radioButton3.Text = "Each cycle";
             this.radioButton3.UseVisualStyleBackColor = true;
-            this.radioButton3.CheckedChanged += new System.EventHandler(this.radioButton3_CheckedChanged);
+            this.radioButton3.CheckedChanged += new System.EventHandler(this.normalModeCheckboxChanged);
+            // 
+            // includeHeader
+            // 
+            this.includeHeader.AutoSize = true;
+            this.includeHeader.Checked = true;
+            this.includeHeader.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.includeHeader.Location = new System.Drawing.Point(281, 459);
+            this.includeHeader.Name = "includeHeader";
+            this.includeHeader.Size = new System.Drawing.Size(97, 17);
+            this.includeHeader.TabIndex = 13;
+            this.includeHeader.Text = "Include header";
+            this.includeHeader.UseVisualStyleBackColor = true;
             // 
             // ExportWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(787, 494);
+            this.Controls.Add(this.includeHeader);
             this.Controls.Add(this.radioButton3);
             this.Controls.Add(this.radioButton2);
             this.Controls.Add(this.radioButton1);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.checkBoxIncludeAll);
-            this.Controls.Add(this.checkBoxCyklyInclude);
+            this.Controls.Add(this.checkBoxCyklyAllInclude);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.checkedListBoxCyklyInclude);
             this.Controls.Add(this.label1);
@@ -227,12 +232,13 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.CheckedListBox checkedListBoxCyklyInclude;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.CheckBox checkBoxCyklyInclude;
+        private System.Windows.Forms.CheckBox checkBoxCyklyAllInclude;
         private System.Windows.Forms.CheckBox checkBoxIncludeAll;
         private System.Windows.Forms.SaveFileDialog saveFileDialog1;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.RadioButton radioButton1;
         private System.Windows.Forms.RadioButton radioButton2;
         private System.Windows.Forms.RadioButton radioButton3;
+        private System.Windows.Forms.CheckBox includeHeader;
     }
 }

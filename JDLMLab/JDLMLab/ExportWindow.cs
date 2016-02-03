@@ -13,36 +13,62 @@ namespace JDLMLab
 {
     public partial class ExportWindow : Form
     {
+        Dictionary<string, string> jednotky = new Dictionary<string, string>();
+
+        DataTable avgDataTable;
+        DataTable sumDataTable;
+        DataTable normalDataTable;
+        int header_id;
         public ExportWindow(int header_id)
         {
             InitializeComponent();
-
+            this.header_id = header_id;
+            init();
+        }
+        private DataSet header;
+        private void init()
+        {
             DbCommunication db = new DbCommunication();
 
-            dataMeranie.DataSource = db.meranie(header_id).Tables[0];
+            normalDataTable = db.meranie(header_id).Tables[0];
+            dataMeranie.DataSource = normalDataTable;
             header = db.header(header_id);
+
+            normalItems = new CheckedListBox.ObjectCollection(checkedListBoxInclude);
+
+            for (int c = 0; c < dataMeranie.Columns.Count; c++)
+            {
+                dataMeranie.Columns[c].SortMode = DataGridViewColumnSortMode.NotSortable;
+                dataMeranie.Columns[c].Visible = false;
+                normalItems.Add(dataMeranie.Columns[c].HeaderText);
+            }
 
             for (int i = 1; i <= (int)header.Tables[0].Rows[0]["cycles"]; i++)
             {
                 checkedListBoxCyklyInclude.Items.Add(i);
             }
+
+            refreshIncludeColumns(normalItems);
+
+            checkedListBoxInclude.SetItemChecked(0, true);
+            checkedListBoxInclude.SetItemChecked(2, true);
+            checkBoxCyklyAllInclude.CheckState = CheckState.Checked;
+
             
-            init();
+
+            
+            saveFileDialog1.AddExtension = true;
+
+            jednotky = new Dictionary<string, string>();
             jednotky.Add("Intensity", "a.u."); // v db premenovat sig
-            jednotky.Add("Electron_energy", "eV");  //x v pripade energy scan,
-            jednotky.Add("Mass", "amu");// x v pripade mass scan
+            jednotky.Add("Electron energy", "eV");  //x v pripade energy scan,
+            jednotky.Add("m/z", "amu");// x v pripade mass scan
             jednotky.Add("Temperature", "°C");
             jednotky.Add("Current", "nA");
-            jednotky.Add("Chamber_pressure", "mbar");
-            jednotky.Add("Capillar_pressure", "Pa");
+            jednotky.Add("Chamber pressure", "mbar");
+            jednotky.Add("Capillar pressure", "Pa");
             
-        }
-        private DataSet header;
-        private void init()
-        {
-            checkBoxIncludeAll.CheckState = CheckState.Checked;
-            checkBoxCyklyInclude.CheckState = CheckState.Checked;
-            saveFileDialog1.AddExtension = true;
+
         }
 
         public DataGridView grid { get; set; }
@@ -57,15 +83,24 @@ namespace JDLMLab
             //...
             saveFileDialog1.InitialDirectory = Paths.Default.export_path;
             string date = header.Tables[0].Rows[0]["datetime"].ToString();
-            date=date.Replace(":", "-");
-            date = date.Replace("/", "-");
+            DateTime datum = Convert.ToDateTime(date);
+            date = datum.ToString("dd.MM");
 
             string type = header.Tables[0].Rows[0]["type_name"].ToString();
-            string ionType = header.Tables[0].Rows[0]["ion_type"].ToString();
-            //nazov exportu: nazov - datum - typ - iontype
+            string ionType = (header.Tables[0].Rows[0]["ion_type"].ToString().Equals("1")) ? "Positive ions" : "Negative ions";
+            string constant = "";
+            if (type.Equals("Energy Scan")) {
+                constant = header.Tables[0].Rows[0]["constant"].ToString() + " amu";
+            }
+            if (type.Equals("Mass Scan"))
+            {
+                constant = header.Tables[0].Rows[0]["constant"].ToString() + " eV";
+            }
 
-            saveFileDialog1.FileName = header.Tables[0].Rows[0]["name"] + " - " + date ;
-            DialogResult res=saveFileDialog1.ShowDialog();
+            //nazov exportu: datum(dd.mm.) - typ - constant - iontype
+
+            saveFileDialog1.FileName = date + " - " + type + " - " + (constant.Equals("") ? "" : constant + " - ") + ionType;
+            DialogResult res = saveFileDialog1.ShowDialog();
             switch (res)
             {
                 case DialogResult.Cancel:
@@ -76,13 +111,13 @@ namespace JDLMLab
                 default:
                     break;
             }
-            
+
         }
 
 
-        static Dictionary<string, string> jednotky = new Dictionary<string, string>();
-        
-        /// <summary>
+
+        int pocetCyklov;
+        /// <summary>  
         /// metoda na export dat zobrazenych v datagride do formatu .dat
         /// format dat:
         /// -prvy riadok: nazov 
@@ -94,63 +129,123 @@ namespace JDLMLab
         /// <param name="filename"></param>
         private void save(string filename)
         {
-            
             StreamWriter file = new StreamWriter(filename, false);
-
-            //prvy riadok - nazvy stlpcov - beru sa priamo z nazvov v datagride
             bool firstColumn = true;
-            for (int j = 0; j < dataMeranie.Columns.Count; j++)
+            pocetCyklov = (int)header.Tables[0].Rows[0]["cycles"];
+            if (includeHeader.Checked)
             {
-                if (dataMeranie.Columns[j].Visible)
+                //prvy riadok - nazvy stlpcov - beru sa priamo z nazvov v datagride
+                for (int cyklus = 0; cyklus < pocetCyklov; cyklus++)
                 {
-                    if (!firstColumn) file.Write("\t");
-                    file.Write(dataMeranie.Columns[j].HeaderText);
-                    firstColumn = false;
+                    for (int j = 0; j < dataMeranie.Columns.Count; j++)
+                    {
+                        if (dataMeranie.Columns[j].Visible && dataMeranie.Columns[j].HeaderText != "cycle_num")
+                        {
+                            if (!firstColumn) file.Write("\t");
+                            file.Write(dataMeranie.Columns[j].HeaderText);
+                            firstColumn = false;
+                        }
+
+                    }
+                }
+                file.WriteLine();
+
+                //druhy riadok - jednotky stlpcov - zatial nic... TODO. vyriesit cez slovnik... current -> A, temperature -> °C
+                firstColumn = true;
+                for (int cyklus = 0; cyklus < pocetCyklov; cyklus++)
+                {
+                    for (int j = 0; j < dataMeranie.Columns.Count; j++)
+                    {
+                        if (dataMeranie.Columns[j].Visible && !dataMeranie.Columns[j].HeaderText.Equals("cycle_num"))
+                        {
+                            if (!firstColumn) file.Write("\t");
+                            file.Write(jednotky[dataMeranie.Columns[j].HeaderText.ToString()]);
+                            firstColumn = false;
+                        }
+                    }
+                }
+                file.WriteLine();
+
+
+                //treti riadok - commenty - pod stlpcom intensity, constant, , resolution,datum
+                string comment = "";
+                string type = header.Tables[0].Rows[0]["type_name"].ToString();
+                if (type.Equals("Energy Scan"))
+                {
+                    comment = header.Tables[0].Rows[0]["constant"] + " amu, ress " +
+                                    header.Tables[0].Rows[0]["resolution"] + ", " +
+                                    header.Tables[0].Rows[0]["datetime"];
+                }
+                if (type.Equals("Mass Scan"))
+                {
+                    comment = header.Tables[0].Rows[0]["constant"] + " eV, ress " +
+                                    header.Tables[0].Rows[0]["resolution"] + ", " +
+                                    header.Tables[0].Rows[0]["datetime"];
+                }
+                if (type.Equals("2D Scan"))
+                {
+                    comment = "ress " +
+                                    header.Tables[0].Rows[0]["resolution"] + ", " +
+                                    header.Tables[0].Rows[0]["datetime"];
                 }
 
-            }
-            file.WriteLine();
-            for (int j = 0; j < dataMeranie.Columns.Count; j++)
-            {
-                if (dataMeranie.Columns[j].Visible)
+                firstColumn = true;
+                for (int cyklus = 0; cyklus < pocetCyklov; cyklus++)
                 {
-                    if (!firstColumn) file.Write("\t");
-                    if(jednotky.ContainsKey(dataMeranie.Columns[j].ToString())) 
-                        file.Write(jednotky[dataMeranie.Columns[j].ToString()]);
-                    firstColumn = false;
+                    for (int j = 0; j < dataMeranie.Columns.Count; j++)
+                    {
+                        
+
+                        if (dataMeranie.Columns[j].Visible)
+                        {
+                            if (!firstColumn) file.Write("\t");
+                            if ((type.Equals("Energy Scan") || type.Equals("Mass Scan")) && j > 0)
+                            {
+                                file.Write(comment);
+                            }
+                            if (type.Equals("2D Scan") && j > 1)
+                            {
+                                file.Write(comment);
+                            }
+                            firstColumn = false;
+                        }
+                        
+                    }
                 }
+                file.WriteLine();
 
+                string y = (type.Equals("Mass Scan") || type.Equals("2D Scan")) ? "m/z" : "Electron_energy";
+                string x = (type.Equals("Mass Scan") || type.Equals("2D Scan")) ? "Electron_energy" : "m/z";
             }
-            //druhy riadok - jednotky stlpcov - zatial nic... TODO. vyriesit cez slovnik... current -> A, temperature -> °C
-            file.WriteLine();
-
-            //treti riadok - commenty - tiez nic.
-
-            file.WriteLine();
-
             //data
             firstColumn = true;
             for (int i = 0; i < dataMeranie.Rows.Count; i++)
             {
+                
                 if (dataMeranie.Rows[i].Visible)
                 {
-                    firstColumn = true;
                     for (int j = 0; j < dataMeranie.Columns.Count; j++)
                     {
-                        if (dataMeranie.Columns[j].Visible)
+                        if (dataMeranie.Columns[j].Visible && !dataMeranie.Columns[j].HeaderText.Equals("cycle_num"))
                         {
                             if (!firstColumn) file.Write("\t");
                             file.Write(dataMeranie[j, i].Value);
                             firstColumn = false;
                         }
-                        
                     }
-                    file.WriteLine();
+                    
                 }
-                
-            }
-            file.Close();
+                if ((i + 1) % pocetCyklov == 0)
+                {
+                    file.WriteLine();
+                    firstColumn = true;
+                }
 
+            }
+            
+      
+            file.Close();
+            
 
         }
 
@@ -166,6 +261,8 @@ namespace JDLMLab
 
         private void checkBox2_CheckedChanged(object sender, EventArgs e)
         {
+            if (checkBoxIncludeAll.CheckState == CheckState.Indeterminate) return;
+
             for (int i = 0; i < checkedListBoxInclude.Items.Count; i++)
             {
                 checkedListBoxInclude.SetItemChecked(i, checkBoxIncludeAll.Checked);
@@ -176,8 +273,7 @@ namespace JDLMLab
         {
             for (int i = 0; i < checkedListBoxCyklyInclude.Items.Count; i++)
             {
-                checkedListBoxCyklyInclude.SelectedItem = checkedListBoxCyklyInclude.Items[i];
-                checkedListBoxCyklyInclude.SetItemChecked(i, checkBoxCyklyInclude.Checked);
+                checkedListBoxCyklyInclude.SetItemChecked(i, checkBoxCyklyAllInclude.Checked);   
             }
 
         }
@@ -189,6 +285,10 @@ namespace JDLMLab
                 e.NewValue == CheckState.Unchecked && checkedListBoxInclude.CheckedIndices.Count == 1)
             {
                 checkBoxIncludeAll.CheckState = e.NewValue;
+            }
+            else
+            {
+                //checkBoxIncludeAll.CheckState = CheckState.Indeterminate;
             }
         }
 
@@ -212,11 +312,31 @@ namespace JDLMLab
             }   
             if(e.NewValue == CheckState.Checked && checkedListBoxCyklyInclude.CheckedIndices.Count == checkedListBoxCyklyInclude.Items.Count - 1 || e.NewValue == CheckState.Unchecked && checkedListBoxCyklyInclude.CheckedIndices.Count == 1)
             {     
-                checkBoxCyklyInclude.CheckState = e.NewValue;
+                checkBoxCyklyAllInclude.CheckState = e.NewValue;
             }
-            
-            
-            
+            else
+            {
+               // checkBoxCyklyInclude.CheckState = CheckState.Indeterminate;
+            }
+
+
+
+        }
+
+        CheckedListBox.ObjectCollection avgItems;
+        CheckedListBox.ObjectCollection sumItems;
+        CheckedListBox.ObjectCollection normalItems;
+
+        private void refreshIncludeColumns(CheckedListBox.ObjectCollection items)
+        {
+            checkedListBoxInclude.Items.Clear();
+            checkedListBoxInclude.Items.AddRange(items);
+            for (int i=0; i<dataMeranie.Columns.Count; i++)
+            {
+                dataMeranie.Columns[i].Visible = false;
+            }
+            checkedListBoxInclude.SetItemChecked(0, true);
+            checkedListBoxInclude.SetItemChecked(2, true);
         }
 
         private void dataMeranie_CellValueChanged(object sender, DataGridViewCellEventArgs e)
@@ -224,22 +344,40 @@ namespace JDLMLab
             
         }
 
-        private void radioButton3_CheckedChanged(object sender, EventArgs e)
+        private void normalModeCheckboxChanged(object sender, EventArgs e)
         {
             if (radioButton3.Checked)
             {
                 radioButton3.BackColor = Color.FromArgb(144, 195, 212);
+                dataMeranie.DataSource = normalDataTable;
+                refreshIncludeColumns(normalItems);
+                checkedListBoxCyklyInclude.Enabled = true;
             }
             else {
                 radioButton3.BackColor = default(Color);
             }
         }
 
-        private void radioButton2_CheckedChanged(object sender, EventArgs e)
+        private void avgModeCheckboxChanged(object sender, EventArgs e)
         {
-            if (radioButton2.Checked)
+            if(radioButton2.Checked)
             {
                 radioButton2.BackColor = Color.FromArgb(144, 195, 212);
+                //avg urobit, ak neexistuje DataTable, vytvorit, inak iba prepnut.
+                if (avgDataTable == null)
+                {
+                    DbCommunication db = new DbCommunication();
+                    avgDataTable = db.meranieAvg(header_id).Tables[0];
+                    avgItems = new CheckedListBox.ObjectCollection(checkedListBoxInclude);
+                    foreach(DataGridViewColumn columnHeader in dataMeranie.Columns)
+                    {    
+                        avgItems.Add(columnHeader.HeaderText);
+                    }
+                }
+                dataMeranie.DataSource = avgDataTable;
+                refreshIncludeColumns(avgItems);
+                checkedListBoxCyklyInclude.Enabled = false;
+                checkBoxCyklyAllInclude.Enabled = false;
             }
             else
             {
@@ -247,11 +385,26 @@ namespace JDLMLab
             }
         }
 
-        private void radioButton1_CheckedChanged(object sender, EventArgs e)
+        private void sumModeCheckboxChanged(object sender, EventArgs e)
         {
             if (radioButton1.Checked)
             {
-                radioButton1.BackColor = Color.FromArgb(144,195,212);
+                radioButton1.BackColor = Color.FromArgb(144, 195, 212);
+                //sum urobit, ak neexistuje DataTable, vytvorit, inak iba prepnut.
+                if (sumDataTable == null)
+                {
+                    DbCommunication db = new DbCommunication();
+                    sumDataTable = db.meranieSum(header_id).Tables[0];
+                    sumItems = new CheckedListBox.ObjectCollection(checkedListBoxInclude);
+                    foreach (DataGridViewColumn columnHeader in dataMeranie.Columns)
+                    {
+                        sumItems.Add(columnHeader.HeaderText);
+                    }
+                }
+                dataMeranie.DataSource = sumDataTable;
+                refreshIncludeColumns(sumItems);
+                checkedListBoxCyklyInclude.Enabled = false;
+                checkBoxCyklyAllInclude.Enabled = false;
             }
             else
             {
@@ -265,6 +418,18 @@ namespace JDLMLab
             {
                 DialogResult = DialogResult.Cancel;
             }
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            dataMeranie.Sort(dataMeranie.Columns[0], ListSortDirection.Ascending); //zoradit datameranie podla X.
+            dataMeranie.Sort(dataMeranie.Columns["cycle_num"], ListSortDirection.Descending); //zoradit datameranie podla X.
+            dataMeranie.Sort(dataMeranie.Columns["Intensity"], ListSortDirection.Ascending); //zoradit datameranie podla X.
+        }
+
+        private void checkBoxCyklyInclude_CheckStateChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
