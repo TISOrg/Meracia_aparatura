@@ -231,6 +231,7 @@ namespace JDLMLab
             {
                 d= d*2;
             }
+
             graf.ChartAreas[0].AxisX.ScaleView.Zoom(pos - d / 2, pos + d / 2);
             
            
