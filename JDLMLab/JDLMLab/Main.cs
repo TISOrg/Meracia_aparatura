@@ -25,7 +25,7 @@ namespace JDLMLab
             SuspendLayout();
             bufferedChart = new BufferedChart();
             bufferedChart.Dock = DockStyle.Fill;
-            bufferedChart.MouseClick += BufferedChart_MouseClick;
+            
 
             kontainerPreGraf.Controls.Add(bufferedChart);
 
@@ -53,10 +53,7 @@ namespace JDLMLab
             
         }
 
-        private void BufferedChart_MouseClick(object sender, MouseEventArgs e)
-        {
-            bufferedChart.setCursor(e);
-        }
+        
 
         XXXDriver x;
         internal MeasurementControl MeasurementControl
@@ -89,6 +86,11 @@ namespace JDLMLab
 
                 MinimumSize = new System.Drawing.Size(setmerania.parametreMerania.PocetBodov + bufferedChart.LeftMargin + bufferedChart.RightMargin + sidebar.Width, 0);
 
+                bufferedChart.setParameters(setmerania.parametreMerania.StartPoint,
+                    setmerania.parametreMerania.EndPoint,
+                    setmerania.parametreMerania.PocetBodov,
+                    setmerania.parametreMerania.PocetCyklov);
+                bufferedChart.init();
 
             }
         }
@@ -128,6 +130,7 @@ namespace JDLMLab
                 //zobrazit do grafu vybrate meranie
                 grafcontrol.clearGraf();
                 grafcontrol.addMeranie(l.Meranie);    
+                
             }
             l.Dispose();
         }

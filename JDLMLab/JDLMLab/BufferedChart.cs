@@ -21,10 +21,16 @@ namespace JDLMLab
         private System.Windows.Forms.Timer timer1;
         private byte count;
         public int[] dataPoints { get; set; }
-        public List<int[]> Cycles { get; set; }
+        public List<int[]> CyclesIntensities { get; set; }
+        private int startDragX;
+        private int endDragX;
+        private int yAxisHeight { get
+            {
+                return Height - BottomMargin - TopMargin;
+            } }
         public BufferedChart() : base()
         {
-
+            
             zoomYScales = new long[28];
             for (long f = 1, i = 0; i < 28; i++)
             {
@@ -43,12 +49,15 @@ namespace JDLMLab
             BottomMargin = 30;
             TopMargin = 10;
 
-            setParameters(0, 100, 18);
+            setParameters(0, 100, 500);
             init();
 
             // Configure the Form for this example.
             this.Text = "User double buffering";
             this.MouseDown += new MouseEventHandler(this.MouseDownHandler);
+            this.MouseDown += klikMysi;
+            this.MouseMove += pohybMysi;
+            this.MouseUp += uvolnenieMysi;
             this.Resize += new EventHandler(this.OnResize);
             this.SetStyle(ControlStyles.AllPaintingInWmPaint | ControlStyles.UserPaint, true);
 
@@ -82,34 +91,70 @@ namespace JDLMLab
             DrawToBuffer(grafx.Graphics);
         }
 
+        private void uvolnenieMysi(object sender, MouseEventArgs e)
+        {
+            dragging = false;
+        }
+
+        private void pohybMysi(object sender, MouseEventArgs e)
+        {
+            if (dragging)
+            {
+                endDragX = e.X;
+                int xGraf = e.X - LeftMargin;
+                CursorIndex = NumberofDisplayedBars * xGraf / XAxisWidth;
+                blank();
+                DrawToBuffer(grafx.Graphics);
+                //grafx.Render(Graphics.FromHwnd(this.Handle));
+                Refresh();
+            }
+        }
+        bool dragging;
+        private void klikMysi(object sender, MouseEventArgs e)
+        {
+            startDragX = e.X;
+            endDragX = e.X;
+            dragging = true;
+            if (e.Y > TopMargin && e.Y < Height - BottomMargin && e.X > LeftMargin && e.X < Width - RightMargin)
+            {
+                int xGraf = e.X - LeftMargin;
+                CursorIndex = NumberofDisplayedBars * xGraf / XAxisWidth;
+                blank();
+                DrawToBuffer(grafx.Graphics);
+                Refresh();
+            }
+        }
+
         public void setParameters(double minX,double maxX,int pocetBodov,int pocetCyklov=1)
         {
             NumberofBars = pocetBodov;
             this.pocetCyklov = pocetCyklov;
             MinXView = minX;
             MaxXView = maxX;
-            zoomYScalesIndex = 10;  //10. hodnota = 
+            
+            this.SetStyle(ControlStyles.OptimizedDoubleBuffer, true);
         }
         
         /// <summary>
         /// nastavit vsetky potrebne hodnoty pre dane meranie
         /// </summary>
-        private void init()
+        public void init()
         {
+            dragging = false;
             CurrentCycleNum = 1;
-            zoomYScalesIndex = 0;
+            zoomYScalesIndex = 15;
             NumberofDisplayedBars = NumberofBars;
-            dataPoints = new int[NumberofBars];
 
-            Cycles = new List<int[]>();
-            Kroky = new List<double[]>();
-            Cycles.Add(dataPoints);
-            Kroky.Add(new double[NumberofBars]);
+            CyclesKroky = new List<double[]>();
+            CyclesKroky.Add(new double[NumberofBars]);
+            CyclesIntensities = new List<int[]>();
+            CyclesIntensities.Add(new int[NumberofBars]);
+            
 
             Random r = new Random();
-            for (int i = 0; i < dataPoints.Length; i++)
+            for (int i = 0; i < NumberofBars; i++)
             {
-                dataPoints[i] = r.Next(1000000);
+                CyclesIntensities[0][i] = r.Next(1000000);
             }
 
         }
@@ -142,13 +187,13 @@ namespace JDLMLab
                     start -= NumberofDisplayedBars / 2 - (oldNumber - CursorIndex) + 1;
                 }
                 //MessageBox.Show(NumberofDisplayedBars.ToString());
-                int[] starePole = Cycles[0];
+                int[] starePole = CyclesIntensities[0];
                 int pom = start;
                 for (int i = 0; i < NumberofDisplayedBars; i++)
                 {
                     novePole[i] = starePole[pom++];
                 }
-                Cycles[0] = novePole;
+                CyclesIntensities[0] = novePole;
                 CursorIndex -= start;
                 obnov();
             }
@@ -164,14 +209,7 @@ namespace JDLMLab
 
         internal void setCursor(MouseEventArgs e)
         {
-            if (e.Y > TopMargin && e.Y < Height - BottomMargin && e.X > LeftMargin && e.X < Width - RightMargin)
-            {
-                int xGraf = e.X - LeftMargin;
-                CursorIndex = NumberofDisplayedBars * xGraf / XAxisWidth;
-                blank();
-                DrawToBuffer(grafx.Graphics);
-                Refresh();
-            }
+            
         }
 
         private long[] zoomYScales;
@@ -200,6 +238,7 @@ namespace JDLMLab
         }
         private void MouseDownHandler(object sender, MouseEventArgs e)
         {
+            return; //  !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
             if (e.Button == MouseButtons.Right)
             {
                 // Cycle the buffering mode.
@@ -287,7 +326,7 @@ namespace JDLMLab
             ///
             g.DrawString(CursorIndex.ToString(), new Font("Arial", 8), Brushes.White, 10, 34);
             g.DrawString(start.ToString(), new Font("Arial", 8), Brushes.White, 100, 30);
-            g.DrawString(Cycles[0].Length.ToString(), new Font("Arial", 8), Brushes.White, 100, 60);
+            g.DrawString(CyclesIntensities[0].Length.ToString(), new Font("Arial", 8), Brushes.White, 100, 60);
             ///
             ///...
             /// 
@@ -297,7 +336,7 @@ namespace JDLMLab
             ///
             ///bars
             /// 
-            int[] hodnoty = Cycles[0];
+            int[] hodnoty = CyclesIntensities[0];
             double barWidth = (double)(Width - LeftMargin - RightMargin) / (double)hodnoty.Length;
             int heightYAxis = Height - TopMargin - BottomMargin;
             for (int i = 0; i < hodnoty.Length; i++)
@@ -315,6 +354,20 @@ namespace JDLMLab
             }
 
             ///
+            /// select
+            ///
+            int lavaCast = startDragX;
+            int rectWidth;
+            if (startDragX > endDragX) {
+                lavaCast = endDragX;
+                rectWidth = startDragX - endDragX;
+            }
+            else
+            {
+                rectWidth = endDragX - startDragX;
+            }
+            g.FillRectangle(new SolidBrush(Color.FromArgb(100, Color.LightBlue)), new Rectangle(lavaCast, TopMargin, rectWidth, yAxisHeight));
+
             ///axis
             /// 
             g.DrawLine(new Pen(Color.Orange, 2), new Point(LeftMargin, Height - BottomMargin), new Point(Width - RightMargin, Height - BottomMargin));
@@ -425,7 +478,7 @@ namespace JDLMLab
         /// number of currently displayed bars
         /// </summary>
         int NumberofDisplayedBars { get; set; }
-        public List<double[]> Kroky { get; private set; }
+        public List<double[]> CyclesKroky { get; private set; }
         public double MaxXView { get; private set; }
         public double MinXView { get; private set; }
 
@@ -434,7 +487,7 @@ namespace JDLMLab
         public void addDataPoint(double x,double y,int intensity)
         {
             addIntensityPoint(cisloKroku, intensity);
-            Kroky[CurrentCycleNum][cisloKroku++] = x;
+            CyclesKroky[CurrentCycleNum][cisloKroku++] = x;
         }
 
         private void addIntensityPoint(int i, int Intensity)
@@ -446,11 +499,11 @@ namespace JDLMLab
         {
             try
             {
-                Cycles[cycleNum][i]= Intensity;
+                CyclesIntensities[cycleNum][i]= Intensity;
             }
             catch (ArgumentOutOfRangeException e)
             {
-                Cycles.Add(new int[NumberofBars]);
+                CyclesIntensities.Add(new int[NumberofBars]);
                 addIntensityPoint(i, Intensity, cycleNum);
             }
         }
