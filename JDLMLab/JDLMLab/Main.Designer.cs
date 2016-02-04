@@ -62,7 +62,6 @@
             this.richTextBox1 = new System.Windows.Forms.RichTextBox();
             this.displayModeLog = new System.Windows.Forms.RadioButton();
             this.displayModeLin = new System.Windows.Forms.RadioButton();
-            this.button1 = new System.Windows.Forms.Button();
             this.sidebarExportButton = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.startbutton = new System.Windows.Forms.Button();
@@ -74,6 +73,7 @@
             this.groupBox3.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
+            this.kontainerPreGraf.SuspendLayout();
             this.SuspendLayout();
             // 
             // serialPort1
@@ -141,7 +141,6 @@
             this.sidebar.Controls.Add(this.stopAfterCycle);
             this.sidebar.Controls.Add(this.groupBox2);
             this.sidebar.Controls.Add(this.groupBox1);
-            this.sidebar.Controls.Add(this.button1);
             this.sidebar.Controls.Add(this.sidebarExportButton);
             this.sidebar.Controls.Add(this.button2);
             this.sidebar.Controls.Add(this.startbutton);
@@ -360,7 +359,6 @@
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.richTextBox1);
             this.groupBox1.Controls.Add(this.displayModeLog);
             this.groupBox1.Controls.Add(this.displayModeLin);
             this.groupBox1.Location = new System.Drawing.Point(3, 12);
@@ -372,9 +370,9 @@
             // 
             // richTextBox1
             // 
-            this.richTextBox1.Location = new System.Drawing.Point(79, 19);
+            this.richTextBox1.Location = new System.Drawing.Point(824, 15);
             this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.Size = new System.Drawing.Size(54, 31);
+            this.richTextBox1.Size = new System.Drawing.Size(184, 131);
             this.richTextBox1.TabIndex = 10;
             this.richTextBox1.Text = "";
             // 
@@ -401,16 +399,6 @@
             this.displayModeLin.Text = "lin";
             this.displayModeLin.UseVisualStyleBackColor = true;
             this.displayModeLin.CheckedChanged += new System.EventHandler(this.displayModeLin_CheckedChanged);
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(3, 525);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(139, 23);
-            this.button1.TabIndex = 23;
-            this.button1.Text = "AD DIG W";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // sidebarExportButton
             // 
@@ -455,6 +443,7 @@
             // kontainerPreGraf
             // 
             this.kontainerPreGraf.BackColor = System.Drawing.Color.Black;
+            this.kontainerPreGraf.Controls.Add(this.richTextBox1);
             this.kontainerPreGraf.Dock = System.Windows.Forms.DockStyle.Left;
             this.kontainerPreGraf.Location = new System.Drawing.Point(0, 24);
             this.kontainerPreGraf.Name = "kontainerPreGraf";
@@ -490,6 +479,7 @@
             this.groupBox2.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            this.kontainerPreGraf.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -514,7 +504,6 @@
         private System.Windows.Forms.RadioButton dataDisplayAvg;
         private System.Windows.Forms.RichTextBox richTextBox1;
         private System.Windows.Forms.Timer timer1;
-        private System.Windows.Forms.Button button1;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.CheckBox stopAfterCycle;

@@ -350,6 +350,12 @@ namespace JDLMLab
                 Refresh();
             }
         }
+
+        internal void clear()
+        {
+            Cycles[0].Points.Clear();
+        }
+
         bool dragging;
         bool scrollBarDragging;
 

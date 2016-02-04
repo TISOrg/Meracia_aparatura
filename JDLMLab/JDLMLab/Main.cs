@@ -4,6 +4,7 @@ using System.Windows.Forms;
 using System.IO.Ports;
 using System.Collections.Generic;
 
+
 namespace JDLMLab
 {
     public partial class Main : Form
@@ -13,7 +14,7 @@ namespace JDLMLab
         GrafControl grafcontrol;
         MeasurementControl measurementControl;
 
-        BufferedChart bufferedChart;
+         BufferedChart bufferedChart;
         public Main()
         {
             InitializeComponent();
@@ -37,12 +38,12 @@ namespace JDLMLab
         private void fillRandomDataPoints()
         {
             Random r = new Random();
-            bufferedChart.setParameters(0, 0, 10);
+            bufferedChart.setParameters(0, 0, 11);
             MinimumSize=new System.Drawing.Size(sidebar.Width+bufferedChart.LeftMargin+bufferedChart.RightMargin+100,bufferedChart.BottomMargin+bufferedChart.TopMargin+100);
             for (double i = 0; i < 100; i++)
             {
             
-                bufferedChart.addDataPoint(i, i, r.Next(100, 10000));
+                //bufferedChart.addDataPoint(i, i, r.Next(100, 10000));
             }
         }
 
@@ -74,14 +75,15 @@ namespace JDLMLab
                 //hodnota setMerania.parametreMerania obsahuje instanciu triedy measurementsparameters
                 //ktora obsahuje vsetky informacie na zacatie merania.
                 measurementControl = new MeasurementControl(setmerania.parametreMerania);
-
+                measurementControl.Graf = bufferedChart;
+                measurementControl.start();
                 MinimumSize = new System.Drawing.Size(setmerania.parametreMerania.PocetBodov + bufferedChart.LeftMargin + bufferedChart.RightMargin + sidebar.Width, 0);
 
-                bufferedChart.setParameters(setmerania.parametreMerania.StartPoint,
-                    setmerania.parametreMerania.EndPoint,
-                    setmerania.parametreMerania.PocetBodov,
-                    setmerania.parametreMerania.PocetCyklov);
-                bufferedChart.init();
+                //bufferedChart.setParameters(setmerania.parametreMerania.StartPoint,
+                //    setmerania.parametreMerania.EndPoint,
+                //    setmerania.parametreMerania.PocetBodov,
+                //    setmerania.parametreMerania.PocetCyklov);
+                //bufferedChart.init();
 
             }
         }
@@ -211,17 +213,7 @@ namespace JDLMLab
             richTextBox1.AppendText(text);
         }
         double i;
-        private void button1_Click(object sender, EventArgs e)
-        {
-            NIDriver prevodnik = new NIDriver();
-            //prevodnik.triggerInit();
-
-            prevodnik.setAnalogOutput(5);
-            Thread.Sleep(200);
-            richTextBox1.AppendText(prevodnik.readTlakomerPR4000().ToString());
-            
-            i++;
-        }
+ 
 
         private void Main_FormClosed(object sender, FormClosedEventArgs e)
         {
@@ -244,9 +236,10 @@ namespace JDLMLab
         private void sidebarExportButton_Click_2(object sender, EventArgs e)
         {
             i = 0;
+            /*
             NI = new NIDriver();
             NI.setAnalogOutput(5);
-
+            */
 
             r = new VMeterDriver();
             r.setTimer(1000);
