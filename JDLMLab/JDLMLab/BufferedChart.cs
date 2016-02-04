@@ -9,6 +9,41 @@ namespace JDLMLab
 {
     public class BufferedChart : Panel
     {
+        /// <summary>
+        /// trieda, ktora uchovava jeden BAR. (aj pre 2D Scan), pre MS a ES len X:Intensity
+        /// </summary>
+        public class DataPoint
+        {
+            public double X { get; set; }
+            public double Y { get; set; }
+            public int Intensity { get; set; }
+            public DataPoint(double x,double y,int intensity) {
+                X = x;
+                Y = y;
+                Intensity = intensity;
+            }
+        }
+        public class DataPoints
+        {
+            public DataPoints(int capacity)
+            {
+                Points = new List<DataPoint>(capacity);
+            }
+            public List<DataPoint> Points {
+                get; set; }
+        }
+        public enum DisplayAxisModes
+        {
+            Lin=0,
+            Log=1,
+            Auto=2
+        }
+        public enum DisplayDataModes
+        {
+            CurrentCycle,
+            Sum,
+            Avg
+        }
         private BufferedGraphicsContext context;
         private BufferedGraphics grafx;
 
@@ -22,15 +57,74 @@ namespace JDLMLab
         private byte count;
         public int[] dataPoints { get; set; }
         public List<int[]> CyclesIntensities { get; set; }
+        public List<List<KeyValuePair<double, int>>> Cyclesss;
+        public List<DataPoints> Cycles { get; set; }
         private int startDragX;
         private int endDragX;
-        private int yAxisHeight { get
+       
+        /// <summary>
+        /// refresh rate in miliseconds
+        /// </summary>
+        public int RefreshRate { get; set; }
+        public int CurrentCycleNum { get; set; }
+        public int PocetCyklov { get; set; }
+        public double MinX { get; set; }
+        public double MaxX { get; set; }
+        public double MinY { get; set; }
+        public double MaxY { get; set; }
+        public double ScaleX { get; set; }
+        public double ScaleY { get; set; }
+        public int BottomMargin { get; set; }
+        public int TopMargin { get; set; }
+        public int LeftMargin { get; set; }
+        public int RightMargin { get; set; }
+        private int cisloKroku { get; set; }
+        public int NumberofBars { get; private set; }
+        public int XAxisWidth
+        {
+            get
+            {
+                return Width - LeftMargin - RightMargin;
+            }
+        }
+        public int yAxisHeight
+        {
+            get
             {
                 return Height - BottomMargin - TopMargin;
-            } }
+            }
+        }
+        int ScrollDriverWidth{get;set;}
+        int ScrollDriverX{get;set;}
+        int ScrollBarWidth { get
+            {
+                return (int)(Width - LeftMargin - RightMargin);
+            }
+        }
+        
+        public DisplayAxisModes DisplayAxisMode {
+            get; set; }
+        public DisplayDataModes DisplayDataMode { get; set; }
+
+        /// <summary>
+        /// poradove cislo VIDITELNEHO baru(od nuly), na ktorom je kurzor.
+        /// </summary>
+        int CursorIndex { get; set; }
+        /// <summary>
+        /// number of currently displayed bars
+        /// </summary>
+        int NumberofDisplayedBars { get; set; }
+        public List<double[]> CyclesKroky { get; private set; }
+        public double MaxXView { get; private set; }
+        public double MinXView { get; private set; }
+        /// <summary>
+        /// index najlavejsie zobrazeneho baru
+        /// </summary>
+        int firstDisplayedBarIndex { get; set; }
+        //private Dictionary<double, int> DataPoints;
+
         public BufferedChart() : base()
-        {
-            
+        {   
             zoomYScales = new long[28];
             for (long f = 1, i = 0; i < 28; i++)
             {
@@ -48,16 +142,15 @@ namespace JDLMLab
             RightMargin = 10;
             BottomMargin = 30;
             TopMargin = 10;
-
-            setParameters(0, 100, 500);
-            init();
-
+            setParameters(0, 1, 1); //default na zaciatku... prepise sa pri volani metody zvonka
+            this.SetStyle(ControlStyles.OptimizedDoubleBuffer, true);
             // Configure the Form for this example.
             this.Text = "User double buffering";
             this.MouseDown += new MouseEventHandler(this.MouseDownHandler);
             this.MouseDown += klikMysi;
             this.MouseMove += pohybMysi;
             this.MouseUp += uvolnenieMysi;
+            //this.PreviewKeyDown += klikKlavesy;
             this.Resize += new EventHandler(this.OnResize);
             this.SetStyle(ControlStyles.AllPaintingInWmPaint | ControlStyles.UserPaint, true);
 
@@ -88,167 +181,75 @@ namespace JDLMLab
                  new Rectangle(0, 0, this.Width, this.Height));
 
             // Draw the first frame to the buffer.
-            DrawToBuffer(grafx.Graphics);
+            //DrawToBuffer(grafx.Graphics);
         }
 
-        private void uvolnenieMysi(object sender, MouseEventArgs e)
+        public void klikKlavesy(object sender, KeyEventArgs e)
         {
-            dragging = false;
-        }
-
-        private void pohybMysi(object sender, MouseEventArgs e)
-        {
-            if (dragging)
+            if (e.KeyCode == Keys.PageUp)
             {
-                if (e.X < LeftMargin)
-                {
-                    endDragX = LeftMargin;
-                    CursorIndex = 0;
-                }
-                else if (e.X > Width - RightMargin)
-                {
-                    endDragX = Width - RightMargin;
-                    CursorIndex = NumberofDisplayedBars - 1;
-                }
-                else
-                {
-                    endDragX = e.X;
-                    int xGraf = e.X - LeftMargin;
-                    CursorIndex = NumberofDisplayedBars * xGraf / XAxisWidth;
-                }
-                blank();
-                DrawToBuffer(grafx.Graphics);
-                //grafx.Render(Graphics.FromHwnd(this.Handle));
-                Refresh();
+                zoomYIn();
             }
-        }
-        bool dragging;
-        private void klikMysi(object sender, MouseEventArgs e)
-        {
-            startDragX = e.X;
-            endDragX = e.X;
-            dragging = true;
-            if (e.Y > TopMargin && e.Y < Height - BottomMargin && e.X > LeftMargin && e.X < Width - RightMargin)
+            if (e.KeyCode == Keys.PageDown)
             {
-                int xGraf = e.X - LeftMargin;
-                CursorIndex = NumberofDisplayedBars * xGraf / XAxisWidth;
-                blank();
-                DrawToBuffer(grafx.Graphics);
-                Refresh();
+                zoomYOut();
             }
+            if (e.KeyCode == Keys.Q)
+            {
+                zoomXIn();
+            }
+            if (e.KeyCode == Keys.W)
+            {
+                zoomXOut();
+            }
+
         }
 
-        public void setParameters(double minX,double maxX,int pocetBodov,int pocetCyklov=1)
-        {
-            NumberofBars = pocetBodov;
-            this.pocetCyklov = pocetCyklov;
-            MinXView = minX;
-            MaxXView = maxX;
-            
-            this.SetStyle(ControlStyles.OptimizedDoubleBuffer, true);
-        }
-        
         /// <summary>
-        /// nastavit vsetky potrebne hodnoty pre dane meranie
+        /// set mininum and maximum on x axis
         /// </summary>
-        public void init()
-        {
-            dragging = false;
-            CurrentCycleNum = 1;
-            zoomYScalesIndex = 15;
-            NumberofDisplayedBars = NumberofBars;
-
-            CyclesKroky = new List<double[]>();
-            CyclesKroky.Add(new double[NumberofBars]);
-            CyclesIntensities = new List<int[]>();
-            CyclesIntensities.Add(new int[NumberofBars]);
-            
-
-            Random r = new Random();
-            for (int i = 0; i < NumberofBars; i++)
-            {
-                CyclesIntensities[0][i] = r.Next(1000000);
-            }
-
-        }
-
-        internal void zoomXOut()
+        /// <param name="minX"></param>
+        /// <param name="maxX"></param>
+        public void setBoundsX(double minX, double maxX)
         {
 
         }
-        int start;
-
-        internal void zoomXIn()
-        {
-            if (NumberofDisplayedBars > 8 || true) //zrusit true
-            {
-                int oldNumber = NumberofDisplayedBars;
-                NumberofDisplayedBars /= 2;
-                int[] novePole = new int[NumberofDisplayedBars];
-
-                if (CursorIndex - NumberofDisplayedBars / 2 >= 0)
-                {
-                    start = CursorIndex - NumberofDisplayedBars / 2 -1;
-                }
-                else
-                {
-                    start = 0;
-                }
-
-                if (CursorIndex + NumberofDisplayedBars / 2 > NumberofBars)
-                {
-                    start -= NumberofDisplayedBars / 2 - (oldNumber - CursorIndex) + 1;
-                }
-                //MessageBox.Show(NumberofDisplayedBars.ToString());
-                int[] starePole = CyclesIntensities[0];
-                int pom = start;
-                for (int i = 0; i < NumberofDisplayedBars; i++)
-                {
-                    novePole[i] = starePole[pom++];
-                }
-                CyclesIntensities[0] = novePole;
-                CursorIndex -= start;
-                obnov();
-            }
-
-        }
-
-        void obnov()
-        {
-            blank();
-            DrawToBuffer(grafx.Graphics);
-            Refresh();
-        }
-
-        internal void setCursor(MouseEventArgs e)
+        /// <summary>
+        /// set mininum and maximum on x axis
+        /// </summary>
+        /// <param name="minY"></param>
+        /// <param name="maxY"></param>
+        public void setBoundsY(double minY, double maxY)
         {
             
+
         }
 
-        private long[] zoomYScales;
-        private int zoomYScalesIndex;
-        
-
-        internal void zoomYIn()
+        public void addDataPoint(double x, double y, int intensity)
         {
-            if (zoomYScalesIndex == 0) return;
-            zoomYScalesIndex--;
-            blank();
-            DrawToBuffer(grafx.Graphics);
-            Refresh();
+            Cycles[CurrentCycleNum].Points.Add(new DataPoint(x, y, intensity));
+            obnov();
         }
-        internal void zoomYOut()
+
+        private void addIntensityPoint(int i, int Intensity)
         {
-            if (zoomYScalesIndex == zoomYScales.Length - 1) return;
-            zoomYScalesIndex++;
-
-            blank();
-            DrawToBuffer(grafx.Graphics);
-            Refresh();
-
-
-
+            addIntensityPoint(i, Intensity, CurrentCycleNum);
         }
+
+        private void addIntensityPoint(int i, int Intensity, int cycleNum)
+        {
+            try
+            {
+                CyclesIntensities[cycleNum][i] = Intensity;
+            }
+            catch (ArgumentOutOfRangeException e)
+            {
+                CyclesIntensities.Add(new int[NumberofBars]);
+                addIntensityPoint(i, Intensity, cycleNum);
+            }
+        }
+
+
         private void MouseDownHandler(object sender, MouseEventArgs e)
         {
             return; //  !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
@@ -311,13 +312,182 @@ namespace JDLMLab
             grafx = context.Allocate(this.CreateGraphics(),
                 new Rectangle(0, 0, this.Width, this.Height));
 
-            
+
 
             // Cause the background to be cleared and redraw.
             count = 6;
             DrawToBuffer(grafx.Graphics);
             this.Refresh();
         }
+        private void uvolnenieMysi(object sender, MouseEventArgs e)
+        {
+            dragging = false;
+        }
+
+        private void pohybMysi(object sender, MouseEventArgs e)
+        {
+            if (dragging)
+            {
+                if (e.X < LeftMargin)
+                {
+                    endDragX = LeftMargin;
+                    CursorIndex = 0;
+                }
+                else if (e.X > Width - RightMargin)
+                {
+                    endDragX = Width - RightMargin;
+                    CursorIndex = NumberofDisplayedBars - 1;
+                }
+                else
+                {
+                    endDragX = e.X;
+                    int xGraf = e.X - LeftMargin;
+                    CursorIndex = NumberofDisplayedBars * xGraf / XAxisWidth;
+                }
+                blank();
+                DrawToBuffer(grafx.Graphics);
+                //grafx.Render(Graphics.FromHwnd(this.Handle));
+                Refresh();
+            }
+        }
+        bool dragging;
+        bool scrollBarDragging;
+
+        private void klikMysi(object sender, MouseEventArgs e)
+        {
+            startDragX = e.X;
+            endDragX = e.X;
+            if (e.Y > TopMargin && e.Y < Height - BottomMargin && e.X > LeftMargin && e.X < Width - RightMargin)
+            {
+                dragging = true;
+                int xGraf = e.X - LeftMargin;
+                CursorIndex = NumberofDisplayedBars * xGraf / XAxisWidth;
+                blank();
+                DrawToBuffer(grafx.Graphics);
+                Refresh();
+            }
+
+            if (e.Y > TopMargin && e.Y < Height - BottomMargin && e.X > LeftMargin && e.X < Width - RightMargin)
+            {
+                dragging = true;
+                int xGraf = e.X - LeftMargin;
+                CursorIndex = NumberofDisplayedBars * xGraf / XAxisWidth;
+                blank();
+                DrawToBuffer(grafx.Graphics);
+                Refresh();
+            }
+        }
+
+
+        /// <summary>
+        /// nastavi minimalne a maximalne x, pocetbodov, a pripadne pocet cyklov
+        /// </summary>
+        /// <param name="minX"></param>
+        /// <param name="maxX"></param>
+        /// <param name="pocetBodov"> je pocet barov</param>
+        /// <param name="cyklov"></param>
+        public void setParameters(double minX,double maxX,int pocetBodov,int cyklov=1)
+        {
+            NumberofBars = pocetBodov;
+            PocetCyklov = cyklov;
+            MinXView = minX;
+            MaxXView = maxX;
+            
+            init();
+        }
+        
+        /// <summary>
+        /// nastavit vsetky potrebne hodnoty pre dane meranie
+        /// </summary>
+        public void init()
+        {
+            dragging = false;
+            CurrentCycleNum = 0;
+            zoomYScalesIndex = 15;
+            NumberofDisplayedBars = NumberofBars;   //nastavi zoom na 100%
+            firstDisplayedBarIndex = 0;
+            //nastavit datapointy na potrebne velkosti a hodnoty
+            Cycles = new List<DataPoints>(PocetCyklov);
+            for (int i=0;i<PocetCyklov;i++)
+            {
+                Cycles.Add(new DataPoints(NumberofBars));
+            }
+            ScrollDriverX = 0;
+            ScrollDriverWidth = 100;
+            //Random r = new Random();            
+        }
+
+        internal void zoomXOut()
+        {
+
+        }
+
+
+        internal void zoomXIn()
+        {
+            if (NumberofDisplayedBars > 8 || true) //zrusit true
+            {
+                int oldNumber = NumberofDisplayedBars;
+                NumberofDisplayedBars /= 2;
+                int[] novePole = new int[NumberofDisplayedBars];
+
+                if (CursorIndex - NumberofDisplayedBars / 2 >= 0)
+                {
+                    firstDisplayedBarIndex = CursorIndex - NumberofDisplayedBars / 2 -1 - NumberofDisplayedBars % 2;
+                }
+                else
+                {
+                    firstDisplayedBarIndex = 0;
+                }
+
+                if (CursorIndex + NumberofDisplayedBars / 2 > NumberofBars)
+                {
+                    firstDisplayedBarIndex -= NumberofDisplayedBars / 2 - (oldNumber - CursorIndex) + 1;
+                }
+                
+                CursorIndex -= firstDisplayedBarIndex;
+                obnov();
+            }
+
+        }
+
+        void obnov()
+        {
+            blank();
+            DrawToBuffer(grafx.Graphics);
+            Refresh();
+        }
+
+        internal void setCursor(MouseEventArgs e)
+        {
+            
+        }
+
+        private long[] zoomYScales;
+        private int zoomYScalesIndex;
+        
+
+        internal void zoomYIn()
+        {
+            if (zoomYScalesIndex == 0) return;
+            zoomYScalesIndex--;
+            blank();
+            DrawToBuffer(grafx.Graphics);
+            Refresh();
+        }
+        internal void zoomYOut()
+        {
+            if (zoomYScalesIndex == zoomYScales.Length - 1) return;
+            zoomYScalesIndex++;
+
+            blank();
+            DrawToBuffer(grafx.Graphics);
+            Refresh();
+
+
+
+        }
+        
 
 
         /// <summary>
@@ -338,34 +508,67 @@ namespace JDLMLab
             /// testovacie texty
             ///
             g.DrawString(CursorIndex.ToString(), new Font("Arial", 8), Brushes.White, 10, 34);
-            g.DrawString(start.ToString(), new Font("Arial", 8), Brushes.White, 100, 30);
-            g.DrawString(CyclesIntensities[0].Length.ToString(), new Font("Arial", 8), Brushes.White, 100, 60);
+            g.DrawString(firstDisplayedBarIndex.ToString(), new Font("Arial", 8), Brushes.White, 100, 30);
+
             ///
             ///...
             /// 
 
-         
+
+            ///
+            /// scrollbar
+            /// 
+            int scrollbarX = (int)(LeftMargin + 0.01 * XAxisWidth);
+            g.FillRectangle(new SolidBrush(Color.Orange), new Rectangle(
+                LeftMargin, 
+                Height - BottomMargin + 5, 
+                (int)(XAxisWidth), 
+                10));
+            //scrollDriver
+            g.FillRectangle(new SolidBrush(Color.White), new Rectangle(
+                scrollbarX+ScrollDriverX, 
+                Height - BottomMargin + 8, 
+                ScrollDriverWidth, 
+                6));
 
             ///
             ///bars
             /// 
-            int[] hodnoty = CyclesIntensities[0];
-            double barWidth = (double)(Width - LeftMargin - RightMargin) / (double)hodnoty.Length;
-            int heightYAxis = Height - TopMargin - BottomMargin;
-            for (int i = 0; i < hodnoty.Length; i++)
+            List<DataPoint> dataPoints=Cycles[CurrentCycleNum].Points;
+            //kreslime bary len ked je aspon jeden
+            double barWidth;
+            if (dataPoints.Count > 0)
             {
-                long barHeight = (long)((heightYAxis) * hodnoty[i]) / zoomYScales[zoomYScalesIndex];
-                int barHeightInt = (int)barHeight;
-                g.DrawLine(new Pen(Color.Aqua,
-                    (int)Math.Round(barWidth)),
-                    new Point(
-                        LeftMargin + (int)Math.Round(i * barWidth) + (int)Math.Round(barWidth / 2),
-                          Height - BottomMargin),
-                    new Point(
-                        LeftMargin + (int)Math.Round(i * barWidth) + (int)Math.Round(barWidth / 2),
-                        Height - BottomMargin - barHeightInt));
-            }
+                barWidth = (double)(XAxisWidth) / (double)(NumberofDisplayedBars-firstDisplayedBarIndex);
+                for (int i = firstDisplayedBarIndex; i <firstDisplayedBarIndex+ NumberofDisplayedBars; i++)
+                {
+                    long barHeight;
+                    try {
+                        barHeight = (long)((yAxisHeight) * dataPoints[i].Intensity) / zoomYScales[zoomYScalesIndex];
+                    }
+                    catch(ArgumentOutOfRangeException e)
+                    {
+                        //ak dalsie datapointy este nie su
+                        barHeight = 0;
+                    }
+                    int barHeightInt = (int)barHeight;
+                    g.DrawLine(new Pen(Color.Aqua,
+                        (int)Math.Round(barWidth)),
+                        new Point(
+                            LeftMargin + (int)Math.Round(i * barWidth) + (int)Math.Round(barWidth / 2),
+                              Height - BottomMargin),
+                        new Point(
+                            LeftMargin + (int)Math.Round(i * barWidth) + (int)Math.Round(barWidth / 2),
+                            Height - BottomMargin - barHeightInt));
+                }
 
+                ///
+                ///cursor
+                /// 
+                g.DrawLine(new Pen(Color.Red, 1),
+                    new Point((int)(CursorIndex * barWidth + LeftMargin + barWidth / 2), TopMargin),
+                    new Point((int)(CursorIndex * barWidth + LeftMargin + barWidth / 2), Height - BottomMargin));
+            }
             ///
             /// select
             ///
@@ -392,12 +595,7 @@ namespace JDLMLab
             
 
 
-            ///
-            ///cursor
-            /// 
-            g.DrawLine(new Pen(Color.Red, 1),
-                new Point((int)(CursorIndex * barWidth + LeftMargin + barWidth / 2), TopMargin),
-                new Point((int)(CursorIndex * barWidth + LeftMargin + barWidth / 2), Height - BottomMargin));
+            
 
             ///
             ///Y labels
@@ -440,86 +638,6 @@ namespace JDLMLab
 
 
 
-        /// <summary>
-        /// set mininum and maximum on x axis
-        /// </summary>
-        /// <param name="minX"></param>
-        /// <param name="maxX"></param>
-        public void setBoundsX(double minX, double maxX)
-        {
-
-        }
-        /// <summary>
-        /// set mininum and maximum on x axis
-        /// </summary>
-        /// <param name="minY"></param>
-        /// <param name="maxY"></param>
-        public void setBoundsY(double minY, double maxY)
-        {
-
-        }
         
-
-        /// <summary>
-        /// refresh rate in miliseconds
-        /// </summary>
-        public int RefreshRate { get; set; }
-        public int CurrentCycleNum { get; set; }
-        public int pocetCyklov { get; set; }
-        public double MinX { get; set; }
-        public double MaxX { get; set; }
-        public double MinY { get; set; }
-        public double MaxY { get; set; }
-        public double ScaleX { get; set; }
-        public double ScaleY { get; set; }
-        public int BottomMargin { get; set; }
-        public int TopMargin { get; set; }
-        public int LeftMargin { get; set; }
-        public int RightMargin { get; set; }
-        private int cisloKroku { get; set; }
-        public int NumberofBars { get; private set; }
-        public int XAxisWidth { get
-            {
-                return Width - LeftMargin - RightMargin;
-            }
-       }
-        /// <summary>
-        /// bar number at which the cursor is.
-        /// </summary>
-        int CursorIndex { get; set; }
-        /// <summary>
-        /// number of currently displayed bars
-        /// </summary>
-        int NumberofDisplayedBars { get; set; }
-        public List<double[]> CyclesKroky { get; private set; }
-        public double MaxXView { get; private set; }
-        public double MinXView { get; private set; }
-
-        private Dictionary<double, int> DataPoints;
-        
-        public void addDataPoint(double x,double y,int intensity)
-        {
-            addIntensityPoint(cisloKroku, intensity);
-            CyclesKroky[CurrentCycleNum][cisloKroku++] = x;
-        }
-
-        private void addIntensityPoint(int i, int Intensity)
-        {
-            addIntensityPoint(i, Intensity, CurrentCycleNum);
-        }
-
-        private void addIntensityPoint(int i, int Intensity, int cycleNum)
-        {
-            try
-            {
-                CyclesIntensities[cycleNum][i]= Intensity;
-            }
-            catch (ArgumentOutOfRangeException e)
-            {
-                CyclesIntensities.Add(new int[NumberofBars]);
-                addIntensityPoint(i, Intensity, cycleNum);
-            }
-        }
-
     }
 }
