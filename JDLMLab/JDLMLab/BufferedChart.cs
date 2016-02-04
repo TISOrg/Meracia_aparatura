@@ -100,9 +100,22 @@ namespace JDLMLab
         {
             if (dragging)
             {
-                endDragX = e.X;
-                int xGraf = e.X - LeftMargin;
-                CursorIndex = NumberofDisplayedBars * xGraf / XAxisWidth;
+                if (e.X < LeftMargin)
+                {
+                    endDragX = LeftMargin;
+                    CursorIndex = 0;
+                }
+                else if (e.X > Width - RightMargin)
+                {
+                    endDragX = Width - RightMargin;
+                    CursorIndex = NumberofDisplayedBars - 1;
+                }
+                else
+                {
+                    endDragX = e.X;
+                    int xGraf = e.X - LeftMargin;
+                    CursorIndex = NumberofDisplayedBars * xGraf / XAxisWidth;
+                }
                 blank();
                 DrawToBuffer(grafx.Graphics);
                 //grafx.Render(Graphics.FromHwnd(this.Handle));
