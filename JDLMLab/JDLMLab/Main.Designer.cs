@@ -29,8 +29,6 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Main));
             this.serialPort1 = new System.IO.Ports.SerialPort(this.components);
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
@@ -39,7 +37,6 @@
             this.toolsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.loadToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.oProgrameToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.graf = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.sidebar = new System.Windows.Forms.Panel();
             this.button3 = new System.Windows.Forms.Button();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
@@ -63,7 +60,6 @@
             this.dataDisplayCurrent = new System.Windows.Forms.RadioButton();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.richTextBox1 = new System.Windows.Forms.RichTextBox();
-            this.displayModeAuto = new System.Windows.Forms.RadioButton();
             this.displayModeLog = new System.Windows.Forms.RadioButton();
             this.displayModeLin = new System.Windows.Forms.RadioButton();
             this.button1 = new System.Windows.Forms.Button();
@@ -73,7 +69,6 @@
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.kontainerPreGraf = new System.Windows.Forms.Panel();
             this.menuStrip1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.graf)).BeginInit();
             this.sidebar.SuspendLayout();
             this.groupBox4.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -136,29 +131,6 @@
             this.oProgrameToolStripMenuItem.Size = new System.Drawing.Size(52, 20);
             this.oProgrameToolStripMenuItem.Text = "About";
             this.oProgrameToolStripMenuItem.Click += new System.EventHandler(this.oProgrameToolStripMenuItem_Click);
-            // 
-            // graf
-            // 
-            this.graf.BorderlineWidth = 0;
-            chartArea1.AlignmentOrientation = ((System.Windows.Forms.DataVisualization.Charting.AreaAlignmentOrientations)((System.Windows.Forms.DataVisualization.Charting.AreaAlignmentOrientations.Vertical | System.Windows.Forms.DataVisualization.Charting.AreaAlignmentOrientations.Horizontal)));
-            chartArea1.AxisX.IsMarginVisible = false;
-            chartArea1.AxisY.IsMarginVisible = false;
-            chartArea1.BorderWidth = 0;
-            chartArea1.Name = "ChartArea1";
-            this.graf.ChartAreas.Add(chartArea1);
-            this.graf.Location = new System.Drawing.Point(24, 16);
-            this.graf.Margin = new System.Windows.Forms.Padding(0);
-            this.graf.Name = "graf";
-            series1.ChartArea = "ChartArea1";
-            series1.IsVisibleInLegend = false;
-            series1.Name = "Series1";
-            this.graf.Series.Add(series1);
-            this.graf.Size = new System.Drawing.Size(56, 59);
-            this.graf.TabIndex = 8;
-            this.graf.Text = "chart1";
-            this.graf.Visible = false;
-            this.graf.Click += new System.EventHandler(this.graf_Click);
-            this.graf.KeyDown += new System.Windows.Forms.KeyEventHandler(this.graf_KeyDown);
             // 
             // sidebar
             // 
@@ -250,7 +222,7 @@
             this.groupBox3.Controls.Add(this.label2);
             this.groupBox3.Controls.Add(this.currentCycle);
             this.groupBox3.Controls.Add(this.label1);
-            this.groupBox3.Location = new System.Drawing.Point(3, 233);
+            this.groupBox3.Location = new System.Drawing.Point(3, 193);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(139, 121);
             this.groupBox3.TabIndex = 27;
@@ -343,7 +315,7 @@
             this.groupBox2.Controls.Add(this.dataDisplayAvg);
             this.groupBox2.Controls.Add(this.dataDisplaySum);
             this.groupBox2.Controls.Add(this.dataDisplayCurrent);
-            this.groupBox2.Location = new System.Drawing.Point(3, 116);
+            this.groupBox2.Location = new System.Drawing.Point(3, 87);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(139, 100);
             this.groupBox2.TabIndex = 25;
@@ -355,88 +327,80 @@
             this.dataDisplayAvg.AutoSize = true;
             this.dataDisplayAvg.Location = new System.Drawing.Point(16, 19);
             this.dataDisplayAvg.Name = "dataDisplayAvg";
-            this.dataDisplayAvg.Size = new System.Drawing.Size(60, 17);
+            this.dataDisplayAvg.Size = new System.Drawing.Size(44, 17);
             this.dataDisplayAvg.TabIndex = 20;
             this.dataDisplayAvg.TabStop = true;
-            this.dataDisplayAvg.Text = "Priemer";
+            this.dataDisplayAvg.Text = "Avg";
             this.dataDisplayAvg.UseVisualStyleBackColor = true;
+            this.dataDisplayAvg.Click += new System.EventHandler(this.dataDisplayAvg_Click);
             // 
             // dataDisplaySum
             // 
             this.dataDisplaySum.AutoSize = true;
             this.dataDisplaySum.Location = new System.Drawing.Point(16, 42);
             this.dataDisplaySum.Name = "dataDisplaySum";
-            this.dataDisplaySum.Size = new System.Drawing.Size(52, 17);
+            this.dataDisplaySum.Size = new System.Drawing.Size(46, 17);
             this.dataDisplaySum.TabIndex = 21;
             this.dataDisplaySum.TabStop = true;
-            this.dataDisplaySum.Text = "Suma";
+            this.dataDisplaySum.Text = "Sum";
             this.dataDisplaySum.UseVisualStyleBackColor = true;
+            this.dataDisplaySum.Click += new System.EventHandler(this.dataDisplaySum_Click);
             // 
             // dataDisplayCurrent
             // 
             this.dataDisplayCurrent.AutoSize = true;
             this.dataDisplayCurrent.Location = new System.Drawing.Point(16, 65);
             this.dataDisplayCurrent.Name = "dataDisplayCurrent";
-            this.dataDisplayCurrent.Size = new System.Drawing.Size(99, 17);
+            this.dataDisplayCurrent.Size = new System.Drawing.Size(87, 17);
             this.dataDisplayCurrent.TabIndex = 22;
             this.dataDisplayCurrent.TabStop = true;
-            this.dataDisplayCurrent.Text = "Aktuálny cyklus";
+            this.dataDisplayCurrent.Text = "Current cycle";
             this.dataDisplayCurrent.UseVisualStyleBackColor = true;
+            this.dataDisplayCurrent.Click += new System.EventHandler(this.dataDisplayCurrent_Click);
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.graf);
             this.groupBox1.Controls.Add(this.richTextBox1);
-            this.groupBox1.Controls.Add(this.displayModeAuto);
             this.groupBox1.Controls.Add(this.displayModeLog);
             this.groupBox1.Controls.Add(this.displayModeLin);
             this.groupBox1.Location = new System.Drawing.Point(3, 12);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(139, 98);
+            this.groupBox1.Size = new System.Drawing.Size(139, 69);
             this.groupBox1.TabIndex = 24;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Graphical display mode";
             // 
             // richTextBox1
             // 
-            this.richTextBox1.Location = new System.Drawing.Point(100, 42);
+            this.richTextBox1.Location = new System.Drawing.Point(79, 19);
             this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.Size = new System.Drawing.Size(15, 20);
+            this.richTextBox1.Size = new System.Drawing.Size(54, 31);
             this.richTextBox1.TabIndex = 10;
             this.richTextBox1.Text = "";
-            // 
-            // displayModeAuto
-            // 
-            this.displayModeAuto.AutoSize = true;
-            this.displayModeAuto.Location = new System.Drawing.Point(19, 65);
-            this.displayModeAuto.Name = "displayModeAuto";
-            this.displayModeAuto.Size = new System.Drawing.Size(46, 17);
-            this.displayModeAuto.TabIndex = 12;
-            this.displayModeAuto.TabStop = true;
-            this.displayModeAuto.Text = "auto";
-            this.displayModeAuto.UseVisualStyleBackColor = true;
             // 
             // displayModeLog
             // 
             this.displayModeLog.AutoSize = true;
-            this.displayModeLog.Location = new System.Drawing.Point(19, 42);
+            this.displayModeLog.Location = new System.Drawing.Point(16, 33);
             this.displayModeLog.Name = "displayModeLog";
             this.displayModeLog.Size = new System.Drawing.Size(39, 17);
             this.displayModeLog.TabIndex = 11;
             this.displayModeLog.TabStop = true;
             this.displayModeLog.Text = "log";
             this.displayModeLog.UseVisualStyleBackColor = true;
+            this.displayModeLog.CheckedChanged += new System.EventHandler(this.displayModeLog_CheckedChanged);
             // 
             // displayModeLin
             // 
             this.displayModeLin.AutoSize = true;
-            this.displayModeLin.Location = new System.Drawing.Point(19, 19);
+            this.displayModeLin.Location = new System.Drawing.Point(16, 17);
             this.displayModeLin.Name = "displayModeLin";
             this.displayModeLin.Size = new System.Drawing.Size(35, 17);
             this.displayModeLin.TabIndex = 10;
             this.displayModeLin.TabStop = true;
             this.displayModeLin.Text = "lin";
             this.displayModeLin.UseVisualStyleBackColor = true;
+            this.displayModeLin.CheckedChanged += new System.EventHandler(this.displayModeLin_CheckedChanged);
             // 
             // button1
             // 
@@ -496,6 +460,7 @@
             this.kontainerPreGraf.Name = "kontainerPreGraf";
             this.kontainerPreGraf.Size = new System.Drawing.Size(1037, 681);
             this.kontainerPreGraf.TabIndex = 10;
+            this.kontainerPreGraf.Paint += new System.Windows.Forms.PaintEventHandler(this.kontainerPreGraf_Paint);
             // 
             // Main
             // 
@@ -515,7 +480,6 @@
             this.Resize += new System.EventHandler(this.Main_Resize);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.graf)).EndInit();
             this.sidebar.ResumeLayout(false);
             this.sidebar.PerformLayout();
             this.groupBox4.ResumeLayout(false);
@@ -539,7 +503,6 @@
         private System.Windows.Forms.ToolStripMenuItem oProgrameToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem toolsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem loadToolStripMenuItem;
-        private System.Windows.Forms.DataVisualization.Charting.Chart graf;
         private System.Windows.Forms.Panel sidebar;
         private System.Windows.Forms.Button sidebarExportButton;
         private System.Windows.Forms.Button button2;
@@ -554,7 +517,6 @@
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.RadioButton displayModeAuto;
         private System.Windows.Forms.CheckBox stopAfterCycle;
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.TextBox currentCycle;
