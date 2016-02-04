@@ -37,7 +37,7 @@ namespace JDLMLab
         private void fillRandomDataPoints()
         {
             Random r = new Random();
-            bufferedChart.setParameters(0, 0, 10);
+            bufferedChart.setParameters(0, 0, 100);
             MinimumSize=new System.Drawing.Size(sidebar.Width+bufferedChart.LeftMargin+bufferedChart.RightMargin+100,bufferedChart.BottomMargin+bufferedChart.TopMargin+100);
             for (double i = 0; i < 100; i++)
             {
@@ -342,6 +342,7 @@ namespace JDLMLab
             {
                 bufferedChart.DisplayAxisMode = BufferedChart.DisplayAxisModes.Lin;                
             }
+            bufferedChart.obnov();
         }
 
         private void displayModeLog_CheckedChanged(object sender, EventArgs e)
@@ -350,6 +351,7 @@ namespace JDLMLab
             {
                 bufferedChart.DisplayAxisMode = BufferedChart.DisplayAxisModes.Log;
             }
+            bufferedChart.obnov();
         }
         private void displayModeAuto_CheckedChanged(object sender, EventArgs e)
         {
