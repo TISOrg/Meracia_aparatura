@@ -102,7 +102,16 @@ namespace JDLMLab
 
         private void menuToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            NoveMeranieWindow setmerania = new NoveMeranieWindow();
+            DialogResult res = setmerania.ShowDialog();
+            if (res == DialogResult.OK)
+            {
+                //hodnota setMerania.parametreMerania obsahuje instanciu triedy measurementsparameters
+                //ktora obsahuje vsetky informacie na zacatie merania.
+                measurementControl = new MeasurementControl(setmerania.parametreMerania);
 
+
+            }
         }
 
         private void startMeranie_click(object sender, EventArgs e)

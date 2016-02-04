@@ -34,8 +34,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Main));
             this.serialPort1 = new System.IO.Ports.SerialPort(this.components);
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
-            this.menuToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.nastaveniaMeraniaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.noveMeranieMainMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.toolsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.loadToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.oProgrameToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -89,7 +88,7 @@
             // menuStrip1
             // 
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.menuToolStripMenuItem,
+            this.noveMeranieMainMenu,
             this.toolsToolStripMenuItem,
             this.loadToolStripMenuItem,
             this.oProgrameToolStripMenuItem});
@@ -100,21 +99,12 @@
             this.menuStrip1.Text = "menuStrip1";
             this.menuStrip1.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.menuStrip1_ItemClicked);
             // 
-            // menuToolStripMenuItem
+            // noveMeranieMainMenu
             // 
-            this.menuToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.nastaveniaMeraniaToolStripMenuItem});
-            this.menuToolStripMenuItem.Name = "menuToolStripMenuItem";
-            this.menuToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
-            this.menuToolStripMenuItem.Text = "File";
-            this.menuToolStripMenuItem.Click += new System.EventHandler(this.menuToolStripMenuItem_Click);
-            // 
-            // nastaveniaMeraniaToolStripMenuItem
-            // 
-            this.nastaveniaMeraniaToolStripMenuItem.Name = "nastaveniaMeraniaToolStripMenuItem";
-            this.nastaveniaMeraniaToolStripMenuItem.Size = new System.Drawing.Size(174, 22);
-            this.nastaveniaMeraniaToolStripMenuItem.Text = "New measurement";
-            this.nastaveniaMeraniaToolStripMenuItem.Click += new System.EventHandler(this.nastaveniaMeraniaToolStripMenuItem_Click);
+            this.noveMeranieMainMenu.Name = "noveMeranieMainMenu";
+            this.noveMeranieMainMenu.Size = new System.Drawing.Size(119, 20);
+            this.noveMeranieMainMenu.Text = "New measurement";
+            this.noveMeranieMainMenu.Click += new System.EventHandler(this.menuToolStripMenuItem_Click);
             // 
             // toolsToolStripMenuItem
             // 
@@ -146,14 +136,14 @@
             chartArea1.BorderWidth = 0;
             chartArea1.Name = "ChartArea1";
             this.graf.ChartAreas.Add(chartArea1);
-            this.graf.Location = new System.Drawing.Point(24, 16);
+            this.graf.Location = new System.Drawing.Point(28, 0);
             this.graf.Margin = new System.Windows.Forms.Padding(0);
             this.graf.Name = "graf";
             series1.ChartArea = "ChartArea1";
             series1.IsVisibleInLegend = false;
             series1.Name = "Series1";
             this.graf.Series.Add(series1);
-            this.graf.Size = new System.Drawing.Size(56, 59);
+            this.graf.Size = new System.Drawing.Size(70, 82);
             this.graf.TabIndex = 8;
             this.graf.Text = "chart1";
             this.graf.Visible = false;
@@ -534,8 +524,7 @@
         #endregion
         private System.IO.Ports.SerialPort serialPort1;
         private System.Windows.Forms.MenuStrip menuStrip1;
-        private System.Windows.Forms.ToolStripMenuItem menuToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem nastaveniaMeraniaToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem noveMeranieMainMenu;
         private System.Windows.Forms.ToolStripMenuItem oProgrameToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem toolsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem loadToolStripMenuItem;
