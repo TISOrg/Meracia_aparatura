@@ -217,7 +217,6 @@ namespace JDLMLab
         private void dataRecieved(object sender, SerialDataReceivedEventArgs e)
         {
             text = serialPort.ReadLine();
-            //richTextBox1.AppendText("dd");
             richTextBox1.AppendText(text);
         }
         double i;
