@@ -94,7 +94,10 @@ namespace JDLMLab
                 return Height - BottomMargin - TopMargin;
             }
         }
-        int ScrollDriverWidth{get;set;}
+        int ScrollDriverWidth{get
+            {
+                return (int)((double)(NumberofDisplayedBars * (double)(XAxisWidth) / (double)NumberofBars));
+            }}
         int ScrollDriverX{get;set;}
         int ScrollBarWidth { get
             {
@@ -216,7 +219,7 @@ namespace JDLMLab
             if (e.KeyCode == Keys.Q)
             {
                 zoomXIn();
-                ScrollDriverX = firstDisplayedBarIndex*ScrollBarWidth / NumberofBars;
+                ScrollDriverX = LeftMargin+ firstDisplayedBarIndex*ScrollBarWidth / NumberofBars;
                 blank();
                 DrawToBuffer(grafx.Graphics);
                 Refresh();
@@ -346,6 +349,7 @@ namespace JDLMLab
         private void uvolnenieMysi(object sender, MouseEventArgs e)
         {
             dragging = false;
+            scrollBarDragging = false;
         }
 
         private void pohybMysi(object sender, MouseEventArgs e)
@@ -373,6 +377,16 @@ namespace JDLMLab
                 //grafx.Render(Graphics.FromHwnd(this.Handle));
                 Refresh();
             }
+            if (scrollBarDragging)
+            {
+                
+                ScrollDriverX = e.X-ScrollDriverWidth/2;
+                if (ScrollDriverX < LeftMargin || ScrollDriverX+ScrollDriverWidth>Width-RightMargin) return;
+
+                firstDisplayedBarIndex = (int)((double)((ScrollDriverX - LeftMargin) * NumberofBars) / (double)XAxisWidth);
+                obnov();
+            }
+
         }
         bool dragging;
         bool scrollBarDragging;
@@ -391,18 +405,25 @@ namespace JDLMLab
                 Refresh();
             }
 
-            //if (e.Y > scrollBarY && e.Y < scrollBarY+scrollBarHeight && e.X > LeftMargin && e.X < Width - RightMargin)
-            //{
-            //    //sme v scrollbare
-            //    ScrollDriverX = e.X - ScrollDriverWidth / 2;
-            //    if (ScrollDriverX < 0) ScrollDriverX = 0;
-            //    else if (ScrollDriverX + ScrollDriverWidth > Width - RightMargin)
-            //          ScrollDriverX = Width - RightMargin - ScrollBarWidth;
+            if (e.Y > scrollBarY && e.Y < scrollBarY + scrollBarHeight && e.X > LeftMargin && e.X < Width - RightMargin)
+            {
+                //sme v scrollbare
+                scrollBarDragging= true;
+                ScrollDriverX = e.X - ScrollDriverWidth/2;
+                if (ScrollDriverX < LeftMargin)
+                {
+                    ScrollDriverX = LeftMargin;
+                }
 
-            //    blank();
-            //    DrawToBuffer(grafx.Graphics);
-            //    Refresh();
-            //}
+                if (ScrollDriverX + ScrollDriverWidth > Width - RightMargin)
+                {
+
+                    ScrollDriverX = Width - RightMargin- ScrollDriverWidth;
+                }
+
+                firstDisplayedBarIndex = (int)((double)((ScrollDriverX - LeftMargin) * NumberofBars) / (double)XAxisWidth);
+                obnov();
+            }
         }
 
 
@@ -439,8 +460,8 @@ namespace JDLMLab
             {
                 Cycles.Add(new DataPoints(NumberofBars));
             }
-            ScrollDriverX = 0;
-            ScrollDriverWidth = 100;
+            ScrollDriverX = LeftMargin;
+            
             //Random r = new Random();            
         }
 
@@ -539,7 +560,7 @@ namespace JDLMLab
             ///
             /// scrollbar
             /// 
-            ScrollDriverWidth = (int)((double)(NumberofDisplayedBars*(double)(XAxisWidth) / (double)NumberofBars));
+            
             int scrollbarX = (int)(LeftMargin + 0.01 * XAxisWidth);
             
             g.FillRectangle(new SolidBrush(Color.BlueViolet), new Rectangle(
@@ -549,7 +570,7 @@ namespace JDLMLab
                 scrollBarHeight));
             //scrollDriver
             g.FillRectangle(new SolidBrush(Color.White), new Rectangle(
-                LeftMargin+ScrollDriverX, 
+                ScrollDriverX, 
                 Height - BottomMargin + 7, 
                 ScrollDriverWidth, 
                 6));

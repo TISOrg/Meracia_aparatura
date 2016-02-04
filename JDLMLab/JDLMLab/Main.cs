@@ -1,9 +1,8 @@
-﻿using System;  
+﻿using System;
 using System.Threading;
 using System.Windows.Forms;
 using System.IO.Ports;
 using System.Collections.Generic;
-using System.Drawing;
 
 namespace JDLMLab
 {
@@ -26,10 +25,7 @@ namespace JDLMLab
             ResumeLayout();
 
             fillRandomDataPoints();
-            
-            
-            
-            
+
             //x=new XXXDriver();
             //x.open();
             //x.setTimer(1000);
@@ -38,15 +34,10 @@ namespace JDLMLab
 
         }
 
-        private void Panel1_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
         private void fillRandomDataPoints()
         {
             Random r = new Random();
-            bufferedChart.setParameters(0, 0, 100);
+            bufferedChart.setParameters(0, 0, 10);
             MinimumSize=new System.Drawing.Size(sidebar.Width+bufferedChart.LeftMargin+bufferedChart.RightMargin+100,bufferedChart.BottomMargin+bufferedChart.TopMargin+100);
             for (double i = 0; i < 100; i++)
             {
@@ -102,16 +93,7 @@ namespace JDLMLab
 
         private void menuToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            NoveMeranieWindow setmerania = new NoveMeranieWindow();
-            DialogResult res = setmerania.ShowDialog();
-            if (res == DialogResult.OK)
-            {
-                //hodnota setMerania.parametreMerania obsahuje instanciu triedy measurementsparameters
-                //ktora obsahuje vsetky informacie na zacatie merania.
-                measurementControl = new MeasurementControl(setmerania.parametreMerania);
 
-
-            }
         }
 
         private void startMeranie_click(object sender, EventArgs e)
@@ -226,6 +208,7 @@ namespace JDLMLab
         private void dataRecieved(object sender, SerialDataReceivedEventArgs e)
         {
             text = serialPort.ReadLine();
+            //richTextBox1.AppendText("dd");
             richTextBox1.AppendText(text);
         }
         double i;
