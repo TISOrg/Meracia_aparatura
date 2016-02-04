@@ -12,14 +12,14 @@ namespace JDLMLab
     class NITaskTimerClass : System.Windows.Forms.Timer
     {
         public Task UlohaCounter;
-        private NIDriver prevod;
+        private NIDriver f;
+       
 
-
-        public NITaskTimerClass(NIDriver formular)      //konstruktor
-        {                         
+        public NITaskTimerClass(NIDriver formular)
+        {                         //konstruktor
             UlohaCounter = new Task("Counter");
             this.Tick += TaskTimerClass_Tick;
-            prevod = formular;
+            f = formular;
             n = 0;
            
 
@@ -31,15 +31,18 @@ namespace JDLMLab
             {
                 if (n < 1)
                 {
-                    int hodnota = prevod.Counter.ReadSingleSampleInt32();
+                    MessageBox.Show("som tu"); 
+                    int hodnota = f.Counter.ReadSingleSampleInt32();
                     UlohaCounter.Stop();
                     UlohaCounter.Start();
-                    prevod.Intensity.Add(hodnota);
+                    f.Intensity.Add(hodnota);
                     n++;
                 }
                 else
                 {
                     Enabled = false;
+                    
+                    
                 }
             }
             catch (Exception ex)
