@@ -6,129 +6,89 @@ using System.Text;
 using NationalInstruments;
 using NationalInstruments.DAQmx;
 using System.Windows.Forms;
+using System.Threading;
+
 
 namespace JDLMLab
 {
 
     class NIDriver
     {
-        NITaskTimerClass mojaUlohaCounter;
-        string prevodnik = "Dev1";
+
+        public NIDriver(int pocetBodov)         //KONSTRUKTOR
+        {
+            UlohaCounter = new Task("Counter");
+            Intensity = new List<int>(pocetBodov);
+        }
+
+//        NITaskTimerClass mojaUlohaCounter;
+        public Task UlohaCounter;     
         private CIChannel CICh;
         public CounterReader Counter;
         public int[] ttlSignal;
-
+        string prevodnik = "Dev1";
         public int aktualnyKrok;
         public int last;
-        private int pocetKrokov;// = 20;
-        public List<int> Intensity { get; set; }
+        private int pocetKrokov;
 
-        public double Steptime { get {
-                return Steptime;
+        public List<int> Intensity { get; set; }
+        public double Steptime {
+            get;set;
+        }
+        public int NumOfSteps {
+            get {
+                return pocetKrokov;
             }
-            set {
-               mojaUlohaCounter.Interval = Convert.ToInt32(value) * 1000;
-               Steptime = value;
+            internal set {
+                pocetKrokov = value;
             }
         }
 
-        internal void triggerInit(double stepTime)
-        {
-            last = 0;
-            mojaUlohaCounter = new NITaskTimerClass(this);
-            mojaUlohaCounter.Interval = Convert.ToInt32(stepTime * 1000);
-            MessageBox.Show(mojaUlohaCounter.Interval.ToString());
-            // MessageBox.Show(NumOfSteps.ToString());
-            ttlSignal = new int[NumOfSteps];
+//---------------------------------------------------------------------------------------------------------------------------------------------
 
-            CICh = mojaUlohaCounter.UlohaCounter.CIChannels.CreateCountEdgesChannel(
+        internal void triggerInit(double casoKrok)
+        {
+            //     ttlSignal = new int[NumOfSteps];
+            Steptime = casoKrok;
+            CICh = UlohaCounter.CIChannels.CreateCountEdgesChannel(
                 prevodnik + "/ctr0",
                 prevodnik + "ctr0",
                 CICountEdgesActiveEdge.Falling,
                 0,
                 CICountEdgesCountDirection.Up
             );
-
-            mojaUlohaCounter.UlohaCounter.Control(TaskAction.Verify);
-
-            Counter = new CounterReader(mojaUlohaCounter.UlohaCounter.Stream);
-            mojaUlohaCounter.UlohaCounter.Start();
-
-            aktualnyKrok = 0;
+            UlohaCounter.Control(TaskAction.Verify);
+            Counter = new CounterReader(UlohaCounter.Stream);
+        //    UlohaCounter.Start();
+      
            
+           
+            
         }
 
         public void CounterStart()
         {
-            mojaUlohaCounter.Enabled = true;
-        }
-
-        public int NumOfSteps { get {
-                return pocetKrokov;
-            } internal set {
-                pocetKrokov = value;
-            } }
-
-        public NIDriver()
-        {
-
-            Intensity = new List<int>();
-        }
-
-        // ---------------ZAPIS ANALOG-----------
-        /// <summary>
-        /// Metoda nastavuje/zapisuje cez AD prevodnik hodnotu value.
-        /// </summary>
-        /// <param name="value"></param>
-        public void setAnalogOutput(double value)
-        {
-            Task analogOutTask = new Task();
-
-            AOChannel myAOChannel;
-
-            myAOChannel = analogOutTask.AOChannels.CreateVoltageChannel(
-                prevodnik + "/ao1",
-                "myAOChannel",
-                0,
-                5,
-                AOVoltageUnits.Volts
-                );
-
-            AnalogSingleChannelWriter writer = new AnalogSingleChannelWriter(analogOutTask.Stream);
-
-            writer.WriteSingleSample(true, value);
+            try
+            {
+                UlohaCounter.Start();
+                  
+                Thread.Sleep(Convert.ToInt32(Steptime) * 1000);
+                int hodnota = Counter.ReadSingleSampleInt32();
+                UlohaCounter.Stop();                    
+                Intensity.Add(hodnota);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
         }
 
 
-        // --------------DIGITAL CITANIE--------------
-        /// <summary>
-        /// 
-        /// </summary>
-        public void triggerInit()
-        {
-            last = 0;
-            mojaUlohaCounter = new NITaskTimerClass(this);
-            MessageBox.Show(mojaUlohaCounter.Interval.ToString());
-           // MessageBox.Show(NumOfSteps.ToString());
-            ttlSignal = new int[NumOfSteps];
 
-            CICh = mojaUlohaCounter.UlohaCounter.CIChannels.CreateCountEdgesChannel(
-                prevodnik + "/ctr0",
-                prevodnik + "ctr0",
-                CICountEdgesActiveEdge.Falling,
-                0,
-                CICountEdgesCountDirection.Up
-            );
 
-            mojaUlohaCounter.UlohaCounter.Control(TaskAction.Verify);
+//--------------------------------------------------------------------------------------------------------------------------------
 
-            Counter = new CounterReader(mojaUlohaCounter.UlohaCounter.Stream);
-            mojaUlohaCounter.UlohaCounter.Start();
-
-            aktualnyKrok = 0;
-            mojaUlohaCounter.Enabled = true;
-        }
-
+ 
         public void triggerSetTime()
         {
 
@@ -158,6 +118,25 @@ namespace JDLMLab
             return true;
         }
 
+        // ---------------ZAPIS ANALOG-----------
+        /// <summary>
+        /// Metoda nastavuje/zapisuje cez AD prevodnik hodnotu value.
+        /// </summary>
+        /// <param name="value"></param>
+        public void setAnalogOutput(double value)
+        {
+            Task analogOutTask = new Task();
+            AOChannel myAOChannel;
+            myAOChannel = analogOutTask.AOChannels.CreateVoltageChannel(
+                prevodnik + "/ao1",
+                "myAOChannel",
+                0,
+                5,
+                AOVoltageUnits.Volts
+                );
+            AnalogSingleChannelWriter writer = new AnalogSingleChannelWriter(analogOutTask.Stream);
+            writer.WriteSingleSample(true, value);
+        }
 
         //-------CITANIE ANALOG------
         /// <summary>
@@ -176,12 +155,11 @@ namespace JDLMLab
                 5,
                 AIVoltageUnits.Volts
                 );
-
             AnalogSingleChannelReader reader = new AnalogSingleChannelReader(analogInTask.Stream);
             double analogDataIn = reader.ReadSingleSample();
             return analogDataIn;
         }
 
-
+        
     }
 }
