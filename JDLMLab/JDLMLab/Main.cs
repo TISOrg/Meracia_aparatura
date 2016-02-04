@@ -16,44 +16,35 @@ namespace JDLMLab
         BufferedChart bufferedChart;
         public Main()
         {
-
-            
-           
             InitializeComponent();
             DoubleBuffered = true;
-
             SuspendLayout();
             bufferedChart = new BufferedChart();
             bufferedChart.Dock = DockStyle.Fill;
-            
-
             kontainerPreGraf.Controls.Add(bufferedChart);
-
             ResumeLayout();
 
-
-            grafcontrol =new GrafControl(graf);
-            //nacitat vsetky nastavenia
-            Random r= new Random();
-            for (double i = 1; i < 100; i++)
-            {
-                grafcontrol.addxyToGraf(i, r.NextDouble()*100, 1);    
-            }
-            //grafcontrol.addMeranie(1);
-            //grafcontrol.Cyklus = 2;
-            //grafcontrol.repaintGraf();
-
+            fillRandomDataPoints();
 
             //x=new XXXDriver();
             //x.open();
             //x.setTimer(1000);
             //Thread t = new Thread(new ThreadStart(x.startReading));
             // t.Start();
-            
-            
+
         }
 
-        
+        private void fillRandomDataPoints()
+        {
+            Random r = new Random();
+            bufferedChart.setParameters(0, 0, 10);
+            MinimumSize=new System.Drawing.Size(sidebar.Width+bufferedChart.LeftMargin+bufferedChart.RightMargin+100,bufferedChart.BottomMargin+bufferedChart.TopMargin+100);
+            for (double i = 0; i < 100; i++)
+            {
+            
+                bufferedChart.addDataPoint(i, i, r.Next(100, 10000));
+            }
+        }
 
         XXXDriver x;
         internal MeasurementControl MeasurementControl
@@ -102,16 +93,7 @@ namespace JDLMLab
 
         private void menuToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            NoveMeranieWindow setmerania = new NoveMeranieWindow();
-            DialogResult res = setmerania.ShowDialog();
-            if (res == DialogResult.OK)
-            {
-                //hodnota setMerania.parametreMerania obsahuje instanciu triedy measurementsparameters
-                //ktora obsahuje vsetky informacie na zacatie merania.
-                measurementControl = new MeasurementControl(setmerania.parametreMerania);
 
-
-            }
         }
 
         private void startMeranie_click(object sender, EventArgs e)
@@ -180,36 +162,25 @@ namespace JDLMLab
             drivers.Add(teplomer);
             drivers.Add(voltmeter);
 
-
             foreach (SerialPortDriver driver in drivers) {
                 driver.open();
                 driver.startReading();
-
             }
-
             timer1.Enabled = true;
-            
-
         }
 
         private void button2_Click_1(object sender, EventArgs e)
         {
-
             foreach (SerialPortDriver driver in drivers)
             {
                 driver.stopReading();
                 driver.close();
-                
-
             }
             timer1.Enabled = false;
-
         }
 
         private void Main_FormClosing(object sender, FormClosingEventArgs e)
         {
-            
-
         }
 
         private void timer1_Tick_1(object sender, EventArgs e)
@@ -232,9 +203,7 @@ namespace JDLMLab
                 }
 
         }
-         SerialPort serialPort;
-        
-        
+        SerialPort serialPort;
         static string text="";
         private void dataRecieved(object sender, SerialDataReceivedEventArgs e)
         {
@@ -331,23 +300,7 @@ namespace JDLMLab
                     return;
                 }
             }
-            if (e.KeyCode == Keys.PageUp)
-            {
-                bufferedChart.zoomYIn();
-            }
-            if (e.KeyCode == Keys.PageDown)
-            {
-                bufferedChart.zoomYOut();
-            }
-            if (e.KeyCode == Keys.Q)
-            {
-                bufferedChart.zoomXIn();
-            }
-            if (e.KeyCode == Keys.W)
-            {
-                bufferedChart.zoomXOut();
-            }
-
+            bufferedChart.klikKlavesy(sender, e );
 
         }
 
@@ -382,7 +335,59 @@ namespace JDLMLab
             kontainerPreGraf.Width = Width - sidebar.Width - 20;
         }
 
-       
+        
+        private void displayModeLin_CheckedChanged(object sender, EventArgs e)
+        {
+            if (displayModeLin.Checked)
+            {
+                bufferedChart.DisplayAxisMode = BufferedChart.DisplayAxisModes.Lin;                
+            }
+        }
 
+        private void displayModeLog_CheckedChanged(object sender, EventArgs e)
+        {
+            if (displayModeLog.Checked)
+            {
+                bufferedChart.DisplayAxisMode = BufferedChart.DisplayAxisModes.Log;
+            }
+        }
+        private void displayModeAuto_CheckedChanged(object sender, EventArgs e)
+        {
+            //if (displayModeAuto.Checked)
+            {
+                bufferedChart.DisplayAxisMode = BufferedChart.DisplayAxisModes.Auto;
+            }
+        }
+
+        private void dataDisplayAvg_CheckedChanged(object sender, EventArgs e)
+        {
+           
+            bufferedChart.DisplayDataMode = BufferedChart.DisplayDataModes.Avg;
+        }
+
+        private void dataDisplaySum_CheckedChanged(object sender, EventArgs e)
+        {
+            bufferedChart.DisplayDataMode = BufferedChart.DisplayDataModes.Avg;
+        }
+
+        private void dataDisplayAvg_Click(object sender, EventArgs e)
+        {
+            bufferedChart.DisplayDataMode = BufferedChart.DisplayDataModes.Avg;
+        }
+
+        private void dataDisplaySum_Click(object sender, EventArgs e)
+        {
+            bufferedChart.DisplayDataMode = BufferedChart.DisplayDataModes.Sum;
+        }
+
+        private void dataDisplayCurrent_Click(object sender, EventArgs e)
+        {
+            bufferedChart.DisplayDataMode = BufferedChart.DisplayDataModes.CurrentCycle;
+        }
+
+        private void kontainerPreGraf_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
     }
 }
