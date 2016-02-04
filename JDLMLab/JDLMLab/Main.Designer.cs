@@ -62,6 +62,7 @@
             this.dataDisplaySum = new System.Windows.Forms.RadioButton();
             this.dataDisplayCurrent = new System.Windows.Forms.RadioButton();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
             this.displayModeAuto = new System.Windows.Forms.RadioButton();
             this.displayModeLog = new System.Windows.Forms.RadioButton();
             this.displayModeLin = new System.Windows.Forms.RadioButton();
@@ -69,7 +70,6 @@
             this.sidebarExportButton = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.startbutton = new System.Windows.Forms.Button();
-            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.kontainerPreGraf = new System.Windows.Forms.Panel();
             this.menuStrip1.SuspendLayout();
@@ -397,6 +397,14 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Graphical display mode";
             // 
+            // richTextBox1
+            // 
+            this.richTextBox1.Location = new System.Drawing.Point(100, 42);
+            this.richTextBox1.Name = "richTextBox1";
+            this.richTextBox1.Size = new System.Drawing.Size(15, 20);
+            this.richTextBox1.TabIndex = 10;
+            this.richTextBox1.Text = "";
+            // 
             // displayModeAuto
             // 
             this.displayModeAuto.AutoSize = true;
@@ -475,14 +483,6 @@
             this.startbutton.UseVisualStyleBackColor = false;
             this.startbutton.Click += new System.EventHandler(this.startbutton_click);
             // 
-            // richTextBox1
-            // 
-            this.richTextBox1.Location = new System.Drawing.Point(100, 42);
-            this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.Size = new System.Drawing.Size(15, 20);
-            this.richTextBox1.TabIndex = 10;
-            this.richTextBox1.Text = "";
-            // 
             // timer1
             // 
             this.timer1.Interval = 500;
@@ -494,7 +494,7 @@
             this.kontainerPreGraf.Dock = System.Windows.Forms.DockStyle.Left;
             this.kontainerPreGraf.Location = new System.Drawing.Point(0, 24);
             this.kontainerPreGraf.Name = "kontainerPreGraf";
-            this.kontainerPreGraf.Size = new System.Drawing.Size(996, 681);
+            this.kontainerPreGraf.Size = new System.Drawing.Size(1037, 681);
             this.kontainerPreGraf.TabIndex = 10;
             // 
             // Main
@@ -511,7 +511,6 @@
             this.Name = "Main";
             this.Text = "CEMBA";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Main_FormClosed);
-            this.ResizeEnd += new System.EventHandler(this.Main_ResizeEnd);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Main_KeyDown);
             this.Resize += new System.EventHandler(this.Main_Resize);
             this.menuStrip1.ResumeLayout(false);

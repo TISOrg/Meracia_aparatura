@@ -87,8 +87,8 @@ namespace JDLMLab
                 //ktora obsahuje vsetky informacie na zacatie merania.
                 measurementControl = new MeasurementControl(setmerania.parametreMerania);
 
-                
-                
+                MinimumSize = new System.Drawing.Size(setmerania.parametreMerania.PocetBodov + bufferedChart.LeftMargin + bufferedChart.RightMargin + sidebar.Width, 0);
+
 
             }
         }
@@ -366,16 +366,11 @@ namespace JDLMLab
         }
         private void Main_Resize(object sender, EventArgs e)
         {
+            
             kontainerPreGraf.Width = Width - sidebar.Width - 20;
         }
 
-        private void Main_ResizeEnd(object sender, EventArgs e)
-        {
-            //SetStyle(ControlStyles.OptimizedDoubleBuffer, true);
-            //grafcontrol.graf.SetBounds(0, 0, Width - 200, Height - 100);
-
-            
-        }
+       
 
     }
 }

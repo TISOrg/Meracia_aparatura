@@ -37,9 +37,22 @@
             this.textBoxDescription = new System.Windows.Forms.TextBox();
             this.okButton = new System.Windows.Forms.Button();
             logoPictureBox = new System.Windows.Forms.PictureBox();
-            this.tableLayoutPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(logoPictureBox)).BeginInit();
+            this.tableLayoutPanel.SuspendLayout();
             this.SuspendLayout();
+            // 
+            // logoPictureBox
+            // 
+            logoPictureBox.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
+            logoPictureBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            logoPictureBox.Image = ((System.Drawing.Image)(resources.GetObject("logoPictureBox.Image")));
+            logoPictureBox.Location = new System.Drawing.Point(3, 3);
+            logoPictureBox.Name = "logoPictureBox";
+            this.tableLayoutPanel.SetRowSpan(logoPictureBox, 6);
+            logoPictureBox.Size = new System.Drawing.Size(276, 259);
+            logoPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            logoPictureBox.TabIndex = 12;
+            logoPictureBox.TabStop = false;
             // 
             // tableLayoutPanel
             // 
@@ -65,19 +78,6 @@
             this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 23.01887F));
             this.tableLayoutPanel.Size = new System.Drawing.Size(488, 265);
             this.tableLayoutPanel.TabIndex = 0;
-            // 
-            // logoPictureBox
-            // 
-            logoPictureBox.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
-            logoPictureBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            logoPictureBox.Image = ((System.Drawing.Image)(resources.GetObject("logoPictureBox.Image")));
-            logoPictureBox.Location = new System.Drawing.Point(3, 3);
-            logoPictureBox.Name = "logoPictureBox";
-            this.tableLayoutPanel.SetRowSpan(logoPictureBox, 6);
-            logoPictureBox.Size = new System.Drawing.Size(276, 259);
-            logoPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            logoPictureBox.TabIndex = 12;
-            logoPictureBox.TabStop = false;
             // 
             // labelProductName
             // 
@@ -172,9 +172,9 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "About CEMBA";
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.AboutBox1_KeyDown);
+            ((System.ComponentModel.ISupportInitialize)(logoPictureBox)).EndInit();
             this.tableLayoutPanel.ResumeLayout(false);
             this.tableLayoutPanel.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(logoPictureBox)).EndInit();
             this.ResumeLayout(false);
 
         }

@@ -6,7 +6,6 @@ using System.Drawing;
 using System.Windows.Forms;
 
 namespace JDLMLab
-
 {
     public class BufferedChart : Panel
     {
@@ -22,7 +21,7 @@ namespace JDLMLab
         private System.Windows.Forms.Timer timer1;
         private byte count;
         public int[] dataPoints { get; set; }
-        public List<int[]> cykly { get; set; }
+        public List<int[]> Cycles { get; set; }
         public BufferedChart() : base()
         {
 
@@ -44,6 +43,7 @@ namespace JDLMLab
             BottomMargin = 30;
             TopMargin = 10;
 
+            setParameters(0, 100, 18);
             init();
 
             // Configure the Form for this example.
@@ -82,13 +82,15 @@ namespace JDLMLab
             DrawToBuffer(grafx.Graphics);
         }
 
-        public void setParameters()
+        public void setParameters(double minX,double maxX,int pocetBodov,int pocetCyklov=1)
         {
-            start = 0;
-            NumberofDisplayedBars = NumberofBars;
+            NumberofBars = pocetBodov;
+            this.pocetCyklov = pocetCyklov;
+            MinXView = minX;
+            MaxXView = maxX;
             zoomYScalesIndex = 10;  //10. hodnota = 
         }
-
+        
         /// <summary>
         /// nastavit vsetky potrebne hodnoty pre dane meranie
         /// </summary>
@@ -96,13 +98,13 @@ namespace JDLMLab
         {
             CurrentCycleNum = 1;
             zoomYScalesIndex = 0;
-            NumberofBars = 100;
             NumberofDisplayedBars = NumberofBars;
             dataPoints = new int[NumberofBars];
 
-            Cycles = new List<Dictionary<double, double>>();
-            cykly = new List<int[]>();
-            cykly.Add(dataPoints);
+            Cycles = new List<int[]>();
+            Kroky = new List<double[]>();
+            Cycles.Add(dataPoints);
+            Kroky.Add(new double[NumberofBars]);
 
             Random r = new Random();
             for (int i = 0; i < dataPoints.Length; i++)
@@ -110,10 +112,6 @@ namespace JDLMLab
                 dataPoints[i] = r.Next(1000000);
             }
 
-
-
-
-            XAxisWidth = Width - LeftMargin - RightMargin;
         }
 
         internal void zoomXOut()
@@ -132,7 +130,7 @@ namespace JDLMLab
 
                 if (CursorIndex - NumberofDisplayedBars / 2 >= 0)
                 {
-                    start = CursorIndex - NumberofDisplayedBars / 2;
+                    start = CursorIndex - NumberofDisplayedBars / 2 -1;
                 }
                 else
                 {
@@ -143,14 +141,14 @@ namespace JDLMLab
                 {
                     start -= NumberofDisplayedBars / 2 - (oldNumber - CursorIndex) + 1;
                 }
-                MessageBox.Show(NumberofDisplayedBars.ToString());
-                int[] starePole = cykly[0];
+                //MessageBox.Show(NumberofDisplayedBars.ToString());
+                int[] starePole = Cycles[0];
                 int pom = start;
                 for (int i = 0; i < NumberofDisplayedBars; i++)
                 {
                     novePole[i] = starePole[pom++];
                 }
-                cykly[0] = novePole;
+                Cycles[0] = novePole;
                 CursorIndex -= start;
                 obnov();
             }
@@ -178,6 +176,7 @@ namespace JDLMLab
 
         private long[] zoomYScales;
         private int zoomYScalesIndex;
+        
 
         internal void zoomYIn()
         {
@@ -260,7 +259,7 @@ namespace JDLMLab
             grafx = context.Allocate(this.CreateGraphics(),
                 new Rectangle(0, 0, this.Width, this.Height));
 
-            XAxisWidth = Width - LeftMargin - RightMargin;
+            
 
             // Cause the background to be cleared and redraw.
             count = 6;
@@ -268,6 +267,11 @@ namespace JDLMLab
             this.Refresh();
         }
 
+
+        /// <summary>
+        /// hlavna funckia na kreslenie vsetkeho
+        /// </summary>
+        /// <param name="g"></param>
         private void DrawToBuffer(Graphics g)
         {
             // Clear the graphics buffer every five updates.
@@ -283,22 +287,17 @@ namespace JDLMLab
             ///
             g.DrawString(CursorIndex.ToString(), new Font("Arial", 8), Brushes.White, 10, 34);
             g.DrawString(start.ToString(), new Font("Arial", 8), Brushes.White, 100, 30);
-            g.DrawString(cykly[0].Length.ToString(), new Font("Arial", 8), Brushes.White, 100, 60);
+            g.DrawString(Cycles[0].Length.ToString(), new Font("Arial", 8), Brushes.White, 100, 60);
             ///
             ///...
             /// 
 
-            ///
-            ///ticks 
-            /// 
-
-
-
+         
 
             ///
             ///bars
             /// 
-            int[] hodnoty = cykly[0];
+            int[] hodnoty = Cycles[0];
             double barWidth = (double)(Width - LeftMargin - RightMargin) / (double)hodnoty.Length;
             int heightYAxis = Height - TopMargin - BottomMargin;
             for (int i = 0; i < hodnoty.Length; i++)
@@ -322,11 +321,18 @@ namespace JDLMLab
             g.DrawLine(new Pen(Color.Orange, 2), new Point(LeftMargin, TopMargin), new Point(LeftMargin, Height - BottomMargin));
 
             ///
+            /// ticks 
+            /// 
+            
+
+
+            ///
             ///cursor
             /// 
             g.DrawLine(new Pen(Color.Red, 1),
                 new Point((int)(CursorIndex * barWidth + LeftMargin + barWidth / 2), TopMargin),
                 new Point((int)(CursorIndex * barWidth + LeftMargin + barWidth / 2), Height - BottomMargin));
+
             ///
             ///Y labels
             /// 
@@ -334,14 +340,20 @@ namespace JDLMLab
             if (zoomYScalesIndex % 3 == 0) maxYAxisValue += "1";
             if (zoomYScalesIndex % 3 == 1) maxYAxisValue += "2";
             if (zoomYScalesIndex % 3 == 2) maxYAxisValue += "5";
-            maxYAxisValue += "x10E";
-            maxYAxisValue += (zoomYScalesIndex / 3 + 1).ToString();
+            maxYAxisValue += "x10";
+            
             g.DrawString(maxYAxisValue, new Font("Arial", 8), Brushes.White, LeftMargin - 50, TopMargin + 10);
+            string exponent= (zoomYScalesIndex / 3 + 1).ToString();
+            g.DrawString(exponent, new Font("Arial", 7), Brushes.White, LeftMargin - 25, TopMargin + 8);
 
             ///
             ///X labels
             /// 
 
+            ///
+            /// infoTexty - kolko tickov je nastavenych, rozsahy atd... 
+            /// 
+            //niekde dole zobrazit
 
             ///
             ///horne prekrytie grafu nad zaciatkom y osi
@@ -380,17 +392,14 @@ namespace JDLMLab
         {
 
         }
-        void resize(int width, int height)
-        {
-
-        }
+        
 
         /// <summary>
         /// refresh rate in miliseconds
         /// </summary>
         public int RefreshRate { get; set; }
         public int CurrentCycleNum { get; set; }
-
+        public int pocetCyklov { get; set; }
         public double MinX { get; set; }
         public double MaxX { get; set; }
         public double MinY { get; set; }
@@ -401,38 +410,48 @@ namespace JDLMLab
         public int TopMargin { get; set; }
         public int LeftMargin { get; set; }
         public int RightMargin { get; set; }
-
+        private int cisloKroku { get; set; }
         public int NumberofBars { get; private set; }
-        public int XAxisWidth { get; set; }
+        public int XAxisWidth { get
+            {
+                return Width - LeftMargin - RightMargin;
+            }
+       }
         /// <summary>
-        /// bar number at which the cursor is
+        /// bar number at which the cursor is.
         /// </summary>
         int CursorIndex { get; set; }
         /// <summary>
         /// number of currently displayed bars
         /// </summary>
         int NumberofDisplayedBars { get; set; }
+        public List<double[]> Kroky { get; private set; }
+        public double MaxXView { get; private set; }
+        public double MinXView { get; private set; }
 
-        public DataView d;
-
-        private Dictionary<double, double> DataPoints;
-        private List<Dictionary<double, double>> Cycles;
-
-        public void addDataPoint(double x, double Intensity)
+        private Dictionary<double, int> DataPoints;
+        
+        public void addDataPoint(double x,double y,int intensity)
         {
-            addDataPoint(x, Intensity, CurrentCycleNum);
+            addIntensityPoint(cisloKroku, intensity);
+            Kroky[CurrentCycleNum][cisloKroku++] = x;
         }
 
-        private void addDataPoint(double x, double Intensity, int cycleNum)
+        private void addIntensityPoint(int i, int Intensity)
+        {
+            addIntensityPoint(i, Intensity, CurrentCycleNum);
+        }
+
+        private void addIntensityPoint(int i, int Intensity, int cycleNum)
         {
             try
             {
-                Cycles[cycleNum].Add(x, Intensity);
+                Cycles[cycleNum][i]= Intensity;
             }
             catch (ArgumentOutOfRangeException e)
             {
-                Cycles.Add(new Dictionary<double, double>(NumberofBars));
-                addDataPoint(x, Intensity, cycleNum);
+                Cycles.Add(new int[NumberofBars]);
+                addIntensityPoint(i, Intensity, cycleNum);
             }
         }
 
