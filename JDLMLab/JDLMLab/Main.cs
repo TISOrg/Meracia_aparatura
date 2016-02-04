@@ -335,6 +335,7 @@ namespace JDLMLab
             {
                 bufferedChart.DisplayAxisMode = BufferedChart.DisplayAxisModes.Lin;                
             }
+            bufferedChart.obnov();
         }
 
         private void displayModeLog_CheckedChanged(object sender, EventArgs e)
@@ -343,6 +344,7 @@ namespace JDLMLab
             {
                 bufferedChart.DisplayAxisMode = BufferedChart.DisplayAxisModes.Log;
             }
+            bufferedChart.obnov();
         }
         private void displayModeAuto_CheckedChanged(object sender, EventArgs e)
         {
