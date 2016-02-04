@@ -13,7 +13,7 @@ namespace JDLMLab
     {
         public Task UlohaCounter;
         private NIDriver f;
-       
+       //nieco
 
         public NITaskTimerClass(NIDriver formular)
         {                         //konstruktor
