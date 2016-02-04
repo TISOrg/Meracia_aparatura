@@ -121,10 +121,21 @@ namespace JDLMLab
         /// index najlavejsie zobrazeneho baru
         /// </summary>
         int firstDisplayedBarIndex { get; set; }
+        public int scrollBarHeight { get; set; }
+        public int scrollBarY
+        {
+            get
+            {
+                return Height - BottomMargin + 5;
+            }
+        }
+
         //private Dictionary<double, int> DataPoints;
 
         public BufferedChart() : base()
-        {   
+        {
+            AutoScroll = true;
+            AutoScrollMinSize = new Size(100, 100);
             zoomYScales = new long[28];
             for (long f = 1, i = 0; i < 28; i++)
             {
@@ -142,6 +153,7 @@ namespace JDLMLab
             RightMargin = 10;
             BottomMargin = 30;
             TopMargin = 10;
+            scrollBarHeight = 10;
             setParameters(0, 1, 1); //default na zaciatku... prepise sa pri volani metody zvonka
             this.SetStyle(ControlStyles.OptimizedDoubleBuffer, true);
             // Configure the Form for this example.
@@ -189,18 +201,30 @@ namespace JDLMLab
             if (e.KeyCode == Keys.PageUp)
             {
                 zoomYIn();
+                blank();
+                DrawToBuffer(grafx.Graphics);
+                Refresh();
+
             }
             if (e.KeyCode == Keys.PageDown)
             {
                 zoomYOut();
+                blank();
+                DrawToBuffer(grafx.Graphics);
+                Refresh();
             }
             if (e.KeyCode == Keys.Q)
             {
                 zoomXIn();
+                ScrollDriverX = firstDisplayedBarIndex*ScrollBarWidth / NumberofBars;
+                blank();
+                DrawToBuffer(grafx.Graphics);
+                Refresh();
             }
             if (e.KeyCode == Keys.W)
             {
                 zoomXOut();
+               
             }
 
         }
@@ -367,15 +391,18 @@ namespace JDLMLab
                 Refresh();
             }
 
-            if (e.Y > TopMargin && e.Y < Height - BottomMargin && e.X > LeftMargin && e.X < Width - RightMargin)
-            {
-                dragging = true;
-                int xGraf = e.X - LeftMargin;
-                CursorIndex = NumberofDisplayedBars * xGraf / XAxisWidth;
-                blank();
-                DrawToBuffer(grafx.Graphics);
-                Refresh();
-            }
+            //if (e.Y > scrollBarY && e.Y < scrollBarY+scrollBarHeight && e.X > LeftMargin && e.X < Width - RightMargin)
+            //{
+            //    //sme v scrollbare
+            //    ScrollDriverX = e.X - ScrollDriverWidth / 2;
+            //    if (ScrollDriverX < 0) ScrollDriverX = 0;
+            //    else if (ScrollDriverX + ScrollDriverWidth > Width - RightMargin)
+            //          ScrollDriverX = Width - RightMargin - ScrollBarWidth;
+
+            //    blank();
+            //    DrawToBuffer(grafx.Graphics);
+            //    Refresh();
+            //}
         }
 
 
@@ -425,27 +452,23 @@ namespace JDLMLab
 
         internal void zoomXIn()
         {
-            if (NumberofDisplayedBars > 8 || true) //zrusit true
+            if (NumberofDisplayedBars > 8) //zrusit true
             {
-                int oldNumber = NumberofDisplayedBars;
-                NumberofDisplayedBars /= 2;
-                int[] novePole = new int[NumberofDisplayedBars];
+                int start = CursorIndex - (NumberofDisplayedBars / 4);
+                int fieldStart = start + firstDisplayedBarIndex;
+                if (fieldStart < 0)
+                {
+                    fieldStart = 0;
+                }
+                int lastPoint = fieldStart + (NumberofDisplayedBars / 2) ;
+                if (lastPoint > NumberofBars)
+                {
+                    fieldStart += NumberofBars - lastPoint;
+                }
+                CursorIndex += firstDisplayedBarIndex - fieldStart;
+                firstDisplayedBarIndex = fieldStart;
+                NumberofDisplayedBars = (NumberofDisplayedBars / 2);
 
-                if (CursorIndex - NumberofDisplayedBars / 2 >= 0)
-                {
-                    firstDisplayedBarIndex = CursorIndex - NumberofDisplayedBars / 2 -1 - NumberofDisplayedBars % 2;
-                }
-                else
-                {
-                    firstDisplayedBarIndex = 0;
-                }
-
-                if (CursorIndex + NumberofDisplayedBars / 2 > NumberofBars)
-                {
-                    firstDisplayedBarIndex -= NumberofDisplayedBars / 2 - (oldNumber - CursorIndex) + 1;
-                }
-                
-                CursorIndex -= firstDisplayedBarIndex;
                 obnov();
             }
 
@@ -471,9 +494,7 @@ namespace JDLMLab
         {
             if (zoomYScalesIndex == 0) return;
             zoomYScalesIndex--;
-            blank();
-            DrawToBuffer(grafx.Graphics);
-            Refresh();
+            
         }
         internal void zoomYOut()
         {
@@ -518,16 +539,18 @@ namespace JDLMLab
             ///
             /// scrollbar
             /// 
+            ScrollDriverWidth = (int)((double)(NumberofDisplayedBars*(double)(XAxisWidth) / (double)NumberofBars));
             int scrollbarX = (int)(LeftMargin + 0.01 * XAxisWidth);
-            g.FillRectangle(new SolidBrush(Color.Orange), new Rectangle(
+            
+            g.FillRectangle(new SolidBrush(Color.BlueViolet), new Rectangle(
                 LeftMargin, 
-                Height - BottomMargin + 5, 
+                scrollBarY, 
                 (int)(XAxisWidth), 
-                10));
+                scrollBarHeight));
             //scrollDriver
             g.FillRectangle(new SolidBrush(Color.White), new Rectangle(
-                scrollbarX+ScrollDriverX, 
-                Height - BottomMargin + 8, 
+                LeftMargin+ScrollDriverX, 
+                Height - BottomMargin + 7, 
                 ScrollDriverWidth, 
                 6));
 
@@ -539,8 +562,8 @@ namespace JDLMLab
             double barWidth;
             if (dataPoints.Count > 0)
             {
-                barWidth = (double)(XAxisWidth) / (double)(NumberofDisplayedBars-firstDisplayedBarIndex);
-                for (int i = firstDisplayedBarIndex; i <firstDisplayedBarIndex+ NumberofDisplayedBars; i++)
+                barWidth = (double)(XAxisWidth) / (double)(NumberofDisplayedBars);
+                for (int c=0, i = firstDisplayedBarIndex;i<firstDisplayedBarIndex+NumberofDisplayedBars; i++,c++)
                 {
                     long barHeight;
                     try {
@@ -555,10 +578,10 @@ namespace JDLMLab
                     g.DrawLine(new Pen(Color.Aqua,
                         (int)Math.Round(barWidth)),
                         new Point(
-                            LeftMargin + (int)Math.Round(i * barWidth) + (int)Math.Round(barWidth / 2),
+                            LeftMargin + (int)Math.Round(c * barWidth) + (int)Math.Round(barWidth / 2),
                               Height - BottomMargin),
                         new Point(
-                            LeftMargin + (int)Math.Round(i * barWidth) + (int)Math.Round(barWidth / 2),
+                            LeftMargin + (int)Math.Round(c * barWidth) + (int)Math.Round(barWidth / 2),
                             Height - BottomMargin - barHeightInt));
                 }
 
@@ -622,7 +645,7 @@ namespace JDLMLab
             ///
             ///horne prekrytie grafu nad zaciatkom y osi
             ///
-            g.FillRectangle(new SolidBrush(Color.Black), 0, 0, Width, TopMargin / 2);
+            g.FillRectangle(new SolidBrush(Color.Black), 0, 0, Width+1000, TopMargin / 2);
         }
 
 

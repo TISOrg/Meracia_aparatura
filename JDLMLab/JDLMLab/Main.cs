@@ -1,8 +1,9 @@
-﻿using System;
+﻿using System;  
 using System.Threading;
 using System.Windows.Forms;
 using System.IO.Ports;
 using System.Collections.Generic;
+using System.Drawing;
 
 namespace JDLMLab
 {
@@ -25,7 +26,10 @@ namespace JDLMLab
             ResumeLayout();
 
             fillRandomDataPoints();
-
+            
+            
+            
+            
             //x=new XXXDriver();
             //x.open();
             //x.setTimer(1000);
@@ -34,10 +38,15 @@ namespace JDLMLab
 
         }
 
+        private void Panel1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
         private void fillRandomDataPoints()
         {
             Random r = new Random();
-            bufferedChart.setParameters(0, 0, 10);
+            bufferedChart.setParameters(0, 0, 100);
             MinimumSize=new System.Drawing.Size(sidebar.Width+bufferedChart.LeftMargin+bufferedChart.RightMargin+100,bufferedChart.BottomMargin+bufferedChart.TopMargin+100);
             for (double i = 0; i < 100; i++)
             {
