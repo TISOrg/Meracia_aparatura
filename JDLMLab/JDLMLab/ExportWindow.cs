@@ -25,8 +25,15 @@ namespace JDLMLab
         {
             InitializeComponent();
             this.header_id = header_id;
+            headers = new int[] { header_id };
             multi = false;
+            
             init();
+            for (int i = 1; i <= (int)header.Tables[0].Rows[0]["cycles"]; i++)
+            {
+                checkedListBoxCyklyInclude.Items.Add(i);
+            }
+            checkBoxCyklyAllInclude.CheckState = CheckState.Checked;
         }
         public ExportWindow(int[] headers)
         {
@@ -55,16 +62,12 @@ namespace JDLMLab
                 normalItems.Add(dataMeranie.Columns[c].HeaderText);
             }
 
-            for (int i = 1; i <= (int)header.Tables[0].Rows[0]["cycles"]; i++)
-            {
-                checkedListBoxCyklyInclude.Items.Add(i);
-            }
-
+           
             refreshIncludeColumns(normalItems);
 
             checkedListBoxInclude.SetItemChecked(0, true);
             checkedListBoxInclude.SetItemChecked(2, true);
-            checkBoxCyklyAllInclude.CheckState = CheckState.Checked;
+          
 
             
 
@@ -91,54 +94,58 @@ namespace JDLMLab
         }
         private void button1_Click(object sender, EventArgs e)
         {
-            MessageBox.Show(headers[0].ToString());
-            MessageBox.Show(headers[1].ToString());
+            //MessageBox.Show(headers[0].ToString());
+            //MessageBox.Show(headers[1].ToString());
             //funkcia export.. exportovat vybrane zaznamy
             //...
-            if (multi)
-            {
-                for(int i=0; i < headers.Length; i++) {
-                    header_id = i;
-                }
-            }
             saveFileDialog1.InitialDirectory = Paths.Default.export_path;
-
-                    string date = header.Tables[0].Rows[0]["datetime"].ToString();
-                    DateTime datum = Convert.ToDateTime(date);
-                    date = datum.ToString("dd.MM");
-
-                    string type = header.Tables[0].Rows[0]["type_name"].ToString();
-                    string ionType = (header.Tables[0].Rows[0]["ion_type"].ToString().Equals("1")) ? "Positive ions" : "Negative ions";
-                    string constant = "";
-                    if (type.Equals("Energy Scan"))
+            string filename = vygenerujNazov(headers[0]);
+            saveFileDialog1.FileName = filename;
+            DialogResult res = saveFileDialog1.ShowDialog();
+            switch (res)
+            {
+                case DialogResult.Cancel:
+                    break;
+                case DialogResult.OK:
+                    for (int i = 0; i < headers.Length; i++)
                     {
-                        constant = header.Tables[0].Rows[0]["constant"].ToString() + " amu";
+                        filename = vygenerujNazov(headers[i]);
+                        header_id = headers[i];
+                        save(filename);
                     }
-                    if (type.Equals("Mass Scan"))
-                    {
-                        constant = header.Tables[0].Rows[0]["constant"].ToString() + " eV";
-                    }
-
-                    //nazov exportu: datum(dd.mm.) - typ - constant - iontype
-
-                    saveFileDialog1.FileName = date + " - " + type + " - " + (constant.Equals("") ? "" : constant + " - ") + ionType;
-                    DialogResult res = saveFileDialog1.ShowDialog();
-                    switch (res)
-                    {
-                        case DialogResult.Cancel:
-                            break;
-                        case DialogResult.OK:
-                            save(saveFileDialog1.FileName);
-                            break;
-                        default:
-                            break;
-                    }
+                    
+                    break;
+                default:
+                    break;
+            }
 
                 
             
         }
 
+        private string vygenerujNazov(int h_id)
+        {
+            
+            DbCommunication db = new DbCommunication();
+            DataSet hset = db.header(h_id);
+            
+            string date = hset.Tables[0].Rows[0]["datetime"].ToString();
+            DateTime datum = Convert.ToDateTime(date);
+            date = datum.ToString("dd.MM");
 
+            string type = hset.Tables[0].Rows[0]["type_name"].ToString();
+            string ionType = (hset.Tables[0].Rows[0]["ion_type"].ToString().Equals("1")) ? "Positive ions" : "Negative ions";
+            string constant = "";
+            if (type.Equals("Energy Scan"))
+            {
+                constant = hset.Tables[0].Rows[0]["constant"].ToString() + " amu";
+            }
+            if (type.Equals("Mass Scan"))
+            {
+                constant = hset.Tables[0].Rows[0]["constant"].ToString() + " eV";
+            }
+            return date + " - " + type + " - " + (constant.Equals("") ? "" : constant + " - ") + ionType;
+        }
 
         int pocetCyklov;
         /// <summary>  
@@ -155,6 +162,8 @@ namespace JDLMLab
         {
             StreamWriter file = new StreamWriter(filename, false);
             bool firstColumn = true;
+            DbCommunication db = new DbCommunication();
+            dataMeranie.DataSource= db.meranie(header_id).Tables[0];
             pocetCyklov = (int)header.Tables[0].Rows[0]["cycles"];
             if (includeHeader.Checked)
             {
