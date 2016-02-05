@@ -139,6 +139,7 @@ namespace JDLMLab
             db.vytvoritNoveMeranie(Parameters);
             typ = Parameters.Typ;
             // new Thread(this.startThread).Start();   //vykonavame meranie v samostatnom threade   
+            
             startThread();
         }
         public void stop()
@@ -157,8 +158,9 @@ namespace JDLMLab
             while (Parameters.PocetCyklov == 0 || aktualneCisloCyklu <= Parameters.PocetCyklov)
             {
                 vytvorNovyCyklus(aktualneCisloCyklu); //vytvori datovu strukturu CyklusMerania v strukture Meranie
+        
                 merajVAktualnomCykle(); //zacne meranie aktualneho cyklu
-
+                
                 if (zastavitPoSkonceniCyklu) break;
                 aktualneCisloCyklu++;
             }
@@ -257,13 +259,17 @@ namespace JDLMLab
             //MessageBox.Show();
             while (cisloKroku < ((EnergyScanParameters)Parameters).PocetBodov)
             {
-
+               
                 KrokMerania = new KrokMerania();
                 KrokMerania.x = krok;
                 
                 //ADPrevodnik.setAnalogOutput(krok);//.setPoint(krok);   //posle na TEM vypocitany bod
                  ADThread = new Thread(ADPrevodnik.CounterStart); //novy thread ad prevodnika
+                 ADThread.Name = "ADThread";
+                
                 ADThread.Start();  //nastartovanie prevodnika
+
+
                 ///precitaj zatial vsetky ostatne pristroje
                 // itaj vmeter
                 ///citaj ameter...

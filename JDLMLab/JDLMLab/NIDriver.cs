@@ -17,6 +17,7 @@ namespace JDLMLab
 
         public NIDriver(int pocetBodov)         //KONSTRUKTOR
         {
+            
             UlohaCounter = new Task("Counter");
             Intensity = new List<int>(pocetBodov);
         }
@@ -60,10 +61,6 @@ namespace JDLMLab
             UlohaCounter.Control(TaskAction.Verify);
             Counter = new CounterReader(UlohaCounter.Stream);
         //    UlohaCounter.Start();
-      
-           
-           
-            
         }
 
         public void CounterStart()
@@ -71,10 +68,10 @@ namespace JDLMLab
             try
             {
                 UlohaCounter.Start();
-                  
                 Thread.Sleep(Convert.ToInt32(Steptime) * 1000);
                 int hodnota = Counter.ReadSingleSampleInt32();
-                UlohaCounter.Stop();                    
+                UlohaCounter.Stop();
+                      
                 Intensity.Add(hodnota);
             }
             catch (Exception ex)

@@ -67,15 +67,17 @@ namespace JDLMLab
 
         private void nastaveniaMeraniaToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+         
             NoveMeranieWindow setmerania = new NoveMeranieWindow();
             DialogResult res = setmerania.ShowDialog();
+            
             if (res == DialogResult.OK) 
             {
                 //hodnota setMerania.parametreMerania obsahuje instanciu triedy measurementsparameters
                 //ktora obsahuje vsetky informacie na zacatie merania.
                 measurementControl = new MeasurementControl(setmerania.parametreMerania);
                 measurementControl.Graf = bufferedChart;
+                
                 measurementControl.start();
                 MinimumSize = new System.Drawing.Size(setmerania.parametreMerania.PocetBodov + bufferedChart.LeftMargin + bufferedChart.RightMargin + sidebar.Width, 0);
 
@@ -260,16 +262,7 @@ namespace JDLMLab
             //e.Control && 
             if (e.KeyCode.ToString() == "N")
             {
-                NoveMeranieWindow setmerania = new NoveMeranieWindow();
-                DialogResult res = setmerania.ShowDialog();
-                if (res == DialogResult.OK)
-                {
-                    //hodnota setMerania.parametreMerania obsahuje instanciu triedy measurementsparameters
-                    //ktora obsahuje vsetky informacie na zacatie merania.
-                    measurementControl = new MeasurementControl(setmerania.parametreMerania);
-        
-
-                }
+                nastaveniaMeraniaToolStripMenuItem_Click(sender, e);
 
             }
             if (e.KeyCode.ToString() == "L")

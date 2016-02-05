@@ -198,6 +198,11 @@
             this.pocetCyklovField.Name = "pocetCyklovField";
             this.pocetCyklovField.Size = new System.Drawing.Size(56, 20);
             this.pocetCyklovField.TabIndex = 2;
+            this.pocetCyklovField.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             // 
             // pocetCyklovFieldLabel
             // 
