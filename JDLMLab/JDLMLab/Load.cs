@@ -1,4 +1,4 @@
-﻿    using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -17,13 +17,11 @@ namespace JDLMLab
         {
             InitializeComponent();
             filter = new Filter();
-
             init();
         }
         Thread t;
         public DialogResult Result { get; set; }
-      
-        
+
         public void init()
         {
             db = new DbCommunication();

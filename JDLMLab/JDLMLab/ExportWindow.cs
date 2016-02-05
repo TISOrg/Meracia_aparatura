@@ -34,12 +34,14 @@ namespace JDLMLab
                 checkedListBoxCyklyInclude.Items.Add(i);
             }
             checkBoxCyklyAllInclude.CheckState = CheckState.Checked;
+            saveFileDialog1.AddExtension = true;
         }
         public ExportWindow(int[] headers)
         {
             
             InitializeComponent();
             this.headers = headers;
+            header_id = headers[0];
             multi = true;
             
         }
@@ -72,7 +74,7 @@ namespace JDLMLab
             
 
             
-            saveFileDialog1.AddExtension = true;
+            
 
             jednotky = new Dictionary<string, string>();
             jednotky.Add("Intensity", "a.u."); // v db premenovat sig
@@ -368,8 +370,11 @@ namespace JDLMLab
             {
                 dataMeranie.Columns[i].Visible = false;
             }
+            checkBoxIncludeAll.Checked = false;
             checkedListBoxInclude.SetItemChecked(0, true);
             checkedListBoxInclude.SetItemChecked(2, true);
+
+            
         }
 
         private void dataMeranie_CellValueChanged(object sender, DataGridViewCellEventArgs e)
@@ -402,9 +407,9 @@ namespace JDLMLab
                     DbCommunication db = new DbCommunication();
                     avgDataTable = db.meranieAvg(header_id).Tables[0];
                     avgItems = new CheckedListBox.ObjectCollection(checkedListBoxInclude);
-                    foreach(DataGridViewColumn columnHeader in dataMeranie.Columns)
+                    foreach(DataColumn columnHeader in avgDataTable.Columns)
                     {    
-                        avgItems.Add(columnHeader.HeaderText);
+                        avgItems.Add(columnHeader.ToString());
                     }
                 }
                 dataMeranie.DataSource = avgDataTable;
@@ -429,9 +434,9 @@ namespace JDLMLab
                     DbCommunication db = new DbCommunication();
                     sumDataTable = db.meranieSum(header_id).Tables[0];
                     sumItems = new CheckedListBox.ObjectCollection(checkedListBoxInclude);
-                    foreach (DataGridViewColumn columnHeader in dataMeranie.Columns)
+                    foreach (DataColumn columnHeader in sumDataTable.Columns)
                     {
-                        sumItems.Add(columnHeader.HeaderText);
+                        sumItems.Add(columnHeader.ToString());
                     }
                 }
                 dataMeranie.DataSource = sumDataTable;
