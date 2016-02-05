@@ -35,6 +35,16 @@ namespace JDLMLab
             }
             checkBoxCyklyAllInclude.CheckState = CheckState.Checked;
             saveFileDialog1.AddExtension = true;
+
+            jednotky = new Dictionary<string, string>();
+            jednotky.Add("Intensity", "a.u."); // v db premenovat sig
+            jednotky.Add("Electron energy", "eV");  //x v pripade energy scan,
+            jednotky.Add("m/z", "amu");// x v pripade mass scan
+            jednotky.Add("Temperature", "°C");
+            jednotky.Add("Current", "nA");
+            jednotky.Add("Chamber pressure", "mbar");
+            jednotky.Add("Capillar pressure", "Pa");
+
         }
         public ExportWindow(int[] headers)
         {
@@ -43,7 +53,15 @@ namespace JDLMLab
             this.headers = headers;
             header_id = headers[0];
             multi = true;
-            
+            jednotky = new Dictionary<string, string>();
+            jednotky.Add("Intensity", "a.u."); // v db premenovat sig
+            jednotky.Add("Electron energy", "eV");  //x v pripade energy scan,
+            jednotky.Add("m/z", "amu");// x v pripade mass scan
+            jednotky.Add("Temperature", "°C");
+            jednotky.Add("Current", "nA");
+            jednotky.Add("Chamber pressure", "mbar");
+            jednotky.Add("Capillar pressure", "Pa");
+
         }
 
         private DataSet header;
@@ -63,27 +81,12 @@ namespace JDLMLab
                 dataMeranie.Columns[c].Visible = false;
                 normalItems.Add(dataMeranie.Columns[c].HeaderText);
             }
-
            
             refreshIncludeColumns(normalItems);
 
             checkedListBoxInclude.SetItemChecked(0, true);
             checkedListBoxInclude.SetItemChecked(2, true);
-          
 
-            
-
-            
-            
-
-            jednotky = new Dictionary<string, string>();
-            jednotky.Add("Intensity", "a.u."); // v db premenovat sig
-            jednotky.Add("Electron energy", "eV");  //x v pripade energy scan,
-            jednotky.Add("m/z", "amu");// x v pripade mass scan
-            jednotky.Add("Temperature", "°C");
-            jednotky.Add("Current", "nA");
-            jednotky.Add("Chamber pressure", "mbar");
-            jednotky.Add("Capillar pressure", "Pa");
             
 
         }
@@ -96,33 +99,29 @@ namespace JDLMLab
         }
         private void button1_Click(object sender, EventArgs e)
         {
-            //MessageBox.Show(headers[0].ToString());
-            //MessageBox.Show(headers[1].ToString());
-            //funkcia export.. exportovat vybrane zaznamy
-            //...
+            
             saveFileDialog1.InitialDirectory = Paths.Default.export_path;
             string filename = vygenerujNazov(headers[0]);
-            saveFileDialog1.FileName = filename;
+            saveFileDialog1.FileName = filename;    
             DialogResult res = saveFileDialog1.ShowDialog();
             switch (res)
             {
                 case DialogResult.Cancel:
                     break;
                 case DialogResult.OK:
+                    string dir = Directory.GetParent(saveFileDialog1.FileName).FullName.ToString();
+
                     for (int i = 0; i < headers.Length; i++)
                     {
-                        filename = vygenerujNazov(headers[i]);
+                        if (multi) filename = dir + "\\" + vygenerujNazov(headers[i])+ ".dat";
+                        else filename = saveFileDialog1.FileName;
                         header_id = headers[i];
                         save(filename);
                     }
-                    
                     break;
                 default:
                     break;
             }
-
-                
-            
         }
 
         private string vygenerujNazov(int h_id)
@@ -162,10 +161,13 @@ namespace JDLMLab
         /// <param name="filename"></param>
         private void save(string filename)
         {
+            
             StreamWriter file = new StreamWriter(filename, false);
             bool firstColumn = true;
             DbCommunication db = new DbCommunication();
+            header = db.header(header_id);
             dataMeranie.DataSource= db.meranie(header_id).Tables[0];
+            
             pocetCyklov = (int)header.Tables[0].Rows[0]["cycles"];
             if (includeHeader.Checked)
             {
@@ -280,7 +282,10 @@ namespace JDLMLab
             
       
             file.Close();
-            
+            if (multi)
+            {
+                dataMeranie.DataSource = null;
+            }
 
         }
 
