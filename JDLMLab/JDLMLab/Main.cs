@@ -9,12 +9,10 @@ namespace JDLMLab
 {
     public partial class Main : Form
     {
-        
         AboutBox1 info;
-        GrafControl grafcontrol;
         MeasurementControl measurementControl;
 
-         BufferedChart bufferedChart;
+        BufferedChart bufferedChart;
         public Main()
         {
             InitializeComponent();
@@ -121,8 +119,7 @@ namespace JDLMLab
             if (res==DialogResult.OK)
             {
                 //zobrazit do grafu vybrate meranie
-                grafcontrol.clearGraf();
-                grafcontrol.addMeranie(l.Meranie);    
+                
                 
             }
             l.Dispose();
@@ -137,10 +134,7 @@ namespace JDLMLab
             
         }
 
-        private void graf_KeyDown(object sender, KeyEventArgs e)
-        {
-            grafcontrol.grafKeyPressed(e);
-        }
+        
 
         event EventHandler ev;
         SerialPortDriver v;
@@ -267,26 +261,21 @@ namespace JDLMLab
                     //hodnota setMerania.parametreMerania obsahuje instanciu triedy measurementsparameters
                     //ktora obsahuje vsetky informacie na zacatie merania.
                     measurementControl = new MeasurementControl(setmerania.parametreMerania);
-        
-
                 }
 
             }
             if (e.KeyCode.ToString() == "L")
             {
-                Load l = new Load();
-                DialogResult res = l.ShowDialog(this);
-                if (res == DialogResult.OK)
-                {
-                    //zobrazit do grafu vybrate meranie
-                    grafcontrol.clearGraf();
-                    grafcontrol.addMeranie(l.Meranie);
-                }
-                l.Dispose();
+                loadToolStripMenuItem_Click(sender,e);
             }
-                if (e.KeyCode == Keys.Escape)
+            if (e.KeyCode == Keys.Escape)
             {
-                DialogResult res = MessageBox.Show("Do you really want to quit the program?", "Quit?", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
+                DialogResult res = MessageBox.Show(
+                    "Do you really want to quit the program?", 
+                    "Quit?", 
+                    MessageBoxButtons.YesNoCancel, 
+                    MessageBoxIcon.Question,
+                    MessageBoxDefaultButton.Button2);
                 if (res == DialogResult.Yes)
                 {
                     this.Close();
