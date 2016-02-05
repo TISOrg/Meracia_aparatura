@@ -164,6 +164,7 @@ namespace JDLMLab
 
                     parametreMerania.Resolution = Convert.ToDouble(resolutionFieldEs.Text);
                     parametreMerania.EnergyScan = energyscan;
+                    parametreMerania.Typ = "Energy Scan";
                     ulozParametreEnergyScan();
                 }
                 else if (typyMeraniaTaby.SelectedTab.Text.Equals("Mass scan"))
@@ -176,6 +177,7 @@ namespace JDLMLab
                         (int)DensOfMeasFieldMs.SelectedValue,
                         (double) timePerAmuFieldMs.SelectedValue
                     );
+                    parametreMerania.Typ = "Mass Scan";
                     parametreMerania.Resolution= Convert.ToDouble(resolutionFieldMs.Text);
                     parametreMerania.MassScan = massScan;
                     ulozParametreMassScan();
@@ -199,7 +201,7 @@ namespace JDLMLab
                         (int)DensOfMeasField2DMS.SelectedValue,
                         (double)timePerAmuField2DMs.SelectedValue
                     );
-
+                    parametreMerania.Typ = "2D Scan";
                     parametreMerania.Resolution= Convert.ToDouble(resolutionField2D.Text);
                     parametreMerania.EnergyScan = energyScan;
                     parametreMerania.MassScan = massScan;
