@@ -6,51 +6,36 @@ using System.Threading.Tasks;
 
 namespace JDLMLab
 {
-    class MassScanParameters : MeasurementParameters
+    public class MassScanParameters
     {
 
-        public MassScanParameters(double startpoint, double endpoint, double constant, double  density,double timeperamu)
+        public MassScanParameters(int startpoint, int endpoint, double constant, double  density,double timeperamu)
         {
             this.StartPoint = startpoint;
             this.EndPoint = endpoint;
             this.Constant = constant;
-            this.Dens = density;
-            this.timePerAmu = timeperamu;
-            Typ = "Mass Scan";
-            init();
+            this.Density = density;
+            this.TimePerAmu = timeperamu;
         }
 
-        public MassScanParameters()
-        {
+        public double StepTime { get
+            {
+                return TimePerAmu / Density;
+            }
         }
-
-        public void init()
-        {
-            double x = (EndPoint - StartPoint) * Dens + 1;
-            pb = Convert.ToInt32(x);
-            steps = timePerAmu / Dens; 
-
-        }
-
-        public override int PocetBodov
+        public int NumberOfSteps
         {
             get
             {
-                return pb;// (int)((EndPoint - StartPoint) * Dens + 1);
+                double x = (EndPoint - StartPoint) * Density + 1;
+                return Convert.ToInt32(x);
             }
         }
 
-        public double Steps
-        {
-            get
-            {
-                return steps;
-            }
-        }
-
-
-        private int pb;
-        public double timePerAmu;
-        private double steps;
+        public int StartPoint { get; set; }
+        public int EndPoint { get; set; }
+        public double Constant { get; set; }
+        public double Density { get; set; }
+        public double TimePerAmu{ get; set; }
     }
 }

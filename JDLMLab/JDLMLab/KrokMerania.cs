@@ -10,82 +10,45 @@ namespace JDLMLab
     //dominik napisal tuto poznmku, bez zmeny triedy
     class KrokMerania
     {
-        public KrokMerania(double x, double y, int sig, double current, double kapillar, double chamber, double temperature)//int cyklus = 1)
+        public KrokMerania(double x, double y, int intensity, double current, double kapillar, double chamber, double temperature)
         {
-            this.x = x;
-            this.y = y;
-            this.sig = sig;
-            this.current = current;
-            this.kapillar = kapillar;
-            this.chamber = chamber;
-            this.temperature = temperature;
-//            this.cyklus = cyklus;   //treba to tu??? hmm
-            
+            this.X = x;
+            this.Y = y;
+            this.Intensity = intensity;
+            this.Current = current;
+            this.Capillar = kapillar;
+            this.Chamber = chamber;
+            this.Temperature = temperature;
         }
         public KrokMerania()
         {
         }
-
-        public object[] Data
-        {
-            get
-            {
-                return new object[] {x,y,sig,current,chamber,kapillar,temperature
-                };
-            }
-        }
-        public object[] DataSCyklom(int i)
-        {
-            return new object[] { x, y, sig, current, chamber, kapillar, temperature, i };
-        }
-
-        public DataRow Datarow{
-            get {
-                DataRow r=new DataTable().NewRow();
-                r.ItemArray = new object[] { x,y,sig,current,kapillar,chamber,temperature};
-                return r;
-            }
-        }
-        public DataRow DatarowForGraf
-        {
-            get
-            {
-                DataTable t = new DataTable();
-                t.Columns.Add("x",typeof(double));
-                t.Columns.Add("y",typeof(double));
-                DataRow r =t.NewRow();
-                r.ItemArray = new object[] { x, sig, };
-                r["x"] = x;
-                r["y"] = sig;
-                return r;
-            }
-        }
         
-        public double x { get; set; }
-        public double y { get; set; }
-        public int sig { get; set; }
-        public double current { get; set; }
-        public double  kapillar { get; set; }
-        public double chamber { get; set; }
-        public double temperature { get; set; }
+        public double X { get; set; }
+        public double Y { get; set; }
+        public int Intensity { get; set; }
+        public double Current { get; set; }
+        public double  Capillar { get; set; }
+        public double Chamber { get; set; }
+        public double Temperature { get; set; }
         //public int cyklus { get; set; }
 
         public override string ToString()
         {
             StringBuilder s = new StringBuilder();
-            s.Append(x);
+            s.Append(X);
             s.Append(" ");
-            s.Append(y);
+            s.Append(Y);
             s.Append(" ");
-            s.Append(sig); s.Append(" ");
+            s.Append(Intensity); s.Append(" ");
 
-            s.Append(current);
+            s.Append(Current);
             s.Append(" ");
-            s.Append(kapillar);
+            s.Append(Capillar);
             s.Append(" ");
-            s.Append(chamber);
+            s.Append(Chamber);
             s.Append(" ");
-            s.Append(temperature);
+            s.Append(Temperature);
             s.Append("\n");
             return s.ToString();
         }

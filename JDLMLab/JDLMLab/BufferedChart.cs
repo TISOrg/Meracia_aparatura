@@ -227,7 +227,10 @@ namespace JDLMLab
             if (e.KeyCode == Keys.W)
             {
                 zoomXOut();
-               
+                ScrollDriverX = LeftMargin + firstDisplayedBarIndex * ScrollBarWidth / NumberofBars;
+                blank();
+                DrawToBuffer(grafx.Graphics);
+                Refresh();
             }
 
         }
@@ -340,6 +343,10 @@ namespace JDLMLab
                 new Rectangle(0, 0, this.Width, this.Height));
 
 
+            //TUTO fixnut scrollbar
+            
+            //   <--------------------------
+            //
 
             // Cause the background to be cleared and redraw.
             count = 6;
@@ -381,7 +388,16 @@ namespace JDLMLab
             {
                 
                 ScrollDriverX = e.X-ScrollDriverWidth/2;
-                if (ScrollDriverX < LeftMargin || ScrollDriverX+ScrollDriverWidth>Width-RightMargin) return;
+                if (ScrollDriverX < LeftMargin)
+                {
+                    ScrollDriverX = LeftMargin;
+                    return;
+                }
+                if (ScrollDriverX + ScrollDriverWidth > Width - RightMargin)
+                {
+                    ScrollDriverX = Width-RightMargin-ScrollDriverWidth;
+                    return;
+                }
 
                 firstDisplayedBarIndex = (int)((double)((ScrollDriverX - LeftMargin) * NumberofBars) / (double)XAxisWidth);
                 obnov();
@@ -406,9 +422,7 @@ namespace JDLMLab
                 dragging = true;
                 int xGraf = e.X - LeftMargin;
                 CursorIndex = NumberofDisplayedBars * xGraf / XAxisWidth;
-                blank();
-                DrawToBuffer(grafx.Graphics);
-                Refresh();
+                obnov();
             }
 
             if (e.Y > scrollBarY && e.Y < scrollBarY + scrollBarHeight && e.X > LeftMargin && e.X < Width - RightMargin)
@@ -473,7 +487,30 @@ namespace JDLMLab
 
         internal void zoomXOut()
         {
-
+            int fieldStart;
+            if (NumberofDisplayedBars * 2 > NumberofBars)
+            {
+                fieldStart = 0;
+                NumberofDisplayedBars = NumberofBars;
+            }
+            else
+            {
+                int cursor_real = CursorIndex + firstDisplayedBarIndex;
+                fieldStart = cursor_real - NumberofDisplayedBars;
+                if (fieldStart < 0)
+                {
+                    fieldStart = 0;
+                }
+                int lastPoint = fieldStart + NumberofDisplayedBars * 2;
+                if (lastPoint > NumberofBars)
+                {
+                    fieldStart += NumberofBars - lastPoint;
+                }
+                NumberofDisplayedBars = NumberofDisplayedBars * 2;
+            }
+            CursorIndex += firstDisplayedBarIndex - fieldStart;
+            firstDisplayedBarIndex = fieldStart;     
+            obnov();
         }
 
 
@@ -501,7 +538,7 @@ namespace JDLMLab
 
         }
 
-        void obnov()
+        public void obnov()
         {
             blank();
             DrawToBuffer(grafx.Graphics);
@@ -592,9 +629,20 @@ namespace JDLMLab
                 barWidth = (double)(XAxisWidth) / (double)(NumberofDisplayedBars);
                 for (int c=0, i = firstDisplayedBarIndex;i<firstDisplayedBarIndex+NumberofDisplayedBars; i++,c++)
                 {
-                    long barHeight;
+                    long barHeight = 0;
                     try {
-                        barHeight = (long)((yAxisHeight) * dataPoints[i].Intensity) / zoomYScales[zoomYScalesIndex];
+                        if (DisplayAxisMode == DisplayAxisModes.Log)
+                        {
+                            barHeight = Convert.ToInt64(Convert.ToInt32(yAxisHeight/10)*(1 + Math.Log10((double)dataPoints[i].Intensity)));
+                        }
+                        if (DisplayAxisMode == DisplayAxisModes.Lin)
+                        {
+                            barHeight = (long)((yAxisHeight) * dataPoints[i].Intensity) / zoomYScales[zoomYScalesIndex];
+                        }
+                        if (DisplayAxisMode == DisplayAxisModes.Auto)
+                        {
+                            
+                        }
                     }
                     catch(ArgumentOutOfRangeException e)
                     {

@@ -6,50 +6,73 @@ using System.Threading.Tasks;
 
 namespace JDLMLab
 {
-    public abstract class MeasurementParameters
+    public class MeasurementParameters
     {
-        public MeasurementParameters()
+        public MeasurementParameters(string name, bool ionType, string note = "", int cycles = 0,bool test=false)
         {
-
+            Name = name;
+            Note = note;
+            NumberOfCycles = cycles;
+            IonType = ionType;
+            TestRun = test;
         }
-        
-        public bool testRun { get; set; }
-        public int PocetCyklov {get; set;}
+        public bool TestRun { get; set; }
+        public int NumberOfCycles {get; set;}
         public string Name { get; set; }
-        
         public string Note { get; set; }
+        public bool IonType { get; internal set; }
         public double Resolution { get; set; }  //qms, pre vsetky typy merani
+        public string Typ { get; set; }      
 
-        public double StartPoint { get; set; }
-        public double EndPoint { get; set; }
-        public double Constant { get; set; }
-        public double StepTime { get; set; }
-        public double Dens { get; set; }
-        //public double TimeperAmu { get; set; }
-        public string Typ { get; set; }
-        public abstract int PocetBodov { get; }
+        public EnergyScanParameters EnergyScan { get; set; }
+        public MassScanParameters MassScan { get; set; }
+
+        public double StepTime
+        {
+            get
+            {
+                if (Typ.Equals("Energy Scan"))
+                {
+                    return EnergyScan.StepTime;
+                }
+                else if (Typ.Equals("Mass Scan"))
+                {
+                    return MassScan.StepTime;
+                }
+                else //2D scan
+                {
+                    return 0;
+                }
+            }
+        }
+
+        public int NumberOfSteps {
+            get
+            {
+                if (Typ.Equals("Energy Scan"))
+                {
+                    return EnergyScan.NumberOfSteps;
+                }
+                else if (Typ.Equals("Mass Scan"))
+                {
+                    return MassScan.NumberOfSteps;
+                }
+                else
+                {
+                    //2D scan
+                    return 0;
+                }
+            }
+        }
         public void setParameters(string name,double resolution, int pocetcyklov=0, string note="")    //0 pre pocetcyklov znamena neobmedzene
         {
             Name = name;
             Note = note;
-            PocetCyklov = pocetcyklov;
+            NumberOfCycles = pocetcyklov;
             Resolution = resolution;
         }
 
-        //zrejme netreba nacitavat tu, ale kazdy prisrtoj si zoberie tu informaciu z properties...
-        public string VoltmeterPortName { get { return Properties.Devices.Default.voltmeterPort; } }
-        public string AmpermeterPortName { get { return Properties.Devices.Default.ampermeterPort; } }
-        public string QMSPortName { get { return Properties.Devices.Default.qmsPort; } }
-        public string TeplomerPortName { get { return Properties.Devices.Default.tempPort; } }
-        public string TlakomerPR4000PortName { get { return Properties.Devices.Default.pr4000Port; } }
-        public string TlakomerTPG256APortName { get { return Properties.Devices.Default.tpg256aPort; } }
-        public int TeplomerFrekvenciaMerania { get { return Properties.Devices.Default.tempFreq; } }
-        public int TlakomerPR4000FrekvenciaMerania { get { return Properties.Devices.Default.pr4000Freq; } }
-        public int TlakomerTPG256AFrekvenciaMerania { get { return Properties.Devices.Default.tpg256aFreq; } }
-        public int TlakomerTPG256AKanal { get { return Properties.Devices.Default.tpg256aChannel; } }
-        public double TemConstantValue { get { return Properties.Devices.Default.TemConstant; } }
-
-        public bool IonType { get; internal set; }
+        
     }
 }
 

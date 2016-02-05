@@ -9,12 +9,10 @@ namespace JDLMLab
 {
     public partial class Main : Form
     {
-        
         AboutBox1 info;
-        GrafControl grafcontrol;
         MeasurementControl measurementControl;
 
-         BufferedChart bufferedChart;
+        BufferedChart bufferedChart;
         public Main()
         {
             InitializeComponent();
@@ -67,19 +65,17 @@ namespace JDLMLab
 
         private void nastaveniaMeraniaToolStripMenuItem_Click(object sender, EventArgs e)
         {
-         
+
             NoveMeranieWindow setmerania = new NoveMeranieWindow();
             DialogResult res = setmerania.ShowDialog();
-            
             if (res == DialogResult.OK) 
             {
                 //hodnota setMerania.parametreMerania obsahuje instanciu triedy measurementsparameters
                 //ktora obsahuje vsetky informacie na zacatie merania.
                 measurementControl = new MeasurementControl(setmerania.parametreMerania);
                 measurementControl.Graf = bufferedChart;
-                
                 measurementControl.start();
-                MinimumSize = new System.Drawing.Size(setmerania.parametreMerania.PocetBodov + bufferedChart.LeftMargin + bufferedChart.RightMargin + sidebar.Width, 0);
+                MinimumSize = new System.Drawing.Size(setmerania.parametreMerania.NumberOfSteps + bufferedChart.LeftMargin + bufferedChart.RightMargin + sidebar.Width, 0);
 
                 //bufferedChart.setParameters(setmerania.parametreMerania.StartPoint,
                 //    setmerania.parametreMerania.EndPoint,
@@ -123,8 +119,7 @@ namespace JDLMLab
             if (res==DialogResult.OK)
             {
                 //zobrazit do grafu vybrate meranie
-                grafcontrol.clearGraf();
-                grafcontrol.addMeranie(l.Meranie);    
+                
                 
             }
             l.Dispose();
@@ -139,10 +134,7 @@ namespace JDLMLab
             
         }
 
-        private void graf_KeyDown(object sender, KeyEventArgs e)
-        {
-            grafcontrol.grafKeyPressed(e);
-        }
+        
 
         event EventHandler ev;
         SerialPortDriver v;
@@ -262,24 +254,28 @@ namespace JDLMLab
             //e.Control && 
             if (e.KeyCode.ToString() == "N")
             {
-                nastaveniaMeraniaToolStripMenuItem_Click(sender, e);
+                NoveMeranieWindow setmerania = new NoveMeranieWindow();
+                DialogResult res = setmerania.ShowDialog();
+                if (res == DialogResult.OK)
+                {
+                    //hodnota setMerania.parametreMerania obsahuje instanciu triedy measurementsparameters
+                    //ktora obsahuje vsetky informacie na zacatie merania.
+                    measurementControl = new MeasurementControl(setmerania.parametreMerania);
+                }
 
             }
             if (e.KeyCode.ToString() == "L")
             {
-                Load l = new Load();
-                DialogResult res = l.ShowDialog(this);
-                if (res == DialogResult.OK)
-                {
-                    //zobrazit do grafu vybrate meranie
-                    grafcontrol.clearGraf();
-                    grafcontrol.addMeranie(l.Meranie);
-                }
-                l.Dispose();
+                loadToolStripMenuItem_Click(sender,e);
             }
-                if (e.KeyCode == Keys.Escape)
+            if (e.KeyCode == Keys.Escape)
             {
-                DialogResult res = MessageBox.Show("Do you really want to quit the program?", "Quit?", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
+                DialogResult res = MessageBox.Show(
+                    "Do you really want to quit the program?", 
+                    "Quit?", 
+                    MessageBoxButtons.YesNoCancel, 
+                    MessageBoxIcon.Question,
+                    MessageBoxDefaultButton.Button2);
                 if (res == DialogResult.Yes)
                 {
                     this.Close();
@@ -328,6 +324,7 @@ namespace JDLMLab
             {
                 bufferedChart.DisplayAxisMode = BufferedChart.DisplayAxisModes.Lin;                
             }
+            bufferedChart.obnov();
         }
 
         private void displayModeLog_CheckedChanged(object sender, EventArgs e)
@@ -336,6 +333,7 @@ namespace JDLMLab
             {
                 bufferedChart.DisplayAxisMode = BufferedChart.DisplayAxisModes.Log;
             }
+            bufferedChart.obnov();
         }
         private void displayModeAuto_CheckedChanged(object sender, EventArgs e)
         {

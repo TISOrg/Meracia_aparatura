@@ -379,7 +379,7 @@ namespace JDLMLab
             c.Parameters.AddWithValue("@name", mp.Name);
             c.Parameters.AddWithValue("@type_name", mp.Typ);
             c.Parameters.AddWithValue("@resolution", mp.Resolution);
-            c.Parameters.AddWithValue("@cycles", mp.PocetCyklov);
+            c.Parameters.AddWithValue("@cycles", mp.NumberOfCycles);
             c.Parameters.AddWithValue("@note", mp.Note);
             c.Parameters.AddWithValue("@ion_type", mp.IonType);
             c.ExecuteNonQuery();
@@ -389,35 +389,35 @@ namespace JDLMLab
             {
                 c = new MySqlCommand("insert into energy_scan_header (header_id,start_point,end_point,constant,steptime,pocet_krokov) values(@header_id,@start_point,@end_point,@constant,@steptime,@pocet_krokov)", conn);
                 c.Parameters.AddWithValue("@header_id",aktualneMeranie);
-                c.Parameters.AddWithValue("@steptime", ((EnergyScanParameters)mp).Dens);
-                c.Parameters.AddWithValue("@start_point", ((EnergyScanParameters)mp).StartPoint);
-                c.Parameters.AddWithValue("@end_point", ((EnergyScanParameters)mp).EndPoint);
-                c.Parameters.AddWithValue("@constant", ((EnergyScanParameters)mp).Constant);
-                c.Parameters.AddWithValue("@pocet_krokov", ((EnergyScanParameters)mp).PocetKrokov);
+                c.Parameters.AddWithValue("@steptime", (mp.StepTime));
+                c.Parameters.AddWithValue("@start_point", (mp.EnergyScan.StartPoint));
+                c.Parameters.AddWithValue("@end_point", (mp.EnergyScan.EndPoint));
+                c.Parameters.AddWithValue("@constant", (mp.EnergyScan.Constant));
+                c.Parameters.AddWithValue("@pocet_krokov", (mp.NumberOfSteps));
             }
             else if (mp.Typ.Equals("Mass Scan"))
             {
                 c = new MySqlCommand("insert into mass_scan_header (header_id,start_point,end_point,constant,time_for_amu,density) values(@header_id,@start_point,@end_point,@constant,@time_for_amu,@density)", conn);
                 c.Parameters.AddWithValue("@header_id", aktualneMeranie);
-                c.Parameters.AddWithValue("@time_for_amu", ((MassScanParameters)mp).timePerAmu);
-                c.Parameters.AddWithValue("@density", ((MassScanParameters)mp).Dens);
-                c.Parameters.AddWithValue("@start_point", ((MassScanParameters)mp).StartPoint);
-                c.Parameters.AddWithValue("@end_point", ((MassScanParameters)mp).EndPoint);
-                c.Parameters.AddWithValue("@constant", ((MassScanParameters)mp).Constant);
+                c.Parameters.AddWithValue("@time_for_amu", (mp.MassScan.TimePerAmu));
+                c.Parameters.AddWithValue("@density", (mp.MassScan.Density));
+                c.Parameters.AddWithValue("@start_point", (mp.MassScan.StartPoint));
+                c.Parameters.AddWithValue("@end_point", (mp.MassScan.EndPoint));
+                c.Parameters.AddWithValue("@constant", (mp.MassScan.Constant));
                 
             }
             else if (mp.Typ.Equals("2D Scan"))
             {
                 c = new MySqlCommand("insert into scan2d_header(header_id,e_start_point,e_end_point,e_steptime,pocet_krokov,m_start_point,m_end_point,time_for_amu,density) values (@header_id,@e_start_point,@e_end_point,@e_steptime,@pocet_krokov,@m_start_point,@m_end_point,@time_for_amu,@density)", conn);
                 c.Parameters.AddWithValue("@header_id", aktualneMeranie);
-                c.Parameters.AddWithValue("@e_steptime", ((Scan2DParameters)mp).EnergyScanParameters.Dens);
-                c.Parameters.AddWithValue("@e_start_point", ((Scan2DParameters)mp).EnergyScanParameters.StartPoint);
-                c.Parameters.AddWithValue("@e_end_point", ((Scan2DParameters)mp).EnergyScanParameters.EndPoint);
-                c.Parameters.AddWithValue("@pocet_krokov", ((Scan2DParameters)mp).EnergyScanParameters.PocetKrokov);
-                c.Parameters.AddWithValue("@time_for_amu", ((Scan2DParameters)mp).MassScanParameters.timePerAmu);
-                c.Parameters.AddWithValue("@density", ((Scan2DParameters)mp).MassScanParameters.Dens);
-                c.Parameters.AddWithValue("@m_start_point", ((Scan2DParameters)mp).MassScanParameters.StartPoint);
-                c.Parameters.AddWithValue("@m_end_point", ((Scan2DParameters)mp).MassScanParameters.EndPoint);
+                c.Parameters.AddWithValue("@e_steptime", (mp.EnergyScan.StepTime));
+                c.Parameters.AddWithValue("@e_start_point", (mp.EnergyScan.StartPoint));
+                c.Parameters.AddWithValue("@e_end_point", (mp.EnergyScan.EndPoint));
+                c.Parameters.AddWithValue("@pocet_krokov", (mp.EnergyScan.NumberOfSteps));
+                c.Parameters.AddWithValue("@time_for_amu", (mp.MassScan.TimePerAmu));
+                c.Parameters.AddWithValue("@density", (mp.MassScan.Density));
+                c.Parameters.AddWithValue("@m_start_point", (mp.MassScan.StartPoint));
+                c.Parameters.AddWithValue("@m_end_point", (mp.MassScan.EndPoint));
 
             }
             c.ExecuteNonQuery();
@@ -465,21 +465,21 @@ namespace JDLMLab
         }
         public void addKrok(KrokMerania k,int cyklus=1)
         {
-            long y_id = getYID(k.y, cyklus, aktualneMeranie); //ak neexistuje taky zaznam, vytvori novy a vrati id
+            long y_id = getYID(k.Y, cyklus, aktualneMeranie); //ak neexistuje taky zaznam, vytvori novy a vrati id
 
             MySqlCommand c = new MySqlCommand("insert into merania (x,y_id,Intensity,Current,Capillar pressure,Chamber pressure,Temperature) values(@x,@y_id,@sig,@current,@kapillar,@chamber,@temperature)", conn);
-            c.Parameters.AddWithValue("@x", k.x);
+            c.Parameters.AddWithValue("@x", k.X);
             c.Parameters.AddWithValue("@y_id", y_id);
-            c.Parameters.AddWithValue("@sig", k.sig);
-            c.Parameters.AddWithValue("@current", k.current);
-            c.Parameters.AddWithValue("@kapillar", k.kapillar);
-            c.Parameters.AddWithValue("@chamber", k.chamber);
-            c.Parameters.AddWithValue("@temperature", k.temperature);
+            c.Parameters.AddWithValue("@sig", k.Intensity);
+            c.Parameters.AddWithValue("@current", k.Current);
+            c.Parameters.AddWithValue("@kapillar", k.Capillar);
+            c.Parameters.AddWithValue("@chamber", k.Chamber);
+            c.Parameters.AddWithValue("@temperature", k.Temperature);
             c.ExecuteNonQuery();
         }
         public void addCyklus(CyklusMerania c)
         {
-            addKroky(c.getKroky(),c.cisloCyklu);
+            addKroky(c.KrokyMerania,c.cisloCyklu);
         }
         internal void addMeranie(Meranie meranie)
         {
