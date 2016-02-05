@@ -343,7 +343,7 @@ namespace JDLMLab
                     try {
                         dataMeranie.Rows[i].Visible = e.NewValue == CheckState.Checked ? true : false;
                     }
-                    catch(Exception f)
+                    catch(Exception)
                     {
                         //e.NewValue = CheckState.Unchecked;
                     }

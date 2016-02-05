@@ -9,7 +9,6 @@ namespace JDLMLab
 {
     public partial class Main : Form
     {
-        AboutBox1 info;
         MeasurementControl measurementControl;
 
         BufferedChart bufferedChart;
@@ -54,7 +53,7 @@ namespace JDLMLab
             }
         }
 
-        XXXDriver x;
+        
         internal MeasurementControl MeasurementControl
         {
             get
@@ -151,7 +150,7 @@ namespace JDLMLab
         
 
         event EventHandler ev;
-        SerialPortDriver v;
+        
         List<SerialPortDriver> drivers;
         private void startbutton_click(object sender, EventArgs e)
         {
@@ -193,17 +192,13 @@ namespace JDLMLab
         {
         }
 
-       
-        SerialPort serialPort;
-        static string text="";
+        
         private void dataRecieved(object sender, SerialDataReceivedEventArgs e)
         {
             
-            text = serialPort.ReadLine();
-            //richTextBox1.AppendText("dd");
-           // richTextBox1.AppendText(text);
+            
         }
-        double i;
+        
  
 
         private void Main_FormClosed(object sender, FormClosedEventArgs e)
@@ -222,7 +217,7 @@ namespace JDLMLab
             }
            
         }
-        VMeterDriver r;
+        
     
         private void sidebarExportButton_Click_2(object sender, EventArgs e)
         {

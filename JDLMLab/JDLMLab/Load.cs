@@ -19,17 +19,18 @@ namespace JDLMLab
             filter = new Filter();
             init();
         }
-        Thread t;
+        
         public DialogResult Result { get; set; }
 
         public void init()
         {
             db = new DbCommunication();
+            
             try
             {
                 dataRoky.DataSource = db.roky().Tables[0];
             }
-            catch (MySqlException e)
+            catch (MySqlException)
             {
                 MessageBox.Show("AN error noccured during connection to database. validate parameters of connection", "Error with  connection to Daatabase", MessageBoxButtons.RetryCancel, MessageBoxIcon.Error);
             }
@@ -180,7 +181,7 @@ namespace JDLMLab
                 DialogResult = DialogResult.OK;
             //    Close();
             }
-            catch (Exception ef) //ak este neexistuje meranie, tak vybrata nebude ziadna bunka
+            catch (Exception) //ak este neexistuje meranie, tak vybrata nebude ziadna bunka
             {
                 //DialogResult = DialogResult.No;
                 MessageBox.Show("any measurement is choosen","Error",MessageBoxButtons.OK,MessageBoxIcon.Warning); 

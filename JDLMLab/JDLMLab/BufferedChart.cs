@@ -270,7 +270,7 @@ namespace JDLMLab
             {
                 CyclesIntensities[cycleNum][i] = Intensity;
             }
-            catch (ArgumentOutOfRangeException e)
+            catch (ArgumentOutOfRangeException)
             {
                 CyclesIntensities.Add(new int[NumberofBars]);
                 addIntensityPoint(i, Intensity, cycleNum);
@@ -281,37 +281,37 @@ namespace JDLMLab
         private void MouseDownHandler(object sender, MouseEventArgs e)
         {
             return; //  !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-            if (e.Button == MouseButtons.Right)
-            {
-                // Cycle the buffering mode.
-                if (++bufferingMode > 2)
-                    bufferingMode = 0;
+            //if (e.Button == MouseButtons.Right)
+            //{
+            //    // Cycle the buffering mode.
+            //    if (++bufferingMode > 2)
+            //        bufferingMode = 0;
 
-                // If the previous buffering mode used 
-                // the OptimizedDoubleBuffering ControlStyle,
-                // disable the control style.
-                if (bufferingMode == 1)
-                    this.SetStyle(ControlStyles.OptimizedDoubleBuffer, true);
+            //    // If the previous buffering mode used 
+            //    // the OptimizedDoubleBuffering ControlStyle,
+            //    // disable the control style.
+            //    if (bufferingMode == 1)
+            //        this.SetStyle(ControlStyles.OptimizedDoubleBuffer, true);
 
-                // If the current buffering mode uses
-                // the OptimizedDoubleBuffering ControlStyle,
-                // enabke the control style.
-                if (bufferingMode == 2)
-                    this.SetStyle(ControlStyles.OptimizedDoubleBuffer, false);
+            //    // If the current buffering mode uses
+            //    // the OptimizedDoubleBuffering ControlStyle,
+            //    // enabke the control style.
+            //    if (bufferingMode == 2)
+            //        this.SetStyle(ControlStyles.OptimizedDoubleBuffer, false);
 
-                // Cause the background to be cleared and redraw.
-                count = 6;
-                DrawToBuffer(grafx.Graphics);
-                this.Refresh();
-            }
-            else
-            {
-                // Toggle whether the redraw timer is active.
-                if (timer1.Enabled)
-                    timer1.Stop();
-                else
-                    ;//     timer1.Start();     //......................................................
-            }
+            //    // Cause the background to be cleared and redraw.
+            //    count = 6;
+            //    DrawToBuffer(grafx.Graphics);
+            //    this.Refresh();
+            //}
+            //else
+            //{
+            //    // Toggle whether the redraw timer is active.
+            //    if (timer1.Enabled)
+            //        timer1.Stop();
+            //    else
+            //        timer1.Start();    
+            //}
         }
 
         private void OnTimer(object sender, EventArgs e)
@@ -668,9 +668,8 @@ namespace JDLMLab
                             
                         }
                     }
-                    catch(ArgumentOutOfRangeException e)
+                    catch(ArgumentOutOfRangeException)
                     {
-                        //ak dalsie datapointy este nie su
                         barHeight = 0;
                     }
                     int barHeightInt = (int)barHeight;

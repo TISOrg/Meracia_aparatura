@@ -54,10 +54,7 @@ namespace JDLMLab
         }
         protected override double convertToDouble(string data)
         {
-            NumberStyles styles;
-            //styles = NumberStyles.AllowExponent;
-            double d=Double.Parse(data, System.Globalization.NumberStyles.Float);
-            //MessageBox.Show(d.ToString());
+            double d=Double.Parse(data, System.Globalization.NumberStyles.Float);   
             return d;
         }
 

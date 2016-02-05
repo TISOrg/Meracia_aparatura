@@ -117,7 +117,7 @@ namespace JDLMLab
                 conn.Open();
                 return true;
             }
-            catch (MySqlException e)
+            catch (MySqlException)
             {
                 return false;
             }
@@ -140,7 +140,7 @@ namespace JDLMLab
                 }
                 return true;
             }
-            catch (MySqlException e)
+            catch (MySqlException)
             {
                 return false;
             }

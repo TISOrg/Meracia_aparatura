@@ -83,7 +83,7 @@ namespace JDLMLab
             try {
                 return serialPort.IsOpen;
             }
-            catch (Exception e) {
+            catch (Exception) {
                 return false;
             }
             
@@ -100,7 +100,7 @@ namespace JDLMLab
             try {
                 return blockingCollection.Take();
             }
-            catch (Exception e) {
+            catch (Exception) {
                 throw new Exception("neni na bafri nic");
             }
 

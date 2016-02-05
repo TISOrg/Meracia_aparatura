@@ -108,7 +108,7 @@ namespace JDLMLab
                     Paths.Default.export_path = i.FullName;
 
                 }
-                catch (Exception ef)
+                catch (Exception)
                 {
                     FormValidateError("Zadajte správnu cestu", "Chyba");
                     return;

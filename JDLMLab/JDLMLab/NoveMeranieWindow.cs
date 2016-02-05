@@ -420,7 +420,7 @@ namespace JDLMLab
                 label28.Visible = true;
             }
             
-            catch(Exception e)
+            catch(Exception)
             {
                 StepValueEsLabel.Visible = false;
                 label28.Visible = false;
@@ -440,7 +440,7 @@ namespace JDLMLab
                 label35.Visible = true;
             }
             
-            catch(Exception e)
+            catch(Exception)
             {
                 StepValue2DEsLabel.Visible = false;
                 label35.Visible = false;
@@ -466,7 +466,7 @@ namespace JDLMLab
                 label41.Visible = true;
             }
 
-            catch(Exception e)
+            catch(Exception)
             {
                 NumberOfStepValue2DMsLabel.Visible = false;
                 label36.Visible = false;
@@ -490,7 +490,7 @@ namespace JDLMLab
                 label37.Visible = true;
                 label40.Visible = true;
             }
-            catch(Exception e)
+            catch(Exception)
             {
                 NumberOfStepValueMsLabel.Visible = false;
                 label37.Visible = false;
