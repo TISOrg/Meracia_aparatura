@@ -16,13 +16,14 @@ namespace JDLMLab
     {
         int aktualneCisloCyklu;
 
-        public MeasurementControl(MeasurementParameters mp)
+        public MeasurementControl(MeasurementParameters mp,Main mainForm)
         {
             Parameters = mp;
-            ADPrevodnik = new NIDriver(Parameters.NumberOfSteps);   
+            ADPrevodnik = new NIDriver(Parameters.NumberOfSteps);
+            this.mainForm = mainForm; 
         }
-           
 
+        Main mainForm { get; set; }
         DbCommunication db;
         private void vytvoritMeranievDB(MeasurementParameters mp)
         {   
@@ -59,15 +60,16 @@ namespace JDLMLab
             db.open();
             db.vytvoritNoveMeranie(Parameters);
             typ = Parameters.Typ;
-            // new Thread(this.startThread).Start();   //vykonavame meranie v samostatnom threade   
+             new Thread(this.startThread).Start();   //vykonavame meranie v samostatnom threade   
 
             //Graf.setParameters(Parameters.StartPoint, Parameters.EndPoint,Parameters.NumberOfSteps);   //inicializuj graf podla parametrov merania
 
-            startThread();
+            //startThread();
         }
         public void stop()
         {
             db.close();
+            ADPrevodnik.UlohaCounter.Dispose();
         }
          
         CyklusMerania aktualnyCyklus;
@@ -75,6 +77,7 @@ namespace JDLMLab
         private void startThread()
         {
             inicializujPristroje();
+            Graf.setParameters(Parameters.EnergyScan.StartPoint, Parameters.EnergyScan.EndPoint, Parameters.NumberOfSteps + 1, Parameters.NumberOfCycles);
             ADPrevodnik.triggerInit(Parameters.StepTime);
             aktualneCisloCyklu = 1;
 
@@ -82,7 +85,8 @@ namespace JDLMLab
             {
                 vytvorNovyCyklus(aktualneCisloCyklu); //vytvori datovu strukturu CyklusMerania v strukture Meranie
                 merajVAktualnomCykle(); //zacne meranie aktualneho cyklu
-
+                //ulozime aktualne namerany cyklus do db
+                db.addCyklus(aktualnyCyklus);
                 if (zastavitPoSkonceniCyklu) break;
                 aktualneCisloCyklu++;
             }
@@ -117,58 +121,24 @@ namespace JDLMLab
 
         private void merajVAktualnomCykle()
         {
-           
-            if(typ.Equals("Mass Scan"))
+            mainForm.setCurrentCycle(aktualneCisloCyklu.ToString());
+            Graf.clear();
+            if (typ.Equals("Mass Scan"))
             {
-                /// v pripade mass  scan
-                /// 
-                /// Y - y je teraz sig. napatovy bod je konstantny, podla hodnoty parameters.constant
-                /// ^ 
-                /// |
-                /// |
-                /// |                 f(amu)=sig
-                /// |                 |
-                /// |                 |
-                /// |     pre amu=3.7 |
-                /// Y------------------------> X os (meni sa hmotnostny bod od start point do end point)
-                /// 
+            
 
             }
             else if(typ.Equals("Energy Scan"))
             {
-                /// v pripade mass  scan
-                /// 
-                /// Y - y je teraz sig. hmotnostny bod je konstantny, podla hodnoty parameters.constant
-                /// ^ 
-                /// |
-                /// |
-                /// |                f(eV)=sig
-                /// |                |
-                /// |                |
-                /// |     pre eV=7.2 |
-                /// Y------------------------> X os (meni sa napatovy bod od start point do end point)
-                /// 
+               
                 merajEnergyScanCyklus();
             }
 
             else if(typ.Equals("2D Scan"))
             {
-                /// v pripade 2DSCan
-                /// 
-                /// Y napatovy bod
-                /// ^ 
-                /// |
-                /// |eV--------[amu,ev]=sig
-                /// |          |
-                /// |          |
-                /// |          |
-                /// |         amu
-                /// Y-------------------> X os (hmotnostny bod)
-                /// 
-                /// najprv prechadza cez x, pre dane y. Potom zvysi y a znova prechadza cez x
-                /// 
-
-            }           
+               
+            }     
+                  
         }
 
 
@@ -178,21 +148,24 @@ namespace JDLMLab
             cisloKroku = 0;
             double krok = (Parameters.EnergyScan.StartPoint); //ziskame zaciatocny krok = start point pre TEM
             Thread ADThread;
-            //MessageBox.Show();
-            while (cisloKroku < Parameters.NumberOfSteps)
+            while (cisloKroku <= Parameters.NumberOfSteps)
             {
-
+                mainForm.setCurrentStep(cisloKroku.ToString() + "/" + Parameters.NumberOfSteps.ToString());
                 KrokMerania = new KrokMerania();
                 KrokMerania.X = krok;
                 
                 //ADPrevodnik.setAnalogOutput(krok);//.setPoint(krok);   //posle na TEM vypocitany bod
-                 ADThread = new Thread(ADPrevodnik.CounterStart); //novy thread ad prevodnika
+                ADThread = new Thread(ADPrevodnik.CounterStart); //novy thread ad prevodnika
                 ADThread.Start();  //nastartovanie prevodnika
                 ///precitaj zatial vsetky ostatne pristroje
                 // itaj vmeter
                 ///citaj ameter...
                 /// krokmerania.tlakomer=hodnota...
-                
+                KrokMerania.Current = 5.2;
+                KrokMerania.Capillar = 10;
+                KrokMerania.Chamber = 11;
+                KrokMerania.Temperature = 4.8;
+                KrokMerania.Y = 4;
                 
                 ADThread.Join();   //cakas na skoncenie ADThreadu
              //   MessageBox.Show(cisloKroku.ToString());
@@ -202,25 +175,17 @@ namespace JDLMLab
              
                 //Meranie.addKrok(aktualneCisloCyklu, KrokMerania);
                 aktualnyCyklus.KrokyMerania.Add(KrokMerania);
-
+                lock (Graf)
+                {
+                    Graf.addDataPoint(KrokMerania.X, KrokMerania.Y, KrokMerania.Intensity);
+                }
+                
                 cisloKroku++;
                 krok += (Parameters.EnergyScan.KrokNapatia);
             }
-            string s = "";
-            //foreach (KrokMerania i in aktualnyCyklus.getKroky())
-            //{
-            //    s += i.sig.ToString() + "\n";
-            //}
-            //MessageBox.Show(s);
-            
-            Graf.clear();
-            Graf.init();
-            //Graf.init();
+           // MessageBox.Show("f");
+
            
-            foreach(KrokMerania k in aktualnyCyklus.KrokyMerania)
-            {
-                Graf.addDataPoint(8, 8, k.Intensity);
-            }
 
         }
       

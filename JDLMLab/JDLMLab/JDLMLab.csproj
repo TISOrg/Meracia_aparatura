@@ -104,9 +104,6 @@
     </Compile>
     <Compile Include="GrafControl.cs" />
     <Compile Include="NIDriver.cs" />
-    <Compile Include="NITaskTimerClass.cs">
-      <SubType>Component</SubType>
-    </Compile>
     <Compile Include="QmsDriver.cs" />
     <Compile Include="SerialPortDriver.cs" />
     <Compile Include="SerialPortDriverInterface.cs" />

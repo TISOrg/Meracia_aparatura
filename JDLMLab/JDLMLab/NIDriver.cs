@@ -19,7 +19,7 @@ namespace JDLMLab
         {
             
             UlohaCounter = new Task("Counter");
-            Intensity = new List<int>(pocetBodov);
+            Intensity = new List<ulong>(pocetBodov);
         }
 
 //        NITaskTimerClass mojaUlohaCounter;
@@ -32,7 +32,7 @@ namespace JDLMLab
         public int last;
         private int pocetKrokov;
 
-        public List<int> Intensity { get; set; }
+        public List<ulong> Intensity { get; set; }
         public double Steptime {
             get;set;
         }
@@ -68,8 +68,8 @@ namespace JDLMLab
             try
             {
                 UlohaCounter.Start();
-                Thread.Sleep(Convert.ToInt32(Steptime) * 1000);
-                int hodnota = Counter.ReadSingleSampleInt32();
+                Thread.Sleep((int)(Steptime * 1000));
+                ulong hodnota = Counter.ReadSingleSampleUInt32();
                 UlohaCounter.Stop();
                       
                 Intensity.Add(hodnota);

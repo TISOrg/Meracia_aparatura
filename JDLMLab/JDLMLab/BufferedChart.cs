@@ -16,8 +16,8 @@ namespace JDLMLab
         {
             public double X { get; set; }
             public double Y { get; set; }
-            public int Intensity { get; set; }
-            public DataPoint(double x,double y,int intensity) {
+            public ulong Intensity { get; set; }
+            public DataPoint(double x,double y,ulong intensity) {
                 X = x;
                 Y = y;
                 Intensity = intensity;
@@ -87,11 +87,11 @@ namespace JDLMLab
                 return Width - LeftMargin - RightMargin;
             }
         }
-        public int yAxisHeight
+        public uint yAxisHeight
         {
             get
             {
-                return Height - BottomMargin - TopMargin;
+                return (uint)(Height - BottomMargin - TopMargin);
             }
         }
         int ScrollDriverWidth{get
@@ -176,7 +176,7 @@ namespace JDLMLab
 
             bufferingMode = 2;
             count = 0;
-
+            bufferedChartClassReference = this;
             // Retrieves the BufferedGraphicsContext for the 
             // current application domain.
             context = BufferedGraphicsManager.Current;
@@ -204,33 +204,31 @@ namespace JDLMLab
             if (e.KeyCode == Keys.PageUp)
             {
                 zoomYIn();
-                blank();
-                DrawToBuffer(grafx.Graphics);
-                Refresh();
+                lock (bufferedChartClassReference)
+                {
+                    obnov();
+                }
 
             }
             if (e.KeyCode == Keys.PageDown)
             {
                 zoomYOut();
-                blank();
-                DrawToBuffer(grafx.Graphics);
-                Refresh();
+                lock (bufferedChartClassReference)
+                {
+                    obnov();
+                }
             }
             if (e.KeyCode == Keys.Q)
             {
                 zoomXIn();
                 ScrollDriverX = LeftMargin+ firstDisplayedBarIndex*ScrollBarWidth / NumberofBars;
-                blank();
-                DrawToBuffer(grafx.Graphics);
-                Refresh();
+                
             }
             if (e.KeyCode == Keys.W)
             {
                 zoomXOut();
                 ScrollDriverX = LeftMargin + firstDisplayedBarIndex * ScrollBarWidth / NumberofBars;
-                blank();
-                DrawToBuffer(grafx.Graphics);
-                Refresh();
+                
             }
 
         }
@@ -255,7 +253,7 @@ namespace JDLMLab
 
         }
 
-        public void addDataPoint(double x, double y, int intensity)
+        public void addDataPoint(double x, double y, ulong intensity)
         {
             Cycles[CurrentCycleNum].Points.Add(new DataPoint(x, y, intensity));
             obnov();
@@ -332,26 +330,31 @@ namespace JDLMLab
 
         private void OnResize(object sender, EventArgs e)
         {
-            // Re-create the graphics buffer for a new window size.
-            context.MaximumBuffer = new Size(this.Width + 1, this.Height + 1);
-            if (grafx != null)
+            lock (bufferedChartClassReference)
             {
-                grafx.Dispose();
-                grafx = null;
+
+
+                // Re-create the graphics buffer for a new window size.
+                context.MaximumBuffer = new Size(this.Width + 1, this.Height + 1);
+                if (grafx != null)
+                {
+                    grafx.Dispose();
+                    grafx = null;
+                }
+                grafx = context.Allocate(this.CreateGraphics(),
+                    new Rectangle(0, 0, this.Width, this.Height));
+
+
+                //TUTO fixnut scrollbar
+
+                //   <--------------------------
+                //
+
+                // Cause the background to be cleared and redraw.
+                count = 6;
+                DrawToBuffer(grafx.Graphics);
+                this.Refresh();
             }
-            grafx = context.Allocate(this.CreateGraphics(),
-                new Rectangle(0, 0, this.Width, this.Height));
-
-
-            //TUTO fixnut scrollbar
-            
-            //   <--------------------------
-            //
-
-            // Cause the background to be cleared and redraw.
-            count = 6;
-            DrawToBuffer(grafx.Graphics);
-            this.Refresh();
         }
         private void uvolnenieMysi(object sender, MouseEventArgs e)
         {
@@ -379,10 +382,9 @@ namespace JDLMLab
                     int xGraf = e.X - LeftMargin;
                     CursorIndex = NumberofDisplayedBars * xGraf / XAxisWidth;
                 }
-                blank();
-                DrawToBuffer(grafx.Graphics);
-                //grafx.Render(Graphics.FromHwnd(this.Handle));
-                Refresh();
+                lock(bufferedChartClassReference) {
+                    obnov();
+                }
             }
             if (scrollBarDragging)
             {
@@ -400,7 +402,10 @@ namespace JDLMLab
                 }
 
                 firstDisplayedBarIndex = (int)((double)((ScrollDriverX - LeftMargin) * NumberofBars) / (double)XAxisWidth);
-                obnov();
+                lock(bufferedChartClassReference)
+                {
+                    obnov();
+                }
             }
 
         }
@@ -422,7 +427,9 @@ namespace JDLMLab
                 dragging = true;
                 int xGraf = e.X - LeftMargin;
                 CursorIndex = NumberofDisplayedBars * xGraf / XAxisWidth;
-                obnov();
+                lock(bufferedChartClassReference) {
+                    obnov();
+                }
             }
 
             if (e.Y > scrollBarY && e.Y < scrollBarY + scrollBarHeight && e.X > LeftMargin && e.X < Width - RightMargin)
@@ -442,7 +449,10 @@ namespace JDLMLab
                 }
 
                 firstDisplayedBarIndex = (int)((double)((ScrollDriverX - LeftMargin) * NumberofBars) / (double)XAxisWidth);
-                obnov();
+                lock(bufferedChartClassReference)
+                {
+                    obnov();
+                }
             }
         }
 
@@ -509,8 +519,11 @@ namespace JDLMLab
                 NumberofDisplayedBars = NumberofDisplayedBars * 2;
             }
             CursorIndex += firstDisplayedBarIndex - fieldStart;
-            firstDisplayedBarIndex = fieldStart;     
-            obnov();
+            firstDisplayedBarIndex = fieldStart;
+            lock (bufferedChartClassReference)
+            {
+                obnov();
+            }
         }
 
 
@@ -533,16 +546,22 @@ namespace JDLMLab
                 firstDisplayedBarIndex = fieldStart;
                 NumberofDisplayedBars = (NumberofDisplayedBars / 2);
 
-                obnov();
+                lock(bufferedChartClassReference)
+                {
+                    obnov();
+                }
             }
 
         }
 
         public void obnov()
         {
-            blank();
-            DrawToBuffer(grafx.Graphics);
-            Refresh();
+            lock(bufferedChartClassReference)
+            {
+                blank();
+                DrawToBuffer(grafx.Graphics);
+                Refresh();
+            }
         }
 
         internal void setCursor(MouseEventArgs e)
@@ -552,7 +571,7 @@ namespace JDLMLab
 
         private long[] zoomYScales;
         private int zoomYScalesIndex;
-        
+        private BufferedChart bufferedChartClassReference;
 
         internal void zoomYIn()
         {
@@ -565,9 +584,7 @@ namespace JDLMLab
             if (zoomYScalesIndex == zoomYScales.Length - 1) return;
             zoomYScalesIndex++;
 
-            blank();
-            DrawToBuffer(grafx.Graphics);
-            Refresh();
+           
 
 
 
@@ -581,6 +598,7 @@ namespace JDLMLab
         /// <param name="g"></param>
         private void DrawToBuffer(Graphics g)
         {
+            
             // Clear the graphics buffer every five updates.
             if (++count > 5 && 1 == 0)    ///.................
             {
@@ -629,15 +647,21 @@ namespace JDLMLab
                 barWidth = (double)(XAxisWidth) / (double)(NumberofDisplayedBars);
                 for (int c=0, i = firstDisplayedBarIndex;i<firstDisplayedBarIndex+NumberofDisplayedBars; i++,c++)
                 {
-                    long barHeight = 0;
+                    ulong barHeight = 0;
                     try {
+                        
                         if (DisplayAxisMode == DisplayAxisModes.Log)
                         {
-                            barHeight = Convert.ToInt64(Convert.ToInt32(yAxisHeight/10)*(1 + Math.Log10((double)dataPoints[i].Intensity)));
+                            double d = 0;
+                            if (dataPoints[i].Intensity != 0)
+                            {
+                                 d = Convert.ToUInt32(yAxisHeight / 10) * (1 + Math.Log10((double)dataPoints[i].Intensity));
+                            }
+                            barHeight = Convert.ToUInt64(d);
                         }
                         if (DisplayAxisMode == DisplayAxisModes.Lin)
                         {
-                            barHeight = (long)((yAxisHeight) * dataPoints[i].Intensity) / zoomYScales[zoomYScalesIndex];
+                            barHeight = (ulong)((yAxisHeight) * dataPoints[i].Intensity) / (ulong)(zoomYScales[zoomYScalesIndex]);
                         }
                         if (DisplayAxisMode == DisplayAxisModes.Auto)
                         {
@@ -680,7 +704,7 @@ namespace JDLMLab
             {
                 rectWidth = endDragX - startDragX;
             }
-            g.FillRectangle(new SolidBrush(Color.FromArgb(100, Color.LightBlue)), new Rectangle(lavaCast, TopMargin, rectWidth, yAxisHeight));
+            g.FillRectangle(new SolidBrush(Color.FromArgb(100, Color.LightBlue)), new Rectangle(lavaCast, TopMargin, rectWidth, Convert.ToInt32(yAxisHeight)));
 
             ///axis
             /// 

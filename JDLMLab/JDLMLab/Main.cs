@@ -33,6 +33,15 @@ namespace JDLMLab
 
         }
 
+        public void setCurrentCycle(string value) {
+
+            currentCycle.Text = value;
+        }
+
+        public void setCurrentStep(string value) {
+            currentEnergyStep.Text = value;
+        }
+
         private void fillRandomDataPoints()
         {
             Random r = new Random();
@@ -41,7 +50,7 @@ namespace JDLMLab
             for (double i = 0; i < 100; i++)
             {
             
-                //bufferedChart.addDataPoint(i, i, r.Next(100, 10000));
+                bufferedChart.addDataPoint(i, i, (ulong)(r.Next(100, 10000)));
             }
         }
 
@@ -72,9 +81,14 @@ namespace JDLMLab
             {
                 //hodnota setMerania.parametreMerania obsahuje instanciu triedy measurementsparameters
                 //ktora obsahuje vsetky informacie na zacatie merania.
-                measurementControl = new MeasurementControl(setmerania.parametreMerania);
+                measurementControl = new MeasurementControl(setmerania.parametreMerania, this);
                 measurementControl.Graf = bufferedChart;
+//                MessageBox.Show(setmerania.parametreMerania.StepTime.ToString() + " - " + setmerania.parametreMerania.NumberOfCycles.ToString());
+                estTimeLabel.Text = DateTime.Now.AddSeconds(setmerania.parametreMerania.StepTime * setmerania.parametreMerania.NumberOfCycles * setmerania.parametreMerania.NumberOfSteps).ToString("hh:mm tt");
+                energyScanStepTimeLabel.Text = setmerania.parametreMerania.EnergyScan.StepTime.ToString();
+                resolutionLabel.Text = setmerania.parametreMerania.Resolution.ToString();
                 measurementControl.start();
+                
                 MinimumSize = new System.Drawing.Size(setmerania.parametreMerania.NumberOfSteps + bufferedChart.LeftMargin + bufferedChart.RightMargin + sidebar.Width, 0);
 
                 //bufferedChart.setParameters(setmerania.parametreMerania.StartPoint,
@@ -179,33 +193,14 @@ namespace JDLMLab
         {
         }
 
-        private void timer1_Tick_1(object sender, EventArgs e)
-        {
-                try
-                {
-
-                foreach (SerialPortDriver dr in drivers)
-                {
-                    richTextBox1.AppendText(dr.readNext().ToString() + "\t");
-
-                }
-                // richTextBox1.AppendText(r.readNext().ToString());
-                //  richTextBox1.AppendText("\n");
-
-            }
-                catch (Exception f)
-                {
-                    richTextBox1.AppendText(f.ToString());
-                }
-
-        }
+       
         SerialPort serialPort;
         static string text="";
         private void dataRecieved(object sender, SerialDataReceivedEventArgs e)
         {
             text = serialPort.ReadLine();
             //richTextBox1.AppendText("dd");
-            richTextBox1.AppendText(text);
+           // richTextBox1.AppendText(text);
         }
         double i;
  
@@ -227,21 +222,10 @@ namespace JDLMLab
            
         }
         VMeterDriver r;
-        NIDriver NI;
+    
         private void sidebarExportButton_Click_2(object sender, EventArgs e)
         {
-            i = 0;
-            /*
-            NI = new NIDriver();
-            NI.setAnalogOutput(5);
-            */
-
-            r = new VMeterDriver();
-            r.setTimer(1000);
-            r.open();
-            r.startReading();
-            //// Thread.Sleep(100);
-            timer1.Enabled = true;
+           
         }
 
         private void panel1_Paint(object sender, PaintEventArgs e)
@@ -254,14 +238,7 @@ namespace JDLMLab
             //e.Control && 
             if (e.KeyCode.ToString() == "N")
             {
-                NoveMeranieWindow setmerania = new NoveMeranieWindow();
-                DialogResult res = setmerania.ShowDialog();
-                if (res == DialogResult.OK)
-                {
-                    //hodnota setMerania.parametreMerania obsahuje instanciu triedy measurementsparameters
-                    //ktora obsahuje vsetky informacie na zacatie merania.
-                    measurementControl = new MeasurementControl(setmerania.parametreMerania);
-                }
+                nastaveniaMeraniaToolStripMenuItem_Click(sender, e);
 
             }
             if (e.KeyCode.ToString() == "L")
@@ -322,18 +299,28 @@ namespace JDLMLab
         {
             if (displayModeLin.Checked)
             {
-                bufferedChart.DisplayAxisMode = BufferedChart.DisplayAxisModes.Lin;                
+                lock (bufferedChart)
+                {
+                   
+                    bufferedChart.DisplayAxisMode = BufferedChart.DisplayAxisModes.Lin;
+                    bufferedChart.obnov();
+                }
+               
             }
-            bufferedChart.obnov();
+            
         }
 
         private void displayModeLog_CheckedChanged(object sender, EventArgs e)
         {
             if (displayModeLog.Checked)
             {
-                bufferedChart.DisplayAxisMode = BufferedChart.DisplayAxisModes.Log;
+                lock (bufferedChart)
+                {
+
+                    bufferedChart.DisplayAxisMode = BufferedChart.DisplayAxisModes.Log;
+                    bufferedChart.obnov();
+                }
             }
-            bufferedChart.obnov();
         }
         private void displayModeAuto_CheckedChanged(object sender, EventArgs e)
         {
@@ -366,12 +353,24 @@ namespace JDLMLab
 
         private void dataDisplayCurrent_Click(object sender, EventArgs e)
         {
+            
             bufferedChart.DisplayDataMode = BufferedChart.DisplayDataModes.CurrentCycle;
         }
 
         private void kontainerPreGraf_Paint(object sender, PaintEventArgs e)
         {
 
+        }
+
+        private void currentCycle_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            DateValueLabel.Text = DateTime.Now.ToString("dd.MM.yyyy");
+            TimeValueLabel.Text = DateTime.Now.ToString("hh:mm tt");
         }
     }
 }

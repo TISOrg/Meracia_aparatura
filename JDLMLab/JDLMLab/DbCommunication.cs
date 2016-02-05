@@ -57,7 +57,7 @@ namespace JDLMLab
             "`end_point` double NOT NULL,`constant` double NOT NULL,`resolution` double NOT NULL,`steptime` double NOT NULL,`cycles` int(254) NOT NULL,"+
             "`note` varchar(500) NOT NULL,`ion_type` tinyint(1) NOT NULL,PRIMARY KEY(`id`),KEY `id(PK)` (`id`)) ENGINE = InnoDB AUTO_INCREMENT = 29 DEFAULT CHARSET = latin1;";
             sql += "CREATE TABLE `rows` (`id` int(11) NOT NULL AUTO_INCREMENT,`y` double NOT NULL,`cycle_num` int(254) NOT NULL,`header_id` int(11) NOT NULL,PRIMARY KEY(`id`),KEY `header_id(PK)` (`header_id`),KEY `id` (`id`),CONSTRAINT `obmedzenie` FOREIGN KEY (`header_id`) REFERENCES `headers` (`id`) ON DELETE CASCADE ON UPDATE CASCADE) ENGINE = InnoDB AUTO_INCREMENT = 28 DEFAULT CHARSET = latin1 ;";
-            sql += "CREATE TABLE `merania` (`id` int(11) NOT NULL AUTO_INCREMENT,`x` double NOT NULL,`y_id` int(11) NOT NULL,`Intensity` int(11) NOT NULL,`Current` double NOT NULL,`Capillar_pressure` double NOT NULL,`Chamber_pressure` double NOT NULL,`Temperature` double NOT NULL,PRIMARY KEY(`id`),KEY `id_y` (`y_id`),CONSTRAINT `obmedzenie2` FOREIGN KEY (`y_id`) REFERENCES `rows` (`id`) ON DELETE CASCADE ON UPDATE CASCADE) ENGINE = InnoDB AUTO_INCREMENT = 90 DEFAULT CHARSET = latin1;";
+            sql += "CREATE TABLE `merania` (`id` int(11) NOT NULL AUTO_INCREMENT,`x` double NOT NULL,`y_id` int(11) NOT NULL,`Intensity` bigint(11) unsigned NOT NULL,`Current` double NOT NULL,`Capillar_pressure` double NOT NULL,`Chamber_pressure` double NOT NULL,`Temperature` double NOT NULL,PRIMARY KEY(`id`),KEY `id_y` (`y_id`),CONSTRAINT `obmedzenie2` FOREIGN KEY (`y_id`) REFERENCES `rows` (`id`) ON DELETE CASCADE ON UPDATE CASCADE) ENGINE = InnoDB AUTO_INCREMENT = 90 DEFAULT CHARSET = latin1;";
 
             sql+="CREATE TABLE `energy_scan_header` ("+
 	            "`id` INT(11) NOT NULL AUTO_INCREMENT,"+
@@ -467,7 +467,9 @@ namespace JDLMLab
         {
             long y_id = getYID(k.Y, cyklus, aktualneMeranie); //ak neexistuje taky zaznam, vytvori novy a vrati id
 
-            MySqlCommand c = new MySqlCommand("insert into merania (x,y_id,Intensity,Current,Capillar pressure,Chamber pressure,Temperature) values(@x,@y_id,@sig,@current,@kapillar,@chamber,@temperature)", conn);
+            MySqlCommand c = new MySqlCommand("insert into merania (x,y_id,Intensity,Current,Capillar_pressure,Chamber_pressure,Temperature) "+
+                "values(@x,@y_id,@sig,@current,@kapillar,@chamber,@temperature)", conn);
+            
             c.Parameters.AddWithValue("@x", k.X);
             c.Parameters.AddWithValue("@y_id", y_id);
             c.Parameters.AddWithValue("@sig", k.Intensity);
@@ -475,6 +477,7 @@ namespace JDLMLab
             c.Parameters.AddWithValue("@kapillar", k.Capillar);
             c.Parameters.AddWithValue("@chamber", k.Chamber);
             c.Parameters.AddWithValue("@temperature", k.Temperature);
+           
             c.ExecuteNonQuery();
         }
         public void addCyklus(CyklusMerania c)

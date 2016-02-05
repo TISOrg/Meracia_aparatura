@@ -10,7 +10,7 @@ namespace JDLMLab
     //dominik napisal tuto poznmku, bez zmeny triedy
     class KrokMerania
     {
-        public KrokMerania(double x, double y, int intensity, double current, double kapillar, double chamber, double temperature)
+        public KrokMerania(double x, double y, ulong intensity, double current, double kapillar, double chamber, double temperature)
         {
             this.X = x;
             this.Y = y;
@@ -26,7 +26,7 @@ namespace JDLMLab
         
         public double X { get; set; }
         public double Y { get; set; }
-        public int Intensity { get; set; }
+        public ulong Intensity { get; set; }
         public double Current { get; set; }
         public double  Capillar { get; set; }
         public double Chamber { get; set; }

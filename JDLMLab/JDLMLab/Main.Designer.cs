@@ -40,16 +40,16 @@
             this.sidebar = new System.Windows.Forms.Panel();
             this.button3 = new System.Windows.Forms.Button();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
-            this.label7 = new System.Windows.Forms.Label();
+            this.estTimeLabel = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.dateLabel = new System.Windows.Forms.Label();
             this.timeLabel = new System.Windows.Forms.Label();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.label5 = new System.Windows.Forms.Label();
+            this.energyScanStepTimeLabel = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.resolutionLabel = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.currentStep = new System.Windows.Forms.TextBox();
+            this.currentEnergyStep = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.currentCycle = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
@@ -59,7 +59,6 @@
             this.dataDisplaySum = new System.Windows.Forms.RadioButton();
             this.dataDisplayCurrent = new System.Windows.Forms.RadioButton();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
             this.displayModeLog = new System.Windows.Forms.RadioButton();
             this.displayModeLin = new System.Windows.Forms.RadioButton();
             this.sidebarExportButton = new System.Windows.Forms.Button();
@@ -67,13 +66,14 @@
             this.startbutton = new System.Windows.Forms.Button();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.kontainerPreGraf = new System.Windows.Forms.Panel();
+            this.DateValueLabel = new System.Windows.Forms.Label();
+            this.TimeValueLabel = new System.Windows.Forms.Label();
             this.menuStrip1.SuspendLayout();
             this.sidebar.SuspendLayout();
             this.groupBox4.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
-            this.kontainerPreGraf.SuspendLayout();
             this.SuspendLayout();
             // 
             // serialPort1
@@ -145,9 +145,9 @@
             this.sidebar.Controls.Add(this.button2);
             this.sidebar.Controls.Add(this.startbutton);
             this.sidebar.Dock = System.Windows.Forms.DockStyle.Right;
-            this.sidebar.Location = new System.Drawing.Point(1040, 24);
+            this.sidebar.Location = new System.Drawing.Point(1030, 24);
             this.sidebar.Name = "sidebar";
-            this.sidebar.Size = new System.Drawing.Size(148, 681);
+            this.sidebar.Size = new System.Drawing.Size(158, 681);
             this.sidebar.TabIndex = 9;
             this.sidebar.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
             // 
@@ -162,26 +162,28 @@
             // 
             // groupBox4
             // 
-            this.groupBox4.Controls.Add(this.label7);
+            this.groupBox4.Controls.Add(this.TimeValueLabel);
+            this.groupBox4.Controls.Add(this.DateValueLabel);
+            this.groupBox4.Controls.Add(this.estTimeLabel);
             this.groupBox4.Controls.Add(this.label6);
             this.groupBox4.Controls.Add(this.dateLabel);
             this.groupBox4.Controls.Add(this.timeLabel);
             this.groupBox4.Location = new System.Drawing.Point(3, 360);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(139, 93);
+            this.groupBox4.Size = new System.Drawing.Size(152, 93);
             this.groupBox4.TabIndex = 28;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Time";
             this.groupBox4.Enter += new System.EventHandler(this.groupBox4_Enter);
             // 
-            // label7
+            // estTimeLabel
             // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(82, 60);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(51, 13);
-            this.label7.TabIndex = 8;
-            this.label7.Text = "hh:mm:ss";
+            this.estTimeLabel.AutoSize = true;
+            this.estTimeLabel.Location = new System.Drawing.Point(82, 60);
+            this.estTimeLabel.Name = "estTimeLabel";
+            this.estTimeLabel.Size = new System.Drawing.Size(51, 13);
+            this.estTimeLabel.TabIndex = 8;
+            this.estTimeLabel.Text = "hh:mm:ss";
             // 
             // label6
             // 
@@ -195,7 +197,7 @@
             // dateLabel
             // 
             this.dateLabel.AutoSize = true;
-            this.dateLabel.Location = new System.Drawing.Point(46, 16);
+            this.dateLabel.Location = new System.Drawing.Point(7, 18);
             this.dateLabel.Name = "dateLabel";
             this.dateLabel.Size = new System.Drawing.Size(30, 13);
             this.dateLabel.TabIndex = 6;
@@ -204,7 +206,7 @@
             // timeLabel
             // 
             this.timeLabel.AutoSize = true;
-            this.timeLabel.Location = new System.Drawing.Point(46, 39);
+            this.timeLabel.Location = new System.Drawing.Point(6, 38);
             this.timeLabel.Name = "timeLabel";
             this.timeLabel.Size = new System.Drawing.Size(30, 13);
             this.timeLabel.TabIndex = 4;
@@ -213,29 +215,29 @@
             // 
             // groupBox3
             // 
-            this.groupBox3.Controls.Add(this.label5);
+            this.groupBox3.Controls.Add(this.energyScanStepTimeLabel);
             this.groupBox3.Controls.Add(this.label4);
             this.groupBox3.Controls.Add(this.resolutionLabel);
             this.groupBox3.Controls.Add(this.label3);
-            this.groupBox3.Controls.Add(this.currentStep);
+            this.groupBox3.Controls.Add(this.currentEnergyStep);
             this.groupBox3.Controls.Add(this.label2);
             this.groupBox3.Controls.Add(this.currentCycle);
             this.groupBox3.Controls.Add(this.label1);
             this.groupBox3.Location = new System.Drawing.Point(3, 193);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(139, 121);
+            this.groupBox3.Size = new System.Drawing.Size(152, 121);
             this.groupBox3.TabIndex = 27;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Measurement info";
             // 
-            // label5
+            // energyScanStepTimeLabel
             // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(76, 72);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(22, 13);
-            this.label5.TabIndex = 7;
-            this.label5.Text = "3.4";
+            this.energyScanStepTimeLabel.AutoSize = true;
+            this.energyScanStepTimeLabel.Location = new System.Drawing.Point(76, 72);
+            this.energyScanStepTimeLabel.Name = "energyScanStepTimeLabel";
+            this.energyScanStepTimeLabel.Size = new System.Drawing.Size(13, 13);
+            this.energyScanStepTimeLabel.TabIndex = 7;
+            this.energyScanStepTimeLabel.Text = "0";
             // 
             // label4
             // 
@@ -251,9 +253,9 @@
             this.resolutionLabel.AutoSize = true;
             this.resolutionLabel.Location = new System.Drawing.Point(76, 94);
             this.resolutionLabel.Name = "resolutionLabel";
-            this.resolutionLabel.Size = new System.Drawing.Size(19, 13);
+            this.resolutionLabel.Size = new System.Drawing.Size(13, 13);
             this.resolutionLabel.TabIndex = 5;
-            this.resolutionLabel.Text = "10";
+            this.resolutionLabel.Text = "0";
             // 
             // label3
             // 
@@ -264,13 +266,13 @@
             this.label3.TabIndex = 4;
             this.label3.Text = "Resolution";
             // 
-            // currentStep
+            // currentEnergyStep
             // 
-            this.currentStep.Enabled = false;
-            this.currentStep.Location = new System.Drawing.Point(77, 46);
-            this.currentStep.Name = "currentStep";
-            this.currentStep.Size = new System.Drawing.Size(54, 20);
-            this.currentStep.TabIndex = 3;
+            this.currentEnergyStep.Enabled = false;
+            this.currentEnergyStep.Location = new System.Drawing.Point(77, 46);
+            this.currentEnergyStep.Name = "currentEnergyStep";
+            this.currentEnergyStep.Size = new System.Drawing.Size(75, 20);
+            this.currentEnergyStep.TabIndex = 3;
             // 
             // label2
             // 
@@ -286,7 +288,7 @@
             this.currentCycle.Enabled = false;
             this.currentCycle.Location = new System.Drawing.Point(77, 23);
             this.currentCycle.Name = "currentCycle";
-            this.currentCycle.Size = new System.Drawing.Size(54, 20);
+            this.currentCycle.Size = new System.Drawing.Size(75, 20);
             this.currentCycle.TabIndex = 1;
             // 
             // label1
@@ -316,7 +318,7 @@
             this.groupBox2.Controls.Add(this.dataDisplayCurrent);
             this.groupBox2.Location = new System.Drawing.Point(3, 87);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(139, 100);
+            this.groupBox2.Size = new System.Drawing.Size(152, 100);
             this.groupBox2.TabIndex = 25;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Data display mode";
@@ -328,7 +330,6 @@
             this.dataDisplayAvg.Name = "dataDisplayAvg";
             this.dataDisplayAvg.Size = new System.Drawing.Size(44, 17);
             this.dataDisplayAvg.TabIndex = 20;
-            this.dataDisplayAvg.TabStop = true;
             this.dataDisplayAvg.Text = "Avg";
             this.dataDisplayAvg.UseVisualStyleBackColor = true;
             this.dataDisplayAvg.Click += new System.EventHandler(this.dataDisplayAvg_Click);
@@ -340,7 +341,6 @@
             this.dataDisplaySum.Name = "dataDisplaySum";
             this.dataDisplaySum.Size = new System.Drawing.Size(46, 17);
             this.dataDisplaySum.TabIndex = 21;
-            this.dataDisplaySum.TabStop = true;
             this.dataDisplaySum.Text = "Sum";
             this.dataDisplaySum.UseVisualStyleBackColor = true;
             this.dataDisplaySum.Click += new System.EventHandler(this.dataDisplaySum_Click);
@@ -348,6 +348,7 @@
             // dataDisplayCurrent
             // 
             this.dataDisplayCurrent.AutoSize = true;
+            this.dataDisplayCurrent.Checked = true;
             this.dataDisplayCurrent.Location = new System.Drawing.Point(16, 65);
             this.dataDisplayCurrent.Name = "dataDisplayCurrent";
             this.dataDisplayCurrent.Size = new System.Drawing.Size(87, 17);
@@ -368,14 +369,6 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Graphical display mode";
             // 
-            // richTextBox1
-            // 
-            this.richTextBox1.Location = new System.Drawing.Point(824, 15);
-            this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.Size = new System.Drawing.Size(184, 131);
-            this.richTextBox1.TabIndex = 10;
-            this.richTextBox1.Text = "";
-            // 
             // displayModeLog
             // 
             this.displayModeLog.AutoSize = true;
@@ -383,7 +376,6 @@
             this.displayModeLog.Name = "displayModeLog";
             this.displayModeLog.Size = new System.Drawing.Size(39, 17);
             this.displayModeLog.TabIndex = 11;
-            this.displayModeLog.TabStop = true;
             this.displayModeLog.Text = "log";
             this.displayModeLog.UseVisualStyleBackColor = true;
             this.displayModeLog.CheckedChanged += new System.EventHandler(this.displayModeLog_CheckedChanged);
@@ -391,6 +383,7 @@
             // displayModeLin
             // 
             this.displayModeLin.AutoSize = true;
+            this.displayModeLin.Checked = true;
             this.displayModeLin.Location = new System.Drawing.Point(16, 17);
             this.displayModeLin.Name = "displayModeLin";
             this.displayModeLin.Size = new System.Drawing.Size(35, 17);
@@ -437,19 +430,35 @@
             // 
             // timer1
             // 
-            this.timer1.Interval = 500;
-            this.timer1.Tick += new System.EventHandler(this.timer1_Tick_1);
+            this.timer1.Enabled = true;
+            this.timer1.Interval = 10;
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
             // kontainerPreGraf
             // 
             this.kontainerPreGraf.BackColor = System.Drawing.Color.Black;
-            this.kontainerPreGraf.Controls.Add(this.richTextBox1);
             this.kontainerPreGraf.Dock = System.Windows.Forms.DockStyle.Left;
             this.kontainerPreGraf.Location = new System.Drawing.Point(0, 24);
             this.kontainerPreGraf.Name = "kontainerPreGraf";
-            this.kontainerPreGraf.Size = new System.Drawing.Size(1037, 681);
+            this.kontainerPreGraf.Size = new System.Drawing.Size(1024, 681);
             this.kontainerPreGraf.TabIndex = 10;
             this.kontainerPreGraf.Paint += new System.Windows.Forms.PaintEventHandler(this.kontainerPreGraf_Paint);
+            // 
+            // DateValueLabel
+            // 
+            this.DateValueLabel.AutoSize = true;
+            this.DateValueLabel.Location = new System.Drawing.Point(82, 18);
+            this.DateValueLabel.Name = "DateValueLabel";
+            this.DateValueLabel.Size = new System.Drawing.Size(0, 13);
+            this.DateValueLabel.TabIndex = 9;
+            // 
+            // TimeValueLabel
+            // 
+            this.TimeValueLabel.AutoSize = true;
+            this.TimeValueLabel.Location = new System.Drawing.Point(82, 38);
+            this.TimeValueLabel.Name = "TimeValueLabel";
+            this.TimeValueLabel.Size = new System.Drawing.Size(0, 13);
+            this.TimeValueLabel.TabIndex = 10;
             // 
             // Main
             // 
@@ -479,7 +488,6 @@
             this.groupBox2.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
-            this.kontainerPreGraf.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -502,7 +510,6 @@
         private System.Windows.Forms.RadioButton dataDisplayCurrent;
         private System.Windows.Forms.RadioButton dataDisplaySum;
         private System.Windows.Forms.RadioButton dataDisplayAvg;
-        private System.Windows.Forms.RichTextBox richTextBox1;
         private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.GroupBox groupBox1;
@@ -510,19 +517,21 @@
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.TextBox currentCycle;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox currentStep;
+        private System.Windows.Forms.TextBox currentEnergyStep;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label resolutionLabel;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label energyScanStepTimeLabel;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.GroupBox groupBox4;
         private System.Windows.Forms.Label dateLabel;
         private System.Windows.Forms.Label timeLabel;
-        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label estTimeLabel;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Panel kontainerPreGraf;
+        private System.Windows.Forms.Label TimeValueLabel;
+        private System.Windows.Forms.Label DateValueLabel;
     }
 }
 
