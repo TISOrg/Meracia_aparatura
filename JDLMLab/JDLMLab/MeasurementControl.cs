@@ -14,8 +14,6 @@ namespace JDLMLab
     /// </summary>
     class MeasurementControl
     {
-        int aktualneCisloCyklu;
-
         public MeasurementControl(MeasurementParameters mp,Main mainForm)
         {
             Parameters = mp;
@@ -24,6 +22,7 @@ namespace JDLMLab
         }
 
         Main mainForm { get; set; }
+        public BufferedChart Graf { get; internal set; }
         DbCommunication db;
         private void vytvoritMeranievDB(MeasurementParameters mp)
         {   
@@ -45,57 +44,59 @@ namespace JDLMLab
         static QmsDriver qms = new QmsDriver();
         NIDriver ADPrevodnik;
 
-        public bool zastavitPoSkonceniCyklu {
-            get; set;
-        }
-
         string typ { get; set; }
+
         /// <summary>
         /// Metoda nastartuje meranie s prednastavenymi parametrami.
         /// spusta sa v samostatnom vlakne. 
         /// </summary>
         public void start()
         {
-            db = new DbCommunication();
-            db.open();
-            db.vytvoritNoveMeranie(Parameters);
+            if (!Parameters.TestRun)
+            {
+                db = new DbCommunication();
+                db.open();
+                db.vytvoritNoveMeranie(Parameters);
+            }
             typ = Parameters.Typ;
-             new Thread(this.startThread).Start();   //vykonavame meranie v samostatnom threade   
-
-            //Graf.setParameters(Parameters.StartPoint, Parameters.EndPoint,Parameters.NumberOfSteps);   //inicializuj graf podla parametrov merania
-
-            //startThread();
+            Graf.setParameters(Parameters.EnergyScan.StartPoint, Parameters.EnergyScan.EndPoint, Parameters.NumberOfSteps + 1, Parameters.NumberOfCycles);
+            new Thread(this.startThread).Start();   //vykonavame meranie v samostatnom threade   
         }
-        public void stop()
-        {
-            db.close();
-            ADPrevodnik.UlohaCounter.Dispose();
-        }
-         
+
         CyklusMerania aktualnyCyklus;
-
+        int aktualneCisloCyklu;
+        int cisloKroku;
         private void startThread()
         {
             inicializujPristroje();
-            Graf.setParameters(Parameters.EnergyScan.StartPoint, Parameters.EnergyScan.EndPoint, Parameters.NumberOfSteps + 1, Parameters.NumberOfCycles);
             ADPrevodnik.triggerInit(Parameters.StepTime);
             aktualneCisloCyklu = 1;
 
             while (Parameters.NumberOfCycles == 0 || aktualneCisloCyklu <= Parameters.NumberOfCycles)
             {
-                vytvorNovyCyklus(aktualneCisloCyklu); //vytvori datovu strukturu CyklusMerania v strukture Meranie
-                merajVAktualnomCykle(); //zacne meranie aktualneho cyklu
-                //ulozime aktualne namerany cyklus do db
-                db.addCyklus(aktualnyCyklus);
-                if (zastavitPoSkonceniCyklu) break;
+                aktualnyCyklus = new CyklusMerania(aktualneCisloCyklu); //vytvori datovu strukturu CyklusMerania
+                merajAktualnyCyklus(); //zacne meranie aktualneho cyklu
+                db.addCyklus(aktualnyCyklus);//ulozime aktualne namerany cyklus do db
+                if (mainForm.stopAfterCycleChecked) break;  //stlacil user checkbox zastavit???
                 aktualneCisloCyklu++;
             }
-
             //skoncili sa cykly, alebo user nastavil ze sa ma skoncit po ukonceni cyklu
-            //ulozime do db
-            //db.addMeranie(Meranie);
-            stop(); 
+            if (!Parameters.TestRun)
+            {
+                //db.addMeranie(Meranie);
+                stop();
+            }
+            
+            //skoncili sme meranie, vypiseme nejaku haluz, povolime spustenie noveho merania atd...
+
         }
+
+        public void stop()
+        {
+            if (!Parameters.TestRun) db.close();
+            ADPrevodnik.UlohaCounter.Dispose();
+        }
+
 
         /// <summary>
         /// podla typu merania nastavi pristrojom vsetky potrebne udaje
@@ -116,64 +117,44 @@ namespace JDLMLab
             //QmsDriver.setPoint(Parameters.StartPoint);
             
         }
-        int cisloKroku { get; set; }
-        public BufferedChart Graf { get; internal set; }
-
-        private void merajVAktualnomCykle()
+        private void merajAktualnyCyklus()
         {
             mainForm.setCurrentCycle(aktualneCisloCyklu.ToString());
             Graf.clear();
-            if (typ.Equals("Mass Scan"))
-            {
-            
-
-            }
-            else if(typ.Equals("Energy Scan"))
-            {
-               
-                merajEnergyScanCyklus();
-            }
-
-            else if(typ.Equals("2D Scan"))
-            {
-               
-            }     
-                  
+            if (typ.Equals("Mass Scan")) { merajMassScanCyklus(); }
+            else if(typ.Equals("Energy Scan")){merajEnergyScanCyklus();}
+            else if(typ.Equals("2D Scan")){ meraj2DScanCyklus(); }     
         }
+        private void merajMassScanCyklus()
+        {
 
-
+        }
 
         private void merajEnergyScanCyklus()
         {
             cisloKroku = 0;
             double krok = (Parameters.EnergyScan.StartPoint); //ziskame zaciatocny krok = start point pre TEM
             Thread ADThread;
+            
             while (cisloKroku <= Parameters.NumberOfSteps)
             {
                 mainForm.setCurrentStep(cisloKroku.ToString() + "/" + Parameters.NumberOfSteps.ToString());
                 KrokMerania = new KrokMerania();
-                KrokMerania.X = krok;
-                
                 //ADPrevodnik.setAnalogOutput(krok);//.setPoint(krok);   //posle na TEM vypocitany bod
                 ADThread = new Thread(ADPrevodnik.CounterStart); //novy thread ad prevodnika
                 ADThread.Start();  //nastartovanie prevodnika
                 ///precitaj zatial vsetky ostatne pristroje
-                // itaj vmeter
-                ///citaj ameter...
-                /// krokmerania.tlakomer=hodnota...
                 KrokMerania.Current = 5.2;
                 KrokMerania.Capillar = 10;
                 KrokMerania.Chamber = 11;
                 KrokMerania.Temperature = 4.8;
                 KrokMerania.Y = 4;
-                
+                KrokMerania.X = krok;   //potom nebudeme zapisovat prepokladany krok, ale odmerany z voltmetra
                 ADThread.Join();   //cakas na skoncenie ADThreadu
-             //   MessageBox.Show(cisloKroku.ToString());
                 //vieme, ze AD prevodnik uz zapisal novu hodnotu intenzity
                 KrokMerania.Intensity = ADPrevodnik.Intensity[cisloKroku];
                 //zaznamenat 
              
-                //Meranie.addKrok(aktualneCisloCyklu, KrokMerania);
                 aktualnyCyklus.KrokyMerania.Add(KrokMerania);
                 lock (Graf)
                 {
@@ -183,56 +164,14 @@ namespace JDLMLab
                 cisloKroku++;
                 krok = (Parameters.EnergyScan.StartPoint)+cisloKroku*Parameters.EnergyScan.KrokNapatia;
             }
-           // MessageBox.Show("f");
-
-           
-
         }
-      
-        
-        
-
-        private double vypocitajAktualnyKrok()
+        private void meraj2DScanCyklus()
         {
-            return vypocitajKrokPreTem(cisloKroku);
+
         }
 
-        /// <summary>
-        /// vrati aktualny napatovy krok pre i-ty krok
-        /// </summary>
-        /// <param name="i">kolkaty krok hladame</param>
-        /// <returns></returns>
-        private double vypocitajKrokPreTem(int i)
-        {
-            if (i < 0)
-            {
-                return 0;
-            }
-            if (typ.Equals("Energy Scan"))
-            {
-                return Parameters.EnergyScan.StartPoint + i * Parameters.EnergyScan.KrokNapatia;
-            }
-            else if (typ.Equals("2D Scan"))
-            {
-                return (Parameters.EnergyScan.StartPoint + i * Parameters.EnergyScan.KrokNapatia);
-            }
-            return 0;
-            
-        }
-     
-        
 
 
-
-        private void vytvorNovyCyklus(int c)
-        {
-            aktualnyCyklus = new CyklusMerania(c);
-        }
-
-        private void nastavNaDalsiKrokMerania()
-        {
-           
-        }
     }
 
 }

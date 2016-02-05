@@ -188,7 +188,7 @@ namespace JDLMLab
             }
             timer1.Enabled = false;
         }
-
+        public bool stopAfterCycleChecked { get { return stopAfterCycle.Checked; } }
         private void Main_FormClosing(object sender, FormClosingEventArgs e)
         {
         }
@@ -198,6 +198,7 @@ namespace JDLMLab
         static string text="";
         private void dataRecieved(object sender, SerialDataReceivedEventArgs e)
         {
+            
             text = serialPort.ReadLine();
             //richTextBox1.AppendText("dd");
            // richTextBox1.AppendText(text);

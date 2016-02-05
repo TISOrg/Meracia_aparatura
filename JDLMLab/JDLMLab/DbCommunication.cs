@@ -421,10 +421,6 @@ namespace JDLMLab
 
             }
             c.ExecuteNonQuery();
-      
-
-            
-
         }
 
         private long getYID(double y, int cycle, long header)

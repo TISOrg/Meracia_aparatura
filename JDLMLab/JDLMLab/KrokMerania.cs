@@ -32,26 +32,7 @@ namespace JDLMLab
         public double Chamber { get; set; }
         public double Temperature { get; set; }
         //public int cyklus { get; set; }
-
-        public override string ToString()
-        {
-            StringBuilder s = new StringBuilder();
-            s.Append(X);
-            s.Append(" ");
-            s.Append(Y);
-            s.Append(" ");
-            s.Append(Intensity); s.Append(" ");
-
-            s.Append(Current);
-            s.Append(" ");
-            s.Append(Capillar);
-            s.Append(" ");
-            s.Append(Chamber);
-            s.Append(" ");
-            s.Append(Temperature);
-            s.Append("\n");
-            return s.ToString();
-        }
+        
     }
 
 }
