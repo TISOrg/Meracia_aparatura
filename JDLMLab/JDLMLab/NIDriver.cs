@@ -19,31 +19,18 @@ namespace JDLMLab
         {
             
             UlohaCounter = new Task("Counter");
-            Intensity = new List<ulong>(pocetBodov);
+            Intensity = 0;
         }
-
-//        NITaskTimerClass mojaUlohaCounter;
         public Task UlohaCounter;     
         private CIChannel CICh;
         public CounterReader Counter;
-        public int[] ttlSignal;
-        string prevodnik = "Dev1";
-        public int aktualnyKrok;
-        public int last;
-        private int pocetKrokov;
+        string prevodnikId = "Dev1";
 
-        public List<ulong> Intensity { get; set; }
+        public ulong Intensity { get; set; }
         public double Steptime {
             get;set;
         }
-        public int NumOfSteps {
-            get {
-                return pocetKrokov;
-            }
-            internal set {
-                pocetKrokov = value;
-            }
-        }
+        
 
 //---------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -52,8 +39,8 @@ namespace JDLMLab
             //     ttlSignal = new int[NumOfSteps];
             Steptime = casoKrok;
             CICh = UlohaCounter.CIChannels.CreateCountEdgesChannel(
-                prevodnik + "/ctr0",
-                prevodnik + "ctr0",
+                prevodnikId + "/ctr0",
+                prevodnikId + "ctr0",
                 CICountEdgesActiveEdge.Falling,
                 0,
                 CICountEdgesCountDirection.Up
@@ -72,7 +59,7 @@ namespace JDLMLab
                 ulong hodnota = Counter.ReadSingleSampleUInt32();
                 UlohaCounter.Stop();
                       
-                Intensity.Add(hodnota);
+                Intensity=hodnota;
             }
             catch (Exception ex)
             {
@@ -125,7 +112,7 @@ namespace JDLMLab
             Task analogOutTask = new Task();
             AOChannel myAOChannel;
             myAOChannel = analogOutTask.AOChannels.CreateVoltageChannel(
-                prevodnik + "/ao1",
+                prevodnikId + "/ao1",
                 "myAOChannel",
                 0,
                 5,
@@ -145,7 +132,7 @@ namespace JDLMLab
             Task analogInTask = new Task();
             AIChannel myAIChannel;
             myAIChannel = analogInTask.AIChannels.CreateVoltageChannel(
-                prevodnik + "/ai1",
+                prevodnikId + "/ai1",
                 "myAIChannel",
                 AITerminalConfiguration.Differential,
                 0,

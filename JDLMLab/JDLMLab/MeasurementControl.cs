@@ -29,9 +29,6 @@ namespace JDLMLab
             db.vytvoritNoveMeranie(mp);   
         }
 
-        /// <summary>
-        /// v tomto parametri je vsetko k nastaveniam merania. viem zistit aj typ;
-        /// </summary>
         public MeasurementParameters Parameters { get; set; }
         private Meranie Meranie { get; set; }
         private KrokMerania KrokMerania { get; set; }
@@ -48,7 +45,6 @@ namespace JDLMLab
 
         /// <summary>
         /// Metoda nastartuje meranie s prednastavenymi parametrami.
-        /// spusta sa v samostatnom vlakne. 
         /// </summary>
         public void start()
         {
@@ -64,21 +60,19 @@ namespace JDLMLab
         }
 
         CyklusMerania aktualnyCyklus;
-        int aktualneCisloCyklu;
+        int currentCycleNum;
         int cisloKroku;
         private void startThread()
         {
             inicializujPristroje();
-            ADPrevodnik.triggerInit(Parameters.StepTime);
-            aktualneCisloCyklu = 1;
-
-            while (Parameters.NumberOfCycles == 0 || aktualneCisloCyklu <= Parameters.NumberOfCycles)
+            currentCycleNum = 1;
+            while (Parameters.NumberOfCycles == 0 || currentCycleNum <= Parameters.NumberOfCycles)
             {
-                aktualnyCyklus = new CyklusMerania(aktualneCisloCyklu); //vytvori datovu strukturu CyklusMerania
+                aktualnyCyklus = new CyklusMerania(currentCycleNum); //vytvori datovu strukturu CyklusMerania
                 merajAktualnyCyklus(); //zacne meranie aktualneho cyklu
-                db.addCyklus(aktualnyCyklus);//ulozime aktualne namerany cyklus do db
+                if(!Parameters.TestRun) db.addCyklus(aktualnyCyklus);//ulozime aktualne namerany cyklus do db
                 if (mainForm.stopAfterCycleChecked) break;  //stlacil user checkbox zastavit???
-                aktualneCisloCyklu++;
+                currentCycleNum++;
             }
             //skoncili sa cykly, alebo user nastavil ze sa ma skoncit po ukonceni cyklu
             if (!Parameters.TestRun)
@@ -97,7 +91,6 @@ namespace JDLMLab
             ADPrevodnik.UlohaCounter.Dispose();
         }
 
-
         /// <summary>
         /// podla typu merania nastavi pristrojom vsetky potrebne udaje
         /// </summary>
@@ -105,6 +98,7 @@ namespace JDLMLab
         {
             inicializujQms();
             inicializujTem();
+            ADPrevodnik.triggerInit(Parameters.StepTime);
         }
 
         private void inicializujTem()
@@ -119,7 +113,7 @@ namespace JDLMLab
         }
         private void merajAktualnyCyklus()
         {
-            mainForm.setCurrentCycle(aktualneCisloCyklu.ToString());
+            mainForm.setCurrentCycle(currentCycleNum.ToString());
             Graf.clear();
             if (typ.Equals("Mass Scan")) { merajMassScanCyklus(); }
             else if(typ.Equals("Energy Scan")){merajEnergyScanCyklus();}
@@ -152,7 +146,7 @@ namespace JDLMLab
                 KrokMerania.X = krok;   //potom nebudeme zapisovat prepokladany krok, ale odmerany z voltmetra
                 ADThread.Join();   //cakas na skoncenie ADThreadu
                 //vieme, ze AD prevodnik uz zapisal novu hodnotu intenzity
-                KrokMerania.Intensity = ADPrevodnik.Intensity[cisloKroku];
+                KrokMerania.Intensity = ADPrevodnik.Intensity;
                 //zaznamenat 
              
                 aktualnyCyklus.KrokyMerania.Add(KrokMerania);
