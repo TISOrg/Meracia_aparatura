@@ -343,6 +343,10 @@ namespace JDLMLab
                 new Rectangle(0, 0, this.Width, this.Height));
 
 
+            //TUTO fixnut scrollbar
+            
+            //   <--------------------------
+            //
 
             // Cause the background to be cleared and redraw.
             count = 6;
