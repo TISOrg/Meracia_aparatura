@@ -474,5 +474,15 @@ namespace JDLMLab
         {
 
         }
+
+        private void ExportWindow_Resize(object sender, EventArgs e)
+        {
+            dataMeranie.Height = ClientSize.Height-panel1.Height;
+        }
+
+        private void button2_Click_1(object sender, EventArgs e)
+        {
+            MessageBox.Show(panel1.Height.ToString());
+        }
     }
 }

@@ -181,7 +181,7 @@ namespace JDLMLab
                 }
                 
                 cisloKroku++;
-                krok += (Parameters.EnergyScan.KrokNapatia);
+                krok = (Parameters.EnergyScan.StartPoint)+cisloKroku*Parameters.EnergyScan.KrokNapatia;
             }
            // MessageBox.Show("f");
 

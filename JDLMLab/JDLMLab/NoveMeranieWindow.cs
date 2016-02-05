@@ -132,7 +132,7 @@ namespace JDLMLab
             }
             catch (ValidateParametersException ex)
             {
-                MessageBox.Show(ex.Message.ToString(), "Chyba", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(ex.Message.ToString(), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -218,7 +218,7 @@ namespace JDLMLab
         {
             if (nameField.Text.Length == 0 && !testRun)
             {
-                throw new ValidateParametersException("nazov merania musi mat aspon jeden znak");
+                throw new ValidateParametersException("Measure name must have at last one char");
             }
         }
 
@@ -282,27 +282,27 @@ namespace JDLMLab
             int krok;
             
            
-			if (!Double.TryParse(startPointField2DEs.Text, out startpointqms)) throw new ValidateParametersException("Neplatná hodnota pre startpointtem");
+			if (!Double.TryParse(startPointField2DEs.Text, out startpointqms)) throw new ValidateParametersException("Invalid value for startpointtem");
             
-            if (!Double.TryParse(endPointField2DEs.Text, out endpointqms)) throw new ValidateParametersException("Neplatná hodnota pre endpointtem");
+            if (!Double.TryParse(endPointField2DEs.Text, out endpointqms)) throw new ValidateParametersException("Invalid value for endpointtem");
           
-            if (!int.TryParse(pocetKrokovField2DEs.Text, out krok)) throw new ValidateParametersException("Neplatná hodnota pre pocetkrokoqtem");
+            if (!int.TryParse(pocetKrokovField2DEs.Text, out krok)) throw new ValidateParametersException("Invalid value for pocetkrokoqtem");
             
-            if (!Double.TryParse(steptimeField2DEs.Text, out step)) throw new ValidateParametersException("Neplatná hodnota pre pocetkrokoqtem");
+            if (!Double.TryParse(steptimeField2DEs.Text, out step)) throw new ValidateParametersException("Invalid value for pocetkrokoqtem");
 
-            if (!Double.TryParse(startPointField2DMs.Text, out startpointtem)) throw new ValidateParametersException("Neplatná hodnota pre startpointqms");
+            if (!Double.TryParse(startPointField2DMs.Text, out startpointtem)) throw new ValidateParametersException("Invalid value for  startpointqms");
             
-            if (!Double.TryParse(endPointField2DMs.Text, out endpointtem)) throw new ValidateParametersException("Neplatná hodnota pre endpointqms");
+            if (!Double.TryParse(endPointField2DMs.Text, out endpointtem)) throw new ValidateParametersException("Invalid value for endpointqms");
             
-           if (!Double.TryParse(resolutionField2D.Text, out resolution)) throw new ValidateParametersException("Neplatná hodnota pre resolutionqms");
+           if (!Double.TryParse(resolutionField2D.Text, out resolution)) throw new ValidateParametersException("Invalid value for resolutionqms");
             
             
             
-            if (!int.TryParse(pocetKrokovField2DEs.Text, out krok)) throw new ValidateParametersException("Neplatná hodnota pre pocetkrokoqms");
+            if (!int.TryParse(pocetKrokovField2DEs.Text, out krok)) throw new ValidateParametersException("Invalid value for pocetkrokoqms");
             
-            if (startpointtem >= endpointtem) throw new ValidateParametersException("Neplatná hodnota endpoint musi byt vacsi ako startpointqms");
+            if (startpointtem >= endpointtem) throw new ValidateParametersException("Invalid value endpointtem must be greader than startpointtem");
             
-            if (startpointqms >= endpointqms) throw new ValidateParametersException("Neplatná hodnota endpoint musi byt vacsi ako startpointqms");
+            if (startpointqms >= endpointqms) throw new ValidateParametersException("Invalid value endpointqms must be greader than startpointqmns");
             
         }
 
@@ -314,18 +314,18 @@ namespace JDLMLab
             Double dens;
             double constant;
             
-            if (!Double.TryParse(startPointFieldMs.Text, out startpoint)) throw new ValidateParametersException("invalid value for startpoint");
+            if (!Double.TryParse(startPointFieldMs.Text, out startpoint)) throw new ValidateParametersException("Invalid value for startpoint");
            
-            if (!Double.TryParse(endPointFieldMs.Text, out endpoint)) throw new ValidateParametersException("invalid value for endpoint");
+            if (!Double.TryParse(endPointFieldMs.Text, out endpoint)) throw new ValidateParametersException("Invalid value for endpoint");
           
-            if (!Double.TryParse(resolutionFieldMs.Text, out resolution)) throw new ValidateParametersException("invalid value for resolution");
+            if (!Double.TryParse(resolutionFieldMs.Text, out resolution)) throw new ValidateParametersException("Invalid value for resolution");
        	    
-            if (!Double.TryParse(constantFieldMs.Text, out constant)) throw new ValidateParametersException("invalid value for constant");
+            if (!Double.TryParse(constantFieldMs.Text, out constant)) throw new ValidateParametersException("Invalid value for constant");
           
-            if (!Double.TryParse(DensOfMeasFieldMs.Text, out dens)) throw new ValidateParametersException("invalid value for steptime");
+            if (!Double.TryParse(DensOfMeasFieldMs.Text, out dens)) throw new ValidateParametersException("Invalid value for steptime");
             
-            if (startpoint >= endpoint) throw new ValidateParametersException("invalid value endpoint must be greader then  startpoint");
-            if (resolution == 0) throw new ValidateParametersException("invalid value resulution cant be equal 0");
+            if (startpoint >= endpoint) throw new ValidateParametersException("Invalid value endpoint must be greader than startpoint");
+            if (resolution == 0) throw new ValidateParametersException("Invalid value resulution cant be equal 0");
 
         }
 
@@ -338,20 +338,20 @@ namespace JDLMLab
             int krok;
            
             double constant;
-            if (!Double.TryParse(startPointFieldEs.Text, out startpoint)) throw new ValidateParametersException("invalid value for startpoint");
+            if (!Double.TryParse(startPointFieldEs.Text, out startpoint)) throw new ValidateParametersException("Invalid value for startpoint");
             
-            if (!Double.TryParse(endPointFieldEs.Text, out endpoint)) throw new ValidateParametersException("invalid value for endpoint");
+            if (!Double.TryParse(endPointFieldEs.Text, out endpoint)) throw new ValidateParametersException("Invalid value for endpoint");
            
-            if (!Double.TryParse(resolutionFieldEs.Text, out resolution)) throw new ValidateParametersException("invalid value for resolution");
+            if (!Double.TryParse(resolutionFieldEs.Text, out resolution)) throw new ValidateParametersException("Invalid value for resolution");
            
-            if (!Double.TryParse(constantFieldEs.Text, out constant)) throw new ValidateParametersException("invalid value for nstant");
+            if (!Double.TryParse(constantFieldEs.Text, out constant)) throw new ValidateParametersException("Invalid value for nstant");
             
-            if (!Double.TryParse(stepTimeFieldEs.Text, out step)) throw new ValidateParametersException("invalid value for steptime");
+            if (!Double.TryParse(stepTimeFieldEs.Text, out step)) throw new ValidateParametersException("Invalid value for steptime");
             
-            if (!int.TryParse(pocetKrokovFieldEs.Text, out krok)) throw new ValidateParametersException("invalid value for pocetkrokov");
+            if (!int.TryParse(pocetKrokovFieldEs.Text, out krok)) throw new ValidateParametersException("Invalid value for pocetkrokov");
             
-            if (startpoint >= endpoint) throw new ValidateParametersException("Neplatná hodnota endpoint musi byt vacsi ako startpoint");
-            if (resolution == 0) throw new ValidateParametersException("Neplatná hodnota resulution nemoze byt 0");
+            if (startpoint >= endpoint) throw new ValidateParametersException("Invalid value endpoint must be greader than startpoint");
+            if (resolution == 0) throw new ValidateParametersException("Invalid value resulution cant be equal 0");
         }
 
 

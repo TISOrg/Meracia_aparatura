@@ -31,7 +31,7 @@ namespace JDLMLab
             }
             catch (MySqlException e)
             {
-                MessageBox.Show("Vyskytla sa chyba pri pripojení na databázu. Overte nastavenie pripojenia", "Chyba v spojení s databázou", MessageBoxButtons.RetryCancel, MessageBoxIcon.Error);
+                MessageBox.Show("AN error noccured during connection to database. validate parameters of connection", "Error with  connection to Daatabase", MessageBoxButtons.RetryCancel, MessageBoxIcon.Error);
             }
             
         }
@@ -183,7 +183,7 @@ namespace JDLMLab
             catch (Exception ef) //ak este neexistuje meranie, tak vybrata nebude ziadna bunka
             {
                 //DialogResult = DialogResult.No;
-                MessageBox.Show("Nie je vybraté žiadne meranie","Chyba",MessageBoxButtons.OK,MessageBoxIcon.Warning); 
+                MessageBox.Show("any measurement is choosen","Error",MessageBoxButtons.OK,MessageBoxIcon.Warning); 
 
             }
             finally

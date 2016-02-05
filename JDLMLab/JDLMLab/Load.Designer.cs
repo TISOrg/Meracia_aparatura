@@ -101,7 +101,7 @@
             this.dataRoky.RowHeadersVisible = false;
             this.dataRoky.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
             this.dataRoky.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
-            this.dataRoky.Size = new System.Drawing.Size(102, 265);
+            this.dataRoky.Size = new System.Drawing.Size(102, 337);
             this.dataRoky.TabIndex = 0;
             this.dataRoky.CellEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataRoky_CellEnter);
             // 
@@ -124,7 +124,7 @@
             this.dataNazvy.RowHeadersVisible = false;
             this.dataNazvy.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
             this.dataNazvy.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
-            this.dataNazvy.Size = new System.Drawing.Size(199, 265);
+            this.dataNazvy.Size = new System.Drawing.Size(199, 337);
             this.dataNazvy.TabIndex = 1;
             this.dataNazvy.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataNazvy_CellContentClick);
             this.dataNazvy.CellEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataNazvy_CellEnter);
@@ -148,7 +148,7 @@
             this.dataDatumy.RowHeadersVisible = false;
             this.dataDatumy.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
             this.dataDatumy.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
-            this.dataDatumy.Size = new System.Drawing.Size(98, 265);
+            this.dataDatumy.Size = new System.Drawing.Size(98, 337);
             this.dataDatumy.TabIndex = 2;
             this.dataDatumy.CellEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataDatumy_CellEnter);
             // 
@@ -171,7 +171,7 @@
             this.dataTypy.RowHeadersVisible = false;
             this.dataTypy.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
             this.dataTypy.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
-            this.dataTypy.Size = new System.Drawing.Size(109, 92);
+            this.dataTypy.Size = new System.Drawing.Size(109, 101);
             this.dataTypy.TabIndex = 3;
             this.dataTypy.CellEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataTypy_CellEnter);
             // 
@@ -192,7 +192,7 @@
             this.dataMerania.Name = "dataMerania";
             this.dataMerania.ReadOnly = true;
             this.dataMerania.RowHeadersVisible = false;
-            this.dataMerania.Size = new System.Drawing.Size(108, 265);
+            this.dataMerania.Size = new System.Drawing.Size(108, 337);
             this.dataMerania.TabIndex = 4;
             this.dataMerania.CellEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataMerania_CellEnter);
             // 
@@ -217,10 +217,10 @@
             this.groupBox1.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.groupBox1.Location = new System.Drawing.Point(0, 373);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(764, 211);
+            this.groupBox1.Size = new System.Drawing.Size(738, 211);
             this.groupBox1.TabIndex = 5;
             this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Hlavička merania";
+            this.groupBox1.Text = "Measurement header";
             this.groupBox1.Enter += new System.EventHandler(this.groupBox1_Enter);
             // 
             // ionTypeValue
@@ -238,7 +238,7 @@
             this.groupBox3.Controls.Add(this.noteValue);
             this.groupBox3.Location = new System.Drawing.Point(527, 25);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(210, 128);
+            this.groupBox3.Size = new System.Drawing.Size(210, 137);
             this.groupBox3.TabIndex = 29;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Note";
@@ -249,7 +249,7 @@
             this.noteValue.Location = new System.Drawing.Point(3, 16);
             this.noteValue.Name = "noteValue";
             this.noteValue.ReadOnly = true;
-            this.noteValue.Size = new System.Drawing.Size(204, 109);
+            this.noteValue.Size = new System.Drawing.Size(204, 118);
             this.noteValue.TabIndex = 15;
             this.noteValue.Text = "";
             // 
@@ -258,7 +258,7 @@
             this.constantValue.BackColor = System.Drawing.SystemColors.Control;
             this.constantValue.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.constantValue.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.constantValue.Location = new System.Drawing.Point(101, 152);
+            this.constantValue.Location = new System.Drawing.Point(101, 149);
             this.constantValue.Name = "constantValue";
             this.constantValue.Size = new System.Drawing.Size(67, 13);
             this.constantValue.TabIndex = 38;
@@ -409,7 +409,7 @@
             this.energy_start_point.BackColor = System.Drawing.SystemColors.Control;
             this.energy_start_point.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.energy_start_point.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.energy_start_point.Location = new System.Drawing.Point(72, 20);
+            this.energy_start_point.Location = new System.Drawing.Point(72, 21);
             this.energy_start_point.Name = "energy_start_point";
             this.energy_start_point.Size = new System.Drawing.Size(45, 11);
             this.energy_start_point.TabIndex = 32;
@@ -430,7 +430,7 @@
             this.energy_steptime.BackColor = System.Drawing.SystemColors.Control;
             this.energy_steptime.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.energy_steptime.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.energy_steptime.Location = new System.Drawing.Point(74, 68);
+            this.energy_steptime.Location = new System.Drawing.Point(74, 67);
             this.energy_steptime.Name = "energy_steptime";
             this.energy_steptime.Size = new System.Drawing.Size(45, 11);
             this.energy_steptime.TabIndex = 30;
@@ -440,7 +440,7 @@
             this.pocet_krokov.BackColor = System.Drawing.SystemColors.Control;
             this.pocet_krokov.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.pocet_krokov.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.pocet_krokov.Location = new System.Drawing.Point(72, 96);
+            this.pocet_krokov.Location = new System.Drawing.Point(72, 90);
             this.pocet_krokov.Name = "pocet_krokov";
             this.pocet_krokov.Size = new System.Drawing.Size(45, 11);
             this.pocet_krokov.TabIndex = 29;
@@ -498,7 +498,7 @@
             // 
             this.cycles.BackColor = System.Drawing.SystemColors.Control;
             this.cycles.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.cycles.Location = new System.Drawing.Point(101, 91);
+            this.cycles.Location = new System.Drawing.Point(101, 92);
             this.cycles.Name = "cycles";
             this.cycles.Size = new System.Drawing.Size(97, 13);
             this.cycles.TabIndex = 25;
@@ -572,7 +572,7 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(646, 174);
+            this.button2.Location = new System.Drawing.Point(628, 174);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(106, 23);
             this.button2.TabIndex = 1;
@@ -582,9 +582,9 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(544, 174);
+            this.button1.Location = new System.Drawing.Point(530, 174);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(96, 23);
+            this.button1.Size = new System.Drawing.Size(93, 23);
             this.button1.TabIndex = 0;
             this.button1.Text = "Open";
             this.button1.UseVisualStyleBackColor = true;
@@ -594,7 +594,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(764, 584);
+            this.ClientSize = new System.Drawing.Size(738, 584);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.dataMerania);
             this.Controls.Add(this.dataTypy);
@@ -603,6 +603,8 @@
             this.Controls.Add(this.dataRoky);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.KeyPreview = true;
+            this.MaximizeBox = false;
+            this.MaximumSize = new System.Drawing.Size(755, 2000);
             this.Name = "Load";
             this.Text = "Load";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Load_FormClosed);
