@@ -314,18 +314,18 @@ namespace JDLMLab
             Double dens;
             double constant;
             
-            if (!Double.TryParse(startPointFieldMs.Text, out startpoint)) throw new ValidateParametersException("Neplatná hodnota pre startpoint");
+            if (!Double.TryParse(startPointFieldMs.Text, out startpoint)) throw new ValidateParametersException("invalid value for startpoint");
            
-            if (!Double.TryParse(endPointFieldMs.Text, out endpoint)) throw new ValidateParametersException("Neplatná hodnota pre endpoint");
+            if (!Double.TryParse(endPointFieldMs.Text, out endpoint)) throw new ValidateParametersException("invalid value for endpoint");
           
-            if (!Double.TryParse(resolutionFieldMs.Text, out resolution)) throw new ValidateParametersException("Neplatná hodnota pre resolution");
+            if (!Double.TryParse(resolutionFieldMs.Text, out resolution)) throw new ValidateParametersException("invalid value for resolution");
        	    
-            if (!Double.TryParse(constantFieldMs.Text, out constant)) throw new ValidateParametersException("Neplatná hodnota pre constant");
+            if (!Double.TryParse(constantFieldMs.Text, out constant)) throw new ValidateParametersException("invalid value for constant");
           
-            if (!Double.TryParse(DensOfMeasFieldMs.Text, out dens)) throw new ValidateParametersException("Neplatná hodnota pre steptime");
+            if (!Double.TryParse(DensOfMeasFieldMs.Text, out dens)) throw new ValidateParametersException("invalid value for steptime");
             
-            if (startpoint >= endpoint) throw new ValidateParametersException("Neplatná hodnota endpoint musi byt vacsi ako startpoint");
-            if (resolution == 0) throw new ValidateParametersException("Neplatná hodnota resulution nemoze byt 0");
+            if (startpoint >= endpoint) throw new ValidateParametersException("invalid value endpoint must be greader then  startpoint");
+            if (resolution == 0) throw new ValidateParametersException("invalid value resulution cant be equal 0");
 
         }
 
@@ -338,17 +338,17 @@ namespace JDLMLab
             int krok;
            
             double constant;
-            if (!Double.TryParse(startPointFieldEs.Text, out startpoint)) throw new ValidateParametersException("Neplatná hodnota pre startpoint");
+            if (!Double.TryParse(startPointFieldEs.Text, out startpoint)) throw new ValidateParametersException("invalid value for startpoint");
             
-            if (!Double.TryParse(endPointFieldEs.Text, out endpoint)) throw new ValidateParametersException("Neplatná hodnota pre endpoint");
+            if (!Double.TryParse(endPointFieldEs.Text, out endpoint)) throw new ValidateParametersException("invalid value for endpoint");
            
-            if (!Double.TryParse(resolutionFieldEs.Text, out resolution)) throw new ValidateParametersException("Neplatná hodnota pre resolution");
+            if (!Double.TryParse(resolutionFieldEs.Text, out resolution)) throw new ValidateParametersException("invalid value for resolution");
            
-            if (!Double.TryParse(constantFieldEs.Text, out constant)) throw new ValidateParametersException("Neplatná hodnota pre constant");
+            if (!Double.TryParse(constantFieldEs.Text, out constant)) throw new ValidateParametersException("invalid value for nstant");
             
-            if (!Double.TryParse(stepTimeFieldEs.Text, out step)) throw new ValidateParametersException("Neplatná hodnota pre steptime");
+            if (!Double.TryParse(stepTimeFieldEs.Text, out step)) throw new ValidateParametersException("invalid value for steptime");
             
-            if (!int.TryParse(pocetKrokovFieldEs.Text, out krok)) throw new ValidateParametersException("Neplatná hodnota pre pocetkrokov");
+            if (!int.TryParse(pocetKrokovFieldEs.Text, out krok)) throw new ValidateParametersException("invalid value for pocetkrokov");
             
             if (startpoint >= endpoint) throw new ValidateParametersException("Neplatná hodnota endpoint musi byt vacsi ako startpoint");
             if (resolution == 0) throw new ValidateParametersException("Neplatná hodnota resulution nemoze byt 0");
@@ -361,7 +361,7 @@ namespace JDLMLab
             //v subore maju prefix "e" pre energyscan, "m" pre massscan, 
             //"e2D" pre energy cast 2dscanu, a "m2D" pre mass scan cast 2dscanu
 
-            startPointFieldEs.Text = PosledneParametreMerania.Default.eStartPoint.ToString();
+       startPointFieldEs.Text = PosledneParametreMerania.Default.eStartPoint.ToString();
             //......
         }
 
