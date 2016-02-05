@@ -18,7 +18,7 @@ namespace JDLMLab
         public Meranie(MeasurementParameters parameters)
         {
             this.Parameters = parameters;
-            cykly = new List<CyklusMerania>(parameters.PocetCyklov);
+            cykly = new List<CyklusMerania>(parameters.NumberOfCycles);
 
         }
         public List<CyklusMerania> cykly {get; set; }

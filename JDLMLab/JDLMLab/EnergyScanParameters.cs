@@ -6,51 +6,32 @@ using System.Threading.Tasks;
 
 namespace JDLMLab
 {
-     class EnergyScanParameters : MeasurementParameters
+    public class EnergyScanParameters
     {
         
         public EnergyScanParameters()
         {
-
         }
-        /// <summary>
-        /// konstruktor vola aj init, lebo ma zadane potrebne udaje
-        /// </summary>
-        /// <param name="startpoint"></param>
-        /// <param name="endpoint"></param>
-        /// <param name="constant"></param>
-        /// <param name="steptime"></param>
-        /// <param name="pocetkrokov"></param>
-        public EnergyScanParameters(double startpoint,double endpoint,double constant,double steptime,int pocetkrokov)
+        public EnergyScanParameters(double startpoint,double endpoint,int constant,double steptime,int pocetkrokov)
         {            
             this.StartPoint = startpoint;
             this.EndPoint = endpoint;
             this.Constant = constant;
             this.StepTime = steptime;
-            this.PocetKrokov = pocetkrokov;
-            
-            Typ = "Energy Scan";
-            init();
+            NumberOfSteps = pocetkrokov;
         }
-        public void init()
-        {
-            //kn=krok napatia
-            kn = (EndPoint - StartPoint) / PocetKrokov;
-        }
+        public int NumberOfSteps { get; set; }
+        public double StartPoint { get; set; }
+        public double EndPoint { get; set; }
+        public int Constant { get; set; }
+        public double StepTime { get; set; }
         
-        public int PocetKrokov { get; set; }    //tem, pre energy scan
-        public override int PocetBodov { get
-            {
-                return PocetKrokov+1;
-            }
-        }
         public double KrokNapatia { get
             {
-                return kn;
+                return (EndPoint - StartPoint) / NumberOfSteps;
             }
         }
-        
-        private double kn;
+
     }
             
 }

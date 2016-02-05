@@ -75,7 +75,7 @@ namespace JDLMLab
                 measurementControl = new MeasurementControl(setmerania.parametreMerania);
                 measurementControl.Graf = bufferedChart;
                 measurementControl.start();
-                MinimumSize = new System.Drawing.Size(setmerania.parametreMerania.PocetBodov + bufferedChart.LeftMargin + bufferedChart.RightMargin + sidebar.Width, 0);
+                MinimumSize = new System.Drawing.Size(setmerania.parametreMerania.NumberOfSteps + bufferedChart.LeftMargin + bufferedChart.RightMargin + sidebar.Width, 0);
 
                 //bufferedChart.setParameters(setmerania.parametreMerania.StartPoint,
                 //    setmerania.parametreMerania.EndPoint,

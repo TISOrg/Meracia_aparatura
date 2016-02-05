@@ -19,7 +19,7 @@ namespace JDLMLab
         public MeasurementControl(MeasurementParameters mp)
         {
             Parameters = mp;
-            ADPrevodnik = new NIDriver(Parameters.PocetBodov);   
+            ADPrevodnik = new NIDriver(Parameters.NumberOfSteps);   
         }
            
 
@@ -61,7 +61,7 @@ namespace JDLMLab
             typ = Parameters.Typ;
             // new Thread(this.startThread).Start();   //vykonavame meranie v samostatnom threade   
 
-            Graf.setParameters(Parameters.StartPoint, Parameters.EndPoint,Parameters.PocetBodov);   //inicializuj graf podla parametrov merania
+            //Graf.setParameters(Parameters.StartPoint, Parameters.EndPoint,Parameters.NumberOfSteps);   //inicializuj graf podla parametrov merania
 
             startThread();
         }
@@ -78,7 +78,7 @@ namespace JDLMLab
             ADPrevodnik.triggerInit(Parameters.StepTime);
             aktualneCisloCyklu = 1;
 
-            while (Parameters.PocetCyklov == 0 || aktualneCisloCyklu <= Parameters.PocetCyklov)
+            while (Parameters.NumberOfCycles == 0 || aktualneCisloCyklu <= Parameters.NumberOfCycles)
             {
                 vytvorNovyCyklus(aktualneCisloCyklu); //vytvori datovu strukturu CyklusMerania v strukture Meranie
                 merajVAktualnomCykle(); //zacne meranie aktualneho cyklu
@@ -104,12 +104,12 @@ namespace JDLMLab
 
         private void inicializujTem()
         {
-            TemDriver.setPoint(Parameters.StartPoint);
+            //TemDriver.setPoint(Parameters.StartPoint);
         }
 
         private void inicializujQms()
         {
-            QmsDriver.setPoint(Parameters.StartPoint);
+            //QmsDriver.setPoint(Parameters.StartPoint);
             
         }
         int cisloKroku { get; set; }
@@ -176,10 +176,10 @@ namespace JDLMLab
         private void merajEnergyScanCyklus()
         {
             cisloKroku = 0;
-            double krok = ((EnergyScanParameters)Parameters).StartPoint; //ziskame zaciatocny krok = start point pre TEM
+            double krok = (Parameters.EnergyScan.StartPoint); //ziskame zaciatocny krok = start point pre TEM
             Thread ADThread;
             //MessageBox.Show();
-            while (cisloKroku < ((EnergyScanParameters)Parameters).PocetBodov)
+            while (cisloKroku < Parameters.NumberOfSteps)
             {
 
                 KrokMerania = new KrokMerania();
@@ -204,7 +204,7 @@ namespace JDLMLab
                 aktualnyCyklus.KrokyMerania.Add(KrokMerania);
 
                 cisloKroku++;
-                krok += ((EnergyScanParameters)Parameters).KrokNapatia;
+                krok += (Parameters.EnergyScan.KrokNapatia);
             }
             string s = "";
             //foreach (KrokMerania i in aktualnyCyklus.getKroky())
@@ -245,11 +245,11 @@ namespace JDLMLab
             }
             if (typ.Equals("Energy Scan"))
             {
-                return Parameters.StartPoint + i * ((EnergyScanParameters)Parameters).KrokNapatia;
+                return Parameters.EnergyScan.StartPoint + i * Parameters.EnergyScan.KrokNapatia;
             }
             else if (typ.Equals("2D Scan"))
             {
-                return ((Scan2DParameters)Parameters).EnergyScanParameters.StartPoint + i * ((Scan2DParameters)Parameters).EnergyScanParameters.KrokNapatia;
+                return (Parameters.EnergyScan.StartPoint + i * Parameters.EnergyScan.KrokNapatia);
             }
             return 0;
             

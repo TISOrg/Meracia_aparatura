@@ -120,7 +120,6 @@ namespace JDLMLab
 
         public MeasurementParameters parametreMerania;
 
-
         private void runClick(object sender, EventArgs e)
         {
             try
@@ -135,8 +134,6 @@ namespace JDLMLab
             {
                 MessageBox.Show(ex.Message.ToString(), "Chyba", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-
-
         }
 
         /// <summary>
@@ -144,99 +141,83 @@ namespace JDLMLab
         /// </summary>
         private void nastavParametre()
         {
-            //zistit aky typ je vybraty
-            
-            if (typyMeraniaTaby.SelectedTab.Text.Equals("Energy scan"))
+            try
             {
-                try
+                validateName();
+                parametreMerania=new MeasurementParameters(
+                    nameField.Text,
+                    positiveIon.Checked,
+                    noteField.Text,
+                    Convert.ToInt32(pocetCyklovField.Value),
+                    testRun
+                    );
+                if (typyMeraniaTaby.SelectedTab.Text.Equals("Energy scan"))
                 {
-                    
                     validateEnergyScanTab();
-                    parametreMerania = new EnergyScanParameters(
+                    EnergyScanParameters energyscan = new EnergyScanParameters(
                         Convert.ToDouble(startPointFieldEs.Text), 
                         Convert.ToDouble(endPointFieldEs.Text), 
-                        Convert.ToDouble(constantFieldEs.Text), 
+                        Convert.ToInt32(constantFieldEs.Text), 
                         Convert.ToDouble(stepTimeFieldEs.Text), 
                         Convert.ToInt32(pocetKrokovFieldEs.Text)
                     );
-                    
-                        parametreMerania.setParameters(
-                            nameField.Text, 
-                            Convert.ToDouble(resolutionFieldEs.Text), 
-                            Convert.ToInt32(pocetCyklovField.Value), 
-                            noteField.Text
-                        );
-                    
+
+                    parametreMerania.Resolution = Convert.ToDouble(resolutionFieldEs.Text);
+                    parametreMerania.EnergyScan = energyscan;
                     ulozParametreEnergyScan();
                 }
-                catch (ValidateParametersException e)
-                {
-                    throw e;
-                }
-
-
-            }
-            else if (typyMeraniaTaby.SelectedTab.Text.Equals("Mass scan"))
-            {
-                try
+                else if (typyMeraniaTaby.SelectedTab.Text.Equals("Mass scan"))
                 {
                     validateMassScanTab();
-                    parametreMerania = new MassScanParameters(
-                        Convert.ToInt32(startPointFieldMs.Text), 
+                    MassScanParameters massScan=new MassScanParameters(
+                        Convert.ToInt32(startPointFieldMs.Text),
                         Convert.ToInt32(endPointFieldMs.Text), 
-                        Convert.ToDouble(constantFieldMs.Text), 
+                        Convert.ToDouble(constantFieldMs.Text),
                         (int)DensOfMeasFieldMs.SelectedValue,
                         (double) timePerAmuFieldMs.SelectedValue
                     );
-                    parametreMerania.setParameters(
-                        nameField.Text, 
-                        Convert.ToDouble(resolutionFieldMs.Text), 
-                        Convert.ToInt32(pocetCyklovField.Value), 
-                        noteField.Text
-                    );
+                    parametreMerania.Resolution= Convert.ToDouble(resolutionFieldMs.Text);
+                    parametreMerania.MassScan = massScan;
                     ulozParametreMassScan();
+                
                 }
-                catch (ValidateParametersException e)
-                {
-                    throw e;
-                }
-            }
-            else if (typyMeraniaTaby.SelectedTab.Text.Equals("2D scan"))
-            {
-                try
+                else if (typyMeraniaTaby.SelectedTab.Text.Equals("2D scan"))
                 {
                     validateMass2DScanTab();
-
-                    EnergyScanParameters parametreMeraniaEnergy = new EnergyScanParameters(
-                        Convert.ToDouble(startPointField2DEs.Text), 
+                    EnergyScanParameters energyScan = new EnergyScanParameters(
+                        Convert.ToDouble(startPointField2DEs.Text),
                         Convert.ToDouble(endPointField2DEs.Text),
-                        0.0,
-                        Convert.ToDouble(steptimeField2DEs.Text), 
+                        0,
+                        Convert.ToDouble(steptimeField2DEs.Text),
                         Convert.ToInt32(pocetKrokovField2DEs.Text)
                     );
 
-                    MassScanParameters parametreMeraniaMass = new MassScanParameters(
+                    MassScanParameters massScan = new MassScanParameters(
                         Convert.ToInt32(startPointField2DMs.Text), 
                         Convert.ToInt32(endPointField2DMs.Text), 
-                        0, 
+                        0,
                         (int)DensOfMeasField2DMS.SelectedValue,
                         (double)timePerAmuField2DMs.SelectedValue
                     );
 
-                    parametreMerania = new Scan2DParameters(parametreMeraniaEnergy, parametreMeraniaMass);
-
-                    parametreMerania.setParameters(nameField
-                        .Text, Convert.ToDouble(resolutionField2D.Text), Convert.ToInt32(pocetCyklovField.Value), noteField.Text);
-
+                    parametreMerania.Resolution= Convert.ToDouble(resolutionField2D.Text);
+                    parametreMerania.EnergyScan = energyScan;
+                    parametreMerania.MassScan = massScan;
                     ulozParametre2DScan();
-                }
-                catch (ValidateParametersException e)
-                {
-                    throw e;
-                }
+                }   
             }
-            parametreMerania.IonType =positiveIon.Checked;
-            parametreMerania.testRun = testRun;
+            catch (ValidateParametersException e)
+            {
+                throw e;
+            }
+        }
+
+        private void validateName()
+        {
+            if (nameField.Text.Length == 0 && !testRun)
+            {
+                throw new ValidateParametersException("nazov merania musi mat aspon jeden znak");
+            }
         }
 
         /// <summary>
@@ -295,14 +276,9 @@ namespace JDLMLab
             Double startpointtem;
             Double endpointtem;
             Double resolution;
-            string nazov;
             Double step;
             int krok;
-            if (nameField.Text.Length <= 0 && !testRun)
-            {
-
-                throw new ValidateParametersException("nazov merania musi mat aspon jeden znak");
-            }
+            
            
 			if (!Double.TryParse(startPointField2DEs.Text, out startpointqms)) throw new ValidateParametersException("Neplatná hodnota pre startpointtem");
             
@@ -333,16 +309,9 @@ namespace JDLMLab
             Double startpoint;
             Double endpoint;
             Double resolution;
-            string nazov;
             Double dens;
-            int krok;
             double constant;
-            if (nameField.Text.Length <= 0 && !testRun)
-            {
-               throw new ValidateParametersException("nazov merania musi mat aspon jeden znak");
-            }
             
-
             if (!Double.TryParse(startPointFieldMs.Text, out startpoint)) throw new ValidateParametersException("Neplatná hodnota pre startpoint");
            
             if (!Double.TryParse(endPointFieldMs.Text, out endpoint)) throw new ValidateParametersException("Neplatná hodnota pre endpoint");
@@ -362,14 +331,9 @@ namespace JDLMLab
         {
             Double startpoint;
             Double endpoint;
-            Double resolution;
-            string nazov;
+            Double resolution;            
             Double step;
             int krok;
-            if (nameField.Text.Length <= 0 && !testRun)
-            {
-               throw new ValidateParametersException("nazov merania musi mat aspon jeden znak");
-            }
            
             double constant;
             if (!Double.TryParse(startPointFieldEs.Text, out startpoint)) throw new ValidateParametersException("Neplatná hodnota pre startpoint");
@@ -389,23 +353,14 @@ namespace JDLMLab
         }
 
 
-
-
         private void NoveMeranieWindow_Load(object sender, EventArgs e)
         {
-
-
             //pre vsetky 3 taby, vyplnit hodnoty predvolene userom zo settings file
             //v subore maju prefix "e" pre energyscan, "m" pre massscan, 
             //"e2D" pre energy cast 2dscanu, a "m2D" pre mass scan cast 2dscanu
 
             startPointFieldEs.Text = PosledneParametreMerania.Default.eStartPoint.ToString();
             //......
-
-
-
-
-
         }
 
 
