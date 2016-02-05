@@ -465,21 +465,21 @@ namespace JDLMLab
         }
         public void addKrok(KrokMerania k,int cyklus=1)
         {
-            long y_id = getYID(k.y, cyklus, aktualneMeranie); //ak neexistuje taky zaznam, vytvori novy a vrati id
+            long y_id = getYID(k.Y, cyklus, aktualneMeranie); //ak neexistuje taky zaznam, vytvori novy a vrati id
 
             MySqlCommand c = new MySqlCommand("insert into merania (x,y_id,Intensity,Current,Capillar pressure,Chamber pressure,Temperature) values(@x,@y_id,@sig,@current,@kapillar,@chamber,@temperature)", conn);
-            c.Parameters.AddWithValue("@x", k.x);
+            c.Parameters.AddWithValue("@x", k.X);
             c.Parameters.AddWithValue("@y_id", y_id);
-            c.Parameters.AddWithValue("@sig", k.sig);
-            c.Parameters.AddWithValue("@current", k.current);
-            c.Parameters.AddWithValue("@kapillar", k.kapillar);
-            c.Parameters.AddWithValue("@chamber", k.chamber);
-            c.Parameters.AddWithValue("@temperature", k.temperature);
+            c.Parameters.AddWithValue("@sig", k.Intensity);
+            c.Parameters.AddWithValue("@current", k.Current);
+            c.Parameters.AddWithValue("@kapillar", k.Capillar);
+            c.Parameters.AddWithValue("@chamber", k.Chamber);
+            c.Parameters.AddWithValue("@temperature", k.Temperature);
             c.ExecuteNonQuery();
         }
         public void addCyklus(CyklusMerania c)
         {
-            addKroky(c.getKroky(),c.cisloCyklu);
+            addKroky(c.KrokyMerania,c.cisloCyklu);
         }
         internal void addMeranie(Meranie meranie)
         {
