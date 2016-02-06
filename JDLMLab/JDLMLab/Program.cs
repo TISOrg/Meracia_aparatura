@@ -17,7 +17,7 @@ namespace JDLMLab
         static void Main()
         {
             CultureInfo ci = new CultureInfo("en-US");
-           
+
             Thread.CurrentThread.CurrentCulture = ci;
             Thread.CurrentThread.CurrentUICulture = ci;
             CultureInfo.DefaultThreadCurrentCulture = ci;
@@ -25,6 +25,7 @@ namespace JDLMLab
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new Main());
+
         }
     }
 }

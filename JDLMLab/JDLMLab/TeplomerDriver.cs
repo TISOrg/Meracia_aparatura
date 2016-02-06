@@ -75,7 +75,7 @@ namespace JDLMLab
                 default:
                     break;
             }
-            return Double.Parse(ret, System.Globalization.NumberStyles.Float);
+            return Convert.ToDouble(ret);
         }
         ///tabulka formatov {DATA}
         /// abcd0    +abcd   Positive value, no decimal place

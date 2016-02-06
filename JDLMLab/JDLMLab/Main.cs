@@ -21,15 +21,8 @@ namespace JDLMLab
             bufferedChart.Dock = DockStyle.Fill;
             kontainerPreGraf.Controls.Add(bufferedChart);
             ResumeLayout();
-
             fillRandomDataPoints();
-
-            //x=new XXXDriver();
-            //x.open();
-            //x.setTimer(1000);
-            //Thread t = new Thread(new ThreadStart(x.startReading));
-            // t.Start();
-
+            
         }
 
         public void setCurrentCycle(string value) {
