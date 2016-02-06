@@ -8,15 +8,6 @@ namespace JDLMLab
 {
     class Filter
     {
-        private enum returnType
-        {
-            rok,
-            nazov,
-            datum,
-            typ,
-            id
-        }
-        
         private string rok;
         private string nazov;
         private string typ;

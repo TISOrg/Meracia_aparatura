@@ -97,7 +97,7 @@ namespace JDLMLab
                 noteValue.Text = dr["note"].ToString();
                 resolution.Text = dr["resolution"].ToString();
                 typ.Text = dr["type_name"].ToString();
-                ionTypeValue.Text = (dr["ion_type"].ToString().Equals("0")) ? "Negative ions" : "Positive ions";
+                ionTypeValue.Text = (dr["ion_type"].ToString().Equals("False")) ? "Negative ions" : "Positive ions";
                 energy_start_point.Text = "";
                 energy_end_point.Text = "";
                 mass_density.Text = "";

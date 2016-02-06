@@ -228,9 +228,9 @@
             this.ionTypeValue.BackColor = System.Drawing.SystemColors.Control;
             this.ionTypeValue.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.ionTypeValue.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
-            this.ionTypeValue.Location = new System.Drawing.Point(23, 179);
+            this.ionTypeValue.Location = new System.Drawing.Point(12, 179);
             this.ionTypeValue.Name = "ionTypeValue";
-            this.ionTypeValue.Size = new System.Drawing.Size(60, 13);
+            this.ionTypeValue.Size = new System.Drawing.Size(78, 13);
             this.ionTypeValue.TabIndex = 40;
             // 
             // groupBox3
@@ -245,13 +245,17 @@
             // 
             // noteValue
             // 
-            this.noteValue.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.noteValue.Location = new System.Drawing.Point(3, 16);
+            this.noteValue.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.noteValue.Location = new System.Drawing.Point(7, 15);
+            this.noteValue.Margin = new System.Windows.Forms.Padding(10);
             this.noteValue.Name = "noteValue";
             this.noteValue.ReadOnly = true;
-            this.noteValue.Size = new System.Drawing.Size(204, 118);
+            this.noteValue.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.ForcedVertical;
+            this.noteValue.Size = new System.Drawing.Size(196, 108);
             this.noteValue.TabIndex = 15;
-            this.noteValue.Text = "";
+            this.noteValue.Text = "sdfdsfgsdfgsdgdsfgdsfgsdfdsfgsdfgsdgdsfgdsfgsdfdsfgsdfgsdgdsfgdsfgsdfdsfgsdfgsdgd" +
+    "sfgdsfgsdfdsfgsdfgsdgdsfgdsfgsdfdsfgsdfgsdgdsfgdsfgsdfdsfgsdfgsdgdsfgdsfgsdfdsfg" +
+    "sdfgsdgdsfgdsfgsdfdsfgsdfgsdgdsfgdsfg";
             // 
             // constantValue
             // 
@@ -509,7 +513,7 @@
             this.date.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.date.Location = new System.Drawing.Point(101, 62);
             this.date.Name = "date";
-            this.date.Size = new System.Drawing.Size(119, 13);
+            this.date.Size = new System.Drawing.Size(136, 13);
             this.date.TabIndex = 24;
             // 
             // name
