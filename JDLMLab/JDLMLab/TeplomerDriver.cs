@@ -22,7 +22,7 @@ namespace JDLMLab
             //character times of the last character in a message.
             //Note:Three character times = 1.5ms at 19200, 3ms at 9600, 6ms at 4800, 12ms at 2400 and 24ms at 1200 bps.
             serialPort.DataReceived += dataRecieved;
-            serialPort.ReceivedBytesThreshold = 10; //lebo format odpovede je L1Mabcd0A* 
+            serialPort.ReceivedBytesThreshold = 9; //lebo format odpovede je L1MabcdA* 
             serialPort.NewLine = "*";
             serialPort.Open();
 
@@ -30,8 +30,7 @@ namespace JDLMLab
 
         protected override void readRequest()
         {
-            serialPort.Write("L1M?*");
-           // serialPort.Write("\n");
+            serialPort.Write("L1M?*");;
         }
 
         /// <summary>
@@ -41,11 +40,42 @@ namespace JDLMLab
         /// cizeu to je napr. L1M abcd0 A* </param>
         /// <returns></returns>
         protected override double convertToDouble(string data)
-        {
-            
+        { 
             string value = data.Substring(3, 4); //to je nase {DATA} bez poslednej cifry, cize iba abcd
-         //   System.Windows.Forms.MessageBox.Show(value);
-            return base.convertToDouble(value);
+            char A = data.ElementAt(7);
+            string ret = value;
+            switch (A)
+            {
+                case '0':
+                    break;
+                case '1':
+                    ret = value.Insert(3, ".");
+                    break;
+                case '2':
+                    ret = value.Insert(2, ".");
+                    break;
+                case '3':
+                    ret = value.Insert(1, ".");
+                    break;
+                case '5':
+                    ret = value.Insert(0, "-");
+                    break;
+                case '6':
+                    ret = value.Insert(0, "-");
+                    ret = ret.Insert(3, ".");
+                    break;
+                case '7':
+                    ret = value.Insert(0, "-");
+                    ret = ret.Insert(2, ".");
+                    break;
+                case '8':
+                    ret = value.Insert(0, "-");
+                    ret = ret.Insert(1, ".");
+                    break;
+                default:
+                    break;
+            }
+            return Double.Parse(ret, System.Globalization.NumberStyles.Float);
         }
         ///tabulka formatov {DATA}
         /// abcd0    +abcd   Positive value, no decimal place

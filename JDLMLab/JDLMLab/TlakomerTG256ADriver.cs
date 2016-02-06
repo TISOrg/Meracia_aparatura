@@ -30,17 +30,14 @@ namespace JDLMLab
             serialPort.NewLine = "\r\n";
            // serialPort.ReceivedBytesThreshold = 1; //format je x,x.xxxEsx
             serialPort.Open();
-            serialPort.Write("PR" + kanal.ToString() + "\r\n");
-           
-
-            serialPort.ReadLine();
         } 
 
         private char[] znaky = new char[3];
        
         protected override void readRequest()
         {
-  
+            serialPort.Write("PR" + kanal.ToString() + "\r\n");
+            serialPort.ReadLine();
             serialPort.Write(znaky,2,1);
         }
 
@@ -55,7 +52,6 @@ namespace JDLMLab
         {
             string[] temp = data.Split(new char[] { ',' }, 2);
             //teoreticky by sa dalo vyuzit temp[0] pre osetrenie pripadu nefunkcneho senzora
-            //    return 5;
             return Double.Parse(temp[1], System.Globalization.NumberStyles.Float);
         }
         
