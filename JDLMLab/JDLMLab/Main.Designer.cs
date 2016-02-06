@@ -40,6 +40,8 @@
             this.sidebar = new System.Windows.Forms.Panel();
             this.button3 = new System.Windows.Forms.Button();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.TimeValueLabel = new System.Windows.Forms.Label();
+            this.DateValueLabel = new System.Windows.Forms.Label();
             this.estTimeLabel = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.dateLabel = new System.Windows.Forms.Label();
@@ -66,8 +68,6 @@
             this.startbutton = new System.Windows.Forms.Button();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.kontainerPreGraf = new System.Windows.Forms.Panel();
-            this.DateValueLabel = new System.Windows.Forms.Label();
-            this.TimeValueLabel = new System.Windows.Forms.Label();
             this.menuStrip1.SuspendLayout();
             this.sidebar.SuspendLayout();
             this.groupBox4.SuspendLayout();
@@ -176,14 +176,29 @@
             this.groupBox4.Text = "Time";
             this.groupBox4.Enter += new System.EventHandler(this.groupBox4_Enter);
             // 
+            // TimeValueLabel
+            // 
+            this.TimeValueLabel.AutoSize = true;
+            this.TimeValueLabel.Location = new System.Drawing.Point(82, 38);
+            this.TimeValueLabel.Name = "TimeValueLabel";
+            this.TimeValueLabel.Size = new System.Drawing.Size(0, 13);
+            this.TimeValueLabel.TabIndex = 10;
+            // 
+            // DateValueLabel
+            // 
+            this.DateValueLabel.AutoSize = true;
+            this.DateValueLabel.Location = new System.Drawing.Point(82, 18);
+            this.DateValueLabel.Name = "DateValueLabel";
+            this.DateValueLabel.Size = new System.Drawing.Size(0, 13);
+            this.DateValueLabel.TabIndex = 9;
+            // 
             // estTimeLabel
             // 
             this.estTimeLabel.AutoSize = true;
             this.estTimeLabel.Location = new System.Drawing.Point(82, 60);
             this.estTimeLabel.Name = "estTimeLabel";
-            this.estTimeLabel.Size = new System.Drawing.Size(51, 13);
+            this.estTimeLabel.Size = new System.Drawing.Size(0, 13);
             this.estTimeLabel.TabIndex = 8;
-            this.estTimeLabel.Text = "hh:mm:ss";
             // 
             // label6
             // 
@@ -197,7 +212,7 @@
             // dateLabel
             // 
             this.dateLabel.AutoSize = true;
-            this.dateLabel.Location = new System.Drawing.Point(7, 18);
+            this.dateLabel.Location = new System.Drawing.Point(50, 18);
             this.dateLabel.Name = "dateLabel";
             this.dateLabel.Size = new System.Drawing.Size(30, 13);
             this.dateLabel.TabIndex = 6;
@@ -206,7 +221,7 @@
             // timeLabel
             // 
             this.timeLabel.AutoSize = true;
-            this.timeLabel.Location = new System.Drawing.Point(6, 38);
+            this.timeLabel.Location = new System.Drawing.Point(50, 38);
             this.timeLabel.Name = "timeLabel";
             this.timeLabel.Size = new System.Drawing.Size(30, 13);
             this.timeLabel.TabIndex = 4;
@@ -430,8 +445,7 @@
             // 
             // timer1
             // 
-            this.timer1.Enabled = true;
-            this.timer1.Interval = 10;
+            this.timer1.Interval = 60000;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
             // kontainerPreGraf
@@ -443,22 +457,6 @@
             this.kontainerPreGraf.Size = new System.Drawing.Size(1024, 681);
             this.kontainerPreGraf.TabIndex = 10;
             this.kontainerPreGraf.Paint += new System.Windows.Forms.PaintEventHandler(this.kontainerPreGraf_Paint);
-            // 
-            // DateValueLabel
-            // 
-            this.DateValueLabel.AutoSize = true;
-            this.DateValueLabel.Location = new System.Drawing.Point(82, 18);
-            this.DateValueLabel.Name = "DateValueLabel";
-            this.DateValueLabel.Size = new System.Drawing.Size(0, 13);
-            this.DateValueLabel.TabIndex = 9;
-            // 
-            // TimeValueLabel
-            // 
-            this.TimeValueLabel.AutoSize = true;
-            this.TimeValueLabel.Location = new System.Drawing.Point(82, 38);
-            this.TimeValueLabel.Name = "TimeValueLabel";
-            this.TimeValueLabel.Size = new System.Drawing.Size(0, 13);
-            this.TimeValueLabel.TabIndex = 10;
             // 
             // Main
             // 

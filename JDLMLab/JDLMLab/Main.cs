@@ -22,8 +22,12 @@ namespace JDLMLab
             kontainerPreGraf.Controls.Add(bufferedChart);
             ResumeLayout();
             fillRandomDataPoints();
-            
+            timer1_Tick(this, EventArgs.Empty);
+            timer1.Interval = (60 - DateTime.Now.Second) * 1000;
+            timer1.Enabled = true;
+            setTimer = true;
         }
+        bool setTimer;
 
         public void setCurrentCycle(string value) {
 
@@ -358,6 +362,11 @@ namespace JDLMLab
 
         private void timer1_Tick(object sender, EventArgs e)
         {
+            if (setTimer)
+            {
+                timer1.Interval = 60000;
+                setTimer = false;
+            }
             DateValueLabel.Text = DateTime.Now.ToString("dd.MM.yyyy");
             TimeValueLabel.Text = DateTime.Now.ToString("hh:mm tt");
         }

@@ -14,7 +14,6 @@ namespace JDLMLab
     /// </summary>
     abstract class SerialPortDriver : SerialPortDriverInterface
     {
-       
         protected SerialPort serialPort;
         public abstract void close();
 
@@ -27,21 +26,23 @@ namespace JDLMLab
             return Convert.ToDouble(data);
         }
         static int c=0;
-        double last { get; set; }
+        public double LastValue { get; set; }
 
 
         protected void dataRecieved(object sender,SerialDataReceivedEventArgs e)
         {
-            
-            string x = serialPort.ReadLine();
-           
-            last = convertToDouble(x);
-            blockingCollection.Add(last);
+            string x = serialPort.ReadLine();  
+            LastValue = convertToDouble(x);
+            blockingCollection.Add(LastValue);
            // System.Windows.Forms.MessageBox.Show("dd");
             //           blockingCollection.Take();
             c++;
         }
-        public abstract void open();
+        public virtual void open()
+        {
+            blockingCollection = new BlockingCollection<double>();
+            LastValue = 0;
+        }
 
         abstract protected void readRequest();
 
@@ -52,9 +53,7 @@ namespace JDLMLab
             IntervalMerania = delay;
             timer = new System.Timers.Timer(delay);
             timer.Elapsed += Timer_Elapsed;
-            blockingCollection = new BlockingCollection<double>();
             timer.AutoReset = true;
-           // blockingCollection.Add(6);
         }
         public void startReading()
         {
@@ -91,8 +90,7 @@ namespace JDLMLab
 
         public double read()
         {
-          
-            return last;
+            return LastValue;
         }
         public double  readNext()
         {
@@ -105,35 +103,6 @@ namespace JDLMLab
             }
 
             return -1;
-
-/*
-            if (!blockingCollection.TryTake(out value))
-            {
-                //System.Windows.Forms.MessageBox.Show(value.ToString());
-
-                //value = last;
-                c--;
-                return;
-            }
-            throw new Exception("neni na bafri nic");
-            return;
-            
-            //uvidime ci bude treba task alebo vlakno...mozno vobec -> tak potom odstranit nasledujuce
-            using (Task t2 = Task.Factory.StartNew(() =>
-            {
-                // Consume consume the BlockingCollection
-                double s;
-                if (blockingCollection.TryTake(out s))
-                    ;
-                else
-                {
-                    s = -1;
-                }
-
-
-            }))
-                ;
-*/
         }
 
         public int IntervalMerania { get; set; }

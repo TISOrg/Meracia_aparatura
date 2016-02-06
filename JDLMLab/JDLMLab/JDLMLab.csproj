@@ -158,7 +158,6 @@
     <Compile Include="TlakomerPR4000Driver.cs" />
     <Compile Include="TlakomerTG256ADriver.cs" />
     <Compile Include="VMeterDriver.cs" />
-    <Compile Include="XXXDriver.cs" />
     <EmbeddedResource Include="AboutBox1.resx">
       <DependentUpon>AboutBox1.cs</DependentUpon>
     </EmbeddedResource>
