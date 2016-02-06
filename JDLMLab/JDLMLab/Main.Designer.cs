@@ -1,4 +1,6 @@
-﻿namespace JDLMLab
+﻿using System;
+
+namespace JDLMLab
 {
     partial class Main
     {
@@ -490,6 +492,8 @@
             this.PerformLayout();
 
         }
+
+        
 
         #endregion
         private System.IO.Ports.SerialPort serialPort1;

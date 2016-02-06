@@ -101,7 +101,7 @@
             this.dataRoky.RowHeadersVisible = false;
             this.dataRoky.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
             this.dataRoky.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
-            this.dataRoky.Size = new System.Drawing.Size(102, 337);
+            this.dataRoky.Size = new System.Drawing.Size(130, 337);
             this.dataRoky.TabIndex = 0;
             this.dataRoky.CellEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataRoky_CellEnter);
             // 
@@ -117,7 +117,7 @@
             this.dataNazvy.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dataNazvy.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             this.dataNazvy.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataNazvy.Location = new System.Drawing.Point(120, 30);
+            this.dataNazvy.Location = new System.Drawing.Point(148, 30);
             this.dataNazvy.MultiSelect = false;
             this.dataNazvy.Name = "dataNazvy";
             this.dataNazvy.ReadOnly = true;
@@ -141,7 +141,7 @@
             this.dataDatumy.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dataDatumy.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             this.dataDatumy.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataDatumy.Location = new System.Drawing.Point(325, 30);
+            this.dataDatumy.Location = new System.Drawing.Point(353, 30);
             this.dataDatumy.MultiSelect = false;
             this.dataDatumy.Name = "dataDatumy";
             this.dataDatumy.ReadOnly = true;
@@ -164,7 +164,7 @@
             this.dataTypy.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dataTypy.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             this.dataTypy.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataTypy.Location = new System.Drawing.Point(429, 30);
+            this.dataTypy.Location = new System.Drawing.Point(457, 30);
             this.dataTypy.MultiSelect = false;
             this.dataTypy.Name = "dataTypy";
             this.dataTypy.ReadOnly = true;
@@ -188,11 +188,11 @@
             this.dataMerania.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             this.dataMerania.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataMerania.Cursor = System.Windows.Forms.Cursors.Default;
-            this.dataMerania.Location = new System.Drawing.Point(544, 30);
+            this.dataMerania.Location = new System.Drawing.Point(572, 30);
             this.dataMerania.Name = "dataMerania";
             this.dataMerania.ReadOnly = true;
             this.dataMerania.RowHeadersVisible = false;
-            this.dataMerania.Size = new System.Drawing.Size(108, 337);
+            this.dataMerania.Size = new System.Drawing.Size(144, 337);
             this.dataMerania.TabIndex = 4;
             this.dataMerania.CellEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataMerania_CellEnter);
             // 
@@ -253,9 +253,7 @@
             this.noteValue.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.ForcedVertical;
             this.noteValue.Size = new System.Drawing.Size(196, 108);
             this.noteValue.TabIndex = 15;
-            this.noteValue.Text = "sdfdsfgsdfgsdgdsfgdsfgsdfdsfgsdfgsdgdsfgdsfgsdfdsfgsdfgsdgdsfgdsfgsdfdsfgsdfgsdgd" +
-    "sfgdsfgsdfdsfgsdfgsdgdsfgdsfgsdfdsfgsdfgsdgdsfgdsfgsdfdsfgsdfgsdgdsfgdsfgsdfdsfg" +
-    "sdfgsdgdsfgdsfgsdfdsfgsdfgsdgdsfgdsfg";
+            this.noteValue.Text = "";
             // 
             // constantValue
             // 

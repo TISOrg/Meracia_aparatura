@@ -20,7 +20,7 @@ namespace JDLMLab
         /// jednorazove precitanie. metoda vrati poslednu hodnotu nacitanu pri vykonani dataRecieved handlera
         /// </summary>
         /// <returns>vracia poslednu hodnotu z dataRecieved handlera</returns>
-        double read();
+        void read();
         /// <summary>
         /// zastavi Timer pre citanie z input buffera
         /// </summary>
@@ -30,10 +30,9 @@ namespace JDLMLab
         /// </summary>
         void startReading();
         /// <summary>
-        /// vyrobi timer so zadanym delay
+        /// vyrobi timer
         /// </summary>
-        /// <param name="delay">cas za ktory ma driver posielat read requesty na port v milisekundach</param>
-        void setTimer(int delay);
+        void setTimer();
         /// <summary>
         /// precita dalsiu hodnotu z kolekcie
         /// </summary>

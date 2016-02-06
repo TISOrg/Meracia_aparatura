@@ -56,6 +56,7 @@ namespace JDLMLab
             if (!Parameters.TestRun) db.close();
             if(measuringThread.ThreadState==System.Threading.ThreadState.Running)
                 ADPrevodnik.UlohaCounter.Dispose();
+            mainForm.meranieSkoncilo();
 
         }
 
@@ -108,6 +109,14 @@ namespace JDLMLab
             inicializujQms();
             inicializujTem();
             ADPrevodnik.triggerInit(Parameters.StepTime);
+            tlak256.open();
+            tlakpr4000.open();
+            teplomer.open();
+            ampermeter.open();
+            voltmeter.open();
+            teplomer.setTimer();
+            //tlakpr4000.setTimer();
+            tlak256.setTimer();
         }
 
         private void inicializujTem()
@@ -137,7 +146,10 @@ namespace JDLMLab
         {
             cisloKroku = 0;
             double krok = (Parameters.EnergyScan.StartPoint); //ziskame zaciatocny krok = start point pre TEM
-            
+            //teplomer a tlakomery chceme citat iba kazdych n sekund;
+
+            tlak256.startReading();
+            teplomer.startReading();
             while (cisloKroku <= Parameters.NumberOfSteps)
             {
                 mainForm.setCurrentStep(cisloKroku.ToString() + "/" + Parameters.NumberOfSteps.ToString());
@@ -145,16 +157,17 @@ namespace JDLMLab
                 //ADPrevodnik.setAnalogOutput(krok);//.setPoint(krok);   //posle na TEM vypocitany bod
                 ADThread = new Thread(ADPrevodnik.CounterStart); //novy thread ad prevodnika
                 ADThread.Start();  //nastartovanie prevodnika
-                ///precitaj zatial vsetky ostatne pristroje
-                KrokMerania.Current = 5.2;
-                KrokMerania.Capillar = 10;
-                KrokMerania.Chamber = 11;
-                KrokMerania.Temperature = 4.8;
-                KrokMerania.Y = 4;
-                KrokMerania.X = krok;   //potom nebudeme zapisovat prepokladany krok, ale odmerany z voltmetra
+                //precitaj zatial vsetky ostatne pristroje
+                voltmeter.read();
+                ampermeter.read();
                 ADThread.Join();   //cakas na skoncenie ADThreadu
                 //vieme, ze AD prevodnik uz zapisal novu hodnotu intenzity
                 KrokMerania.Intensity = ADPrevodnik.Intensity;
+                KrokMerania.Current = ampermeter.LastValue;
+                KrokMerania.X = voltmeter.LastValue;
+                KrokMerania.Temperature = teplomer.readNext();
+                KrokMerania.Capillar = tlak256.readNext();
+                KrokMerania.Chamber = 0;               
                 //zaznamenat 
                 aktualnyCyklus.KrokyMerania.Add(KrokMerania);
                 lock (Graf)
@@ -164,6 +177,7 @@ namespace JDLMLab
                 cisloKroku++;
                 krok = (Parameters.EnergyScan.StartPoint)+cisloKroku*Parameters.EnergyScan.KrokNapatia;
             }
+
         }
         private void meraj2DScanCyklus()
         {

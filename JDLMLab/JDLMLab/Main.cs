@@ -71,21 +71,21 @@ namespace JDLMLab
         private void nastaveniaMeraniaToolStripMenuItem_Click(object sender, EventArgs e)
         {
 
-            NoveMeranieWindow setmerania = new NoveMeranieWindow();
-            DialogResult res = setmerania.ShowDialog();
+            NoveMeranieWindow noveMeranieWindow = new NoveMeranieWindow();
+            DialogResult res = noveMeranieWindow.ShowDialog();
             if (res == DialogResult.OK) 
             {
+                nastaveniaMeraniaToolStripMenuItem.Enabled = false;
                 //hodnota setMerania.parametreMerania obsahuje instanciu triedy measurementsparameters
                 //ktora obsahuje vsetky informacie na zacatie merania.
-                measurementControl = new MeasurementControl(setmerania.parametreMerania, this);
+                measurementControl = new MeasurementControl(noveMeranieWindow.parametreMerania, this);
                 measurementControl.Graf = bufferedChart;
-//                MessageBox.Show(setmerania.parametreMerania.StepTime.ToString() + " - " + setmerania.parametreMerania.NumberOfCycles.ToString());
-                estTimeLabel.Text = DateTime.Now.AddSeconds(setmerania.parametreMerania.StepTime * setmerania.parametreMerania.NumberOfCycles * setmerania.parametreMerania.NumberOfSteps).ToString("hh:mm tt");
-                energyScanStepTimeLabel.Text = setmerania.parametreMerania.EnergyScan.StepTime.ToString();
-                resolutionLabel.Text = setmerania.parametreMerania.Resolution.ToString();
+                estTimeLabel.Text = DateTime.Now.AddSeconds(noveMeranieWindow.parametreMerania.StepTime * noveMeranieWindow.parametreMerania.NumberOfCycles * noveMeranieWindow.parametreMerania.NumberOfSteps).ToString("hh:mm tt");
+                energyScanStepTimeLabel.Text = noveMeranieWindow.parametreMerania.EnergyScan.StepTime.ToString();
+                resolutionLabel.Text = noveMeranieWindow.parametreMerania.Resolution.ToString();
                 measurementControl.start();
                 
-                MinimumSize = new System.Drawing.Size(setmerania.parametreMerania.NumberOfSteps + bufferedChart.LeftMargin + bufferedChart.RightMargin + sidebar.Width, 0);
+                MinimumSize = new System.Drawing.Size(noveMeranieWindow.parametreMerania.NumberOfSteps + bufferedChart.LeftMargin + bufferedChart.RightMargin + sidebar.Width, 0);
 
                 //bufferedChart.setParameters(setmerania.parametreMerania.StartPoint,
                 //    setmerania.parametreMerania.EndPoint,
@@ -94,6 +94,11 @@ namespace JDLMLab
                 //bufferedChart.init();
 
             }
+        }
+
+        internal void meranieSkoncilo()
+        {
+            nastaveniaMeraniaToolStripMenuItem.Enabled = true;
         }
 
         private void oProgrameToolStripMenuItem_Click(object sender, EventArgs e)

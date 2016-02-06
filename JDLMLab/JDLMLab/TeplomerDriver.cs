@@ -21,10 +21,12 @@ namespace JDLMLab
             //reception of the last character in a message, and must release the transmission line within 3
             //character times of the last character in a message.
             //Note:Three character times = 1.5ms at 19200, 3ms at 9600, 6ms at 4800, 12ms at 2400 and 24ms at 1200 bps.
-            serialPort.DataReceived += dataRecieved;
+            serialPort.DataReceived += dataRecievedHandler;
             serialPort.ReceivedBytesThreshold = 10; //lebo format odpovede je L1Mabcd0A* 
             serialPort.NewLine = "*";
             serialPort.Open();
+
+            IntervalMerania = Properties.Devices.Default.tempFreq*1000;
             base.open();
         }
 

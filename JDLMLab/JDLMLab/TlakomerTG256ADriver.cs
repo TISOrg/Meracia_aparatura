@@ -23,13 +23,14 @@ namespace JDLMLab
 
             kanal = Properties.Devices.Default.tpg256aChannel;
             // serialPort.Handshake = System.IO.Ports.Handshake.None;
-            serialPort.DataReceived += dataRecieved;
+            serialPort.DataReceived += dataRecievedHandler;
             znaky[0] = '\x02';
             znaky[1] = '\x03';
             znaky[2] = '\x05';
             serialPort.NewLine = "\r\n";
            // serialPort.ReceivedBytesThreshold = 1; //format je x,x.xxxEsx
             serialPort.Open();
+            IntervalMerania = Properties.Devices.Default.tpg256aFreq * 1000;
         } 
 
         private char[] znaky = new char[3];

@@ -18,9 +18,9 @@ namespace JDLMLab
         public override void open()
         {
             serialPort = new SerialPort(Properties.Devices.Default.voltmeterPort, 9600, Parity.None, 8, StopBits.One);   //zakladne nastavenia, najma COM sa bude menit, zmeni sa v gui
-            
 
-            serialPort.DataReceived += dataRecieved;
+
+            serialPort.DataReceived += dataRecievedHandler;
             serialPort.ReceivedBytesThreshold = 1;  //velmi uzitocna vec... zavola recieved handler iba pri urcenom pocte bytov na vstupe. napr. pre teplomer
             //sp.NewLine ="\n";   //urci sa new line. vacsniou \n
             

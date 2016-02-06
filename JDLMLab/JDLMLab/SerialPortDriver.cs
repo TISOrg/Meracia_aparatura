@@ -29,29 +29,28 @@ namespace JDLMLab
         public double LastValue { get; set; }
 
 
-        protected void dataRecieved(object sender,SerialDataReceivedEventArgs e)
+        protected void dataRecievedHandler(object sender,SerialDataReceivedEventArgs e)
         {
             string x = serialPort.ReadLine();  
             LastValue = convertToDouble(x);
-            blockingCollection.Add(LastValue);
-           // System.Windows.Forms.MessageBox.Show("dd");
-            //           blockingCollection.Take();
-            c++;
+            if(blockingCollection!=null)blockingCollection.Add(LastValue);
         }
+     
         public virtual void open()
         {
-            blockingCollection = new BlockingCollection<double>();
             LastValue = 0;
+            readingThread=new Thread(readRequest);
+            readingThread.Name = "Reading thread";
         }
 
         abstract protected void readRequest();
 
 
         System.Timers.Timer timer;
-        public void setTimer(int delay)
+        public void setTimer()
         {
-            IntervalMerania = delay;
-            timer = new System.Timers.Timer(delay);
+            blockingCollection = new BlockingCollection<double>();
+            timer = new System.Timers.Timer(IntervalMerania);
             timer.Elapsed += Timer_Elapsed;
             timer.AutoReset = true;
         }
@@ -88,33 +87,26 @@ namespace JDLMLab
             
         }
 
-        public double read()
+        Thread readingThread;
+        public void read()
         {
-            return LastValue;
+            readingThread.Start();
         }
         public double  readNext()
-        {
-            
+        {            
             try {
                 return blockingCollection.Take();
             }
             catch (Exception) {
-                throw new Exception("neni na bafri nic");
+                return LastValue;
             }
-
-            return -1;
         }
 
         public int IntervalMerania { get; set; }
 
         protected BlockingCollection<double> blockingCollection;
-        protected Queue<string> q;
 
-        /// <summary>
-        /// testovacie veci, odstranit potom
-        /// </summary>
-        protected BlockingCollection<string> testbc;
-        protected Queue<string> testq;
+
 
     }
 }
