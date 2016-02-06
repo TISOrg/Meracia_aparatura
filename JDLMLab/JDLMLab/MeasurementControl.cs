@@ -1,10 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Text;
 using System.Threading;
-using System.Windows.Forms;
 
 namespace JDLMLab
 {
@@ -14,6 +9,7 @@ namespace JDLMLab
     /// </summary>
     class MeasurementControl
     {
+        
         public MeasurementControl(MeasurementParameters mp,Main mainForm)
         {
             Parameters = mp;
@@ -24,14 +20,8 @@ namespace JDLMLab
         Main mainForm { get; set; }
         public BufferedChart Graf { get; internal set; }
         DbCommunication db;
-        private void vytvoritMeranievDB(MeasurementParameters mp)
-        {   
-            db.vytvoritNoveMeranie(mp);   
-        }
 
         public MeasurementParameters Parameters { get; set; }
-        private Meranie Meranie { get; set; }
-        private KrokMerania KrokMerania { get; set; }
 
         static VMeterDriver voltmeter = new VMeterDriver();
         static AMeterDriver ampermeter = new AMeterDriver();
@@ -40,9 +30,7 @@ namespace JDLMLab
         static TlakomerTG256ADriver tlak256 = new TlakomerTG256ADriver();
         static QmsDriver qms = new QmsDriver();
         NIDriver ADPrevodnik;
-
-        string typ { get; set; }
-
+        Thread measuringThread;
         /// <summary>
         /// Metoda nastartuje meranie s prednastavenymi parametrami.
         /// </summary>
@@ -54,24 +42,52 @@ namespace JDLMLab
                 db.open();
                 db.vytvoritNoveMeranie(Parameters);
             }
-            typ = Parameters.Typ;
             Graf.setParameters(Parameters.EnergyScan.StartPoint, Parameters.EnergyScan.EndPoint, Parameters.NumberOfSteps + 1, Parameters.NumberOfCycles);
-            new Thread(this.startThread).Start();   //vykonavame meranie v samostatnom threade   
+            measuringThread = new Thread(this.startThread);
+            measuringThread.Name = "Measuring thread";
+            measuringThread.Start();   //vykonavame meranie v samostatnom threade   
+        }
+        /// <summary>
+        /// metoda ma zatvorit vsetky pristroje s ktorymi pracuje a ukoncit vsetky thready ktore mozu byt spustene.
+        /// </summary>
+        public void stop()
+        {
+            stopDevices();
+            if (!Parameters.TestRun) db.close();
+            if(measuringThread.ThreadState==System.Threading.ThreadState.Running)
+                ADPrevodnik.UlohaCounter.Dispose();
+
         }
 
+        private void stopDevices()
+        {
+            voltmeter.stopReading();
+            ampermeter.stopReading();
+            teplomer.stopReading();
+            tlak256.stopReading();
+            tlakpr4000.stopReading(); // !!!, asi bude ina, lebo je to na AD
+            
+        }
+
+        private Meranie Meranie { get; set; }
         CyklusMerania aktualnyCyklus;
+        private KrokMerania KrokMerania { get; set; }
         int currentCycleNum;
         int cisloKroku;
         private void startThread()
         {
             inicializujPristroje();
             currentCycleNum = 1;
+            Meranie = new Meranie(Parameters); 
+            
             while (Parameters.NumberOfCycles == 0 || currentCycleNum <= Parameters.NumberOfCycles)
             {
                 aktualnyCyklus = new CyklusMerania(currentCycleNum); //vytvori datovu strukturu CyklusMerania
                 merajAktualnyCyklus(); //zacne meranie aktualneho cyklu
                 if(!Parameters.TestRun) db.addCyklus(aktualnyCyklus);//ulozime aktualne namerany cyklus do db
+                Meranie.cykly.Add(aktualnyCyklus);  //lokalna struktura
                 if (mainForm.stopAfterCycleChecked) break;  //stlacil user checkbox zastavit???
+                
                 currentCycleNum++;
             }
             //skoncili sa cykly, alebo user nastavil ze sa ma skoncit po ukonceni cyklu
@@ -80,17 +96,10 @@ namespace JDLMLab
                 //db.addMeranie(Meranie);
                 stop();
             }
-            
             //skoncili sme meranie, vypiseme nejaku haluz, povolime spustenie noveho merania atd...
-
         }
 
-        public void stop()
-        {
-            if (!Parameters.TestRun) db.close();
-            ADPrevodnik.UlohaCounter.Dispose();
-        }
-
+       
         /// <summary>
         /// podla typu merania nastavi pristrojom vsetky potrebne udaje
         /// </summary>
@@ -115,20 +124,19 @@ namespace JDLMLab
         {
             mainForm.setCurrentCycle(currentCycleNum.ToString());
             Graf.clear();
-            if (typ.Equals("Mass Scan")) { merajMassScanCyklus(); }
-            else if(typ.Equals("Energy Scan")){merajEnergyScanCyklus();}
-            else if(typ.Equals("2D Scan")){ meraj2DScanCyklus(); }     
+            if (Parameters.Typ.Equals("Mass Scan")) { merajMassScanCyklus(); }
+            else if(Parameters.Typ.Equals("Energy Scan")){merajEnergyScanCyklus();}
+            else if(Parameters.Typ.Equals("2D Scan")){ meraj2DScanCyklus(); }     
         }
         private void merajMassScanCyklus()
         {
 
         }
-
+        Thread ADThread;
         private void merajEnergyScanCyklus()
         {
             cisloKroku = 0;
             double krok = (Parameters.EnergyScan.StartPoint); //ziskame zaciatocny krok = start point pre TEM
-            Thread ADThread;
             
             while (cisloKroku <= Parameters.NumberOfSteps)
             {
@@ -148,13 +156,11 @@ namespace JDLMLab
                 //vieme, ze AD prevodnik uz zapisal novu hodnotu intenzity
                 KrokMerania.Intensity = ADPrevodnik.Intensity;
                 //zaznamenat 
-             
                 aktualnyCyklus.KrokyMerania.Add(KrokMerania);
                 lock (Graf)
                 {
                     Graf.addDataPoint(KrokMerania.X, KrokMerania.Y, KrokMerania.Intensity);
                 }
-                
                 cisloKroku++;
                 krok = (Parameters.EnergyScan.StartPoint)+cisloKroku*Parameters.EnergyScan.KrokNapatia;
             }
@@ -163,9 +169,6 @@ namespace JDLMLab
         {
 
         }
-
-
-
     }
 
 }

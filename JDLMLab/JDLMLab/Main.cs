@@ -189,13 +189,6 @@ namespace JDLMLab
         {
         }
 
-        
-        private void dataRecieved(object sender, SerialDataReceivedEventArgs e)
-        {
-            
-            
-        }
-        
  
 
         private void Main_FormClosed(object sender, FormClosedEventArgs e)
