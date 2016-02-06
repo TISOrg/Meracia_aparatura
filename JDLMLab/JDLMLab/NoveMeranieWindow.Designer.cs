@@ -36,7 +36,6 @@
             this.label13 = new System.Windows.Forms.Label();
             this.pocetCyklovField = new System.Windows.Forms.NumericUpDown();
             this.pocetCyklovFieldLabel = new System.Windows.Forms.Label();
-            this.button3 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.noteField = new System.Windows.Forms.TextBox();
@@ -133,7 +132,6 @@
             this.tabPage2.Controls.Add(this.label13);
             this.tabPage2.Controls.Add(this.pocetCyklovField);
             this.tabPage2.Controls.Add(this.pocetCyklovFieldLabel);
-            this.tabPage2.Controls.Add(this.button3);
             this.tabPage2.Controls.Add(this.button2);
             this.tabPage2.Controls.Add(this.button1);
             this.tabPage2.Controls.Add(this.noteField);
@@ -209,24 +207,14 @@
             this.pocetCyklovFieldLabel.AutoSize = true;
             this.pocetCyklovFieldLabel.Location = new System.Drawing.Point(324, 83);
             this.pocetCyklovFieldLabel.Name = "pocetCyklovFieldLabel";
-            this.pocetCyklovFieldLabel.Size = new System.Drawing.Size(146, 13);
+            this.pocetCyklovFieldLabel.Size = new System.Drawing.Size(147, 13);
             this.pocetCyklovFieldLabel.TabIndex = 16;
-            this.pocetCyklovFieldLabel.Text = "Number of steps (0 for infinity)";
+            this.pocetCyklovFieldLabel.Text = "Number of steps (0 for infinite)";
             this.pocetCyklovFieldLabel.Click += new System.EventHandler(this.pocetCyklovFieldLabel_Click);
-            // 
-            // button3
-            // 
-            this.button3.Location = new System.Drawing.Point(439, 393);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(102, 23);
-            this.button3.TabIndex = 5;
-            this.button3.Text = "Cancel";
-            this.button3.UseVisualStyleBackColor = true;
-            this.button3.Click += new System.EventHandler(this.cancelbutton_click);
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(211, 393);
+            this.button2.Location = new System.Drawing.Point(439, 393);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(102, 23);
             this.button2.TabIndex = 4;
@@ -236,7 +224,7 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(13, 393);
+            this.button1.Location = new System.Drawing.Point(327, 393);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(102, 23);
             this.button1.TabIndex = 3;
@@ -759,7 +747,7 @@
             // label39
             // 
             this.label39.AutoSize = true;
-            this.label39.Location = new System.Drawing.Point(166, 145);
+            this.label39.Location = new System.Drawing.Point(165, 137);
             this.label39.Name = "label39";
             this.label39.Size = new System.Drawing.Size(27, 13);
             this.label39.TabIndex = 68;
@@ -769,7 +757,7 @@
             // 
             this.timePerAmuField2DMs.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.timePerAmuField2DMs.FormattingEnabled = true;
-            this.timePerAmuField2DMs.Location = new System.Drawing.Point(99, 139);
+            this.timePerAmuField2DMs.Location = new System.Drawing.Point(98, 134);
             this.timePerAmuField2DMs.Name = "timePerAmuField2DMs";
             this.timePerAmuField2DMs.Size = new System.Drawing.Size(61, 21);
             this.timePerAmuField2DMs.TabIndex = 64;
@@ -778,7 +766,7 @@
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(14, 142);
+            this.label9.Location = new System.Drawing.Point(21, 137);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(71, 13);
             this.label9.TabIndex = 63;
@@ -811,7 +799,7 @@
             // 
             this.DensOfMeasField2DMS.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.DensOfMeasField2DMS.FormattingEnabled = true;
-            this.DensOfMeasField2DMS.Location = new System.Drawing.Point(99, 106);
+            this.DensOfMeasField2DMS.Location = new System.Drawing.Point(98, 102);
             this.DensOfMeasField2DMS.Name = "DensOfMeasField2DMS";
             this.DensOfMeasField2DMS.Size = new System.Drawing.Size(61, 21);
             this.DensOfMeasField2DMS.TabIndex = 60;
@@ -830,7 +818,7 @@
             // label34
             // 
             this.label34.AutoSize = true;
-            this.label34.Location = new System.Drawing.Point(30, 27);
+            this.label34.Location = new System.Drawing.Point(37, 27);
             this.label34.Name = "label34";
             this.label34.Size = new System.Drawing.Size(55, 13);
             this.label34.TabIndex = 49;
@@ -849,7 +837,7 @@
             // label29
             // 
             this.label29.AutoSize = true;
-            this.label29.Location = new System.Drawing.Point(28, 79);
+            this.label29.Location = new System.Drawing.Point(35, 79);
             this.label29.Name = "label29";
             this.label29.Size = new System.Drawing.Size(57, 13);
             this.label29.TabIndex = 57;
@@ -858,7 +846,7 @@
             // label33
             // 
             this.label33.AutoSize = true;
-            this.label33.Location = new System.Drawing.Point(33, 53);
+            this.label33.Location = new System.Drawing.Point(40, 53);
             this.label33.Name = "label33";
             this.label33.Size = new System.Drawing.Size(52, 13);
             this.label33.TabIndex = 51;
@@ -885,7 +873,7 @@
             // label30
             // 
             this.label30.AutoSize = true;
-            this.label30.Location = new System.Drawing.Point(7, 109);
+            this.label30.Location = new System.Drawing.Point(7, 105);
             this.label30.Name = "label30";
             this.label30.Size = new System.Drawing.Size(85, 13);
             this.label30.TabIndex = 55;
@@ -925,7 +913,7 @@
             // 
             this.label35.AutoSize = true;
             this.label35.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.label35.Location = new System.Drawing.Point(56, 147);
+            this.label35.Location = new System.Drawing.Point(61, 137);
             this.label35.Name = "label35";
             this.label35.Size = new System.Drawing.Size(32, 13);
             this.label35.TabIndex = 46;
@@ -936,7 +924,7 @@
             // 
             this.StepValue2DEsLabel.AutoSize = true;
             this.StepValue2DEsLabel.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.StepValue2DEsLabel.Location = new System.Drawing.Point(99, 147);
+            this.StepValue2DEsLabel.Location = new System.Drawing.Point(103, 137);
             this.StepValue2DEsLabel.MaximumSize = new System.Drawing.Size(10, 10);
             this.StepValue2DEsLabel.Name = "StepValue2DEsLabel";
             this.StepValue2DEsLabel.Size = new System.Drawing.Size(0, 10);
@@ -946,7 +934,7 @@
             // label19
             // 
             this.label19.AutoSize = true;
-            this.label19.Location = new System.Drawing.Point(14, 76);
+            this.label19.Location = new System.Drawing.Point(16, 79);
             this.label19.Name = "label19";
             this.label19.Size = new System.Drawing.Size(77, 13);
             this.label19.TabIndex = 44;
@@ -964,7 +952,7 @@
             // label20
             // 
             this.label20.AutoSize = true;
-            this.label20.Location = new System.Drawing.Point(9, 102);
+            this.label20.Location = new System.Drawing.Point(9, 105);
             this.label20.Name = "label20";
             this.label20.Size = new System.Drawing.Size(84, 13);
             this.label20.TabIndex = 42;
@@ -984,7 +972,7 @@
             // label22
             // 
             this.label22.AutoSize = true;
-            this.label22.Location = new System.Drawing.Point(212, 50);
+            this.label22.Location = new System.Drawing.Point(212, 53);
             this.label22.Name = "label22";
             this.label22.Size = new System.Drawing.Size(20, 13);
             this.label22.TabIndex = 38;
@@ -1002,7 +990,7 @@
             // label24
             // 
             this.label24.AutoSize = true;
-            this.label24.Location = new System.Drawing.Point(35, 50);
+            this.label24.Location = new System.Drawing.Point(41, 53);
             this.label24.Name = "label24";
             this.label24.Size = new System.Drawing.Size(52, 13);
             this.label24.TabIndex = 36;
@@ -1021,7 +1009,7 @@
             // label25
             // 
             this.label25.AutoSize = true;
-            this.label25.Location = new System.Drawing.Point(32, 27);
+            this.label25.Location = new System.Drawing.Point(38, 27);
             this.label25.Name = "label25";
             this.label25.Size = new System.Drawing.Size(55, 13);
             this.label25.TabIndex = 34;
@@ -1082,7 +1070,6 @@
         #endregion
 
         private System.Windows.Forms.TabPage tabPage2;
-        private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.TextBox noteField;

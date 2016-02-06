@@ -86,9 +86,9 @@
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(12, 11);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(45, 13);
+            this.label1.Size = new System.Drawing.Size(42, 13);
             this.label1.TabIndex = 3;
-            this.label1.Text = "Zahrnúť";
+            this.label1.Text = "Include";
             this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // checkedListBoxCyklyInclude
@@ -106,9 +106,9 @@
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(134, 11);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(32, 13);
+            this.label2.Size = new System.Drawing.Size(38, 13);
             this.label2.TabIndex = 5;
-            this.label2.Text = "Cykly";
+            this.label2.Text = "Cycles";
             // 
             // checkBoxCyklyAllInclude
             // 
@@ -145,9 +145,9 @@
             this.label3.AutoSize = true;
             this.label3.Location = new System.Drawing.Point(278, 11);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(79, 13);
+            this.label3.Size = new System.Drawing.Size(59, 13);
             this.label3.TabIndex = 9;
-            this.label3.Text = "Typ zobrazenia";
+            this.label3.Text = "Data mode";
             // 
             // radioButton1
             // 
