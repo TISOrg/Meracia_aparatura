@@ -69,7 +69,12 @@
             this.dataMeranie.Name = "dataMeranie";
             this.dataMeranie.Size = new System.Drawing.Size(787, 293);
             this.dataMeranie.TabIndex = 1;
+            this.dataMeranie.CellBeginEdit += new System.Windows.Forms.DataGridViewCellCancelEventHandler(this.dataMeranie_CellBeginEdit);
+            this.dataMeranie.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataMeranie_CellContentClick);
+            this.dataMeranie.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataMeranie_CellEndEdit);
+            this.dataMeranie.CellErrorTextNeeded += new System.Windows.Forms.DataGridViewCellErrorTextNeededEventHandler(this.dataMeranie_CellErrorTextNeeded);
             this.dataMeranie.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataMeranie_CellValueChanged);
+            this.dataMeranie.CellValuePushed += new System.Windows.Forms.DataGridViewCellValueEventHandler(this.dataMeranie_CellValuePushed);
             // 
             // checkedListBoxInclude
             // 

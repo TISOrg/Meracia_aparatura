@@ -52,7 +52,7 @@ namespace JDLMLab
         /// </summary>
         public void stop()
         {
-            stopDevices();
+            //stopDevices();
             if (!Parameters.TestRun) db.close();
             if(measuringThread.ThreadState==System.Threading.ThreadState.Running)
                 ADPrevodnik.UlohaCounter.Dispose();
@@ -109,14 +109,14 @@ namespace JDLMLab
             inicializujQms();
             inicializujTem();
             ADPrevodnik.triggerInit(Parameters.StepTime);
-            tlak256.open();
-            tlakpr4000.open();
-            teplomer.open();
-            ampermeter.open();
-            voltmeter.open();
-            teplomer.setTimer();
-            //tlakpr4000.setTimer();
-            tlak256.setTimer();
+            //tlak256.open();
+            //tlakpr4000.open();
+            //teplomer.open();
+            //ampermeter.open();
+            //voltmeter.open();
+            //teplomer.setTimer();
+            ////tlakpr4000.setTimer();
+            //tlak256.setTimer();
         }
 
         private void inicializujTem()
@@ -148,8 +148,8 @@ namespace JDLMLab
             double krok = (Parameters.EnergyScan.StartPoint); //ziskame zaciatocny krok = start point pre TEM
             //teplomer a tlakomery chceme citat iba kazdych n sekund;
 
-            tlak256.startReading();
-            teplomer.startReading();
+            //tlak256.startReading();
+            //teplomer.startReading();
             while (cisloKroku <= Parameters.NumberOfSteps)
             {
                 mainForm.setCurrentStep(cisloKroku.ToString() + "/" + Parameters.NumberOfSteps.ToString());
@@ -158,15 +158,15 @@ namespace JDLMLab
                 ADThread = new Thread(ADPrevodnik.CounterStart); //novy thread ad prevodnika
                 ADThread.Start();  //nastartovanie prevodnika
                 //precitaj zatial vsetky ostatne pristroje
-                voltmeter.read();
-                ampermeter.read();
+                //voltmeter.read();
+                //ampermeter.read();//
                 ADThread.Join();   //cakas na skoncenie ADThreadu
                 //vieme, ze AD prevodnik uz zapisal novu hodnotu intenzity
                 KrokMerania.Intensity = ADPrevodnik.Intensity;
-                KrokMerania.Current = ampermeter.LastValue;
-                KrokMerania.X = voltmeter.LastValue;
-                KrokMerania.Temperature = teplomer.readNext();
-                KrokMerania.Capillar = tlak256.readNext();
+                //KrokMerania.Current = ampermeter.LastValue;
+                //KrokMerania.X = voltmeter.LastValue;
+                //KrokMerania.Temperature = teplomer.readNext();
+                //KrokMerania.Capillar = tlak256.readNext();
                 KrokMerania.Chamber = 0;               
                 //zaznamenat 
                 aktualnyCyklus.KrokyMerania.Add(KrokMerania);
