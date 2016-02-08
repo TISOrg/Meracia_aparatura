@@ -20,8 +20,8 @@ namespace JDLMLab
 
             Thread.CurrentThread.CurrentCulture = ci;
             Thread.CurrentThread.CurrentUICulture = ci;
-            CultureInfo.DefaultThreadCurrentCulture = ci;
-            CultureInfo.DefaultThreadCurrentUICulture = ci;
+          //  CultureInfo.DefaultThreadCurrentCulture = ci;
+           // CultureInfo.DefaultThreadCurrentUICulture = ci;
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new Main());

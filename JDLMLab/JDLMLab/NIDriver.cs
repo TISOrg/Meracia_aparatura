@@ -24,7 +24,7 @@ namespace JDLMLab
         public Task UlohaCounter;     
         private CIChannel CICh;
         public CounterReader Counter;
-        string prevodnikId = "Dev1";
+        string prevodnikId = "Dev2";
 
         public ulong Intensity { get; set; }
         public double Steptime {
