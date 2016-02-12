@@ -156,6 +156,7 @@ namespace JDLMLab
         List<SerialPortDriver> drivers;
         private void startbutton_click(object sender, EventArgs e)
         {
+<<<<<<< HEAD
             drivers = new List<SerialPortDriver>();
             SerialPortDriver voltmeter = new VMeterDriver();
             SerialPortDriver ampermeter = new AMeterDriver();
@@ -178,6 +179,30 @@ namespace JDLMLab
                 driver.startReading();
             }
             timer1.Enabled = true;
+=======
+            //drivers = new List<SerialPortDriver>();
+            //SerialPortDriver voltmeter = new VMeterDriver();
+            //SerialPortDriver ampermeter = new AMeterDriver();
+            //SerialPortDriver tlakomer = new TlakomerTG256ADriver();
+            //SerialPortDriver teplomer = new TeplomerDriver();
+
+
+            //voltmeter.setTimer(500);
+            //ampermeter.setTimer(500);
+            //tlakomer.setTimer(500);
+            //teplomer.setTimer(500);
+
+            //drivers.Add(ampermeter);
+            //drivers.Add(tlakomer);
+            //drivers.Add(teplomer);
+            //drivers.Add(voltmeter);
+
+            //foreach (SerialPortDriver driver in drivers) {
+            //    driver.open();
+            //    driver.startReading();
+            //}
+            //timer1.Enabled = true;
+>>>>>>> origin/master
         }
 
         private void button2_Click_1(object sender, EventArgs e)

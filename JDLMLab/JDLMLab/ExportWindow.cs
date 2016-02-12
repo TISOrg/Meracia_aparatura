@@ -484,5 +484,48 @@ namespace JDLMLab
         {
             MessageBox.Show(panel1.Height.ToString());
         }
+
+        private void dataMeranie_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void dataMeranie_CellEndEdit(object sender, DataGridViewCellEventArgs e)
+        {
+         
+        }
+
+        private void dataMeranie_CellBeginEdit(object sender, DataGridViewCellCancelEventArgs e)
+        {
+        
+        }
+
+        private void dataMeranie_CellErrorTextNeeded(object sender, DataGridViewCellErrorTextNeededEventArgs e)
+        {
+          
+        }
+
+        private void dataMeranie_CellValuePushed(object sender, DataGridViewCellValueEventArgs e)
+        {
+            MessageBox.Show("bla");
+            try
+            {
+                MessageBox.Show(dataMeranie.Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString());
+                Convert.ToDouble(dataMeranie.Rows[e.RowIndex].Cells[e.ColumnIndex].Value);//.ValueType);
+                                                                                          //     Convert.ToDouble(dataMeranie.Columns[e.ColumnIndex].CellType);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("not good type");
+                //    MessageBox.Show(dataMeranie.Columns[e.ColumnIndex].ValueType.ToString() + " - " + dataMeranie.Rows[e.RowIndex].Cells[e.ColumnIndex].ValueType.ToString());
+            }
+            //if (dataMeranie.Rows[e.RowIndex].Cells[e.ColumnIndex].ValueType == dataMeranie.Columns[e.ColumnIndex].CellType)
+            //{
+            //    MessageBox.Show("tu som");
+            //}
+            //else {
+            //    MessageBox.Show(dataMeranie.Columns[e.ColumnIndex].CellType.ToString() + " - " + dataMeranie.Rows[e.RowIndex].Cells[e.ColumnIndex].ValueType.ToString());
+            //}
+        }
     }
 }
