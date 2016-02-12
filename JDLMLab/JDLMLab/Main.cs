@@ -163,10 +163,10 @@ namespace JDLMLab
             SerialPortDriver teplomer = new TeplomerDriver();
 
 
-            voltmeter.setTimer(500);
-            ampermeter.setTimer(500);
-            tlakomer.setTimer(500);
-            teplomer.setTimer(500);
+            voltmeter.setTimer();
+            ampermeter.setTimer();
+            tlakomer.setTimer();
+            teplomer.setTimer();
 
             drivers.Add(ampermeter);
             drivers.Add(tlakomer);
