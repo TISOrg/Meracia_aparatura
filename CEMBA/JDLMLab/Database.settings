@@ -3,19 +3,19 @@
   <Profiles />
   <Settings>
     <Setting Name="database" Type="System.String" Scope="User">
-      <Value Profile="(Default)">aparatura</Value>
+      <Value Profile="(Default)"></Value>
     </Setting>
     <Setting Name="user" Type="System.String" Scope="User">
-      <Value Profile="(Default)">aparatura</Value>
+      <Value Profile="(Default)"></Value>
     </Setting>
     <Setting Name="password" Type="System.String" Scope="User">
-      <Value Profile="(Default)">JDLMaparatura</Value>
+      <Value Profile="(Default)"></Value>
     </Setting>
     <Setting Name="host" Type="System.String" Scope="User">
-      <Value Profile="(Default)">kempelen.ii.fmph.uniba.sk</Value>
+      <Value Profile="(Default)"></Value>
     </Setting>
     <Setting Name="port" Type="System.Int32" Scope="User">
-      <Value Profile="(Default)">3306</Value>
+      <Value Profile="(Default)"></Value>
     </Setting>
   </Settings>
 </SettingsFile>
